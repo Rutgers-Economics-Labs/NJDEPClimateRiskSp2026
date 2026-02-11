@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Department of Commerce (DOC), National Oceanic and Atmospheric Administration (NOAA), National Ocean Service (NOS), Office for Coastal Management (OCM)</origin>
+<pubdate>2017</pubdate>
+<title>NOAA Office for Coastal Management Sea Level Rise Data: 1-10 ft Sea Level Rise Inundation Extent</title>
+<pubinfo>
+<pubplace>Charleston, SC</pubplace>
+<publish>NOAA's Ocean Service, Office for Coastal Management (OCM)</publish>
+</pubinfo>
+<onlink>https://www.coast.noaa.gov/slr</onlink>
+<onlink>https://coast.noaa.gov/digitalcoast/tools/slr</onlink>
+<onlink>https://coast.noaa.gov/slrdata</onlink>
+<onlink>https://coast.noaa.gov/dataservices/Metadata/TransformMetadata?u=https://coast.noaa.gov/data/Documents/Metadata/harvest/Inundation/MHHW_Metadata.xml&f=html</onlink>
+<onlink>https://www.coast.noaa.gov</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>
+These data were created as part of the National Oceanic and Atmospheric Administration Office for Coastal Management's efforts to create an online
+mapping viewer depicting potential sea level rise and its associated impacts on the nation's coastal areas. The purpose of the mapping viewer
+is to provide coastal managers and scientists with a preliminary look at sea level rise (slr) and coastal flooding impacts. The viewer is a
+screening-level tool that uses nationally consistent data sets and analyses.Data and maps provided can be used at several scales to help
+gauge trends and prioritize actions for different scenarios. The Sea Level Rise and Coastal Flooding Impacts Viewer may be accessed at:
+https://www.coast.noaa.gov/slr
+
+These data depict the potential inundation of coastal areas resulting from a projected 1 to 10 feet rise in sea level above current
+Mean Higher High Water (MHHW) conditions. The process used to produce the data can be described as a modified bathtub approach that attempts
+to account for both local/regional tidal variability as well as hydrological connectivity. The process uses two source datasets to derive the
+final inundation rasters and polygons and accompanying low-lying polygons for each iteration of sea level rise: the Digital Elevation Model (DEM)
+of the area and a tidal surface model that represents spatial tidal variability. The tidal model is created using the NOAA National Geodetic
+Survey's VDATUM datum transformation software (http://vdatum.noaa.gov) in conjunction with spatial interpolation/extrapolation methods and
+represents the MHHW tidal datum in orthometric values (North American Vertical Datum of 1988).
+
+The model used to produce these data does not account for erosion, subsidence, or any future changes in an area's hydrodynamics. It is simply
+a method to derive data in order to visualize the potential scale, not exact location, of inundation from sea level rise.
+</abstract>
+<purpose>
+The purpose of these data is to show potential sea level rise inundation ranging from 1 to 10 feet above current Mean Higher High Water (MHHW)
+for the area. Although the water surface mapped represents a particular increase in sea level in feet above MHHW, the actual cell values in
+the raster dataset represent depth in meters.
+</purpose>
+<supplinf>
+A detailed methodology for producing these data can be found via the following url:
+https://coast.noaa.gov/data/digitalcoast/pdf/slr-inundation-methods.pdf
+</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>2017</caldate>
+</sngdate>
+</timeinfo>
+<current>The dataset is derived from the most recent elevation and VDATUM data available at date of processing.</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>None planned</update>
+</status>
+<spdom>
+<bounding>
+<westbc>144.5</westbc>
+<eastbc>-64.5</eastbc>
+<northbc>49.276</northbc>
+<southbc>-14.5</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Category</themekt>
+<themekey>climatologyMeteorologyAtmosphere</themekey>
+<themekey>elevation</themekey>
+<themekey>environment</themekey>
+<themekey>oceans</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>Bathymetry/Topography</themekey>
+<themekey>sea level rise</themekey>
+<themekey>Shoreline</themekey>
+<themekey>inundation</themekey>
+<themekey>flooding</themekey>
+</theme>
+<place>
+<placekt>None</placekt>
+<placekey>United States</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>
+These data illustrate the scale of potential flooding, not the exact location, and do not account for erosion, subsidence, or future construction.
+Inundation is shown as it would appear during the highest high tides (excludes wind driven tides) with the sea level rise amount. These data should be
+used only as a screening-level tool for management decisions. As with all remotely sensed data, all features should be verified with a site visit. The
+dataset is provided "as is," without warranty to its performance, merchantable state, or fitness for any particular purpose. The entire risk associated
+with the results and performance of this dataset is assumed by the user. This dataset should be used strictly as a planning reference and not for
+navigation, permitting, or other legal purposes.
+</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>NOAA Office for Coastal Management</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>2234 South Hobson Ave.</address>
+<city>Charleston</city>
+<state>SC</state>
+<postal>29405-2413</postal>
+</cntaddr>
+<cntvoice>843-740-1202</cntvoice>
+<cntemail>coastal.info@noaa.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>
+Acknowledgment of the NOAA Office for Coastal Management as a data source would be appreciated in products developed from these data, and such
+acknowledgment as is standard for citation and legal practices for data source is expected.
+</datacred>
+</idinfo>
+<dataqual>
+<logic>
+Standard methods for determining sea level rise inundation were used. The vertical accuracy of these data is dependent on the source
+elevation data and the error associated with vertical datum conversions within NOAA's VDatum software.
+</logic>
+<complete>
+The 1 - 10 ft inundation layers cover areas currently shown in the NOAA OCM Sea Level Rise Viewer.
+The current status of areas of coverage for the tool can be accessed at: https://www.coast.noaa.gov/slr
+</complete>
+<lineage>
+<srcinfo>
+<srccite>
+<citeinfo>
+<origin>NOAA Office for Coastal Management</origin>
+<pubdate>2017</pubdate>
+<title>NOAA CSC Digital Elevation Models</title>
+<onlink>https://www.coast.noaa.gov/slr</onlink>
+</citeinfo>
+</srccite>
+<typesrc>online digital data</typesrc>
+<srctime>
+<timeinfo>
+<sngdate>
+<caldate>2017</caldate>
+</sngdate>
+</timeinfo>
+<srccurr>The dataset is derived from the most recent elevation available at date of processing.</srccurr>
+</srctime>
+<srccitea>OCM DEMs</srccitea>
+<srccontr>The digital elevation model (DEM) of an area serves as one of two source datasets used to derive inundation outputs.</srccontr>
+</srcinfo>
+<srcinfo>
+<srccite>
+<citeinfo>
+<origin>NOAA Office for Coastal Management</origin>
+<pubdate>2017</pubdate>
+<title>NOAA OCM VDATUM Tidal Surface Models</title>
+<onlink>http://vdatum.noaa.gov</onlink>
+</citeinfo>
+</srccite>
+<typesrc>online digital data</typesrc>
+<srctime>
+<timeinfo>
+<sngdate>
+<caldate>2017</caldate>
+</sngdate>
+</timeinfo>
+<srccurr>The dataset is derived from the most recent VDATUM data available at date of processing.</srccurr>
+</srctime>
+<srccitea>OCM VDATUM Tidal Surfaces</srccitea>
+<srccontr>
+The tidal conversion surface of an area serves as one of two source datasets used to create the inundation outputs and is derived from
+NOAA National Geodetic Survey's VDATUM software.
+</srccontr>
+</srcinfo>
+<procstep>
+<procdesc>
+The process to derive the inundation rasters and polygons and low-lying area polygons is as follows:
+1. A tidal surface is generated using NOAA VDATUM tool and various spatial interpolation/extrapolation routines, dependent upon the area
+being mapped. The surface generated represents the spatial variability of offsets between MHHW, a tidal datum and NAVD88, an orthometric
+datum. Each iteration (1-10ft) of slr is added to this base surface and subsequently used for mapping.
+2. Using the DEM and the tidal surface (for each iteration of slr), raster calculations are made using ArcGIS Spatial Analyst Raster Calculation
+tool to generate multiple rasters, one 32-bit floating point raster representing depth of inundation and one 8-bit single value raster
+representing the extent of inundation.
+3. The hydrologic connectivity of the single value raster is evaluated using an 8-sided neighborhood rule in ArcGIS using the RegionGroup tool.
+The output raster from this process is then converted to a vector polygon feature class for further analysis. Using this 'base' feature class,
+a new feature class is created representing hydrologically connected areas. The 'base' feature class is also used to create a feature class
+representing unconnected 'low-lying' areas.
+</procdesc>
+<srcused>OCM DEMs</srcused>
+<srcused>OCM VDATUM Tidal Surfaces</srcused>
+<procdate>2017</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spref>
+<horizsys>
+<geograph>
+<latres>0.0000001</latres>
+<longres>0.0000001</longres>
+<geogunit>Decimal degrees</geogunit>
+</geograph>
+<geodetic>
+<horizdn>North American Datum of 1983</horizdn>
+<ellips>Geodetic Reference System 80</ellips>
+<semiaxis>6378137.000000</semiaxis>
+<denflat>298.257222101</denflat>
+</geodetic>
+</horizsys>
+<vertdef>
+<altsys>
+<altdatum>North American Vertical Datum of 1988</altdatum>
+<altres>0.001</altres>
+<altunits>meters</altunits>
+<altenc>Explicit elevation coordinate included with horizontal coordinates</altenc>
+</altsys>
+</vertdef>
+</spref>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>NOAA Office for Coastal Management</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>2234 South Hobson Ave.</address>
+<city>Charleston</city>
+<state>SC</state>
+<postal>29405-2413</postal>
+</cntaddr>
+<cntvoice>843-740-1202</cntvoice>
+<cntemail>coastal.info@noaa.gov</cntemail>
+</cntinfo>
+</distrib>
+<resdesc>Downloadable Data</resdesc>
+<distliab>
+Any conclusions drawn from the analysis of this information are not the responsibility of the Coastal Services Center
+or its partners.
+</distliab>
+<custom>This data may be downloaded at: https://www.coast.noaa.gov/slrdata</custom>
+</distinfo>
+<metainfo>
+<metd>201710</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>NOAA Office for Coastal Management</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>2234 South Hobson Avenue</address>
+<city>Charleston</city>
+<state>SC</state>
+<postal>29405-2413</postal>
+</cntaddr>
+<cntvoice>843-740-1202</cntvoice>
+<cntemail>coastal.info@noaa.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+</metainfo>
+</metadata>
