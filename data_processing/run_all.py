@@ -17,6 +17,7 @@ from process_boundaries import process_boundaries
 from process_census import process_census
 from process_finance import process_finance
 from process_climate import process_climate
+from process_fema_crs import process_fema_crs
 
 
 def get_file_size_mb(filepath):
@@ -67,6 +68,11 @@ def main():
         all_outputs.extend(process_finance())
     except Exception as e:
         print(f"\n❌ Finance processing failed: {e}")
+
+    try:
+        all_outputs.extend(process_fema_crs())
+    except Exception as e:
+        print(f"\n❌ FEMA CRS processing failed: {e}")
 
     print()
 
