@@ -1,0 +1,570 @@
+geo_id,municipality_raw,median_household_income,unemployment_rate_pct,mean_household_income,poverty_rate_families_pct,municipality,acs_year
+0600000US3402500070,"Aberdeen township, Monmouth County, New Jersey",121795.0,5.9,144473.0,,ABERDEEN,2024
+0600000US3400100100,"Absecon city, Atlantic County, New Jersey",73676.0,5.6,93479.0,,ABSECON,2024
+0600000US3401900550,"Alexandria township, Hunterdon County, New Jersey",160354.0,9.9,203442.0,,ALEXANDRIA,2024
+0600000US3404100670,"Allamuchy township, Warren County, New Jersey",131626.0,10.0,148746.0,,ALLAMUCHY,2024
+0600000US3400300700,"Allendale borough, Bergen County, New Jersey",160162.0,4.1,233010.0,,ALLENDALE,2024
+0600000US3402500730,"Allenhurst borough, Monmouth County, New Jersey",99375.0,15.5,175195.0,,ALLENHURST,2024
+0600000US3402500760,"Allentown borough, Monmouth County, New Jersey",120714.0,3.7,146534.0,,ALLENTOWN,2024
+0600000US3403300880,"Alloway township, Salem County, New Jersey",105156.0,2.9,125947.0,,ALLOWAY,2024
+0600000US3404101030,"Alpha borough, Warren County, New Jersey",90333.0,2.4,100992.0,,ALPHA,2024
+0600000US3400301090,"Alpine borough, Bergen County, New Jersey",246944.0,6.4,421868.0,,ALPINE,2024
+0600000US3403701360,"Andover township, Sussex County, New Jersey",142225.0,2.4,215903.0,,ANDOVER,2024
+0600000US3403701330,"Andover borough, Sussex County, New Jersey",92750.0,4.4,111809.0,,ANDOVER,2024
+0600000US3402501960,"Asbury Park city, Monmouth County, New Jersey",75544.0,5.6,106336.0,,ASBURY PARK,2024
+0600000US3400102080,"Atlantic City city, Atlantic County, New Jersey",41028.0,14.5,64129.0,,ATLANTIC CITY,2024
+0600000US3402502110,"Atlantic Highlands borough, Monmouth County, New Jersey",126080.0,3.9,161950.0,,ATLANTIC HIGHLANDS,2024
+0600000US3400702200,"Audubon borough, Camden County, New Jersey",115789.0,4.0,133746.0,,AUDUBON,2024
+0600000US3400702230,"Audubon Park borough, Camden County, New Jersey",56619.0,8.7,69418.0,,AUDUBON PARK,2024
+0600000US3400902320,"Avalon borough, Cape May County, New Jersey",139167.0,3.9,215074.0,,AVALON,2024
+0600000US3402502440,"Avon-by-the-Sea borough, Monmouth County, New Jersey",122635.0,8.7,206770.0,,AVON-BY-THE-SEA,2024
+0600000US3402903050,"Barnegat township, Ocean County, New Jersey",91540.0,6.6,109454.0,,BARNEGAT,2024
+0600000US3402903130,"Barnegat Light borough, Ocean County, New Jersey",125417.0,21.5,189670.0,,BARNEGAT LIGHT,2024
+0600000US3400703250,"Barrington borough, Camden County, New Jersey",87290.0,4.7,112030.0,,BARRINGTON,2024
+0600000US3400503370,"Bass River township, Burlington County, New Jersey",75833.0,4.0,113645.0,,BASS RIVER,2024
+0600000US3402903520,"Bay Head borough, Ocean County, New Jersey",181667.0,1.5,254401.0,,BAY HEAD,2024
+0600000US3401703580,"Bayonne city, Hudson County, New Jersey",83887.0,5.4,106298.0,,BAYONNE,2024
+0600000US3402903940,"Beach Haven borough, Ocean County, New Jersey",144167.0,2.5,198770.0,,BEACH HAVEN,2024
+0600000US3402904180,"Beachwood borough, Ocean County, New Jersey",106858.0,3.1,123720.0,,BEACHWOOD,2024
+0600000US3403504450,"Bedminster township, Somerset County, New Jersey",123709.0,4.5,171272.0,,BEDMINSTER,2024
+0600000US3401304695,"Belleville township, Essex County, New Jersey",90140.0,9.9,119170.0,,BELLEVILLE,2024
+0600000US3400704750,"Bellmawr borough, Camden County, New Jersey",76654.0,4.0,92587.0,,BELLMAWR,2024
+0600000US3402504930,"Belmar borough, Monmouth County, New Jersey",93573.0,6.6,151105.0,,BELMAR,2024
+0600000US3404104990,"Belvidere town, Warren County, New Jersey",95714.0,4.0,95183.0,,BELVIDERE,2024
+0600000US3400305170,"Bergenfield borough, Bergen County, New Jersey",130045.0,6.2,148713.0,,BERGENFIELD,2024
+0600000US3402905305,"Berkeley township, Ocean County, New Jersey",66008.0,7.5,97384.0,,BERKELEY,2024
+0600000US3403905320,"Berkeley Heights township, Union County, New Jersey",204658.0,3.3,267535.0,,BERKELEY HEIGHTS,2024
+0600000US3400705470,"Berlin township, Camden County, New Jersey",75238.0,4.2,95962.0,,BERLIN,2024
+0600000US3400705440,"Berlin borough, Camden County, New Jersey",102855.0,2.1,122589.0,,BERLIN,2024
+0600000US3403505560,"Bernards township, Somerset County, New Jersey",194107.0,4.2,289240.0,,BERNARDS,2024
+0600000US3403505590,"Bernardsville borough, Somerset County, New Jersey",236115.0,4.3,336861.0,,BERNARDSVILLE,2024
+0600000US3401905650,"Bethlehem township, Hunterdon County, New Jersey",142434.0,1.0,184942.0,,BETHLEHEM,2024
+0600000US3400505740,"Beverly city, Burlington County, New Jersey",89458.0,2.5,107055.0,,BEVERLY,2024
+0600000US3404106160,"Blairstown township, Warren County, New Jersey",124231.0,5.2,148024.0,,BLAIRSTOWN,2024
+0600000US3401306260,"Bloomfield township, Essex County, New Jersey",103604.0,5.3,139335.0,,BLOOMFIELD,2024
+0600000US3403106340,"Bloomingdale borough, Passaic County, New Jersey",127500.0,3.6,156959.0,,BLOOMINGDALE,2024
+0600000US3401906370,"Bloomsbury borough, Hunterdon County, New Jersey",92500.0,3.4,106178.0,,BLOOMSBURY,2024
+0600000US3400306490,"Bogota borough, Bergen County, New Jersey",103299.0,7.1,139616.0,,BOGOTA,2024
+0600000US3402706640,"Boonton township, Morris County, New Jersey",192188.0,7.3,238149.0,,BOONTON,2024
+0600000US3402706610,"Boonton town, Morris County, New Jersey",114302.0,6.9,123257.0,,BOONTON,2024
+0600000US3400506700,"Bordentown township, Burlington County, New Jersey",109832.0,5.6,130584.0,,BORDENTOWN,2024
+0600000US3400506670,"Bordentown city, Burlington County, New Jersey",103375.0,5.6,106063.0,,BORDENTOWN,2024
+0600000US3403506790,"Bound Brook borough, Somerset County, New Jersey",90571.0,4.1,111616.0,,BOUND BROOK,2024
+0600000US3402506970,"Bradley Beach borough, Monmouth County, New Jersey",97005.0,2.7,125896.0,,BRADLEY BEACH,2024
+0600000US3403507180,"Branchburg township, Somerset County, New Jersey",168832.0,6.5,202195.0,,BRANCHBURG,2024
+0600000US3403707300,"Branchville borough, Sussex County, New Jersey",126458.0,1.1,124644.0,,BRANCHVILLE,2024
+0600000US3402907420,"Brick township, Ocean County, New Jersey",106130.0,6.2,126810.0,,BRICK,2024
+0600000US3401107600,"Bridgeton city, Cumberland County, New Jersey",55781.0,5.8,67284.0,,BRIDGETON,2024
+0600000US3403507720,"Bridgewater township, Somerset County, New Jersey",172851.0,3.7,197756.0,,BRIDGEWATER,2024
+0600000US3402507750,"Brielle borough, Monmouth County, New Jersey",172250.0,6.6,217334.0,,BRIELLE,2024
+0600000US3400107810,"Brigantine city, Atlantic County, New Jersey",97250.0,5.7,132706.0,,BRIGANTINE,2024
+0600000US3400708170,"Brooklawn borough, Camden County, New Jersey",59063.0,4.6,73688.0,,BROOKLAWN,2024
+0600000US3400108680,"Buena borough, Atlantic County, New Jersey",79697.0,11.4,102161.0,,BUENA,2024
+0600000US3400108710,"Buena Vista township, Atlantic County, New Jersey",87581.0,6.1,107012.0,,BUENA VISTA,2024
+0600000US3400508950,"Burlington township, Burlington County, New Jersey",104067.0,4.3,120742.0,,BURLINGTON,2024
+0600000US3400508920,"Burlington city, Burlington County, New Jersey",84813.0,12.2,98012.0,,BURLINGTON,2024
+0600000US3402709040,"Butler borough, Morris County, New Jersey",111557.0,4.1,120317.0,,BUTLER,2024
+0600000US3403709160,"Byram township, Sussex County, New Jersey",138854.0,4.9,162079.0,,BYRAM,2024
+0600000US3401309250,"Caldwell borough, Essex County, New Jersey",96824.0,4.4,144374.0,,CALDWELL,2024
+0600000US3401909280,"Califon borough, Hunterdon County, New Jersey",128194.0,3.6,149897.0,,CALIFON,2024
+0600000US3400710000,"Camden city, Camden County, New Jersey",40546.0,14.5,58428.0,,CAMDEN,2024
+0600000US3400910270,"Cape May city, Cape May County, New Jersey",62576.0,3.4,133269.0,,CAPE MAY,2024
+0600000US3400910330,"Cape May Point borough, Cape May County, New Jersey",86125.0,0.0,168487.0,,CAPE MAY POINT,2024
+0600000US3400310480,"Carlstadt borough, Bergen County, New Jersey",115444.0,7.5,127627.0,,CARLSTADT,2024
+0600000US3403310610,"Carneys Point township, Salem County, New Jersey",79245.0,7.3,86940.0,,CARNEYS POINT,2024
+0600000US3402310750,"Carteret borough, Middlesex County, New Jersey",96862.0,10.1,121113.0,,CARTERET,2024
+0600000US3401311200,"Cedar Grove township, Essex County, New Jersey",151263.0,8.3,183793.0,,CEDAR GROVE,2024
+0600000US3402712130,"Chatham township, Morris County, New Jersey",198913.0,5.6,332512.0,,CHATHAM,2024
+0600000US3402712100,"Chatham borough, Morris County, New Jersey",241500.0,5.2,301281.0,,CHATHAM,2024
+0600000US3400712280,"Cherry Hill township, Camden County, New Jersey",121502.0,5.8,160113.0,,CHERRY HILL,2024
+0600000US3400712550,"Chesilhurst borough, Camden County, New Jersey",91683.0,7.9,99565.0,,CHESILHURST,2024
+0600000US3402712610,"Chester township, Morris County, New Jersey",241856.0,9.1,285258.0,,CHESTER,2024
+0600000US3402712580,"Chester borough, Morris County, New Jersey",171500.0,2.8,222729.0,,CHESTER,2024
+0600000US3400512670,"Chesterfield township, Burlington County, New Jersey",208836.0,3.4,222288.0,,CHESTERFIELD,2024
+0600000US3400512940,"Cinnaminson township, Burlington County, New Jersey",127606.0,7.1,149795.0,,CINNAMINSON,2024
+0600000US3401313045,"City of Orange township, Essex County, New Jersey",52847.0,14.4,77355.0,,CITY OF ORANGE,2024
+0600000US3403913150,"Clark township, Union County, New Jersey",133504.0,3.7,152086.0,,CLARK,2024
+0600000US3401513360,"Clayton borough, Gloucester County, New Jersey",90274.0,7.2,100956.0,,CLAYTON,2024
+0600000US3400713420,"Clementon borough, Camden County, New Jersey",62979.0,7.0,73608.0,,CLEMENTON,2024
+0600000US3400313570,"Cliffside Park borough, Bergen County, New Jersey",93452.0,4.4,121080.0,,CLIFFSIDE PARK,2024
+0600000US3403113690,"Clifton city, Passaic County, New Jersey",98237.0,7.1,127188.0,,CLIFTON,2024
+0600000US3401913750,"Clinton township, Hunterdon County, New Jersey",167109.0,5.3,209730.0,,CLINTON,2024
+0600000US3401913720,"Clinton town, Hunterdon County, New Jersey",141146.0,1.8,168992.0,,CLINTON,2024
+0600000US3400313810,"Closter borough, Bergen County, New Jersey",190469.0,3.3,258840.0,,CLOSTER,2024
+0600000US3400714260,"Collingswood borough, Camden County, New Jersey",90184.0,5.5,125077.0,,COLLINGSWOOD,2024
+0600000US3402514560,"Colts Neck township, Monmouth County, New Jersey",199573.0,4.6,302305.0,,COLTS NECK,2024
+0600000US3401114710,"Commercial township, Cumberland County, New Jersey",55733.0,5.8,73392.0,,COMMERCIAL,2024
+0600000US3400115160,"Corbin City city, Atlantic County, New Jersey",84609.0,9.9,99076.0,,CORBIN CITY,2024
+0600000US3400900000,"County subdivisions not defined, Cape May County, New Jersey",,,,,COUNTY SUBDIVISIONS NOT DEFINED,2024
+0600000US3402900000,"County subdivisions not defined, Ocean County, New Jersey",,,,,COUNTY SUBDIVISIONS NOT DEFINED,2024
+0600000US3402500000,"County subdivisions not defined, Monmouth County, New Jersey",,,,,COUNTY SUBDIVISIONS NOT DEFINED,2024
+0600000US3401100000,"County subdivisions not defined, Cumberland County, New Jersey",,,,,COUNTY SUBDIVISIONS NOT DEFINED,2024
+0600000US3400100000,"County subdivisions not defined, Atlantic County, New Jersey",,,,,COUNTY SUBDIVISIONS NOT DEFINED,2024
+0600000US3402315550,"Cranbury township, Middlesex County, New Jersey",216691.0,4.1,295420.0,,CRANBURY,2024
+0600000US3403915640,"Cranford township, Union County, New Jersey",155972.0,3.6,203986.0,,CRANFORD,2024
+0600000US3400315820,"Cresskill borough, Bergen County, New Jersey",170376.0,5.2,205807.0,,CRESSKILL,2024
+0600000US3402516660,"Deal borough, Monmouth County, New Jersey",113854.0,2.4,227524.0,,DEAL,2024
+0600000US3401116900,"Deerfield township, Cumberland County, New Jersey",85094.0,8.2,107288.0,,DEERFIELD,2024
+0600000US3400517080,"Delanco township, Burlington County, New Jersey",78710.0,5.5,96453.0,,DELANCO,2024
+0600000US3401917170,"Delaware township, Hunterdon County, New Jersey",194219.0,1.9,277703.0,,DELAWARE,2024
+0600000US3400517440,"Delran township, Burlington County, New Jersey",106921.0,5.2,135348.0,,DELRAN,2024
+0600000US3400317530,"Demarest borough, Bergen County, New Jersey",208036.0,7.1,335334.0,,DEMAREST,2024
+0600000US3400917560,"Dennis township, Cape May County, New Jersey",105506.0,0.6,129302.0,,DENNIS,2024
+0600000US3402717650,"Denville township, Morris County, New Jersey",160817.0,4.8,183889.0,,DENVILLE,2024
+0600000US3401517710,"Deptford township, Gloucester County, New Jersey",91706.0,4.3,113570.0,,DEPTFORD,2024
+0600000US3402718070,"Dover town, Morris County, New Jersey",73737.0,5.9,93044.0,,DOVER,2024
+0600000US3401118220,"Downe township, Cumberland County, New Jersey",67708.0,6.2,90611.0,,DOWNE,2024
+0600000US3400318400,"Dumont borough, Bergen County, New Jersey",126071.0,3.7,141544.0,,DUMONT,2024
+0600000US3402318490,"Dunellen borough, Middlesex County, New Jersey",86967.0,5.5,123237.0,,DUNELLEN,2024
+0600000US3402918670,"Eagleswood township, Ocean County, New Jersey",101875.0,4.6,117850.0,,EAGLESWOOD,2024
+0600000US3401918820,"East Amwell township, Hunterdon County, New Jersey",152361.0,2.0,167292.0,,EAST AMWELL,2024
+0600000US3402319000,"East Brunswick township, Middlesex County, New Jersey",143343.0,4.7,175088.0,,EAST BRUNSWICK,2024
+0600000US3401519180,"East Greenwich township, Gloucester County, New Jersey",148814.0,2.6,172969.0,,EAST GREENWICH,2024
+0600000US3402719210,"East Hanover township, Morris County, New Jersey",149583.0,4.1,202237.0,,EAST HANOVER,2024
+0600000US3401719360,"East Newark borough, Hudson County, New Jersey",48646.0,9.3,64199.0,,EAST NEWARK,2024
+0600000US3401319390,"East Orange city, Essex County, New Jersey",60830.0,9.2,79551.0,,EAST ORANGE,2024
+0600000US3400319510,"East Rutherford borough, Bergen County, New Jersey",97993.0,4.3,118724.0,,EAST RUTHERFORD,2024
+0600000US3402119780,"East Windsor township, Mercer County, New Jersey",105208.0,5.2,133795.0,,EAST WINDSOR,2024
+0600000US3400518790,"Eastampton township, Burlington County, New Jersey",110000.0,5.5,113206.0,,EASTAMPTON,2024
+0600000US3402519840,"Eatontown borough, Monmouth County, New Jersey",90463.0,6.7,117400.0,,EATONTOWN,2024
+0600000US3400320020,"Edgewater borough, Bergen County, New Jersey",124050.0,8.0,173399.0,,EDGEWATER,2024
+0600000US3400520050,"Edgewater Park township, Burlington County, New Jersey",84960.0,4.2,91498.0,,EDGEWATER PARK,2024
+0600000US3402320230,"Edison township, Middlesex County, New Jersey",125145.0,6.2,156564.0,,EDISON,2024
+0600000US3400120290,"Egg Harbor township, Atlantic County, New Jersey",97190.0,8.2,119654.0,,EGG HARBOR,2024
+0600000US3400120350,"Egg Harbor City city, Atlantic County, New Jersey",71711.0,5.5,77494.0,,EGG HARBOR CITY,2024
+0600000US3403921000,"Elizabeth city, Union County, New Jersey",66555.0,7.7,85318.0,,ELIZABETH,2024
+0600000US3401521060,"Elk township, Gloucester County, New Jersey",141382.0,6.3,160767.0,,ELK,2024
+0600000US3403321240,"Elmer borough, Salem County, New Jersey",95357.0,2.9,109831.0,,ELMER,2024
+0600000US3400321300,"Elmwood Park borough, Bergen County, New Jersey",101740.0,7.4,123193.0,,ELMWOOD PARK,2024
+0600000US3403321330,"Elsinboro township, Salem County, New Jersey",90385.0,5.1,110892.0,,ELSINBORO,2024
+0600000US3400321450,"Emerson borough, Bergen County, New Jersey",155536.0,5.6,183232.0,,EMERSON,2024
+0600000US3400321480,"Englewood city, Bergen County, New Jersey",102571.0,7.8,154323.0,,ENGLEWOOD,2024
+0600000US3400321510,"Englewood Cliffs borough, Bergen County, New Jersey",230611.0,4.8,285938.0,,ENGLEWOOD CLIFFS,2024
+0600000US3402521570,"Englishtown borough, Monmouth County, New Jersey",91111.0,3.7,132744.0,,ENGLISHTOWN,2024
+0600000US3401321840,"Essex Fells borough, Essex County, New Jersey",,5.5,347851.0,,ESSEX FELLS,2024
+0600000US3400121870,"Estell Manor city, Atlantic County, New Jersey",97318.0,3.1,120382.0,,ESTELL MANOR,2024
+0600000US3400522110,"Evesham township, Burlington County, New Jersey",118670.0,4.3,151598.0,,EVESHAM,2024
+0600000US3402122185,"Ewing township, Mercer County, New Jersey",91267.0,6.9,109261.0,,EWING,2024
+0600000US3402522440,"Fair Haven borough, Monmouth County, New Jersey",,4.9,346619.0,,FAIR HAVEN,2024
+0600000US3400322470,"Fair Lawn borough, Bergen County, New Jersey",144574.0,6.2,168307.0,,FAIR LAWN,2024
+0600000US3401322385,"Fairfield township, Essex County, New Jersey",115980.0,13.8,145876.0,,FAIRFIELD,2024
+0600000US3401122350,"Fairfield township, Cumberland County, New Jersey",60929.0,9.2,84655.0,,FAIRFIELD,2024
+0600000US3400322560,"Fairview borough, Bergen County, New Jersey",63606.0,9.4,96588.0,,FAIRVIEW,2024
+0600000US3403922860,"Fanwood borough, Union County, New Jersey",195529.0,2.7,198434.0,,FANWOOD,2024
+0600000US3403522890,"Far Hills borough, Somerset County, New Jersey",143250.0,7.2,255895.0,,FAR HILLS,2024
+0600000US3402522950,"Farmingdale borough, Monmouth County, New Jersey",89327.0,11.2,106666.0,,FARMINGDALE,2024
+0600000US3400523250,"Fieldsboro borough, Burlington County, New Jersey",91500.0,2.8,136681.0,,FIELDSBORO,2024
+0600000US3401923700,"Flemington borough, Hunterdon County, New Jersey",69978.0,1.2,105568.0,,FLEMINGTON,2024
+0600000US3400523850,"Florence township, Burlington County, New Jersey",105631.0,4.8,125978.0,,FLORENCE,2024
+0600000US3402723910,"Florham Park borough, Morris County, New Jersey",158696.0,5.4,219528.0,,FLORHAM PARK,2024
+0600000US3400123940,"Folsom borough, Atlantic County, New Jersey",110227.0,8.3,127132.0,,FOLSOM,2024
+0600000US3400324420,"Fort Lee borough, Bergen County, New Jersey",107274.0,5.8,150125.0,,FORT LEE,2024
+0600000US3403724810,"Frankford township, Sussex County, New Jersey",117286.0,5.0,138416.0,,FRANKFORD,2024
+0600000US3401524840,"Franklin township, Gloucester County, New Jersey",110197.0,5.2,127987.0,,FRANKLIN,2024
+0600000US3401924870,"Franklin township, Hunterdon County, New Jersey",161169.0,2.0,187253.0,,FRANKLIN,2024
+0600000US3403724930,"Franklin borough, Sussex County, New Jersey",92744.0,7.2,95659.0,,FRANKLIN,2024
+0600000US3403524900,"Franklin township, Somerset County, New Jersey",124648.0,5.1,156385.0,,FRANKLIN,2024
+0600000US3404124960,"Franklin township, Warren County, New Jersey",132697.0,1.9,156248.0,,FRANKLIN,2024
+0600000US3400324990,"Franklin Lakes borough, Bergen County, New Jersey",235795.0,2.3,307108.0,,FRANKLIN LAKES,2024
+0600000US3403725140,"Fredon township, Sussex County, New Jersey",142903.0,3.2,182598.0,,FREDON,2024
+0600000US3402525230,"Freehold township, Monmouth County, New Jersey",128643.0,3.7,159383.0,,FREEHOLD,2024
+0600000US3402525200,"Freehold borough, Monmouth County, New Jersey",85707.0,8.2,107426.0,,FREEHOLD,2024
+0600000US3404125320,"Frelinghuysen township, Warren County, New Jersey",122727.0,6.8,149718.0,,FRELINGHUYSEN,2024
+0600000US3401925350,"Frenchtown borough, Hunterdon County, New Jersey",97917.0,6.8,132343.0,,FRENCHTOWN,2024
+0600000US3400125560,"Galloway township, Atlantic County, New Jersey",91229.0,7.2,111574.0,,GALLOWAY,2024
+0600000US3400325770,"Garfield city, Bergen County, New Jersey",79700.0,6.7,103293.0,,GARFIELD,2024
+0600000US3403925800,"Garwood borough, Union County, New Jersey",110670.0,7.1,143718.0,,GARWOOD,2024
+0600000US3400726070,"Gibbsboro borough, Camden County, New Jersey",100313.0,7.9,140868.0,,GIBBSBORO,2024
+0600000US3401526340,"Glassboro borough, Gloucester County, New Jersey",87278.0,7.4,108423.0,,GLASSBORO,2024
+0600000US3401926550,"Glen Gardner borough, Hunterdon County, New Jersey",101974.0,4.8,148504.0,,GLEN GARDNER,2024
+0600000US3401326610,"Glen Ridge borough, Essex County, New Jersey",,7.6,298087.0,,GLEN RIDGE,2024
+0600000US3400326640,"Glen Rock borough, Bergen County, New Jersey",215096.0,6.0,276636.0,,GLEN ROCK,2024
+0600000US3400726760,"Gloucester township, Camden County, New Jersey",101119.0,7.0,115229.0,,GLOUCESTER,2024
+0600000US3400726820,"Gloucester City city, Camden County, New Jersey",64938.0,5.4,86342.0,,GLOUCESTER CITY,2024
+0600000US3403727420,"Green township, Sussex County, New Jersey",141875.0,5.3,186627.0,,GREEN,2024
+0600000US3403527510,"Green Brook township, Somerset County, New Jersey",208375.0,5.7,214477.0,,GREEN BROOK,2024
+0600000US3404128260,"Greenwich township, Warren County, New Jersey",169079.0,4.8,194287.0,,GREENWICH,2024
+0600000US3401528185,"Greenwich township, Gloucester County, New Jersey",92128.0,3.2,112893.0,,GREENWICH,2024
+0600000US3401128170,"Greenwich township, Cumberland County, New Jersey",83125.0,4.6,101505.0,,GREENWICH,2024
+0600000US3401728650,"Guttenberg town, Hudson County, New Jersey",75683.0,6.8,103205.0,,GUTTENBERG,2024
+0600000US3400328680,"Hackensack city, Bergen County, New Jersey",84277.0,7.7,109232.0,,HACKENSACK,2024
+0600000US3404128710,"Hackettstown town, Warren County, New Jersey",93083.0,8.2,110827.0,,HACKETTSTOWN,2024
+0600000US3400728740,"Haddon township, Camden County, New Jersey",115298.0,7.6,131446.0,,HADDON,2024
+0600000US3400728800,"Haddon Heights borough, Camden County, New Jersey",133125.0,4.5,162417.0,,HADDON HEIGHTS,2024
+0600000US3400728770,"Haddonfield borough, Camden County, New Jersey",200400.0,3.6,280987.0,,HADDONFIELD,2024
+0600000US3400529010,"Hainesport township, Burlington County, New Jersey",142899.0,0.0,186927.0,,HAINESPORT,2024
+0600000US3403129070,"Haledon borough, Passaic County, New Jersey",95870.0,6.1,111140.0,,HALEDON,2024
+0600000US3403729220,"Hamburg borough, Sussex County, New Jersey",86975.0,4.0,109135.0,,HAMBURG,2024
+0600000US3402129310,"Hamilton township, Mercer County, New Jersey",100771.0,5.9,119855.0,,HAMILTON,2024
+0600000US3400129280,"Hamilton township, Atlantic County, New Jersey",78850.0,10.8,97043.0,,HAMILTON,2024
+0600000US3400129430,"Hammonton town, Atlantic County, New Jersey",78087.0,6.1,114154.0,,HAMMONTON,2024
+0600000US3401929460,"Hampton borough, Hunterdon County, New Jersey",67222.0,4.8,95460.0,,HAMPTON,2024
+0600000US3403729490,"Hampton township, Sussex County, New Jersey",109676.0,6.8,124638.0,,HAMPTON,2024
+0600000US3402729550,"Hanover township, Morris County, New Jersey",156956.0,2.6,188444.0,,HANOVER,2024
+0600000US3402729700,"Harding township, Morris County, New Jersey",222429.0,2.2,365579.0,,HARDING,2024
+0600000US3404129820,"Hardwick township, Warren County, New Jersey",124625.0,7.8,142443.0,,HARDWICK,2024
+0600000US3403729850,"Hardyston township, Sussex County, New Jersey",120392.0,5.4,139729.0,,HARDYSTON,2024
+0600000US3404130090,"Harmony township, Warren County, New Jersey",92176.0,5.8,112385.0,,HARMONY,2024
+0600000US3400330150,"Harrington Park borough, Bergen County, New Jersey",180500.0,3.3,235211.0,,HARRINGTON PARK,2024
+0600000US3401730210,"Harrison town, Hudson County, New Jersey",93013.0,5.3,115740.0,,HARRISON,2024
+0600000US3401530180,"Harrison township, Gloucester County, New Jersey",165927.0,3.4,203553.0,,HARRISON,2024
+0600000US3402930390,"Harvey Cedars borough, Ocean County, New Jersey",146250.0,2.5,255830.0,,HARVEY CEDARS,2024
+0600000US3400330420,"Hasbrouck Heights borough, Bergen County, New Jersey",123734.0,4.4,139967.0,,HASBROUCK HEIGHTS,2024
+0600000US3400330540,"Haworth borough, Bergen County, New Jersey",236765.0,2.5,274315.0,,HAWORTH,2024
+0600000US3403130570,"Hawthorne borough, Passaic County, New Jersey",110237.0,5.1,134109.0,,HAWTHORNE,2024
+0600000US3402530690,"Hazlet township, Monmouth County, New Jersey",122020.0,3.5,138095.0,,HAZLET,2024
+0600000US3402330840,"Helmetta borough, Middlesex County, New Jersey",98952.0,7.4,122900.0,,HELMETTA,2024
+0600000US3400732220,"Hi-Nella borough, Camden County, New Jersey",72500.0,7.2,82023.0,,HI-NELLA,2024
+0600000US3401931320,"High Bridge borough, Hunterdon County, New Jersey",112467.0,5.9,139962.0,,HIGH BRIDGE,2024
+0600000US3402331470,"Highland Park borough, Middlesex County, New Jersey",104694.0,4.8,137118.0,,HIGHLAND PARK,2024
+0600000US3402531500,"Highlands borough, Monmouth County, New Jersey",91913.0,7.5,127598.0,,HIGHLANDS,2024
+0600000US3402131620,"Hightstown borough, Mercer County, New Jersey",108987.0,4.5,141569.0,,HIGHTSTOWN,2024
+0600000US3403531890,"Hillsborough township, Somerset County, New Jersey",154031.0,4.6,193805.0,,HILLSBOROUGH,2024
+0600000US3400331920,"Hillsdale borough, Bergen County, New Jersey",186688.0,3.4,205617.0,,HILLSDALE,2024
+0600000US3403931980,"Hillside township, Union County, New Jersey",99528.0,7.6,115506.0,,HILLSIDE,2024
+0600000US3400332310,"Ho-Ho-Kus borough, Bergen County, New Jersey",,1.7,441123.0,,HO-HO-KUS,2024
+0600000US3401732250,"Hoboken city, Hudson County, New Jersey",180579.0,3.8,230343.0,,HOBOKEN,2024
+0600000US3401932460,"Holland township, Hunterdon County, New Jersey",136875.0,4.5,150204.0,,HOLLAND,2024
+0600000US3402532640,"Holmdel township, Monmouth County, New Jersey",165013.0,5.5,245753.0,,HOLMDEL,2024
+0600000US3403732910,"Hopatcong borough, Sussex County, New Jersey",115758.0,2.9,135609.0,,HOPATCONG,2024
+0600000US3404133060,"Hope township, Warren County, New Jersey",105625.0,3.5,117597.0,,HOPE,2024
+0600000US3402133180,"Hopewell township, Mercer County, New Jersey",178167.0,4.0,224501.0,,HOPEWELL,2024
+0600000US3401133120,"Hopewell township, Cumberland County, New Jersey",100202.0,4.9,122199.0,,HOPEWELL,2024
+0600000US3402133150,"Hopewell borough, Mercer County, New Jersey",145114.0,2.1,181235.0,,HOPEWELL,2024
+0600000US3402533300,"Howell township, Monmouth County, New Jersey",134854.0,4.7,155362.0,,HOWELL,2024
+0600000US3404133930,"Independence township, Warren County, New Jersey",92243.0,1.4,120051.0,,INDEPENDENCE,2024
+0600000US3402534200,"Interlaken borough, Monmouth County, New Jersey",199167.0,3.7,242635.0,,INTERLAKEN,2024
+0600000US3401334450,"Irvington township, Essex County, New Jersey",61609.0,9.7,77197.0,,IRVINGTON,2024
+0600000US3402934530,"Island Heights borough, Ocean County, New Jersey",109231.0,2.6,154626.0,,ISLAND HEIGHTS,2024
+0600000US3402934680,"Jackson township, Ocean County, New Jersey",115511.0,4.6,137140.0,,JACKSON,2024
+0600000US3402334890,"Jamesburg borough, Middlesex County, New Jersey",110972.0,3.5,122060.0,,JAMESBURG,2024
+0600000US3402734980,"Jefferson township, Morris County, New Jersey",119836.0,3.8,143290.0,,JEFFERSON,2024
+0600000US3401736000,"Jersey City city, Hudson County, New Jersey",97710.0,5.5,143106.0,,JERSEY CITY,2024
+0600000US3402536480,"Keansburg borough, Monmouth County, New Jersey",81428.0,4.5,94406.0,,KEANSBURG,2024
+0600000US3401736510,"Kearny town, Hudson County, New Jersey",79154.0,6.6,101127.0,,KEARNY,2024
+0600000US3403936690,"Kenilworth borough, Union County, New Jersey",118611.0,6.3,161119.0,,KENILWORTH,2024
+0600000US3402536810,"Keyport borough, Monmouth County, New Jersey",82321.0,12.8,108689.0,,KEYPORT,2024
+0600000US3401937065,"Kingwood township, Hunterdon County, New Jersey",135129.0,3.2,159634.0,,KINGWOOD,2024
+0600000US3402737110,"Kinnelon borough, Morris County, New Jersey",187438.0,8.1,245833.0,,KINNELON,2024
+0600000US3404137320,"Knowlton township, Warren County, New Jersey",97734.0,7.0,124089.0,,KNOWLTON,2024
+0600000US3402937380,"Lacey township, Ocean County, New Jersey",102624.0,5.5,123179.0,,LACEY,2024
+0600000US3403737440,"Lafayette township, Sussex County, New Jersey",129038.0,3.2,163729.0,,LAFAYETTE,2024
+0600000US3402537560,"Lake Como borough, Monmouth County, New Jersey",82045.0,6.5,119778.0,,LAKE COMO,2024
+0600000US3402937770,"Lakehurst borough, Ocean County, New Jersey",84531.0,5.8,87899.0,,LAKEHURST,2024
+0600000US3402938550,"Lakewood township, Ocean County, New Jersey",65101.0,5.8,101082.0,,LAKEWOOD,2024
+0600000US3401938610,"Lambertville city, Hunterdon County, New Jersey",109733.0,6.1,170041.0,,LAMBERTVILLE,2024
+0600000US3400739210,"Laurel Springs borough, Camden County, New Jersey",118750.0,5.5,133542.0,,LAUREL SPRINGS,2024
+0600000US3402939390,"Lavallette borough, Ocean County, New Jersey",133056.0,2.6,187813.0,,LAVALLETTE,2024
+0600000US3400739420,"Lawnside borough, Camden County, New Jersey",71607.0,11.5,100638.0,,LAWNSIDE,2024
+0600000US3401139450,"Lawrence township, Cumberland County, New Jersey",85515.0,5.2,109223.0,,LAWRENCE,2024
+0600000US3402139510,"Lawrence township, Mercer County, New Jersey",130142.0,6.0,160293.0,,LAWRENCE,2024
+0600000US3401939660,"Lebanon township, Hunterdon County, New Jersey",129936.0,8.2,143852.0,,LEBANON,2024
+0600000US3401939630,"Lebanon borough, Hunterdon County, New Jersey",110104.0,2.5,153901.0,,LEBANON,2024
+0600000US3400340020,"Leonia borough, Bergen County, New Jersey",129665.0,6.0,180515.0,,LEONIA,2024
+0600000US3404140110,"Liberty township, Warren County, New Jersey",120494.0,1.0,143994.0,,LIBERTY,2024
+0600000US3402740290,"Lincoln Park borough, Morris County, New Jersey",123397.0,10.1,151984.0,,LINCOLN PARK,2024
+0600000US3403940350,"Linden city, Union County, New Jersey",92915.0,9.5,117126.0,,LINDEN,2024
+0600000US3400740440,"Lindenwold borough, Camden County, New Jersey",55954.0,4.6,68065.0,,LINDENWOLD,2024
+0600000US3400140530,"Linwood city, Atlantic County, New Jersey",156354.0,7.4,203927.0,,LINWOOD,2024
+0600000US3402940560,"Little Egg Harbor township, Ocean County, New Jersey",92446.0,2.5,118175.0,,LITTLE EGG HARBOR,2024
+0600000US3403140620,"Little Falls township, Passaic County, New Jersey",123307.0,7.2,148973.0,,LITTLE FALLS,2024
+0600000US3400340680,"Little Ferry borough, Bergen County, New Jersey",85750.0,7.6,113251.0,,LITTLE FERRY,2024
+0600000US3402540770,"Little Silver borough, Monmouth County, New Jersey",240853.0,3.3,296034.0,,LITTLE SILVER,2024
+0600000US3401340890,"Livingston township, Essex County, New Jersey",229806.0,4.3,302041.0,,LIVINGSTON,2024
+0600000US3402541010,"Loch Arbour village, Monmouth County, New Jersey",118750.0,12.2,161303.0,,LOCH ARBOUR,2024
+0600000US3400341100,"Lodi borough, Bergen County, New Jersey",89305.0,7.0,125514.0,,LODI,2024
+0600000US3401541160,"Logan township, Gloucester County, New Jersey",114355.0,5.0,130856.0,,LOGAN,2024
+0600000US3402941250,"Long Beach township, Ocean County, New Jersey",113224.0,12.2,216308.0,,LONG BEACH,2024
+0600000US3402541310,"Long Branch city, Monmouth County, New Jersey",79653.0,7.0,110253.0,,LONG BRANCH,2024
+0600000US3402741362,"Long Hill township, Morris County, New Jersey",169079.0,5.9,218759.0,,LONG HILL,2024
+0600000US3400141370,"Longport borough, Atlantic County, New Jersey",109135.0,8.8,202722.0,,LONGPORT,2024
+0600000US3404141490,"Lopatcong township, Warren County, New Jersey",91114.0,5.0,109725.0,,LOPATCONG,2024
+0600000US3400941610,"Lower township, Cape May County, New Jersey",84962.0,7.0,103018.0,,LOWER,2024
+0600000US3403341640,"Lower Alloways Creek township, Salem County, New Jersey",80000.0,4.3,105569.0,,LOWER ALLOWAYS CREEK,2024
+0600000US3400542060,"Lumberton township, Burlington County, New Jersey",113440.0,7.2,150489.0,,LUMBERTON,2024
+0600000US3400342090,"Lyndhurst township, Bergen County, New Jersey",111711.0,5.9,134479.0,,LYNDHURST,2024
+0600000US3402742510,"Madison borough, Morris County, New Jersey",171471.0,6.3,255680.0,,MADISON,2024
+0600000US3400742630,"Magnolia borough, Camden County, New Jersey",100511.0,6.2,117525.0,,MAGNOLIA,2024
+0600000US3400342750,"Mahwah township, Bergen County, New Jersey",131327.0,5.5,177239.0,,MAHWAH,2024
+0600000US3402542990,"Manalapan township, Monmouth County, New Jersey",152832.0,5.0,190587.0,,MANALAPAN,2024
+0600000US3402543050,"Manasquan borough, Monmouth County, New Jersey",142944.0,2.7,209782.0,,MANASQUAN,2024
+0600000US3402943140,"Manchester township, Ocean County, New Jersey",56885.0,7.3,75872.0,,MANCHESTER,2024
+0600000US3403343200,"Mannington township, Salem County, New Jersey",109271.0,3.4,131617.0,,MANNINGTON,2024
+0600000US3404143320,"Mansfield township, Warren County, New Jersey",88845.0,4.1,111145.0,,MANSFIELD,2024
+0600000US3400543290,"Mansfield township, Burlington County, New Jersey",115595.0,3.1,144817.0,,MANSFIELD,2024
+0600000US3402943380,"Mantoloking borough, Ocean County, New Jersey",,6.6,521074.0,,MANTOLOKING,2024
+0600000US3401543440,"Mantua township, Gloucester County, New Jersey",121875.0,4.8,156283.0,,MANTUA,2024
+0600000US3403543620,"Manville borough, Somerset County, New Jersey",93333.0,3.1,109463.0,,MANVILLE,2024
+0600000US3400543740,"Maple Shade township, Burlington County, New Jersey",78904.0,4.4,92815.0,,MAPLE SHADE,2024
+0600000US3401343800,"Maplewood township, Essex County, New Jersey",173500.0,6.7,221713.0,,MAPLEWOOD,2024
+0600000US3400143890,"Margate City city, Atlantic County, New Jersey",121800.0,4.1,179475.0,,MARGATE CITY,2024
+0600000US3402544070,"Marlboro township, Monmouth County, New Jersey",186292.0,3.6,237582.0,,MARLBORO,2024
+0600000US3402544520,"Matawan borough, Monmouth County, New Jersey",123354.0,5.1,137251.0,,MATAWAN,2024
+0600000US3401144580,"Maurice River township, Cumberland County, New Jersey",76964.0,7.1,125109.0,,MAURICE RIVER,2024
+0600000US3400344880,"Maywood borough, Bergen County, New Jersey",117912.0,8.1,141477.0,,MAYWOOD,2024
+0600000US3400545120,"Medford township, Burlington County, New Jersey",157969.0,4.1,194656.0,,MEDFORD,2024
+0600000US3400545210,"Medford Lakes borough, Burlington County, New Jersey",141188.0,3.4,164043.0,,MEDFORD LAKES,2024
+0600000US3402745360,"Mendham township, Morris County, New Jersey",,3.1,354067.0,,MENDHAM,2024
+0600000US3402745330,"Mendham borough, Morris County, New Jersey",211944.0,3.4,308830.0,,MENDHAM,2024
+0600000US3400745510,"Merchantville borough, Camden County, New Jersey",90706.0,3.1,126061.0,,MERCHANTVILLE,2024
+0600000US3402345690,"Metuchen borough, Middlesex County, New Jersey",158052.0,5.8,197746.0,,METUCHEN,2024
+0600000US3400945810,"Middle township, Cape May County, New Jersey",83508.0,6.2,111334.0,,MIDDLE,2024
+0600000US3402345900,"Middlesex borough, Middlesex County, New Jersey",105000.0,3.6,130198.0,,MIDDLESEX,2024
+0600000US3402545990,"Middletown township, Monmouth County, New Jersey",141810.0,5.8,184817.0,,MIDDLETOWN,2024
+0600000US3400346110,"Midland Park borough, Bergen County, New Jersey",146841.0,7.2,175375.0,,MIDLAND PARK,2024
+0600000US3401946260,"Milford borough, Hunterdon County, New Jersey",71806.0,5.8,99228.0,,MILFORD,2024
+0600000US3401346380,"Millburn township, Essex County, New Jersey",,4.3,433201.0,,MILLBURN,2024
+0600000US3402546560,"Millstone township, Monmouth County, New Jersey",218472.0,2.4,256905.0,,MILLSTONE,2024
+0600000US3403546590,"Millstone borough, Somerset County, New Jersey",141709.0,5.2,162393.0,,MILLSTONE,2024
+0600000US3402346620,"Milltown borough, Middlesex County, New Jersey",140960.0,3.5,154277.0,,MILLTOWN,2024
+0600000US3401146680,"Millville city, Cumberland County, New Jersey",70275.0,6.1,102324.0,,MILLVILLE,2024
+0600000US3402746860,"Mine Hill township, Morris County, New Jersey",119583.0,4.8,133948.0,,MINE HILL,2024
+0600000US3402547130,"Monmouth Beach borough, Monmouth County, New Jersey",150188.0,4.7,262668.0,,MONMOUTH BEACH,2024
+0600000US3402347280,"Monroe township, Middlesex County, New Jersey",107892.0,5.3,156147.0,,MONROE,2024
+0600000US3401547250,"Monroe township, Gloucester County, New Jersey",96980.0,6.7,123072.0,,MONROE,2024
+0600000US3403747430,"Montague township, Sussex County, New Jersey",101250.0,5.5,121564.0,,MONTAGUE,2024
+0600000US3401347500,"Montclair township, Essex County, New Jersey",151075.0,4.5,229122.0,,MONTCLAIR,2024
+0600000US3403547580,"Montgomery township, Somerset County, New Jersey",226771.0,3.9,270887.0,,MONTGOMERY,2024
+0600000US3400347610,"Montvale borough, Bergen County, New Jersey",178269.0,5.9,200176.0,,MONTVALE,2024
+0600000US3402747670,"Montville township, Morris County, New Jersey",169083.0,4.1,218537.0,,MONTVILLE,2024
+0600000US3400347700,"Moonachie borough, Bergen County, New Jersey",90260.0,5.3,117570.0,,MOONACHIE,2024
+0600000US3400547880,"Moorestown township, Burlington County, New Jersey",159700.0,5.6,238727.0,,MOORESTOWN,2024
+0600000US3402748090,"Morris township, Morris County, New Jersey",204951.0,4.4,255209.0,,MORRIS,2024
+0600000US3402748210,"Morris Plains borough, Morris County, New Jersey",154923.0,5.0,201893.0,,MORRIS PLAINS,2024
+0600000US3402748300,"Morristown town, Morris County, New Jersey",121340.0,5.3,162717.0,,MORRISTOWN,2024
+0600000US3402748690,"Mount Arlington borough, Morris County, New Jersey",92264.0,3.2,113261.0,,MOUNT ARLINGTON,2024
+0600000US3400748750,"Mount Ephraim borough, Camden County, New Jersey",79804.0,5.6,98706.0,,MOUNT EPHRAIM,2024
+0600000US3400548900,"Mount Holly township, Burlington County, New Jersey",82798.0,5.2,104711.0,,MOUNT HOLLY,2024
+0600000US3400549020,"Mount Laurel township, Burlington County, New Jersey",118802.0,3.9,151077.0,,MOUNT LAUREL,2024
+0600000US3402749080,"Mount Olive township, Morris County, New Jersey",117394.0,5.2,150766.0,,MOUNT OLIVE,2024
+0600000US3402748480,"Mountain Lakes borough, Morris County, New Jersey",,2.4,368558.0,,MOUNTAIN LAKES,2024
+0600000US3403948510,"Mountainside borough, Union County, New Jersey",211538.0,3.5,237360.0,,MOUNTAINSIDE,2024
+0600000US3400149410,"Mullica township, Atlantic County, New Jersey",93421.0,2.3,111268.0,,MULLICA,2024
+0600000US3401549680,"National Park borough, Gloucester County, New Jersey",82838.0,6.1,102337.0,,NATIONAL PARK,2024
+0600000US3402549890,"Neptune township, Monmouth County, New Jersey",101017.0,8.2,129818.0,,NEPTUNE,2024
+0600000US3402549920,"Neptune City borough, Monmouth County, New Jersey",88864.0,5.8,108158.0,,NEPTUNE CITY,2024
+0600000US3402750130,"Netcong borough, Morris County, New Jersey",83958.0,3.5,101300.0,,NETCONG,2024
+0600000US3402351210,"New Brunswick city, Middlesex County, New Jersey",65810.0,8.1,87892.0,,NEW BRUNSWICK,2024
+0600000US3400551510,"New Hanover township, Burlington County, New Jersey",107292.0,5.8,138516.0,,NEW HANOVER,2024
+0600000US3400351660,"New Milford borough, Bergen County, New Jersey",114889.0,6.4,139731.0,,NEW MILFORD,2024
+0600000US3403951810,"New Providence borough, Union County, New Jersey",161599.0,3.8,212599.0,,NEW PROVIDENCE,2024
+0600000US3401351000,"Newark city, Essex County, New Jersey",52060.0,11.6,72518.0,,NEWARK,2024
+0600000US3401551390,"Newfield borough, Gloucester County, New Jersey",104107.0,2.1,118676.0,,NEWFIELD,2024
+0600000US3403751930,"Newton town, Sussex County, New Jersey",76221.0,9.9,99786.0,,NEWTON,2024
+0600000US3400352320,"North Arlington borough, Bergen County, New Jersey",94201.0,6.3,116978.0,,NORTH ARLINGTON,2024
+0600000US3401752470,"North Bergen township, Hudson County, New Jersey",78911.0,6.2,106746.0,,NORTH BERGEN,2024
+0600000US3402352560,"North Brunswick township, Middlesex County, New Jersey",120764.0,7.2,141840.0,,NORTH BRUNSWICK,2024
+0600000US3401352620,"North Caldwell borough, Essex County, New Jersey",208245.0,6.0,286715.0,,NORTH CALDWELL,2024
+0600000US3403153040,"North Haledon borough, Passaic County, New Jersey",125313.0,4.6,170936.0,,NORTH HALEDON,2024
+0600000US3400553070,"North Hanover township, Burlington County, New Jersey",86683.0,6.0,100074.0,,NORTH HANOVER,2024
+0600000US3403553280,"North Plainfield borough, Somerset County, New Jersey",87349.0,8.8,103762.0,,NORTH PLAINFIELD,2024
+0600000US3400953490,"North Wildwood city, Cape May County, New Jersey",90833.0,4.3,136371.0,,NORTH WILDWOOD,2024
+0600000US3400152950,"Northfield city, Atlantic County, New Jersey",111599.0,3.9,152066.0,,NORTHFIELD,2024
+0600000US3400353430,"Northvale borough, Bergen County, New Jersey",127625.0,6.3,172797.0,,NORTHVALE,2024
+0600000US3400353610,"Norwood borough, Bergen County, New Jersey",178311.0,0.9,194787.0,,NORWOOD,2024
+0600000US3401353680,"Nutley township, Essex County, New Jersey",119734.0,5.8,148426.0,,NUTLEY,2024
+0600000US3400353850,"Oakland borough, Bergen County, New Jersey",162019.0,5.4,189946.0,,OAKLAND,2024
+0600000US3400753880,"Oaklyn borough, Camden County, New Jersey",84394.0,4.1,106111.0,,OAKLYN,2024
+0600000US3402954300,"Ocean township, Ocean County, New Jersey",100524.0,7.9,124073.0,,OCEAN,2024
+0600000US3402554270,"Ocean township, Monmouth County, New Jersey",108626.0,5.3,152878.0,,OCEAN,2024
+0600000US3400954360,"Ocean City city, Cape May County, New Jersey",101782.0,3.2,147215.0,,OCEAN CITY,2024
+0600000US3402954450,"Ocean Gate borough, Ocean County, New Jersey",69397.0,3.9,103640.0,,OCEAN GATE,2024
+0600000US3402554570,"Oceanport borough, Monmouth County, New Jersey",126094.0,7.3,151615.0,,OCEANPORT,2024
+0600000US3403754660,"Ogdensburg borough, Sussex County, New Jersey",105551.0,10.0,126444.0,,OGDENSBURG,2024
+0600000US3402354705,"Old Bridge township, Middlesex County, New Jersey",104587.0,7.0,140531.0,,OLD BRIDGE,2024
+0600000US3400354870,"Old Tappan borough, Bergen County, New Jersey",205385.0,2.2,241948.0,,OLD TAPPAN,2024
+0600000US3403354810,"Oldmans township, Salem County, New Jersey",112917.0,11.1,147963.0,,OLDMANS,2024
+0600000US3400354990,"Oradell borough, Bergen County, New Jersey",221322.0,2.3,235809.0,,ORADELL,2024
+0600000US3404155530,"Oxford township, Warren County, New Jersey",102600.0,6.3,123367.0,,OXFORD,2024
+0600000US3400355770,"Palisades Park borough, Bergen County, New Jersey",94743.0,5.6,126777.0,,PALISADES PARK,2024
+0600000US3400555800,"Palmyra borough, Burlington County, New Jersey",89574.0,6.5,100130.0,,PALMYRA,2024
+0600000US3400355950,"Paramus borough, Bergen County, New Jersey",144349.0,7.7,178719.0,,PARAMUS,2024
+0600000US3400356130,"Park Ridge borough, Bergen County, New Jersey",171029.0,3.2,202384.0,,PARK RIDGE,2024
+0600000US3402756460,"Parsippany-Troy Hills township, Morris County, New Jersey",112327.0,5.4,146673.0,,PARSIPPANY-TROY HILLS,2024
+0600000US3403156550,"Passaic city, Passaic County, New Jersey",55371.0,12.5,78683.0,,PASSAIC,2024
+0600000US3403157000,"Paterson city, Passaic County, New Jersey",55997.0,10.7,76043.0,,PATERSON,2024
+0600000US3401557150,"Paulsboro borough, Gloucester County, New Jersey",64239.0,13.0,86569.0,,PAULSBORO,2024
+0600000US3403557300,"Peapack and Gladstone borough, Somerset County, New Jersey",202578.0,3.0,265052.0,,PEAPACK AND GLADSTONE,2024
+0600000US3400557510,"Pemberton township, Burlington County, New Jersey",80843.0,6.6,101938.0,,PEMBERTON,2024
+0600000US3400557480,"Pemberton borough, Burlington County, New Jersey",90899.0,8.1,104965.0,,PEMBERTON,2024
+0600000US3402157600,"Pennington borough, Mercer County, New Jersey",192586.0,2.4,234993.0,,PENNINGTON,2024
+0600000US3403357750,"Penns Grove borough, Salem County, New Jersey",45781.0,13.0,60552.0,,PENNS GROVE,2024
+0600000US3400757660,"Pennsauken township, Camden County, New Jersey",87680.0,8.7,100725.0,,PENNSAUKEN,2024
+0600000US3403357870,"Pennsville township, Salem County, New Jersey",75097.0,11.6,96484.0,,PENNSVILLE,2024
+0600000US3402758110,"Pequannock township, Morris County, New Jersey",120666.0,4.1,164534.0,,PEQUANNOCK,2024
+0600000US3402358200,"Perth Amboy city, Middlesex County, New Jersey",61977.0,14.3,79133.0,,PERTH AMBOY,2024
+0600000US3404158350,"Phillipsburg town, Warren County, New Jersey",68324.0,7.3,87622.0,,PHILLIPSBURG,2024
+0600000US3403358530,"Pilesgrove township, Salem County, New Jersey",158281.0,2.2,164419.0,,PILESGROVE,2024
+0600000US3402958590,"Pine Beach borough, Ocean County, New Jersey",142920.0,4.0,158784.0,,PINE BEACH,2024
+0600000US3400758770,"Pine Hill borough, Camden County, New Jersey",72588.0,7.9,90356.0,,PINE HILL,2024
+0600000US3402359010,"Piscataway township, Middlesex County, New Jersey",127832.0,8.0,149665.0,,PISCATAWAY,2024
+0600000US3401559070,"Pitman borough, Gloucester County, New Jersey",98489.0,5.4,115868.0,,PITMAN,2024
+0600000US3403359130,"Pittsgrove township, Salem County, New Jersey",92917.0,5.0,113309.0,,PITTSGROVE,2024
+0600000US3403959190,"Plainfield city, Union County, New Jersey",85908.0,8.9,106305.0,,PLAINFIELD,2024
+0600000US3402359280,"Plainsboro township, Middlesex County, New Jersey",131638.0,4.0,187726.0,,PLAINSBORO,2024
+0600000US3400159640,"Pleasantville city, Atlantic County, New Jersey",53661.0,10.7,72695.0,,PLEASANTVILLE,2024
+0600000US3402959790,"Plumsted township, Ocean County, New Jersey",103625.0,6.7,134127.0,,PLUMSTED,2024
+0600000US3404159820,"Pohatcong township, Warren County, New Jersey",103611.0,2.9,123443.0,,POHATCONG,2024
+0600000US3402959880,"Point Pleasant borough, Ocean County, New Jersey",115625.0,3.0,146002.0,,POINT PLEASANT,2024
+0600000US3402959910,"Point Pleasant Beach borough, Ocean County, New Jersey",141716.0,5.6,170682.0,,POINT PLEASANT BEACH,2024
+0600000US3403160090,"Pompton Lakes borough, Passaic County, New Jersey",124454.0,3.1,141346.0,,POMPTON LAKES,2024
+0600000US3400160600,"Port Republic city, Atlantic County, New Jersey",123438.0,9.0,215813.0,,PORT REPUBLIC,2024
+0600000US3402160900,"Princeton, Mercer County, New Jersey",192079.0,4.3,275137.0,,PRINCETON,2024
+0600000US3403161170,"Prospect Park borough, Passaic County, New Jersey",53125.0,11.5,88695.0,,PROSPECT PARK,2024
+0600000US3403361470,"Quinton township, Salem County, New Jersey",86563.0,4.9,103711.0,,QUINTON,2024
+0600000US3403961530,"Rahway city, Union County, New Jersey",91461.0,7.3,104551.0,,RAHWAY,2024
+0600000US3400361680,"Ramsey borough, Bergen County, New Jersey",160996.0,3.2,217947.0,,RAMSEY,2024
+0600000US3402761890,"Randolph township, Morris County, New Jersey",175000.0,4.5,217931.0,,RANDOLPH,2024
+0600000US3401961920,"Raritan township, Hunterdon County, New Jersey",165174.0,4.2,210667.0,,RARITAN,2024
+0600000US3403561980,"Raritan borough, Somerset County, New Jersey",107672.0,2.8,143639.0,,RARITAN,2024
+0600000US3401962250,"Readington township, Hunterdon County, New Jersey",157625.0,5.9,191821.0,,READINGTON,2024
+0600000US3402562430,"Red Bank borough, Monmouth County, New Jersey",97477.0,3.5,138780.0,,RED BANK,2024
+0600000US3400362910,"Ridgefield borough, Bergen County, New Jersey",118059.0,5.6,143965.0,,RIDGEFIELD,2024
+0600000US3400362940,"Ridgefield Park village, Bergen County, New Jersey",100718.0,9.9,115451.0,,RIDGEFIELD PARK,2024
+0600000US3400363000,"Ridgewood village, Bergen County, New Jersey",208211.0,3.4,273185.0,,RIDGEWOOD,2024
+0600000US3403163150,"Ringwood borough, Passaic County, New Jersey",152414.0,4.8,177393.0,,RINGWOOD,2024
+0600000US3400363360,"River Edge borough, Bergen County, New Jersey",159028.0,4.7,205747.0,,RIVER EDGE,2024
+0600000US3400363690,"River Vale township, Bergen County, New Jersey",213666.0,3.6,253247.0,,RIVER VALE,2024
+0600000US3402763300,"Riverdale borough, Morris County, New Jersey",102950.0,0.8,126986.0,,RIVERDALE,2024
+0600000US3400563510,"Riverside township, Burlington County, New Jersey",75833.0,7.8,86997.0,,RIVERSIDE,2024
+0600000US3400563660,"Riverton borough, Burlington County, New Jersey",121198.0,4.0,144611.0,,RIVERTON,2024
+0600000US3402163850,"Robbinsville township, Mercer County, New Jersey",169450.0,5.3,188437.0,,ROBBINSVILLE,2024
+0600000US3400363990,"Rochelle Park township, Bergen County, New Jersey",110380.0,8.1,130532.0,,ROCHELLE PARK,2024
+0600000US3402764050,"Rockaway borough, Morris County, New Jersey",107053.0,6.4,138646.0,,ROCKAWAY,2024
+0600000US3402764080,"Rockaway township, Morris County, New Jersey",141868.0,5.5,178514.0,,ROCKAWAY,2024
+0600000US3400364170,"Rockleigh borough, Bergen County, New Jersey",,4.0,333849.0,,ROCKLEIGH,2024
+0600000US3403564320,"Rocky Hill borough, Somerset County, New Jersey",148056.0,5.3,201096.0,,ROCKY HILL,2024
+0600000US3402564410,"Roosevelt borough, Monmouth County, New Jersey",110000.0,6.5,136083.0,,ROOSEVELT,2024
+0600000US3401364590,"Roseland borough, Essex County, New Jersey",164458.0,4.9,203213.0,,ROSELAND,2024
+0600000US3403964620,"Roselle borough, Union County, New Jersey",92762.0,8.0,114289.0,,ROSELLE,2024
+0600000US3403964650,"Roselle Park borough, Union County, New Jersey",109679.0,4.8,135068.0,,ROSELLE PARK,2024
+0600000US3402764980,"Roxbury township, Morris County, New Jersey",134519.0,6.8,163028.0,,ROXBURY,2024
+0600000US3402565130,"Rumson borough, Monmouth County, New Jersey",,4.5,395830.0,,RUMSON,2024
+0600000US3400765160,"Runnemede borough, Camden County, New Jersey",91302.0,6.1,108189.0,,RUNNEMEDE,2024
+0600000US3400365280,"Rutherford borough, Bergen County, New Jersey",143153.0,4.2,169304.0,,RUTHERFORD,2024
+0600000US3400365340,"Saddle Brook township, Bergen County, New Jersey",129073.0,4.2,143766.0,,SADDLE BROOK,2024
+0600000US3400365400,"Saddle River borough, Bergen County, New Jersey",212143.0,7.3,387623.0,,SADDLE RIVER,2024
+0600000US3403365490,"Salem city, Salem County, New Jersey",38721.0,10.2,55394.0,,SALEM,2024
+0600000US3403765700,"Sandyston township, Sussex County, New Jersey",104219.0,4.3,134180.0,,SANDYSTON,2024
+0600000US3402365790,"Sayreville borough, Middlesex County, New Jersey",99979.0,5.8,122203.0,,SAYREVILLE,2024
+0600000US3403966060,"Scotch Plains township, Union County, New Jersey",183655.0,3.2,217722.0,,SCOTCH PLAINS,2024
+0600000US3402566240,"Sea Bright borough, Monmouth County, New Jersey",143241.0,6.0,209006.0,,SEA BRIGHT,2024
+0600000US3402566330,"Sea Girt borough, Monmouth County, New Jersey",213750.0,4.5,359641.0,,SEA GIRT,2024
+0600000US3400966390,"Sea Isle City city, Cape May County, New Jersey",108359.0,7.1,164172.0,,SEA ISLE CITY,2024
+0600000US3402966450,"Seaside Heights borough, Ocean County, New Jersey",47589.0,8.0,71137.0,,SEASIDE HEIGHTS,2024
+0600000US3402966480,"Seaside Park borough, Ocean County, New Jersey",84375.0,5.2,156545.0,,SEASIDE PARK,2024
+0600000US3401766570,"Secaucus town, Hudson County, New Jersey",139821.0,5.6,172458.0,,SECAUCUS,2024
+0600000US3400566810,"Shamong township, Burlington County, New Jersey",128271.0,2.4,152564.0,,SHAMONG,2024
+0600000US3401167020,"Shiloh borough, Cumberland County, New Jersey",70625.0,0.0,81125.0,,SHILOH,2024
+0600000US3402967110,"Ship Bottom borough, Ocean County, New Jersey",108750.0,2.3,179250.0,,SHIP BOTTOM,2024
+0600000US3402567365,"Shrewsbury township, Monmouth County, New Jersey",81429.0,2.2,96953.0,,SHREWSBURY,2024
+0600000US3402567350,"Shrewsbury borough, Monmouth County, New Jersey",178958.0,4.6,222037.0,,SHREWSBURY,2024
+0600000US3400768340,"Somerdale borough, Camden County, New Jersey",85625.0,6.7,106268.0,,SOMERDALE,2024
+0600000US3400168430,"Somers Point city, Atlantic County, New Jersey",71062.0,10.5,92132.0,,SOMERS POINT,2024
+0600000US3403568460,"Somerville borough, Somerset County, New Jersey",103760.0,3.4,125387.0,,SOMERVILLE,2024
+0600000US3402368550,"South Amboy city, Middlesex County, New Jersey",91997.0,5.9,105343.0,,SOUTH AMBOY,2024
+0600000US3403568730,"South Bound Brook borough, Somerset County, New Jersey",112961.0,7.2,106864.0,,SOUTH BOUND BROOK,2024
+0600000US3402368790,"South Brunswick township, Middlesex County, New Jersey",150933.0,5.3,190672.0,,SOUTH BRUNSWICK,2024
+0600000US3400368970,"South Hackensack township, Bergen County, New Jersey",84527.0,5.6,130967.0,,SOUTH HACKENSACK,2024
+0600000US3401569030,"South Harrison township, Gloucester County, New Jersey",139773.0,5.0,179067.0,,SOUTH HARRISON,2024
+0600000US3401369274,"South Orange Village township, Essex County, New Jersey",196481.0,5.3,258825.0,,SOUTH ORANGE,2024
+0600000US3402369390,"South Plainfield borough, Middlesex County, New Jersey",130239.0,5.6,148575.0,,SOUTH PLAINFIELD,2024
+0600000US3402369420,"South River borough, Middlesex County, New Jersey",96147.0,7.7,121707.0,,SOUTH RIVER,2024
+0600000US3402969510,"South Toms River borough, Ocean County, New Jersey",103503.0,8.0,107916.0,,SOUTH TOMS RIVER,2024
+0600000US3400568610,"Southampton township, Burlington County, New Jersey",97995.0,9.1,126079.0,,SOUTHAMPTON,2024
+0600000US3403769690,"Sparta township, Sussex County, New Jersey",167963.0,5.4,203363.0,,SPARTA,2024
+0600000US3402369810,"Spotswood borough, Middlesex County, New Jersey",105060.0,8.9,129034.0,,SPOTSWOOD,2024
+0600000US3402570110,"Spring Lake borough, Monmouth County, New Jersey",215625.0,2.4,286009.0,,SPRING LAKE,2024
+0600000US3402570140,"Spring Lake Heights borough, Monmouth County, New Jersey",106758.0,4.8,152438.0,,SPRING LAKE HEIGHTS,2024
+0600000US3403970020,"Springfield township, Union County, New Jersey",155906.0,4.8,178477.0,,SPRINGFIELD,2024
+0600000US3400569990,"Springfield township, Burlington County, New Jersey",146157.0,5.2,165204.0,,SPRINGFIELD,2024
+0600000US3402970320,"Stafford township, Ocean County, New Jersey",117612.0,5.4,134216.0,,STAFFORD,2024
+0600000US3403770380,"Stanhope borough, Sussex County, New Jersey",139205.0,3.6,139790.0,,STANHOPE,2024
+0600000US3403770890,"Stillwater township, Sussex County, New Jersey",123134.0,6.0,119711.0,,STILLWATER,2024
+0600000US3401970980,"Stockton borough, Hunterdon County, New Jersey",104000.0,7.5,122734.0,,STOCKTON,2024
+0600000US3400971010,"Stone Harbor borough, Cape May County, New Jersey",169167.0,4.8,283871.0,,STONE HARBOR,2024
+0600000US3401171160,"Stow Creek township, Cumberland County, New Jersey",105139.0,8.4,126489.0,,STOW CREEK,2024
+0600000US3400771220,"Stratford borough, Camden County, New Jersey",98427.0,4.7,127873.0,,STRATFORD,2024
+0600000US3403971430,"Summit city, Union County, New Jersey",190304.0,5.4,306473.0,,SUMMIT,2024
+0600000US3402971640,"Surf City borough, Ocean County, New Jersey",118750.0,5.3,200121.0,,SURF CITY,2024
+0600000US3403771670,"Sussex borough, Sussex County, New Jersey",75500.0,2.8,106571.0,,SUSSEX,2024
+0600000US3401571850,"Swedesboro borough, Gloucester County, New Jersey",88542.0,4.8,112596.0,,SWEDESBORO,2024
+0600000US3400572060,"Tabernacle township, Burlington County, New Jersey",120735.0,2.2,143641.0,,TABERNACLE,2024
+0600000US3400772240,"Tavistock borough, Camden County, New Jersey",,0.0,,,TAVISTOCK,2024
+0600000US3400372360,"Teaneck township, Bergen County, New Jersey",144075.0,5.7,187487.0,,TEANECK,2024
+0600000US3400372420,"Tenafly borough, Bergen County, New Jersey",208200.0,6.8,306119.0,,TENAFLY,2024
+0600000US3400372480,"Teterboro borough, Bergen County, New Jersey",24904.0,13.2,54815.0,,TETERBORO,2024
+0600000US3401972510,"Tewksbury township, Hunterdon County, New Jersey",192576.0,2.9,268956.0,,TEWKSBURY,2024
+0600000US3402573020,"Tinton Falls borough, Monmouth County, New Jersey",117308.0,5.8,161206.0,,TINTON FALLS,2024
+0600000US3402973125,"Toms River township, Ocean County, New Jersey",99547.0,4.3,128498.0,,TOMS RIVER,2024
+0600000US3403173140,"Totowa borough, Passaic County, New Jersey",113563.0,3.0,131788.0,,TOTOWA,2024
+0600000US3402174000,"Trenton city, Mercer County, New Jersey",52537.0,10.1,77515.0,,TRENTON,2024
+0600000US3402974210,"Tuckerton borough, Ocean County, New Jersey",88892.0,7.4,110121.0,,TUCKERTON,2024
+0600000US3403974480,"Union township, Union County, New Jersey",119464.0,5.9,138435.0,,UNION,2024
+0600000US3401974420,"Union township, Hunterdon County, New Jersey",137568.0,7.9,160420.0,,UNION,2024
+0600000US3402574540,"Union Beach borough, Monmouth County, New Jersey",119250.0,7.1,139133.0,,UNION BEACH,2024
+0600000US3401774630,"Union City city, Hudson County, New Jersey",64310.0,9.4,86916.0,,UNION CITY,2024
+0600000US3400974810,"Upper township, Cape May County, New Jersey",111991.0,2.6,131697.0,,UPPER,2024
+0600000US3401174870,"Upper Deerfield township, Cumberland County, New Jersey",82946.0,4.4,100506.0,,UPPER DEERFIELD,2024
+0600000US3402574900,"Upper Freehold township, Monmouth County, New Jersey",183750.0,6.3,207195.0,,UPPER FREEHOLD,2024
+0600000US3403375110,"Upper Pittsgrove township, Salem County, New Jersey",85521.0,8.0,122702.0,,UPPER PITTSGROVE,2024
+0600000US3400375140,"Upper Saddle River borough, Bergen County, New Jersey",,7.3,354786.0,,UPPER SADDLE RIVER,2024
+0600000US3400175620,"Ventnor City city, Atlantic County, New Jersey",68671.0,9.5,111139.0,,VENTNOR CITY,2024
+0600000US3403775740,"Vernon township, Sussex County, New Jersey",115873.0,5.4,137333.0,,VERNON,2024
+0600000US3401375815,"Verona township, Essex County, New Jersey",161843.0,4.3,200791.0,,VERONA,2024
+0600000US3402775890,"Victory Gardens borough, Morris County, New Jersey",62550.0,6.7,68301.0,,VICTORY GARDENS,2024
+0600000US3401176070,"Vineland city, Cumberland County, New Jersey",67860.0,7.8,91873.0,,VINELAND,2024
+0600000US3400776220,"Voorhees township, Camden County, New Jersey",105473.0,4.8,161140.0,,VOORHEES,2024
+0600000US3400376400,"Waldwick borough, Bergen County, New Jersey",177962.0,2.2,191487.0,,WALDWICK,2024
+0600000US3402576460,"Wall township, Monmouth County, New Jersey",142768.0,5.4,184373.0,,WALL,2024
+0600000US3400376490,"Wallington borough, Bergen County, New Jersey",85862.0,8.3,106284.0,,WALLINGTON,2024
+0600000US3403776640,"Walpack township, Sussex County, New Jersey",,,,,WALPACK,2024
+0600000US3403176730,"Wanaque borough, Passaic County, New Jersey",113175.0,4.0,125413.0,,WANAQUE,2024
+0600000US3403776790,"Wantage township, Sussex County, New Jersey",99599.0,5.2,123206.0,,WANTAGE,2024
+0600000US3403576940,"Warren township, Somerset County, New Jersey",204063.0,3.5,300761.0,,WARREN,2024
+0600000US3400577150,"Washington township, Burlington County, New Jersey",81250.0,9.4,116175.0,,WASHINGTON,2024
+0600000US3404177300,"Washington township, Warren County, New Jersey",144444.0,3.6,155251.0,,WASHINGTON,2024
+0600000US3401577180,"Washington township, Gloucester County, New Jersey",114249.0,4.5,134949.0,,WASHINGTON,2024
+0600000US3400377135,"Washington township, Bergen County, New Jersey",180133.0,4.4,223316.0,,WASHINGTON,2024
+0600000US3402777240,"Washington township, Morris County, New Jersey",165651.0,4.7,204498.0,,WASHINGTON,2024
+0600000US3404177270,"Washington borough, Warren County, New Jersey",81336.0,3.0,96526.0,,WASHINGTON,2024
+0600000US3403577600,"Watchung borough, Somerset County, New Jersey",173672.0,6.1,243245.0,,WATCHUNG,2024
+0600000US3400777630,"Waterford township, Camden County, New Jersey",111791.0,5.7,125451.0,,WATERFORD,2024
+0600000US3403177840,"Wayne township, Passaic County, New Jersey",153056.0,4.9,186886.0,,WAYNE,2024
+0600000US3401777930,"Weehawken township, Hudson County, New Jersey",127763.0,4.9,191656.0,,WEEHAWKEN,2024
+0600000US3401578110,"Wenonah borough, Gloucester County, New Jersey",131667.0,5.2,173022.0,,WENONAH,2024
+0600000US3401978230,"West Amwell township, Hunterdon County, New Jersey",151250.0,2.5,209721.0,,WEST AMWELL,2024
+0600000US3401378510,"West Caldwell township, Essex County, New Jersey",158467.0,3.9,195481.0,,WEST CALDWELL,2024
+0600000US3400978530,"West Cape May borough, Cape May County, New Jersey",91250.0,0.2,126224.0,,WEST CAPE MAY,2024
+0600000US3401578800,"West Deptford township, Gloucester County, New Jersey",93895.0,4.4,117863.0,,WEST DEPTFORD,2024
+0600000US3402579310,"West Long Branch borough, Monmouth County, New Jersey",114271.0,8.3,153343.0,,WEST LONG BRANCH,2024
+0600000US3403179460,"West Milford township, Passaic County, New Jersey",132114.0,6.1,155566.0,,WEST MILFORD,2024
+0600000US3401779610,"West New York town, Hudson County, New Jersey",71729.0,8.4,104832.0,,WEST NEW YORK,2024
+0600000US3401379800,"West Orange township, Essex County, New Jersey",129753.0,6.0,175750.0,,WEST ORANGE,2024
+0600000US3400980210,"West Wildwood borough, Cape May County, New Jersey",74432.0,14.9,93942.0,,WEST WILDWOOD,2024
+0600000US3402180240,"West Windsor township, Mercer County, New Jersey",197190.0,3.5,236871.0,,WEST WINDSOR,2024
+0600000US3400578200,"Westampton township, Burlington County, New Jersey",126312.0,4.9,151680.0,,WESTAMPTON,2024
+0600000US3403979040,"Westfield town, Union County, New Jersey",232629.0,3.6,306889.0,,WESTFIELD,2024
+0600000US3401580120,"Westville borough, Gloucester County, New Jersey",70639.0,7.1,96628.0,,WESTVILLE,2024
+0600000US3400380270,"Westwood borough, Bergen County, New Jersey",165781.0,2.5,185220.0,,WESTWOOD,2024
+0600000US3400180330,"Weymouth township, Atlantic County, New Jersey",72459.0,8.5,106450.0,,WEYMOUTH,2024
+0600000US3402780390,"Wharton borough, Morris County, New Jersey",85767.0,7.4,100279.0,,WHARTON,2024
+0600000US3404180570,"White township, Warren County, New Jersey",75726.0,1.5,91549.0,,WHITE,2024
+0600000US3400981170,"Wildwood city, Cape May County, New Jersey",75222.0,7.4,100940.0,,WILDWOOD,2024
+0600000US3400981200,"Wildwood Crest borough, Cape May County, New Jersey",69089.0,10.7,99367.0,,WILDWOOD CREST,2024
+0600000US3400581440,"Willingboro township, Burlington County, New Jersey",98200.0,8.2,115490.0,,WILLINGBORO,2024
+0600000US3403981650,"Winfield township, Union County, New Jersey",64052.0,8.4,76479.0,,WINFIELD,2024
+0600000US3400781740,"Winslow township, Camden County, New Jersey",99093.0,4.8,109591.0,,WINSLOW,2024
+0600000US3400382570,"Wood-Ridge borough, Bergen County, New Jersey",136108.0,4.8,178767.0,,WOOD-RIDGE,2024
+0600000US3400981890,"Woodbine borough, Cape May County, New Jersey",46078.0,7.3,63736.0,,WOODBINE,2024
+0600000US3402382000,"Woodbridge township, Middlesex County, New Jersey",108928.0,4.9,133780.0,,WOODBRIDGE,2024
+0600000US3401582120,"Woodbury city, Gloucester County, New Jersey",77028.0,7.9,91762.0,,WOODBURY,2024
+0600000US3401582180,"Woodbury Heights borough, Gloucester County, New Jersey",123083.0,1.7,147995.0,,WOODBURY HEIGHTS,2024
+0600000US3400382300,"Woodcliff Lake borough, Bergen County, New Jersey",213981.0,12.0,234272.0,,WOODCLIFF LAKE,2024
+0600000US3400582420,"Woodland township, Burlington County, New Jersey",138750.0,3.5,151953.0,,WOODLAND,2024
+0600000US3403182423,"Woodland Park borough, Passaic County, New Jersey",98845.0,5.6,114023.0,,WOODLAND PARK,2024
+0600000US3400782450,"Woodlynne borough, Camden County, New Jersey",74808.0,11.2,86723.0,,WOODLYNNE,2024
+0600000US3403382720,"Woodstown borough, Salem County, New Jersey",98828.0,6.2,113782.0,,WOODSTOWN,2024
+0600000US3401582840,"Woolwich township, Gloucester County, New Jersey",157778.0,3.8,171486.0,,WOOLWICH,2024
+0600000US3400582960,"Wrightstown borough, Burlington County, New Jersey",49500.0,7.0,74416.0,,WRIGHTSTOWN,2024
+0600000US3400383050,"Wyckoff township, Bergen County, New Jersey",203988.0,5.0,280642.0,,WYCKOFF,2024

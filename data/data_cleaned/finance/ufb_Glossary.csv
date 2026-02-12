@@ -1,0 +1,128 @@
+Unnamed: 0,Unnamed: 1,Unnamed: 2
+Glossary,,
+Category,Term,Description
+Status,No UFB Available,The Division of Local Government Services does not have a User Friendly Budget on file for this municipality
+,Sig. Data Missing,"Municipality submitted a User Friendly Budget, however at least one entire section was left blank"
+Population and Density,Population Estimate (Census),Population estimate from the US Census Bureau's Population Estimates Program.
+,Land Area (sq. mi),Land areas as of the Decennial Census
+,Population Density,"Persons per square mile, population divided by land area"
+Tax Collections,% of Tax Collections used to Calculate RUT,"The percentage of tax collections used to calculate the reserve for uncollected taxes in the current budget year.  The reserve for uncollected taxes is designed to ensure sufficient cash receipts to support municipal operations and property taxes due to school, county, local, and special districts."
+,"Total Tax Revenue, Collections CY",Total tax revenues collected in the previous calendar year
+,"Total Tax Levy, CY",Total tax levy for the previous calendar year
+,"% of Taxes Collected, CY",The percentage of the previous calendar year's tax levy that was actually collected
+,Delinquent Taxes,Delinquent taxes at the end of the prior calendar year
+Revenues,Surplus,Surplus used as revenue in the budget
+,Local Revenue,"Local, own-source revenue (i.e. license fees, interest, fines, utility operating surplus, etc.)"
+,State Aid (without offsetting appropriation),"State aid (i.e. Energy Tax Receipts, CMPTRA, Transitional Aid)"
+,Uniform Construction Code Fees,Unform construction code fees (i.e. permit fees)
+,Shared Services Agreements,Revenues received pursuant to a shared services agreement with another local government unit
+,Additional Revenue Offset by Appropriations,Additional revenues with offsetting appropriations
+,Public and Private Revenue,Public and private revenues (i.e. grant revenues)
+,Other Special Items,"Miscellaneous items including hotel taxes, cable TV franchising fees, sale of municipal assets, payments-in-lieu-of taxes, and debt payment reserves"
+,Receipts from Delinquent Taxes,Receipts from the collection of delinquent taxes corresponding to prior years
+,Local Tax for Municipal Purposes,Local municipal purpose property tax levy
+,Minimum Library Tax,Municipal library property tax levy
+,Open Space Levy Tax,Open space preservation property tax levy
+,Addition to Local District School Tax,Additional municipal levy to support local school district
+,Deficit General Budget,Carry-over of a previous year's general budget deficit
+Appropriations,Total Appropriations,All budget appropriations including utility and enterprise funds
+,General Budget,Budget appropriations for government operational purposes only. Excludes utility and enterprise funds
+,General Government,"Includes Elected Officials, Clerk, Business Administrator, Financial Administration, Technology, Legal, Economic Development and municipal office employees not included in other listed budget categories. "
+,Land-Use Administration,"Includes the Planning Board, Zoning Board of Adjustment, and Affordable Housing. "
+,Uniform Construction Code,"Includes the budget for all building sub-code officials who enforce the Uniform Construction Code, as well as other code enforcement functions outside the scope of the UCC. "
+,Insurance,"Includes Employee Health Benefits (medical, dental, prescription health coverage and other health-related benefits), Liability, Property Casualty, Workers Compensation and any other insurance costs."
+,Public Safety,"includes 911 Communications, Police, Fire, Ambulance/Rescue, Emergency Management and any other public safety costs."
+,Public Works,"Includes Street and Road Maintenance, Sanitary Sewer Services, Stormwater Management, Solid Waste, Recycling, Vehicle Maintenance and other miscellaneous public works functions."
+,Health and Human Services,"Includes Animal Control, Board of Health and various health, human services and social services programs provided by your municipality for veterans, senior citizens, teens or other groups. "
+,Parks and Recreation,"Includes park maintenance, administration of recreation programs and community centers, as well as special community events/celebrations and other similar functions"
+,Education (including Library),Includes Library and other similar educational functions.
+,Unclassified,All other unclassified expenditures
+,Utilities and Bulk Purchases,"Includes all utility costs paid through the municipal budget - gas, electric, water, sewer, etc."
+,Landfill / Solid Waste Disposal ,Includes all costs relating to landfill and solid waste disposal.
+,Contingency,Contingency expenses for which no other appropriation was made
+,Statutory Expenditures,"Includes Pension, Social Security, Unemployment, and other related payroll taxes."
+,Judgements,Expenditures related to payment of court judgements 
+,Shared Services,Expenditures made pursuant to a shared services agreement with another local government unit
+,Court and Public Defender,Municipal court and public defender costs
+,Capital,Capital expenditures
+,Debt,Debt service payments
+,Deferred Charges,Current year funding of deferred charges from a previous year corresponding to overexpenditures and emergency appropriations
+,Debt - Type 1 School District,Debt service of payments on behalf of a Type 1 School District
+,Reserve for Uncollected Taxes,Budget appropriation reserve for uncollected property taxes
+,Surplus General Budget,Carry-over of a previous year's general budget surplus
+Total Personnel Costs,Total Personnel Costs,"Sum of base pay, overtime, pension, health benefits, employment taxes, and other benefit and compensation costs"
+,Base Pay,"The annualized rate of pay to which overtime (if eligible) and/or
+pension is calculated"
+,Overtime and other Compensation,Any other item that is charged as a salary and wage expense but not included in base pay
+,Pension (Estimate) ,Estimated pension costs as listed on the Division of Pension and Benefits website
+,Health Benefits Net of Cost Share,Health benefit costs net of employee contribution
+,Employment Taxes and Other Benefits,Employment taxes and other benefits.
+Health Plan Information,Employees Civil Service?,Whether the municipality's employees are subject to Title 11A (Civil Service). 
+,Use State Health Benefits Plan?,Whether the municipality participates in the State Health Benefits Plan.
+,Does State Plan Cover Rx?,Whether the municipality's State Health Benefits Plan contains a prescription benefit
+,Single Coverage,Single member health care coverage
+,Parent & Child,Parent and child health care coverage
+,Employee & Spouse (or Partner),Employee and spouse or partner health care coverage
+,Family,Family health care coverage (i.e. spouse/partner and children)
+,Total Employee Cost Sharing Contribution (entered as negative - ),Employee health care contribution
+,Avg. Employee Cost Sharing Contribution %,Employee health care contribution as a percentage of total cost
+,Total Employer Cost,Total employer health care cost net of employee contribution
+Gross Debt,Local School Debt,Debt issued by local school districts
+,Regional School Debt,Debt issued by regional school districts
+,Utility Fund Debt,"Debt issued by or on behalf of municipal utility funds (i.e. water, sewer, etc.)"
+,Debt Authorized,Total of all authorized municipal debt
+,Notes Outstanding,Total of all outstanding municipal note debt (short-term borrowing)
+,Bonds Outstanding,Total of all outstanding municipal bond debt (long-term borrowing)
+,Loans and Other Debt,Total of all outstanding loans and all other kinds of debt
+,Gross Debt,"All bonds and notes issued and authorized but not issued or guaranteed by the local unit, except tax anticipation notes, emergency notes, special emergency notes and utility revenue notes."
+,Per Capita Gross Debt,Gross debt divided by the population of the municipality (Census)
+Deductions,Deductions,"Deductions from gross debt including but not limited to school purposes by a regional school district, self-liquidating purposes, debt issued by another public entity and backed by the municipality,  bond anticipation notes in anticipation of authorized or issued bonds, and funds on hand or sinking funds applicable only to the payment of debt."
+Net Debt,Net Debt,Gross debt less deductions
+,Per Capita Net Debt,Net debt divided by the population of the municipality (Census)
+,3 Yr. Average Property Valuation,Three-year average of total property valuation in the municipality
+,Net Debt as % of 3 Year Avg Property Valuation,Net debt divided by three-year average of total property valuation in the municipality. A measure of debt burden.
+Debt Service,Utility Fund - Principal,Total principal payments for utility fund debt
+,Utility Fund - Interest,Total interest payments for utility fund debt
+,Bond Anticipation Notes - Principal,Total principal payments for bond anticipation notes
+,Bond Anticipation Notes - Interest,Total interest payments for bond anticipation notes
+,Bonds - Principal,Total principal payments for bonds
+,Bonds - Interest,Total interest payments for bonds
+,Loans & Other Debt - Principal,Total principal payments for loans and other debt
+,Loans & Other Debt - Interest,Total interest payments for loans and other debt
+,Total Principal,"Total principal payments for bonds, notes, loans, and other kinds of debt"
+,Total Interest,"Total interest payments for bonds, notes, loans, and other kinds of debt"
+,CY Budget Debt Pmt,Current year budgeted debt payment for existing debt
+,(Year 2) Budget Debt Pmt,Second year estimated budgeted debt payment for existing debt
+,(Year 3) Budget Debt Pmt,Third year estimated budgeted debt payment for existing debt
+,Future Year Budget Debt Pmt,Estimated budgeted debt payments for all future years beyond the third year for existing debt
+,Total Guarantees - Governmental,Total debt service guaranteed by the municipality relating to governmental purposes
+,Total Guarantees - Other,Total debt service guaranteed by the municipality relating to all other purposes
+,Total Capital/Equipment Leases,Total capital and equipment lease payments
+,Total Other,All other debt payments not captured in previous categories
+Credit Ratings,Moody Rating,Latest Moody's credit rating identified by the municipality
+,Moody Rating Year,Year of the latest Moody's credit rating identified by the municipality
+,S&P Rating,Latest Standard and Poor's credit rating identified by the municipality
+,S&P Rating Year,Year of the latest Standard and Poor's credit rating identified by the municipality
+,Fitch Rating,Latest Fitch credit rating identified by the municipality
+,Fitch Rating Year,Year of the latest Fitch credit rating identified by the municipality
+Tax Exemptions/PILOTS,PY PILOT Billing,Previous year's Payment-In-Lieu-of-Taxes (PILOT) billing
+,PY Exempt AV,Previous year's exempt aggregate property valuation
+,PY Taxes if Billed at Full Rate,Previous year's taxes if the exempt property was billed at the full property tax rate
+,PY PILOT Billing % of Taxes if Billed,Previous year's  PILOT billing divided by previous year's taxes if billed at the full rate. A measure of how much of the full tax liability is captured by PILOTs.
+,PY Total AV,"Previous year's total aggregate valuation, calculated as the sum of taxable and exempt property valuation (from Abstract of Ratables)"
+,PY exempt % of AV,Previous year's exempt aggregate property valuation divided by total aggregate valuation. A measure of how much of the property tax base is exempted by PILOTs
+,Commercial/Industrial,Exempted parcels with a commercial or industrial property class classification
+,Dwelling,Exempted parcels with a residential dwelling property class classification
+,New Dwelling/Conversion,Exempted parcels with a new dwelling or residential property conversion property class classification
+,Multiple Dwelling,Exempted parcels with a multiple dwelling (i.e. apartment or condominium) property class classification
+,Exemption,Exemption from payment of property taxes
+,Abatement,Reductions or exemptions from payment of property taxes
+Accumulated Absences,Gross Days of Accumulated Absence,Gross number of days of accumulated employee absence eligible for compensation
+,Dollar Value of Compensated Absences,The dollar value of the gross number of days of accumulated employee absences
+,Total Funds Reserved as of end of PY,Total funds available to fund the accumulative absence liability as of the end of the previous budget year
+,Total Funds Appropriated in CY,Total funds available to fund the accumulative absence liability appropriated in the current budget year
+Structural Imbalances,Revenues at Risk,"Anticipated revenues that will not recur in the next budget year, or that are known to be declining over time (i.e.  revenues from one time land sales; concession fees or deposits associated with agreements, including redevelopment agreements or utility agreements; short term or expiring grants that support operating costs; transfers of funds from authorities that are not expected to continue; awards of Transitional Aid from the State; and other revenues that are known to be temporary in nature)."
+,Non-recurring Appropriation Reductions,"Proposed reductions in line items that will not recur in the next budget year, or that are known to be declining over time (i.e. non-recurring cost reductions, short term savings in debt service payments attributable to refunding issues that allow for a skipped debt service payment or reductions in short term maturities; and savings in expenses made possible through contractual short term concessions that result in later increased payments)"
+,Future Year Appropriation Increases,Reasonable projections of appropriation increases for the next budget year (i.e. : increases in debt service payments due to new or restructured debt; increases in lease payments due to new or restructured leases; increased salary or compensation payments attributable to contractual obligations; and other increases in items of expenditure for which policy changes or decisions will necessitate increased appropriations)
+,Structural Imbalance Offsets,Budget changes that are expected to occur in the next budget year that offset the impact of the three above-referenced categories (i.e. new or one-time current year appropriations or non-recurring increases in current year appropriations that will not appear in the next budget year and out-year budgets)
+,Total Imbalances,Total of all identified structural imbalances including offsets.
