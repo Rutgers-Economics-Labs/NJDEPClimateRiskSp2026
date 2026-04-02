@@ -205,3 +205,14 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# NJDEP Project Data (Massive datasets)
+data/data_raw/
+data/data_cleaned/
+data/data_zipped/
+*.csv.gz
+*.dta
+*.xlsx
+*.zip
+!data/README.md
+!data/data_cleaned/nj_municipality_characteristics.csv
