@@ -45,9 +45,7 @@ dev:
 	frontend_pid=$$!; \
 	wait
 
-run-dashboard: dev
-
-stop-dashboard:
+stop:
 	@echo "Stopping dashboard services on ports 8000 and 5173..."
 	-lsof -ti:8000 | xargs kill -9 2>/dev/null || true
 	-lsof -ti:5173 | xargs kill -9 2>/dev/null || true
