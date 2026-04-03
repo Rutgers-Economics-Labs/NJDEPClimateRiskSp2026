@@ -1,4 +1,5 @@
 import os
+import json
 
 import numpy as np
 import pandas as pd
@@ -22,12 +23,14 @@ COUNTY_TS_FILE = os.path.join(DATA_CLEANED_DIR, "premium_timeseries_county.csv")
 STATE_TS_FILE = os.path.join(DATA_CLEANED_DIR, "premium_timeseries_state.csv")
 LOOKUP_FILE = os.path.join(DATA_CLEANED_DIR, "premium_lookup.csv")
 MUNI_CHARS_FILE = os.path.join(DATA_CLEANED_DIR, "nj_municipality_characteristics.csv")
+BOUNDARIES_FILE = os.path.join(DATA_CLEANED_DIR, "boundaries", "nj_municipal_boundaries.geojson")
 
 muni_ts = pd.DataFrame()
 county_ts = pd.DataFrame()
 state_ts = pd.DataFrame()
 lookup_df = pd.DataFrame()
 muni_chars = pd.DataFrame()
+boundary_geojson = {}
 
 
 def load_csv(filepath, parse_dates=None):
@@ -37,7 +40,7 @@ def load_csv(filepath, parse_dates=None):
 
 
 def load_data():
-    global muni_ts, county_ts, state_ts, lookup_df, muni_chars
+    global muni_ts, county_ts, state_ts, lookup_df, muni_chars, boundary_geojson
 
     muni_ts = load_csv(MUNI_TS_FILE, parse_dates=["date_bucket"])
     county_ts = load_csv(COUNTY_TS_FILE, parse_dates=["date_bucket"])
@@ -51,6 +54,12 @@ def load_data():
         if "is_resilient" in muni_chars.columns:
             muni_chars["is_resilient"] = muni_chars["is_resilient"].fillna(False).astype(bool)
 
+    if os.path.exists(BOUNDARIES_FILE):
+        with open(BOUNDARIES_FILE, "r", encoding="utf-8") as infile:
+            boundary_geojson = json.load(infile)
+    else:
+        boundary_geojson = {}
+
 
 def ensure_loaded():
     if muni_ts.empty and county_ts.empty and state_ts.empty:
@@ -58,6 +67,12 @@ def ensure_loaded():
             status_code=503,
             detail="Dashboard data not found. Please run 'make process-all'.",
         )
+
+
+def ensure_map_loaded():
+    ensure_loaded()
+    if not boundary_geojson:
+        raise HTTPException(status_code=503, detail="Boundary geometry not found.")
 
 
 def get_dataset(level, view):
@@ -86,6 +101,67 @@ def get_name_column(level):
         "county": "county",
         "state": "name",
     }[level]
+
+
+def build_map_geojson():
+    ensure_map_loaded()
+
+    premium_lookup = {}
+    if not muni_ts.empty:
+        muni_weekly = muni_ts[muni_ts["view"] == "weekly"].copy()
+        if not muni_weekly.empty:
+            premium_lookup = (
+                muni_weekly.groupby("mun", dropna=False)["avg_spread_bps"]
+                .mean()
+                .round(2)
+                .to_dict()
+            )
+
+    chars_lookup = {}
+    if not muni_chars.empty:
+        chars_subset = muni_chars.dropna(subset=["mun"]).drop_duplicates(subset=["mun"]).copy()
+        chars_lookup = (
+            chars_subset.set_index("mun")[
+                [
+                    "mun_label",
+                    "county",
+                    "is_resilient",
+                    "crs_class",
+                    "crs_discount_pct",
+                    "flooded_pct_2ft",
+                    "flooded_pct_5ft",
+                    "flooded_pct_7ft",
+                ]
+            ]
+            .to_dict(orient="index")
+        )
+
+    features = []
+    for feature in boundary_geojson.get("features", []):
+        properties = feature.get("properties", {})
+        mun = properties.get("MUN")
+        merged = chars_lookup.get(mun, {})
+        feature_properties = {
+            "mun": mun,
+            "mun_label": merged.get("mun_label") or properties.get("MUN_LABEL") or properties.get("NAME") or mun,
+            "county": merged.get("county") or properties.get("COUNTY"),
+            "is_resilient": None if pd.isna(merged.get("is_resilient")) else bool(merged.get("is_resilient")) if "is_resilient" in merged else None,
+            "crs_class": coerce_int(merged.get("crs_class")),
+            "crs_discount_pct": coerce_float(merged.get("crs_discount_pct")),
+            "flooded_pct_2ft": coerce_float(merged.get("flooded_pct_2ft")),
+            "flooded_pct_5ft": coerce_float(merged.get("flooded_pct_5ft")),
+            "flooded_pct_7ft": coerce_float(merged.get("flooded_pct_7ft")),
+            "avg_premium_bps": coerce_float(premium_lookup.get(mun)),
+        }
+        features.append(
+            {
+                "type": "Feature",
+                "geometry": feature.get("geometry"),
+                "properties": feature_properties,
+            }
+        )
+
+    return {"type": "FeatureCollection", "features": features}
 
 
 def filter_dataset(dataset, level, name=None):
@@ -133,6 +209,23 @@ def safe_median(series):
     return float(valid.median())
 
 
+def aggregate_flood_share(scope, scenario):
+    area_column = "municipality_area_sq_mi"
+    flooded_column = f"flooded_area_{scenario}_sq_mi"
+    if area_column not in scope.columns or flooded_column not in scope.columns:
+        return None
+
+    valid = scope[[area_column, flooded_column]].dropna()
+    if valid.empty:
+        return None
+
+    total_area = valid[area_column].sum()
+    if not total_area:
+        return None
+
+    return float(valid[flooded_column].sum() / total_area * 100)
+
+
 def get_context_metrics(level, resolved_name):
     if muni_chars.empty:
         return {}
@@ -159,6 +252,9 @@ def get_context_metrics(level, resolved_name):
         "avg_flooded_pct_2ft": coerce_float(safe_mean(scope["flooded_pct_2ft"])) if "flooded_pct_2ft" in scope.columns else None,
         "avg_flooded_pct_5ft": coerce_float(safe_mean(scope["flooded_pct_5ft"])) if "flooded_pct_5ft" in scope.columns else None,
         "avg_flooded_pct_7ft": coerce_float(safe_mean(scope["flooded_pct_7ft"])) if "flooded_pct_7ft" in scope.columns else None,
+        "flooded_pct_2ft": coerce_float(aggregate_flood_share(scope, "2ft")),
+        "flooded_pct_5ft": coerce_float(aggregate_flood_share(scope, "5ft")),
+        "flooded_pct_7ft": coerce_float(aggregate_flood_share(scope, "7ft")),
         "median_income_median": coerce_float(safe_median(scope["median_household_income"])) if "median_household_income" in scope.columns else None,
     }
 
@@ -171,9 +267,6 @@ def get_context_metrics(level, resolved_name):
                 "is_resilient": None if pd.isna(row.get("is_resilient")) else bool(row.get("is_resilient")),
                 "crs_class": coerce_int(row.get("crs_class")),
                 "crs_discount_pct": coerce_float(row.get("crs_discount_pct")),
-                "flooded_pct_2ft": coerce_float(row.get("flooded_pct_2ft")),
-                "flooded_pct_5ft": coerce_float(row.get("flooded_pct_5ft")),
-                "flooded_pct_7ft": coerce_float(row.get("flooded_pct_7ft")),
                 "median_household_income": coerce_float(row.get("median_household_income")),
             }
         )
@@ -361,6 +454,11 @@ def get_cross_section(
         "date": selected_date.strftime("%Y-%m-%d"),
         "records": records,
     }
+
+
+@app.get("/api/map")
+def get_map():
+    return build_map_geojson()
 
 
 @app.get("/api/municipalities")
