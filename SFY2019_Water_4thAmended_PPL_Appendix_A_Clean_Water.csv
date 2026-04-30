@@ -1,0 +1,271 @@
+section,applicant,project_no,rank,leg_district,description,estimated_amount
+SUPPLEMENTAL,North Hudson Sewer Authority,S340952-19-1,,"32,33",Combined Sewer Improvements,700000
+SUPPLEMENTAL,Rockaway Valley RSA,S340821-06-1,,40,Old Jersey Trunk Sewer Replacement,775000
+SUPPLEMENTAL,21,S340964-02-1,,,,350000
+BASE/SANDY,Aberdeen Township,S340869-02,,13,Sanitary Sewer and PS Upgrades,9000000
+BASE/SANDY,Allentown Borough,S340567-05,,12,Sewer Plant Modifications,3112994
+BASE/SANDY,Allentown Borough,S340567-06,,12,Water Meter Replacement,664938
+BASE/SANDY,Asbury Park City,S340883-08,,11,Sewer Plant,63000000
+BASE/SANDY,"2,9",S340809-24,,,Pump Station Resiliency,500000
+BASE/SANDY,"2,9",S340809-29,,,,4300000
+BASE/SANDY,"2,9",S340809-28,,,,4100000
+BASE/SANDY,Bayonne City,S340399-31,,31,Facilities and Park Improvements,1618539
+BASE/SANDY,"12,13",S340697-06,,,Bldg. & Power Distribution System,15100000
+BASE/SANDY,Beach Haven Borough,S344220-01,,9,replacement and drainage,2038640
+BASE/SANDY,Bellmawr Borough,S342011-02,,5,Remediation,68400000
+BASE/SANDY,Bergen County Utilities,S340386-24,,"20,23,36,37,38,",Tank Header Improvements,1950000
+BASE/SANDY,Bergen County Utilities,S340386-23,,"20,23,36,37,38,",Sludge Digester Improvements,17820000
+BASE/SANDY,Bergen County Utilities Infrastructure Protection,S340386-19,,"20,23,36,37,38,",,3240000
+BASE/SANDY,Bergen County Utilities,S340386-20,,"20,23,36,37,38,",Primary Settling Tanks Improvements,9000000
+BASE/SANDY,Bergen County Utilities,S340386-21,,"20,23,36,37,38,",Final Settling Tanks Improvements,1920000
+BASE/SANDY,Bergen County Utilities Facility Assessment and,S340386-22,,"20,23,36,37,38,",,5690000
+BASE/SANDY,Bergen County Utilities,S340386-14,,"20,23,36,37,38,",All offsite mitigation improvements,54172587
+BASE/SANDY,Bergen County Utilities Power Supply mitigation,S340386-15,,"20,23,36,37,38,",,42094280
+BASE/SANDY,Bergen County Utilities All Plant wide mitigation,S340386-16,,"20,23,36,37,38,",,19537263
+BASE/SANDY,Bergen County Utilities,S340386-18,,"20,23,36,37,38,",Pump Station Resiliency Project,2491339
+BASE/SANDY,Berkeley Township,S344020-02,,9,Retention Basin at Moorage Park,905063
+BASE/SANDY,Berkeley Township,S340969-12,,9,Stormwater/Equipment,706150
+BASE/SANDY,Bradley Beach Borough,S340472-01,,30,Phase I,2700000
+BASE/SANDY,Bradley Beach Borough,S340472-02,,30,Bradley Boulevard Stormwater Rehab,2590050
+BASE/SANDY,10,S340448-11,,,Utilities Authority Rehabilitation - Phase II,5278297
+BASE/SANDY,"10,30",S340448-12,,,Utilities Authority Rehabilitation and Replacement,4824000
+BASE/SANDY,Brigantine City,S340827-04,,2,Emergency Generators (SANDY),3300000
+BASE/SANDY,Brigantine City,S340827-05,,2,Improvements (SANDY),4600000
+BASE/SANDY,Brigantine City,S340827-06,,2,Municipal System Improvements,1001066
+BASE/SANDY,2,S340518-06,,,Utilities Authority Authority,1298000
+BASE/SANDY,Burlington City,S340140-02,,7,replacement and Filter,2052000
+BASE/SANDY,Burlington Township,S340712-16,,6,Sanitary Sewer Rehabilitation,960000
+BASE/SANDY,Camden City,S340366-07,,5,Rehab / Replacement Project,59000000
+BASE/SANDY,Camden City,S340366-12,,5,CSO - Cooper Street Pump Station,2300000
+BASE/SANDY,Camden City,S340366-13,,5,Pump Station,12000000
+BASE/SANDY,Camden City,S340366-14,,5,Combined Sewer Outfalls.,9370000
+BASE/SANDY,Camden City,S340366-15,,5,Sewer Outfalls and Regulator,13330000
+BASE/SANDY,Camden City,S340366-16,,5,entire City (FKA DW),1800000
+BASE/SANDY,5,S340640-19,,,"Utilities Authority Infrastructure Project, Phase 4",11500000
+BASE/SANDY,5,S340640-20,,,Utilities Authority Infrastructure,6500000
+BASE/SANDY,5,S340640-17,,,CSO - Green & Gray Infrastructure,3500000
+BASE/SANDY,& 8,S340640-24,,"4,5,6",Wastewater Treatment Plant to,6500000
+BASE/SANDY,5,S345040-01,,,Utilities Authority City Long Term CSO Control Plan,1049636
+BASE/SANDY,5,S340640-21,,,Utilities Authority Stormwater Pumping Station,32500000
+BASE/SANDY,5,S340640-22,,,Utilities Authority Combined Sewer Overflow System,13000000
+BASE/SANDY,5,S340640-23,,,Combined Sewer Overflows to,4200000
+BASE/SANDY,& 8,S340640-16,,"4,5,6",Utilities Authority Improvements,13300000
+BASE/SANDY,& 8,S340640-18,,"4,5,6",optimal wastewater performance,84030000
+BASE/SANDY,& 8,S340640-13,,"4,5,6",Delaware #1 Pump Upgrades,12800000
+BASE/SANDY,& 8,S340640-26,,"4,5,6",Utilities Authority Control,26600000
+BASE/SANDY,Camden County PCFA,S342025-01,,"4,5,6 & 8",Expansion and Liner Enhancement,14060804
+BASE/SANDY,3,S340502-09,,,,1497445
+BASE/SANDY,3,S340502-08,,,Lafayette Road Sanitary Sewer,1057203
+BASE/SANDY,Chatham (MCJM) Borough,S340715-07,,21,(A) Facility Improvements 2018,7289180
+BASE/SANDY,Cliffside Park Borough,S340847-04,,36,CSO - Combined Sewer Separation,5300000
+BASE/SANDY,Clinton Town,S340924-07,,23,Customer Meter Replacement,800000
+BASE/SANDY,Cranford Township,S340858-04,,21,to improve drainage/prevent flooding,12000000
+BASE/SANDY,Cumberland County,S340438-03,,1,Plant,17000000
+BASE/SANDY,Delran Township,S340794-10,,7,Clay Street Pump Station,2100000
+BASE/SANDY,Dunellen Borough,S340916-03,,22,Flood Mitigation Project,2599998
+BASE/SANDY,East Orange City,S34084-02,,34,Resiliency Project 2017 (FKA DW),6840000
+BASE/SANDY,2,S340753-06,,,FAA Pump Station Reconstruction,700000
+BASE/SANDY,Elizabeth City,S340942-19,,20,Trumbull Street Flood Control Project,7700000
+BASE/SANDY,Elizabeth City,S340942-13,,20,Modifications,13146000
+BASE/SANDY,Elizabeth City,S340942-17,,20,Project (SANDY),6500000
+BASE/SANDY,Elizabeth City,S345070-01,,20,Sewer Overflow Long Term Control,4000001
+BASE/SANDY,Emerson Borough,S340497-01,,39,Small System Asset Management Plan,100000
+BASE/SANDY,8,S340838-07,,,Sewer System Improvements,1600000
+BASE/SANDY,8,S340838-06,,,Elmwood WWTP Storage Building,2500000
+BASE/SANDY,23,S340839-07,,,,2500000
+BASE/SANDY,17,S340839-08,,,Hamilton St. Pumping Station,4200000
+BASE/SANDY,Glen Ridge Borough,S340861-03,,28,Sewer Cleaning Truck,445849
+BASE/SANDY,Glen Ridge Borough,S340861-04,,28,System Asset Management Plan,1856145
+BASE/SANDY,Gloucester City,S340958-08,,5,CSO - Various Sewer Projects,2100000
+BASE/SANDY,Gloucester City,S345090-01,,5,Asset Management Plan,1000000
+BASE/SANDY,5,S342016-03,,,Cell 14 Construction,13893240
+BASE/SANDY,& 23,S340902-14,,"3,4,5",,45000000
+BASE/SANDY,& 23,S340902-15,,"3,4,5",Combined Heat & Power,7250000
+BASE/SANDY,& 23,S340902-17,,"3,4,5",Sludge Drying System,10000000
+BASE/SANDY,Gloucester Township,S340364-11,,4,Flood Mitigation (SANDY),950000
+BASE/SANDY,Gloucester Township,S340364-15,,4,Stormwater,1450000
+BASE/SANDY,Hackensack City,S340923-12,,37,Phase 2,6000000
+BASE/SANDY,Haddon Heights Borough,S34077-02,,5,Management Plan,100000
+BASE/SANDY,Highlands Borough,S340901-03,,13,(Current Project),6250000
+BASE/SANDY,Hoboken City,S340635-08,,33,"Acquisition, Rehabilitation",6600000
+BASE/SANDY,Hoboken City,S340635-06,,33,Construction on 6 Acre Park & Outfall,70000000
+BASE/SANDY,Hoboken City,S340635-07,,33,for CSO Reduction,5000000
+BASE/SANDY,Hoboken City,S340635-09,,33,water Mains,500000
+BASE/SANDY,Howell Township,S344040-02,,30,Route 9 Sanitary Sewer Extension,14680000
+BASE/SANDY,Jersey City,S340928-30,,"31,33",CSO - Street Cleaning Equipment,2711000
+BASE/SANDY,& 33,S340928-15,,"31,32",,41000000
+BASE/SANDY,"31,33",S340928-16,,,,9500000
+BASE/SANDY,"31,33",S340928-17,,,,14160000
+BASE/SANDY,"31,33",S340928-18,,,,5600000
+BASE/SANDY,"31,33",S340928-20,,,CSO - Outfall Chambers (SANDY),7200000
+BASE/SANDY,"31,33",S340928-23,,,,1846000
+BASE/SANDY,"31,33",S340928-24,,,CSO - Phase 1/2 Sewer Rehabilitation,22200000
+BASE/SANDY,"31,33",S340928-27,,,,500000
+BASE/SANDY,"31,33",S340928-37,,,Sewer Improvements 2a,50202482
+BASE/SANDY,"31,33",S340928-38,,,Sewer Improvements Phase 5a,35273044
+BASE/SANDY,& 33,S340928-21,,"31,32",,12000000
+BASE/SANDY,"31,33",S340928-28,,,,2700000
+BASE/SANDY,"31,33",S340928-29,,,,15360000
+BASE/SANDY,"31,33",S340928-31,,,,11059600
+BASE/SANDY,"31,33",S340928-34,,,,1181180
+BASE/SANDY,"31,33",S340928-32,,,,9300000
+BASE/SANDY,"31,33",S340928-25,,,Agency Plan - Phase 1/2,14069063
+BASE/SANDY,"31,33",S340928-26,,,Agency Plan - Phase 2,12600000
+BASE/SANDY,JMEUC – East Orange City,S340686-09a,,34,Capital Improvements Projects 2019,620504
+BASE/SANDY,JMEUC – Elizabeth City,S340686-09b,,20,Capital Improvements Projects 2019,6505876
+BASE/SANDY,JMEUC – Hillside Township,S340686-09c,,20,Capital Improvements Projects 2019,908430
+BASE/SANDY,JMEUC – Irvington Township,S340686-09d,,28,Capital Improvements Projects 2019,2252347
+BASE/SANDY,JMEUC – Newark City,S340686-09e,,"28,29",Capital Improvements Projects 2019,1363042
+BASE/SANDY,27,S340686-09f,,,Capital Improvements Projects 2019,650806
+BASE/SANDY,JMEUC – Summit City,S340686-09g,,21,Capital Improvements Projects 2019,1186322
+BASE/SANDY,JMEUC – Union Township,S340686-09h,,20,Capital Improvements Projects 2019,2449335
+BASE/SANDY,27,S340686-09i,,,Capital Improvements Projects 2019,1585429
+BASE/SANDY,32,S340259-07,,,Pump Station Rehabilitation (SAIL),6500000
+BASE/SANDY,32,S340259-14,,,/Central & Pennsylvania Ave Sewer,1582000
+BASE/SANDY,Kearny Town,S340259-11,,32,Station,17000000
+BASE/SANDY,Kearny Town,S340259-12,,32,modern artificial turf complex,21500000
+BASE/SANDY,Lacey Township,S344140-02,,9,Bulkhead and Stormwater,1559000
+BASE/SANDY,30,S340465-03,,,Utilities Authority DW),1440000
+BASE/SANDY,30,S340465-02,,,Gravity Sewer Line Installation,4320000
+BASE/SANDY,"15,16",S340882-10,,,Collection System Rehabilitation,621500
+BASE/SANDY,9,S340579-03,,,Utilities Authority Replacement,7700000
+BASE/SANDY,Little Egg Harbor Township,S344060-02,,9,Drainage Improvements,4250000
+BASE/SANDY,Little Egg Harbor Township,S340579-04,,9,- Phase 2,1714000
+BASE/SANDY,3,S340123-02,,,Utilities Authority Project,9948000
+BASE/SANDY,Long Beach Township,S340023-07,,9,Sewer Main Replacement,4600000
+BASE/SANDY,"11,13",S340336-08,,,,1700000
+BASE/SANDY,"11,13",S340336-09,,,,5237000
+BASE/SANDY,Lower Township,S340810-04,,1,Improvements -Phase 3,3877572
+BASE/SANDY,Madison (MCJM) Borough,S340715-07B,,27,Facility Improvements 2018,7289180
+BASE/SANDY,Manasquan Borough,S340450-02,,30,Stormwater Management,4505800
+BASE/SANDY,& 30,S340911-03,,"11,12",Equipment Replacement,660000
+BASE/SANDY,Manchester Township,S340650-08,,10,Install automated meters (FKA DW),3000000
+BASE/SANDY,Mantua Township MUA,S340514-02,,5,Barnsboro Sewer Extension,1700000
+BASE/SANDY,Marlboro Township,S340268-02,,13,Harbor Rd. Wastewater Pump Station,964250
+BASE/SANDY,Medford Lakes Borough,S340319-03,,8,Improvements,11000000
+BASE/SANDY,Middlesex Borough,S340698-02,,22,Sanitary Sewer Main Improvements,2568750
+BASE/SANDY,Middlesex County Utilities Restoration and Flood Mitigation,S340699-12,,"3,14,17,18,19,22",23 Authority (SAIL),93000000
+BASE/SANDY,Middlesex County Utilities Restoration and Flood Mitigation,S340699-13,,"3,14,17,18,19,22",23 Authority (SAIL),40000000
+BASE/SANDY,Middlesex County Utilities,S340699-14,,"3,14,17,18,19,22",Main Truck Sewer Rehab Phase II,10700000
+BASE/SANDY,Milltown Borough,S340102-01,,17,Milltown Ford Ave Redevelopment,21000000
+BASE/SANDY,Milltown Borough,S340102-04,,17,Ford Avenue Redevelopment,5500000
+BASE/SANDY,"12,13",S340325-04,,,Outfall Authority Rehabilitation,3000000
+BASE/SANDY,Montclair Township,S340837-04,,34,Sanitary Sewers refurbishment 2017,1700000
+BASE/SANDY,Montclair Township,S340837-06,,34,Rehabilitation,800000
+BASE/SANDY,Montclair Township,S340837-03,,34,Rehabilitation-SFY 2016,1700000
+BASE/SANDY,Mount Arlington Borough,S340451-05,,25,Management Plan,212785
+BASE/SANDY,7,S340943-06,,,Municipal Utilities Authority (Bundle 1),5900000
+BASE/SANDY,23,S340421-02,,,Refurbishment and Resource,75000000
+BASE/SANDY,23,S340421-03,,,Refurbishment and Resource,82822000
+BASE/SANDY,"17,23",S340421-01,,,D&R Canal Dredging,56800000
+BASE/SANDY,Newark City,S340815-25,,"28,29",Sewer System,400000
+BASE/SANDY,Newark City,S340815-27,,"28,29",City of Newark,3800000
+BASE/SANDY,Newark City,S340815-28,,"28,29",Drainage Improvements,1000000
+BASE/SANDY,Newark City,S340815-24,,"28,29",miles of small diameter sewers,21000000
+BASE/SANDY,Newark City,S340815-26,,"28,29",Combined Sewer Overflow,3300000
+BASE/SANDY,32,S340652-14,,,Utilities Authority Improvements,23000000
+BASE/SANDY,North Brunswick Township,S340888-02,,17,Water Meter Replacement (FKA DW),5427000
+BASE/SANDY,North Haledon Borough,S340229-02,,35,Small System Asset Management Plan,100000
+BASE/SANDY,North Hudson Sewer Authority,S340952-22,,"32,33",CSO - W1234 Solids/Floatables,18000000
+BASE/SANDY,North Hudson Sewer Authority,S340952-23,,33,Upgrades,3100000
+BASE/SANDY,North Hudson Sewer Authority,S340952-30,,33,Treatment Plant Improvements,23200000
+BASE/SANDY,North Hudson Sewer Authority,S340952-31,,"32,33",Green Infrastructure,547350
+BASE/SANDY,North Hudson Sewer Authority,S345190-01,,"32,33",Control Plan,6000000
+BASE/SANDY,North Wildwood City,S340663-07,,1,Sewer (SANDY),32872570
+BASE/SANDY,North Wildwood City,S340663-08,,1,Stormwater (SANDY),32872570
+BASE/SANDY,Northfield City,S340508-01,,2,Davis Avenue Pump Station Upgrade,270000
+BASE/SANDY,"39,40",S340700-16,,,Utilities Authority Improvements,4900000
+BASE/SANDY,& 40,S340700-14,,"38,39",Midland Park Force Main Installation,3694000
+BASE/SANDY,"39,40",S340700-15,,,Utilities Authority Improvements,7000000
+BASE/SANDY,"39,40",S340700-18,,,Interceptor System Rehabilitation,2000000
+BASE/SANDY,& 40,S340700-19,,"38,39",Interceptor System Rehabilitation,8132450
+BASE/SANDY,Ocean County,S344080-10,,10,Inspection Truck System - Equipment,250000
+BASE/SANDY,Ocean County,S344080-11,,10,Sweeper - Equipment,350000
+BASE/SANDY,Ocean County,S344080-09,,10,Treatment Devices,1300000
+BASE/SANDY,"9,10",S340372-59,,,,7620000
+BASE/SANDY,9,S340372-60,,,,870000
+BASE/SANDY,9,S340372-58,,,Interceptor (CI-1A) and South Island,4431000
+BASE/SANDY,Ocean Gate Borough,S344180-01,,9,Barnegat Bay - Storm Sewer MTD,2600000
+BASE/SANDY,11,S340750-13,,,,550000
+BASE/SANDY,11,S340750-14,,,,2500000
+BASE/SANDY,11,S340750-12,,,,4100000
+BASE/SANDY,12,S340945-14,,,2015 Sewage Pump Station Upgrades,3290000
+BASE/SANDY,Passaic Valley Sewerage CSO - Headworks Reconstruction,S340689-47,,"28,29,31,32,33,",,94965434
+BASE/SANDY,Passaic Valley Sewerage CSO - Wallington Pump Station,S340689-44,,"28,29,31,32,33,",,1500000
+BASE/SANDY,Passaic Valley Sewerage CSO - Standby Power Generating,S340689-23,,"28,29,31,32,33,",,150000000
+BASE/SANDY,"Passaic Valley Sewerage CSO - Substation ""M"" Replacement",S340689-37,,"28,29,31,32,33,",,13400000
+BASE/SANDY,Passaic Valley Sewerage CSO - Final Clarifier Concrete,S340689-38,,"28,29,31,32,33,",,21000000
+BASE/SANDY,Passaic Valley Sewerage,S340689-39,,"28,29,31,32,33,",Supernatant Return Pipe Lining,4816000
+BASE/SANDY,Passaic Valley Sewerage,S340689-40,,"28,29,31,32,33,",Relocation of Electrical Switchgear,123300000
+BASE/SANDY,Passaic Valley Sewerage CSO - Storm Water Collection Systems,S340689-42,,"28,29,31,32,33,",,21500000
+BASE/SANDY,Passaic Valley Sewerage CSO - Storm Water Pumping Stations,S340689-43,,"28,29,31,32,33,",,43600000
+BASE/SANDY,Passaic Valley Sewerage CSO - Combined Sewer Overflow Long,S345200-01,,"28,29,31,32,33,",,8000000
+BASE/SANDY,Passaic Valley Sewerage CSO - Asset Management Plan,S345200-02,,"28,29,31,32,33,",,2000000
+BASE/SANDY,Passaic Valley Sewerage,S340689-41,,"28,29,31,32,33,",CSO - Perimeter Flood Wall (SAIL),97000000
+BASE/SANDY,Passaic Valley Sewerage,S340689-25,,"28,29,31,32,33,",Administration Building Rehab (SAIL),9100000
+BASE/SANDY,Passaic Valley Sewerage,S340689-30,,,CSO - Sump Pump Relocation (SAIL),3700000
+BASE/SANDY,Passaic Valley Sewerage Sodium Hypochlorite Storage,S340689-31,,,,4000000
+BASE/SANDY,Passaic Valley Sewerage,S340689-32,,,CSO - Newark Bay Outfall (SANDY),10000000
+BASE/SANDY,Passaic Valley Sewerage CSO - Weatherproof tunnel locations,S340689-33,,"28,29,31,32,33,",,80000000
+BASE/SANDY,Passaic Valley Sewerage,S340689-45,,"28,29,31,32,33,",Sludge Storage Improvements,10210102
+BASE/SANDY,Passaic Valley Sewerage,S340689-46,,"28,29,31,32,33,",Decant Facility Improvements,1936731
+BASE/SANDY,Paterson City,S340850-05,,35,Separation at Second Avenue,1935000
+BASE/SANDY,Paterson City,S340850-06,,35,Reconstruction,2161100
+BASE/SANDY,Paterson City,S340850-07,,35,Reconstruction,2137200
+BASE/SANDY,Paterson City,S345210-01,,35,Sewers from Adjacent Municipalities,200000
+BASE/SANDY,Paulsboro Borough,S340164-01,,3,Stormwater Management,2750000
+BASE/SANDY,Perth Amboy City,S340435-17,,19,CSO -Second Street Corridor Project,4418400
+BASE/SANDY,Perth Amboy City,S340435-13,,19,RDH (GI),850000
+BASE/SANDY,Perth Amboy City,S340435-11,,19,Resiliency,6459351
+BASE/SANDY,Perth Amboy City,S340435-14,,19,St. / State Street),2608000
+BASE/SANDY,Perth Amboy City,S345220-01,,19,Term Control Plan,1000000
+BASE/SANDY,Perth Amboy City,S340435-18,,19,Project (FKA DW),1770000
+BASE/SANDY,& 22,S340240-06,,"4,18",Transfer Station Improvement,11675000
+BASE/SANDY,Pleasantville City,S340752-03,,2,Pleasantville Various Projects,3200000
+BASE/SANDY,Plumsted Township,S340607-03,,12,system,27000000
+BASE/SANDY,Point Pleasant Beach Borough,S344190-02,,10,Drainage Improv. Project,3000000
+BASE/SANDY,Point Pleasant Beach Borough,S340479-04,,10,(FKA DW),1930000
+BASE/SANDY,Princeton,S340656-08,,16,Rehabilitation,4300000
+BASE/SANDY,Princeton,S340656-11,,16,Spruce Street,3925678
+BASE/SANDY,Princeton,S340656-12,,16,Improvements to Bank Street,1871602
+BASE/SANDY,"21,22",S340547-14,,,Sludge Digester Upgrades,9500000
+BASE/SANDY,"21,22",S340547-15,,,Trucked-in Waste Receiving Station,2588518
+BASE/SANDY,16,S340485-12,,,Utilities Authority 2016,4900000
+BASE/SANDY,Ridgefield Park Village,S345230-01,,36,Plan,800002
+BASE/SANDY,Ridgefield Park Village,S340688-05,,36,Project,30211486
+BASE/SANDY,Riverdale Borough,S340729-02,,40,Equipment Purchase,289789
+BASE/SANDY,Riverside Sewerage Authority,S340490-01,,7,Primary Digester Mixing System,840000
+BASE/SANDY,25,S340821-07,,,Rehab four existing final clarifiers,8200000
+BASE/SANDY,40,S340821-06,,,Old Jersey Trunk Sewer Replacement,8000000
+BASE/SANDY,Roselle Borough,S340332-02,,20,Cleaning & lining of sanitary sewer,3800000
+BASE/SANDY,Roxbury Township,S340381-07,,25,Improvements,7500000
+BASE/SANDY,Runnemede Borough,S340363-06,,5,locations,1800000
+BASE/SANDY,Rutgers University,S340500-01,,17,Busch Cogeneration Plant Upgrade,37000000
+BASE/SANDY,Salem City,S340235-03,,3,Salem City Water Meter (FKA DW),1900000
+BASE/SANDY,Ship Bottom Borough,S340311-03,,9,Sewer Main Replacement Project,4700000
+BASE/SANDY,Ship Bottom Borough,S340311-04,,9,Residential Water Meter Project,2750000
+BASE/SANDY,& 23,S340801-07,,"16,21,22",,33000000
+BASE/SANDY,& 23,S340801-08,,"16,21,22",Rehab of Sludge Incinerator #2,16500000
+BASE/SANDY,Somerville Borough,S342013-02,,16,Green Seam Phase II,3000000
+BASE/SANDY,Somerville Borough,S342013-01,,16,Green Seam Restoration,11500000
+BASE/SANDY,30,S340377-04A,,,Pump Station Improvements (SAIL),6981600
+BASE/SANDY,Spotswood Borough,S340510-01,,14,and Sanitary Sewer System,5427000
+BASE/SANDY,Stafford Township,S344100-03,,9,Expansion,5600000
+BASE/SANDY,"15,16",S340400-10,,,,5700000
+BASE/SANDY,24,S342008-04,,,Utilities Authority Main Construction,7403160
+BASE/SANDY,Toms River MUA,S340145-05,,9,Sanitary Sewer Rehabilitation,3100000
+BASE/SANDY,Toms River MUA,S340145-06,,"9,10 & 12",Equipment Purchase,754200
+BASE/SANDY,Tuckerton Borough,S340034-03,,9,Project,1405206
+BASE/SANDY,"28,29",S340500-02,,,Upgrade of RBHS Co-generation Plant,44501400
+BASE/SANDY,Vernon Township,S340745-03,,24,Asset Management,100000
+BASE/SANDY,21,S340964-05,,,,10800000
+BASE/SANDY,West Deptford Township,S340947-05,,3,,1415000
+BASE/SANDY,West Wildwood Borough,S340626-05,,1,"Avenues P, Q, R, S & Mueller Avenue",1890000
+BASE/SANDY,& 13,S340128-06,,"11,12",,13100000
+BASE/SANDY,& 13,S340128-05,,"11,12",,7800000
+BASE/SANDY,Wildwood City,S340664-06,,1,2019 Capital Improvements,15713010
+BASE/SANDY,Wildwood City,S340664-05,,1,Avenue,15300000
+BASE/SANDY,7,S340132-08,,,Collection System Resiliency (SANDY),1900000
+BASE/SANDY,Winslow Township,S340895-10,,4,Various Sanitary Sewer System Rehab,1700000
+BASE/SANDY,Woodbridge Township,S340433-11,,19,Port Reading Interceptor,13083362
+BASE/SANDY,Woolwich Township,S340432-01,,3,New Collection System & Treatment,17400000
