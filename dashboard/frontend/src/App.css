@@ -278,9 +278,22 @@ body {
 
 .map-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: minmax(0, 520px) 220px;
   gap: 18px;
   align-items: start;
+  justify-content: center;
+}
+
+.map-stage {
+  position: relative;
+}
+
+.map-stage.is-draggable .map-svg {
+  cursor: grab;
+}
+
+.map-stage.is-draggable .map-svg:active {
+  cursor: grabbing;
 }
 
 .map-svg {
@@ -290,6 +303,74 @@ body {
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 20px;
+  aspect-ratio: 480 / 820;
+}
+
+.map-metric-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.map-metric-button {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--muted);
+  font: inherit;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.map-metric-button:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.map-metric-button.active {
+  background: rgba(0, 111, 133, 0.14);
+  border-color: rgba(0, 111, 133, 0.28);
+  color: var(--accent);
+}
+
+.map-zoom-controls {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(51, 51, 51, 0.16);
+  box-shadow: 0 10px 24px rgba(0, 67, 80, 0.08);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.map-zoom-button {
+  border: 0;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  min-height: 42px;
+  cursor: pointer;
+}
+
+.map-zoom-button:hover {
+  background: var(--accent-soft);
+}
+
+.map-zoom-button:last-child {
+  border-bottom: 0;
+}
+
+.map-zoom-button-reset {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .muni-path {
@@ -319,12 +400,24 @@ body {
 
 .map-side-panel {
   display: grid;
-  gap: 18px;
+  gap: 16px;
   align-self: stretch;
   padding: 18px 16px;
   background: var(--panel-strong);
   border: 1px solid var(--border);
   border-radius: 20px;
+  position: sticky;
+  top: 18px;
+}
+
+.map-side-section {
+  display: grid;
+  gap: 10px;
+}
+
+.map-side-heading {
+  color: var(--text);
+  font-size: 0.94rem;
 }
 
 .map-legend-title {

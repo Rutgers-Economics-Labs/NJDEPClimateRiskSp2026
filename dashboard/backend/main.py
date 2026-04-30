@@ -1,5 +1,6 @@
 import os
 import json
+from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -37,6 +38,156 @@ def load_csv(filepath, parse_dates=None):
     if not os.path.exists(filepath):
         return pd.DataFrame()
     return pd.read_csv(filepath, parse_dates=parse_dates, low_memory=False)
+
+
+def aggregate_timeseries_frame(analytics_df, level, geography_columns):
+    frames = []
+    views = {
+        "weekly": "date_bucket_weekly",
+        "monthly": "date_bucket_monthly",
+    }
+
+    for view_name, bucket_column in views.items():
+        grouped = (
+            analytics_df.groupby([bucket_column, *geography_columns], dropna=False)
+            .agg(
+                trade_count=("cusip", "size"),
+                cusip_count=("cusip", "nunique"),
+                avg_yield=("yield", "mean"),
+                avg_synthetic_aaa=("avg_synthetic_aaa", "mean"),
+                avg_spread_bps=("spread_bps", "mean"),
+            )
+            .reset_index()
+            .rename(columns={bucket_column: "date_bucket"})
+        )
+        grouped["level"] = level
+        grouped["view"] = view_name
+        grouped = grouped.sort_values([*geography_columns, "date_bucket"])
+        if geography_columns:
+            grouped["spread_bps_rolling_4w"] = (
+                grouped.groupby(geography_columns)["avg_spread_bps"]
+                .transform(lambda values: values.rolling(window=4, min_periods=1).mean())
+            )
+        else:
+            grouped["spread_bps_rolling_4w"] = grouped["avg_spread_bps"].rolling(window=4, min_periods=1).mean()
+        frames.append(grouped)
+
+    return pd.concat(frames, ignore_index=True)
+
+
+def build_lookup_frame(muni_frame, county_frame):
+    municipalities = (
+        muni_frame[muni_frame["view"] == "weekly"][["mun", "mun_label", "county"]]
+        .dropna(subset=["mun"])
+        .drop_duplicates()
+        .sort_values(["mun_label", "mun"])
+        .reset_index(drop=True)
+    )
+    municipalities["level"] = "municipality"
+    municipalities["name"] = municipalities["mun"]
+    municipalities["label"] = municipalities["mun_label"].fillna(municipalities["mun"])
+
+    counties = (
+        county_frame[county_frame["view"] == "weekly"][["county"]]
+        .dropna(subset=["county"])
+        .drop_duplicates()
+        .sort_values("county")
+        .reset_index(drop=True)
+    )
+    counties["level"] = "county"
+    counties["name"] = counties["county"]
+    counties["label"] = counties["county"]
+    counties["mun"] = None
+    counties["mun_label"] = None
+
+    state = pd.DataFrame(
+        [{"level": "state", "name": "NEW JERSEY", "label": "New Jersey", "county": None, "mun": None, "mun_label": None}]
+    )
+
+    columns = ["level", "name", "label", "county", "mun", "mun_label"]
+    return pd.concat([state[columns], counties[columns], municipalities[columns]], ignore_index=True)
+
+
+def build_dashboard_frames_from_full_trades(full_trades_df, muni_chars_df):
+    chars_subset = muni_chars_df.copy()
+    chars_subset["mun"] = chars_subset["mun"].astype(str).str.upper().str.strip()
+    chars_subset = chars_subset.dropna(subset=["mun"]).drop_duplicates(subset=["mun"]).copy()
+
+    trades = full_trades_df.copy()
+    trades.columns = [column.lower() for column in trades.columns]
+    trades["trade_date"] = pd.to_datetime(trades["trade_date_dt"], errors="coerce")
+    trades["yield"] = pd.to_numeric(trades["yield"], errors="coerce")
+    trades["avg_synthetic_aaa"] = pd.to_numeric(trades["benchmark_aaa_yield"], errors="coerce")
+    trades["spread_bps"] = pd.to_numeric(trades["spread_bps"], errors="coerce")
+    if "mun" in trades.columns:
+        trades["mun"] = trades["mun"].astype(str).str.upper().str.strip()
+    else:
+        trades["mun"] = None
+    if "mun_label" in trades.columns:
+        trades["mun_label"] = trades["mun_label"].astype(str).str.strip()
+    else:
+        trades["mun_label"] = None
+    if "county" in trades.columns:
+        trades["county"] = trades["county"].astype(str).str.upper().str.strip()
+    else:
+        trades["county"] = None
+
+    trades = trades.dropna(subset=["trade_date", "mun", "yield", "avg_synthetic_aaa", "spread_bps"]).copy()
+    trades = trades[trades["mun"] != ""].copy()
+
+    chars_join = chars_subset[
+        [
+            "mun",
+            "mun_label",
+            "county",
+            "is_resilient",
+            "flooded_pct_2ft",
+            "flooded_pct_5ft",
+            "flooded_pct_7ft",
+            "crs_class",
+            "crs_discount_pct",
+            "median_household_income",
+        ]
+    ].drop_duplicates(subset=["mun"])
+
+    trades = trades.merge(chars_join, on="mun", how="left", suffixes=("", "_chars"))
+    trades["mun_label"] = trades["mun_label"].where(trades["mun_label"].notna(), trades["mun_label_chars"])
+    trades["county"] = trades["county"].where(trades["county"].notna(), trades["county_chars"])
+    for column in [
+        "is_resilient",
+        "flooded_pct_2ft",
+        "flooded_pct_5ft",
+        "flooded_pct_7ft",
+        "crs_class",
+        "crs_discount_pct",
+        "median_household_income",
+    ]:
+        chars_column = f"{column}_chars"
+        if chars_column in trades.columns:
+            trades[column] = trades[column].where(trades[column].notna(), trades[chars_column])
+
+    drop_columns = [column for column in trades.columns if column.endswith("_chars")]
+    if drop_columns:
+        trades = trades.drop(columns=drop_columns)
+    trades["date_bucket_weekly"] = trades["trade_date"].dt.to_period("W-SUN").dt.start_time
+    trades["date_bucket_monthly"] = trades["trade_date"].dt.to_period("M").dt.start_time
+
+    muni_frame = aggregate_timeseries_frame(
+        trades.dropna(subset=["mun", "county"]).copy(),
+        "municipality",
+        ["mun", "mun_label", "county"],
+    )
+    county_frame = aggregate_timeseries_frame(
+        trades.dropna(subset=["county"]).copy(),
+        "county",
+        ["county"],
+    )
+    state_base = trades.copy()
+    state_base["name"] = "NEW JERSEY"
+    state_frame = aggregate_timeseries_frame(state_base, "state", ["name"])
+    lookup_frame = build_lookup_frame(muni_frame, county_frame)
+
+    return muni_frame, county_frame, state_frame, lookup_frame
 
 
 def load_data():
@@ -369,7 +520,7 @@ def get_options():
 @app.get("/api/summary")
 def get_summary(
     level: str = Query("municipality", pattern="^(municipality|county|state)$"),
-    name: str | None = None,
+    name: Optional[str] = None,
     view: str = Query("weekly", pattern="^(weekly|monthly)$"),
 ):
     ensure_loaded()
@@ -379,7 +530,7 @@ def get_summary(
 @app.get("/api/timeseries")
 def get_timeseries(
     level: str = Query("municipality", pattern="^(municipality|county|state)$"),
-    name: str | None = None,
+    name: Optional[str] = None,
     metric: str = Query("spread_bps", pattern="^(spread_bps)$"),
     view: str = Query("weekly", pattern="^(weekly|monthly)$"),
 ):

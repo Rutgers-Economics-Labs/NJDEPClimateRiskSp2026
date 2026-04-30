@@ -114,10 +114,17 @@ function buildPathFromGeometry(geometry, projectPoint) {
   return ''
 }
 
-function MunicipalityMap({ featureCollection, metric, selectedMunicipality, onSelectMunicipality }) {
-  const width = 920
-  const height = 430
-  const padding = 18
+function MunicipalityMap({ featureCollection, metric, onMetricChange, selectedMunicipality, onSelectMunicipality }) {
+  const width = 480
+  const height = 820
+  const padding = 20
+  const minZoom = 1
+  const maxZoom = 8
+  const zoomStep = 1.25
+  const [zoom, setZoom] = useState(1)
+  const [pan, setPan] = useState({ x: 0, y: 0 })
+  const [dragState, setDragState] = useState(null)
+  const [didDrag, setDidDrag] = useState(false)
 
   const prepared = useMemo(() => {
     if (!featureCollection?.features?.length) {
@@ -200,31 +207,152 @@ function MunicipalityMap({ featureCollection, metric, selectedMunicipality, onSe
     )
   }
 
+  const clampPan = (nextPan, nextZoom) => {
+    const extraX = ((nextZoom - 1) * width) / 2
+    const extraY = ((nextZoom - 1) * height) / 2
+    return {
+      x: Math.max(-extraX, Math.min(extraX, nextPan.x)),
+      y: Math.max(-extraY, Math.min(extraY, nextPan.y)),
+    }
+  }
+
+  const updateZoom = (direction) => {
+    setZoom((currentZoom) => {
+      const nextZoom =
+        direction === 'in'
+          ? Math.min(maxZoom, currentZoom * zoomStep)
+          : Math.max(minZoom, currentZoom / zoomStep)
+      setPan((currentPan) => clampPan(currentPan, nextZoom))
+      return nextZoom
+    })
+  }
+
+  const resetView = () => {
+    setZoom(1)
+    setPan({ x: 0, y: 0 })
+    setDidDrag(false)
+  }
+
+  const startDrag = (event) => {
+    if (zoom <= 1) {
+      return
+    }
+    const point =
+      'touches' in event && event.touches.length
+        ? event.touches[0]
+        : event
+    setDragState({
+      startX: point.clientX,
+      startY: point.clientY,
+      originX: pan.x,
+      originY: pan.y,
+    })
+    setDidDrag(false)
+  }
+
+  const moveDrag = (event) => {
+    if (!dragState) {
+      return
+    }
+    const point =
+      'touches' in event && event.touches.length
+        ? event.touches[0]
+        : event
+    const deltaX = point.clientX - dragState.startX
+    const deltaY = point.clientY - dragState.startY
+    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+      setDidDrag(true)
+    }
+    setPan(
+      clampPan(
+        {
+          x: dragState.originX + deltaX,
+          y: dragState.originY + deltaY,
+        },
+        zoom,
+      ),
+    )
+  }
+
+  const endDrag = () => {
+    setDragState(null)
+    window.setTimeout(() => setDidDrag(false), 0)
+  }
+
   const metricLabel = MAP_METRICS.find(([key]) => key === metric)?.[1] || metric
+  const transform = `translate(${pan.x.toFixed(2)} ${pan.y.toFixed(2)}) scale(${zoom.toFixed(3)})`
 
   return (
     <div className="map-shell">
       <div className="map-layout">
-        <svg viewBox={`0 0 ${width} ${height}`} className="map-svg" role="img" aria-label={`New Jersey municipality map colored by ${metricLabel}`}>
-          {prepared.features.map((feature) => {
-            const isSelected = feature.properties?.mun === selectedMunicipality
-            return (
-              <path
-                key={feature.properties?.mun}
-                d={feature.path}
-                fill={feature.fill}
-                className={isSelected ? 'muni-path selected' : 'muni-path'}
-                onClick={() => onSelectMunicipality(feature.properties?.mun)}
-              >
-                <title>
-                  {`${feature.properties?.mun_label || feature.properties?.mun}: ${formatMapValue(metric, feature.properties?.[metric])}`}
-                </title>
-              </path>
-            )
-          })}
-        </svg>
+        <div
+          className={`map-stage ${zoom > 1 ? 'is-draggable' : ''}`}
+          onMouseDown={startDrag}
+          onMouseMove={moveDrag}
+          onMouseUp={endDrag}
+          onMouseLeave={endDrag}
+          onTouchStart={startDrag}
+          onTouchMove={moveDrag}
+          onTouchEnd={endDrag}
+        >
+          <svg viewBox={`0 0 ${width} ${height}`} className="map-svg" role="img" aria-label={`New Jersey municipality map colored by ${metricLabel}`}>
+            <g transform={transform}>
+              {prepared.features.map((feature) => {
+                const isSelected = feature.properties?.mun === selectedMunicipality
+                return (
+                  <path
+                    key={feature.properties?.mun}
+                    d={feature.path}
+                    fill={feature.fill}
+                    className={isSelected ? 'muni-path selected' : 'muni-path'}
+                    onClick={() => {
+                      if (!didDrag) {
+                        onSelectMunicipality(feature.properties?.mun)
+                      }
+                    }}
+                  >
+                    <title>
+                      {`${feature.properties?.mun_label || feature.properties?.mun}: ${formatMapValue(metric, feature.properties?.[metric])}`}
+                    </title>
+                  </path>
+                )
+              })}
+            </g>
+          </svg>
+        </div>
 
         <aside className="map-side-panel">
+          <div className="map-side-section">
+            <strong className="map-side-heading">Layers</strong>
+            <div className="map-metric-stack">
+              {MAP_METRICS.map(([option, label]) => (
+                <button
+                  key={option}
+                  type="button"
+                  className={metric === option ? 'map-metric-button active' : 'map-metric-button'}
+                  onClick={() => onMetricChange(option)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="map-side-section">
+            <strong className="map-side-heading">Navigation</strong>
+            <div className="map-zoom-controls" aria-label="Map zoom controls">
+              <button type="button" className="map-zoom-button" onClick={() => updateZoom('in')} aria-label="Zoom in">
+                +
+              </button>
+              <button type="button" className="map-zoom-button" onClick={() => updateZoom('out')} aria-label="Zoom out">
+                -
+              </button>
+              <button type="button" className="map-zoom-button map-zoom-button-reset" onClick={resetView} aria-label="Reset map view">
+                Reset
+              </button>
+            </div>
+          </div>
+
           <div className="map-legend">
             <span className="map-legend-title">{metricLabel}</span>
             <div className="map-legend-bar" />
@@ -236,7 +364,7 @@ function MunicipalityMap({ featureCollection, metric, selectedMunicipality, onSe
 
           <div className="map-side-copy">
             <strong>Map tip</strong>
-            <p>Click a municipality to open its graph view and details.</p>
+            <p>Use the plus and minus controls to zoom, then drag to pan. Click a municipality to open its graph view and details.</p>
           </div>
         </aside>
       </div>
@@ -528,22 +656,7 @@ function App() {
                 </div>
               </div>
             </>
-          ) : (
-            <div className="map-toolbar">
-              <div className="segmented-control segmented-control-wrap">
-                {MAP_METRICS.map(([option, label]) => (
-                  <button
-                    key={option}
-                    type="button"
-                    className={mapMetric === option ? 'segment active' : 'segment'}
-                    onClick={() => setMapMetric(option)}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+          ) : null}
         </section>
 
         {error ? (
@@ -734,6 +847,7 @@ function App() {
             <MunicipalityMap
               featureCollection={mapData}
               metric={mapMetric}
+              onMetricChange={setMapMetric}
               selectedMunicipality={selectedMunicipality}
               onSelectMunicipality={jumpToMunicipalityGraph}
             />

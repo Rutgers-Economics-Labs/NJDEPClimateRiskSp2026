@@ -17,6 +17,7 @@ COUNTY_TS_OUTPUT = os.path.join(DATA_CLEANED_DIR, "premium_timeseries_county.csv
 STATE_TS_OUTPUT = os.path.join(DATA_CLEANED_DIR, "premium_timeseries_state.csv")
 LOOKUP_OUTPUT = os.path.join(DATA_CLEANED_DIR, "premium_lookup.csv")
 UNMATCHED_OUTPUT = os.path.join(DATA_CLEANED_DIR, "premium_unmatched_diagnostics.csv")
+MISSING_OUTPUT = os.path.join(DATA_CLEANED_DIR, "missing_municipalities_diagnostics.csv")
 
 DETERMINISTIC_SEED = 20260402
 NJ_PATTERN = r"\bNEW\s+JERSEY\b|(?:\s|^)(?:N\s*\.?\s*J\.?|NJ)(?:\s|,|$)"
@@ -81,7 +82,7 @@ def normalize_text(value):
 
 
 def strip_suffix(text):
-    return re.sub(r"\b(TOWNSHIP|BOROUGH|CITY|TOWN|VILLAGE)\b$", "", text).strip()
+    return re.sub(r"\b(TOWNSHIP|BOROUGH|CITY|TOWN|VILLAGE|TWP|BORO)\b$", "", text).strip()
 
 
 def build_alias_map(muni_chars):
@@ -261,6 +262,8 @@ def build_lookup(muni_ts, county_ts):
     counties["level"] = "county"
     counties["name"] = counties["county"]
     counties["label"] = counties["county"]
+    counties["mun"] = None
+    counties["mun_label"] = None
 
     state = pd.DataFrame(
         [{"level": "state", "name": "NEW JERSEY", "label": "New Jersey", "county": None, "mun": None, "mun_label": None}]
@@ -281,25 +284,53 @@ def process_wrds_data():
     ordered_aliases = build_alias_map(muni_chars)
 
     gz_files = sorted(glob.glob(os.path.join(DATA_RAW_DIR, "*.csv.gz")))
+    if not gz_files:
+        # Fallback to look at regular CSVs if gz are not present, helpful for preview testing
+        gz_files = sorted(glob.glob(os.path.join(DATA_RAW_DIR, "*.csv")))
+    
     all_matches = []
     unmatched_counts = {}
+    required_cols = {"security_description", "trade_date", "dated_date", "yield", "coupon", "maturity_date", "cusip"}
 
     for gz_file in gz_files:
-        year_str = os.path.basename(gz_file).split(".")[0]
+        year_str = os.path.basename(gz_file).split("_")[0].split(".")[0]
         print(f"Processing Year: {year_str}...")
 
-        for chunk in pd.read_csv(gz_file, chunksize=100000, compression="gzip", low_memory=False):
-            chunk.columns = [column.lower() for column in chunk.columns]
-            required = {"security_description", "trade_date", "dated_date", "yield", "coupon", "maturity_date", "cusip"}
-            if not required.issubset(chunk.columns):
+        try:
+            year_int = int(year_str)
+            dt_format = "%Y-%m-%d" if year_int > 2021 else "%Y%m%d"
+        except ValueError:
+            dt_format = None
+
+        chunks = pd.read_csv(
+            gz_file, 
+            chunksize=100000, 
+            compression="gzip" if gz_file.endswith(".gz") else None, 
+            low_memory=False,
+            usecols=lambda c: c.lower() in required_cols
+        )
+
+        for chunk in chunks:
+            chunk.columns = chunk.columns.str.lower()
+            if not required_cols.issubset(chunk.columns):
                 continue
 
+            # Optimize: Check for strings first before running expensive date parsing
             is_nj = chunk["security_description"].str.contains(NJ_PATTERN, case=False, na=False, regex=True)
             is_go = chunk["security_description"].str.contains(GO_PATTERN, case=False, na=False, regex=True)
 
-            chunk["dated_date"] = pd.to_datetime(chunk["dated_date"], errors="coerce")
-            is_date_valid = (chunk["dated_date"] >= "2015-01-01") & (chunk["dated_date"] <= "2025-12-31")
-            candidate_chunk = chunk[is_nj & is_go & is_date_valid].copy()
+            candidate_chunk = chunk[is_nj & is_go].copy()
+            if candidate_chunk.empty:
+                continue
+
+            if dt_format:
+                candidate_chunk["dated_date"] = pd.to_datetime(candidate_chunk["dated_date"], format=dt_format, errors="coerce")
+            else:
+                candidate_chunk["dated_date"] = pd.to_datetime(candidate_chunk["dated_date"], errors="coerce")
+                
+            is_date_valid = (candidate_chunk["dated_date"] >= "2015-01-01") & (candidate_chunk["dated_date"] <= "2025-12-31")
+            candidate_chunk = candidate_chunk[is_date_valid].copy()
+            
             if candidate_chunk.empty:
                 continue
 
@@ -378,6 +409,14 @@ def process_wrds_data():
         )
         unmatched_df.to_csv(unmatched_temp, index=False)
 
+        known_municipalities = set(muni_chars["mun"].unique())
+        matched_municipalities = set(analytics_df["mun"].dropna().unique())
+        missing_municipalities = sorted(known_municipalities - matched_municipalities)
+        
+        missing_df = pd.DataFrame({"missing_mun": missing_municipalities})
+        missing_temp = os.path.join(temp_dir, os.path.basename(MISSING_OUTPUT))
+        missing_df.to_csv(missing_temp, index=False)
+
         os.replace(analytics_temp, ANALYTICS_OUTPUT)
         os.replace(master_temp, MASTER_OUTPUT)
         os.replace(muni_ts_temp, MUNI_TS_OUTPUT)
@@ -385,6 +424,7 @@ def process_wrds_data():
         os.replace(state_ts_temp, STATE_TS_OUTPUT)
         os.replace(lookup_temp, LOOKUP_OUTPUT)
         os.replace(unmatched_temp, UNMATCHED_OUTPUT)
+        os.replace(missing_temp, MISSING_OUTPUT)
 
     print()
     print("EXTRACTION SUCCESSFUL.")
