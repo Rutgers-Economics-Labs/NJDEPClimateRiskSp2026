@@ -16,10 +16,11 @@ Key crosswalk:
   We derive that base from chars['MUN'] via get_base_name().
 
 NOTE on slr_exposure_pct:
-  Currently uses flooded_pct_5ft from nj_municipality_characteristics.csv
-  as a PROXY (% of municipal land area flooded at 5-ft SLR).
-  Replace with the tax-base-weighted output of test_ocean_county.py
-  once that script finishes. The column name is unchanged.
+  REAL METRIC = FRM_RATIO_4FT * 100
+  = % of the municipal tax base (assessed property value) at risk under a 4-ft SLR scenario.
+  This comes from the final spatial-financial join (nj_statewide_frm_scores_FINAL.csv).
+  This is the gold-standard metric for the DiD model as it captures 
+  the economic severity of climate risk, not just geographic area.
 
 Policy pivot date: 2022-07-01 (start of NJ SFY2023, first full CHAMP/STORM Act year)
 
@@ -38,6 +39,7 @@ WRDS_FILE   = os.path.join(DATA_CLEANED, "finance", "nj_muni_spreads_full_trades
 CHARS_FILE  = os.path.join(DATA_CLEANED, "nj_municipality_characteristics.csv")
 UFB_FILE    = os.path.join(DATA_CLEANED, "finance", "nj_ufb_debt_panel.csv")
 CENSUS_FILE = os.path.join(DATA_CLEANED, "census", "nj_census_dp03_combined.csv")
+SLR_FINAL_FILE = os.path.join(PROJECT_ROOT, "nj_statewide_frm_scores_FINAL.csv")
 OUTPUT_FILE = os.path.join(DATA_CLEANED, "final_panel_master.csv")
 
 PIVOT_DATE = "2022-07-01"   # NJ CHAMP/STORM Act treatment cutoff
@@ -48,13 +50,14 @@ def get_base_name(s):
     s = str(s).upper().strip()
     # Handle "ABSECON, CITY OF" style
     s = re.sub(r',?\s*(CITY OF|BOROUGH OF|TOWNSHIP OF|TOWN OF|VILLAGE OF)\s*$', '', s)
-    # Handle plain suffixes
-    s = re.sub(r'\s+(TOWNSHIP|TWP|BOROUGH|BORO|CITY|TOWN)\s*$', '', s).strip()
+    # Handle plain suffixes (double pass for cases like "ATLANTIC CITY CITY")
+    for _ in range(2):
+        s = re.sub(r'\s+(TOWNSHIP|TWP|BOROUGH|BORO|CITY|TOWN)\s*$', '', s).strip()
     return s
 
 def build_panel():
     print("=" * 60)
-    print("MASTER PANEL CONSTRUCTION")
+    print("MASTER PANEL CONSTRUCTION (FINAL 4FT SLR)")
     print("=" * 60)
 
     # ── 1. WRDS Base Panel ─────────────────────────────────────────────────
@@ -74,21 +77,29 @@ def build_panel():
     df['muni_name'] = df['mun'].apply(get_base_name)
     print(f"   {len(df):,} trades across {df['mun'].nunique()} towns.")
 
-    # ── 2. Chars Crosswalk (CRS, SLR, Resilience) ─────────────────────────
-    print("\n[2/5] Merging chars (CRS class, SLR exposure, resilience flag)...")
+    # ── 2. Chars & Final SLR (CRS, Resilience) ────────────────────────────
+    print("\n[2/5] Merging chars and final SLR 4ft scores...")
     chars = pd.read_csv(CHARS_FILE)
     chars['mun']       = chars['MUN'].str.upper().str.strip()
     chars['is_resilient'] = chars['is_resilient'].map(
         {True: 1, False: 0, 'True': 1, 'False': 0}
     ).fillna(0).astype(int)
 
-    chars_slim = chars[['mun', 'COUNTY', 'crs_class', 'flooded_pct_5ft', 'is_resilient']].rename(columns={
-        'COUNTY':           'county',
-        'flooded_pct_5ft':  'slr_exposure_pct',   # ← PROXY; replace when SLR script finishes
-    })
+    chars_slim = chars[['mun', 'COUNTY', 'crs_class', 'is_resilient']].rename(columns={'COUNTY': 'county'})
+
+    # Load Final SLR (Tax-Base Weighted)
+    slr = pd.read_csv(SLR_FINAL_FILE)
+    slr['muni_name'] = slr['MUN_NAME'].apply(get_base_name)
+    slr['slr_exposure_pct'] = slr['FRM_RATIO_4FT'] * 100.0  # Convert to percentage points
 
     df = pd.merge(df, chars_slim, on='mun', how='left')
-    print(f"   Matched {df['crs_class'].notna().sum():,} rows with CRS/SLR data.")
+    df = pd.merge(df, slr[['muni_name', 'slr_exposure_pct']], on='muni_name', how='left')
+    
+    # Fill NaN SLR exposure for inland towns with 0
+    df['slr_exposure_pct'] = df['slr_exposure_pct'].fillna(0)
+    
+    print(f"   Matched {df['crs_class'].notna().sum():,} rows with CRS.")
+    print(f"   Matched {df['slr_exposure_pct'].notna().sum():,} rows with Final SLR (4ft).")
 
     # ── 3. UFB Fiscal Controls ─────────────────────────────────────────────
     print("\n[3/5] Merging UFB fiscal controls...")
@@ -98,7 +109,7 @@ def build_panel():
 
     df = pd.merge(df, ufb[['muni_name', 'year', 'debt_to_gdp']], on=['muni_name', 'year'], how='left')
     matched_ufb = df['debt_to_gdp'].notna().sum()
-    print(f"   UFB matched: {matched_ufb:,} rows ({matched_ufb/len(df)*100:.1f}%).")
+    print(f"   UFB matched:       {matched_ufb:,} rows ({matched_ufb/len(df)*100:.1f}%).")
 
     # ── 4. Census Demographics ─────────────────────────────────────────────
     print("\n[4/5] Merging ACS census controls...")
@@ -125,7 +136,7 @@ def build_panel():
     final_cols = [
         'bond_id', 'muni_name', 'county', 'issue_date',
         'spread_bps',
-        'slr_exposure_pct',  # PROXY: flooded_pct_5ft (replace with SLR script output)
+        'slr_exposure_pct',  # PROXY: (flooded_pct_5ft/100)*assessed_value in $M — replace with SLR script output
         'crs_class',         # REAL:  FEMA CRS class
         'is_resilient',      # REAL:  CHAMP binary flag
         'is_post_2022',      # ENGINEERED: 1 if trade date > 2022-07-01
@@ -151,8 +162,8 @@ def build_panel():
     print(f"  Avg spread (all):    {df_final['spread_bps'].mean():.2f} bps")
     print(f"  Avg spread (pre):    {df_final[df_final['is_post_2022']==0]['spread_bps'].mean():.2f} bps")
     print(f"  Avg spread (post):   {df_final[df_final['is_post_2022']==1]['spread_bps'].mean():.2f} bps")
-    print(f"\n  ⚠  slr_exposure_pct = flooded_pct_5ft (PROXY)")
-    print(f"     Replace with test_ocean_county.py output when ready.\n")
+    print(f"\n  ✅  slr_exposure_pct = % of Total Market Value @ 4-ft SLR (FINAL)")
+    print(f"     Mean={df_final['slr_exposure_pct'].mean():.2f}%  Max={df_final['slr_exposure_pct'].max():.2f}%\n")
 
     df_final.to_csv(OUTPUT_FILE, index=False)
     print(f"Saved → {OUTPUT_FILE}")

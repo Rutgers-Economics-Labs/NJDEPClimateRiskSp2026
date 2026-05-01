@@ -74,26 +74,31 @@ def run_regression():
          for r,p in pivot.index], names=['Group', 'Period'])
     print(pivot.to_string())
 
-    # ── Model 1: Naïve DiD (no FE, no controls) ───────────────────────────
-    formula_naive = (
-        "spread_bps ~ is_resilient * is_post_2022"
+    # ── Model 1: Pooled OLS (The Baseline Premium) ─────────────────────────
+    # To answer: "Does the market care about CRS and Flood Risk?"
+    # We drop Municipal Fixed Effects to see the cross-sectional signals.
+    formula_pooled = (
+        "spread_bps ~ is_resilient + crs_class + slr_exposure_pct"
+        " + debt_to_gdp + median_income_10k"
+        " + C(year)"
     )
 
-    # ── Model 2: TWFE DiD + fiscal and demographic controls ───────────────
-    formula_twfe = (
-        "spread_bps ~ is_resilient * is_post_2022"
+    # ── Model 2: TWFE DiD (The 2022 Pivot) ──────────────────────────────────
+    # To answer: "Did the 2022 CHAMP policy compress spreads?"
+    # We keep Municipal Fixed Effects but DROP static variables (resilience, CRS, SLR)
+    # which are time-invariant and would be absorbed/distorted by the FE.
+    formula_did = (
+        "spread_bps ~ is_resilient:is_post_2022"
         " + debt_to_gdp + median_income_10k"
-        " + slr_exposure_pct + crs_class"
         " + C(muni_name) + C(year)"
     )
 
-    # ── Model 3: TWFE + interaction with SLR exposure ─────────────────────
-    # Tests: does the resilience premium depend on actual flood risk?
-    formula_slr = (
-        "spread_bps ~ is_resilient * is_post_2022"
-        " + is_post_2022 * slr_exposure_pct"    # SLR × post interaction
+    # ── Model 3: TWFE + SLR Interaction ─────────────────────────────────────
+    # Tests if the policy effect varies by the magnitude of tax base at risk.
+    formula_slr_int = (
+        "spread_bps ~ is_resilient:is_post_2022"
+        " + is_post_2022:slr_exposure_pct"
         " + debt_to_gdp + median_income_10k"
-        " + crs_class"
         " + C(muni_name) + C(year)"
     )
 
@@ -103,39 +108,44 @@ def run_regression():
 
     models = {}
 
-    # Model 1 – Naïve
-    print("  [1/3] Naïve DiD…")
-    m1 = smf.ols(formula_naive, data=df).fit(
+    # Model 1 – Pooled
+    print("  [1/3] Model A: Pooled OLS (Climate Premiums)…")
+    m1 = smf.ols(formula_pooled, data=df).fit(
         cov_type='cluster', cov_kwds={'groups': df['muni_name']}
     )
-    models['(1) Naïve DiD'] = m1
+    models['(A) Pooled OLS'] = m1
 
-    # Model 2 – TWFE
-    print("  [2/3] TWFE DiD…")
-    m2 = smf.ols(formula_twfe, data=df).fit(
+    # Model 2 – TWFE DiD
+    print("  [2/3] Model B: TWFE DiD (Causal Pivot)…")
+    m2 = smf.ols(formula_did, data=df).fit(
         cov_type='cluster', cov_kwds={'groups': df['muni_name']}
     )
-    models['(2) TWFE + Controls'] = m2
+    models['(B) TWFE DiD'] = m2
 
-    # Model 3 – TWFE + SLR interaction
-    print("  [3/3] TWFE + SLR interaction…")
-    m3 = smf.ols(formula_slr, data=df).fit(
+    # Model 3 – TWFE SLR
+    print("  [3/3] Model C: TWFE + SLR Interaction…")
+    m3 = smf.ols(formula_slr_int, data=df).fit(
         cov_type='cluster', cov_kwds={'groups': df['muni_name']}
     )
-    models['(3) TWFE + SLR×Post'] = m3
+    models['(C) TWFE + SLR Int'] = m3
 
     # ── Key Coefficient Extraction ─────────────────────────────────────────
     print("\n" + "=" * 60)
-    print("KEY RESULTS: RESILIENCE PREMIUM (β3 = is_resilient:is_post_2022)")
+    print("KEY RESULTS")
     print("=" * 60)
-    for name, m in models.items():
-        coef_name = 'is_resilient:is_post_2022'
-        if coef_name in m.params:
-            coef = m.params[coef_name]
-            se   = m.bse[coef_name]
-            p    = m.pvalues[coef_name]
-            stars = '***' if p < 0.01 else ('**' if p < 0.05 else ('*' if p < 0.1 else ''))
-            print(f"  {name:25s}  β3 = {coef:+.3f} bps  SE={se:.3f}  p={p:.4f} {stars}")
+    
+    # Model A checks
+    print("  Model A (Baseline):")
+    for var in ['crs_class', 'slr_exposure_pct', 'median_income_10k']:
+        if var in m1.params:
+            print(f"    {var:20s} β = {m1.params[var]:+.3f}  p={m1.pvalues[var]:.4f}")
+
+    # Model B/C checks
+    print("\n  Model B/C (DiD):")
+    for name, m in {'B': m2, 'C': m3}.items():
+        coef = m.params.get('is_resilient:is_post_2022', 0)
+        p = m.pvalues.get('is_resilient:is_post_2022', 1)
+        print(f"    Model {name} β3 (DiD)      = {coef:+.3f}  p={p:.4f}")
 
     # ── Full Summary Table ─────────────────────────────────────────────────
     # Only report the key non-FE coefficients for readability
