@@ -216,3 +216,5 @@ data/data_zipped/
 *.zip
 !data/README.md
 !data/data_cleaned/nj_municipality_characteristics.csv
+
+*.gdb
