@@ -1,7 +1,9 @@
 import { useEffect, useId, useMemo, useState } from 'react'
 import './App.css'
 
-const API_BASE = 'http://127.0.0.1:8000'
+const STATIC_DATA_MODE = import.meta.env.VITE_STATIC_DATA === 'true'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000'
+const BASE_URL = import.meta.env.BASE_URL || '/'
 
 const MAP_METRICS = [
   ['avg_premium_bps', 'Average premium'],
@@ -51,6 +53,61 @@ async function fetchJson(url) {
     throw new Error(payload.detail || 'The backend request failed.')
   }
   return payload
+}
+
+function buildStaticUrl(relativePath) {
+  return `${BASE_URL}${relativePath.replace(/^\/+/, '')}`
+}
+
+function getDashboardOptions() {
+  return fetchJson(
+    STATIC_DATA_MODE ? buildStaticUrl('data/options.json') : `${API_BASE}/api/options`,
+  )
+}
+
+function getMapData() {
+  return fetchJson(
+    STATIC_DATA_MODE ? buildStaticUrl('data/map.json') : `${API_BASE}/api/map`,
+  )
+}
+
+function getSummaryData(level, name, view) {
+  if (!STATIC_DATA_MODE) {
+    const params = new URLSearchParams({ level, view })
+    if (name) {
+      params.set('name', name)
+    }
+    return fetchJson(`${API_BASE}/api/summary?${params.toString()}`)
+  }
+
+  return fetchJson(buildStaticUrl('data/summaries.json')).then((payload) => {
+    const resolvedName = level === 'state' ? 'NEW JERSEY' : name
+    const result = payload?.[level]?.[view]?.[resolvedName]
+    if (!result) {
+      throw new Error(`No static summary found for ${resolvedName || level}.`)
+    }
+    return result
+  })
+}
+
+function getTimeseriesData(level, name, view) {
+  if (!STATIC_DATA_MODE) {
+    const params = new URLSearchParams({ level, view, metric: 'spread_bps' })
+    if (name) {
+      params.set('name', name)
+    }
+    return fetchJson(`${API_BASE}/api/timeseries?${params.toString()}`)
+  }
+
+  const resolvedName = level === 'state' ? 'NEW JERSEY' : name
+  const filename = `data/timeseries_${level}_${view}.json`
+  return fetchJson(buildStaticUrl(filename)).then((payload) => {
+    const result = payload?.[resolvedName]
+    if (!result) {
+      throw new Error(`No static time series found for ${resolvedName || level}.`)
+    }
+    return result
+  })
 }
 
 function hexToRgb(hex) {
@@ -485,16 +542,28 @@ function App() {
   const [mapData, setMapData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [staticSummaries, setStaticSummaries] = useState(null)
 
   useEffect(() => {
-    Promise.all([fetchJson(`${API_BASE}/api/options`), fetchJson(`${API_BASE}/api/map`)])
-      .then(([optionsData, mapPayload]) => {
+    Promise.all([
+      getDashboardOptions(),
+      getMapData(),
+      STATIC_DATA_MODE ? fetchJson(buildStaticUrl('data/summaries.json')) : Promise.resolve(null),
+    ])
+      .then(([optionsData, mapPayload, summariesPayload]) => {
         setOptions(optionsData)
         setMapData(mapPayload)
+        setStaticSummaries(summariesPayload)
         setSelectedMunicipality(optionsData.default_municipality || optionsData.municipalities[0] || '')
         setSelectedCounty(optionsData.default_county || optionsData.counties[0] || '')
       })
-      .catch(() => setError("Couldn't load dashboard options from the backend."))
+      .catch(() =>
+        setError(
+          STATIC_DATA_MODE
+            ? "Couldn't load the published dashboard data."
+            : "Couldn't load dashboard options from the backend.",
+        ),
+      )
   }, [])
 
   const activeName =
@@ -516,16 +585,13 @@ function App() {
     setLoading(true)
     setError('')
 
-    const params = new URLSearchParams({ level, view })
-    const tsParams = new URLSearchParams({ level, view, metric: 'spread_bps' })
-    if (activeName) {
-      params.set('name', activeName)
-      tsParams.set('name', activeName)
-    }
-
     Promise.all([
-      fetchJson(`${API_BASE}/api/summary?${params.toString()}`),
-      fetchJson(`${API_BASE}/api/timeseries?${tsParams.toString()}`),
+      STATIC_DATA_MODE && staticSummaries
+        ? Promise.resolve(
+            staticSummaries?.[level]?.[view]?.[level === 'state' ? 'NEW JERSEY' : activeName],
+          )
+        : getSummaryData(level, activeName, view),
+      getTimeseriesData(level, activeName, view),
     ])
       .then(([summaryData, timeseriesData]) => {
         setSummary(summaryData)
@@ -533,7 +599,7 @@ function App() {
       })
       .catch((fetchError) => setError(fetchError.message || 'The premium explorer could not load.'))
       .finally(() => setLoading(false))
-  }, [activeName, level, options, selectedCounty, selectedMunicipality, view])
+  }, [activeName, level, options, selectedCounty, selectedMunicipality, staticSummaries, view])
 
   const jumpToMunicipalityGraph = (mun) => {
     if (!mun) {

@@ -1,8 +1,10 @@
 # NJDEP Climate Risk & Resilience Project - Master Makefile
 
 SHELL := /bin/bash
+NPM := $(shell zsh -lc 'command -v npm')
+export PATH := $(shell zsh -lc 'echo $$PATH')
 
-.PHONY: help install clean process-all dashboard-backend dashboard-frontend run-dashboard dev stop-dashboard
+.PHONY: help install clean process-all dashboard-backend dashboard-frontend run-dashboard dev stop-dashboard export-static pages-build
 
 help:
 	@echo "NJDEP Project Automation"
@@ -10,12 +12,14 @@ help:
 	@echo "make install           - Install all Python and Node dependencies"
 	@echo "make process-all       - Run the full data pipeline (Boundaries -> Census -> FEMA -> WRDS)"
 	@echo "make dev               - Launch backend and frontend together for local development"
+	@echo "make export-static     - Export static JSON payloads for GitHub Pages"
+	@echo "make pages-build       - Build the GitHub Pages version of the dashboard"
 	@echo "make run-dashboard     - Alias for make dev"
 	@echo "make clean             - Remove temporary files and pycache"
 
 install:
 	pip install pandas geopandas thefuzz rapidfuzz fastapi uvicorn requests
-	cd dashboard/frontend && npm install
+	cd dashboard/frontend && $(NPM) install
 
 process-all:
 	@echo "Step 1: Running core processing pipeline (Boundaries, Census, Finance)..."
@@ -30,7 +34,7 @@ dashboard-backend:
 	python3 -m uvicorn dashboard.backend.main:app --reload --host 127.0.0.1 --port 8000
 
 dashboard-frontend:
-	cd dashboard/frontend && npm run dev -- --host 127.0.0.1
+	cd dashboard/frontend && $(NPM) run dev -- --host 127.0.0.1
 
 dev:
 	@echo "Launching dashboard..."
@@ -41,7 +45,7 @@ dev:
 	trap 'if [ -n "$$backend_pid" ]; then kill $$backend_pid 2>/dev/null || true; fi; if [ -n "$$frontend_pid" ]; then kill $$frontend_pid 2>/dev/null || true; fi' EXIT INT TERM; \
 	python3 -m uvicorn dashboard.backend.main:app --reload --host 127.0.0.1 --port 8000 & \
 	backend_pid=$$!; \
-	(cd dashboard/frontend && npm run dev -- --host 127.0.0.1) & \
+	(cd dashboard/frontend && $(NPM) run dev -- --host 127.0.0.1) & \
 	frontend_pid=$$!; \
 	wait
 
@@ -49,6 +53,13 @@ stop:
 	@echo "Stopping dashboard services on ports 8000 and 5173..."
 	-lsof -ti:8000 | xargs kill -9 2>/dev/null || true
 	-lsof -ti:5173 | xargs kill -9 2>/dev/null || true
+
+export-static:
+	python3 data_processing/export_dashboard_static.py
+
+pages-build: export-static
+	@repo_name=$$(basename "$$(git rev-parse --show-toplevel)"); \
+	cd dashboard/frontend && VITE_STATIC_DATA=true VITE_BASE_PATH=/$$repo_name/ $(NPM) run build
 
 
 clean:
