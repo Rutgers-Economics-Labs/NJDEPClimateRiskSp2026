@@ -1,0 +1,464 @@
+level,name,label,county,mun,mun_label
+state,NEW JERSEY,New Jersey,,,
+county,ATLANTIC,ATLANTIC,ATLANTIC,,
+county,BERGEN,BERGEN,BERGEN,,
+county,BURLINGTON,BURLINGTON,BURLINGTON,,
+county,CAMDEN,CAMDEN,CAMDEN,,
+county,CAPE MAY,CAPE MAY,CAPE MAY,,
+county,CUMBERLAND,CUMBERLAND,CUMBERLAND,,
+county,ESSEX,ESSEX,ESSEX,,
+county,GLOUCESTER,GLOUCESTER,GLOUCESTER,,
+county,HUDSON,HUDSON,HUDSON,,
+county,HUNTERDON,HUNTERDON,HUNTERDON,,
+county,MERCER,MERCER,MERCER,,
+county,MIDDLESEX,MIDDLESEX,MIDDLESEX,,
+county,MONMOUTH,MONMOUTH,MONMOUTH,,
+county,MORRIS,MORRIS,MORRIS,,
+county,OCEAN,OCEAN,OCEAN,,
+county,PASSAIC,PASSAIC,PASSAIC,,
+county,SALEM,SALEM,SALEM,,
+county,SOMERSET,SOMERSET,SOMERSET,,
+county,SUSSEX,SUSSEX,SUSSEX,,
+county,UNION,UNION,UNION,,
+county,WARREN,WARREN,WARREN,,
+municipality,ABERDEEN TWP,Aberdeen Township,MONMOUTH,ABERDEEN TWP,Aberdeen Township
+municipality,ABSECON CITY,Absecon City,ATLANTIC,ABSECON CITY,Absecon City
+municipality,ALEXANDRIA TWP,Alexandria Township,HUNTERDON,ALEXANDRIA TWP,Alexandria Township
+municipality,ALLAMUCHY TWP,Allamuchy Township,WARREN,ALLAMUCHY TWP,Allamuchy Township
+municipality,ALLENDALE BORO,Allendale Borough,BERGEN,ALLENDALE BORO,Allendale Borough
+municipality,ALLENTOWN BORO,Allentown Borough,MONMOUTH,ALLENTOWN BORO,Allentown Borough
+municipality,ALLOWAY TWP,Alloway Township,SALEM,ALLOWAY TWP,Alloway Township
+municipality,ALPHA BORO,Alpha Borough,WARREN,ALPHA BORO,Alpha Borough
+municipality,ALPINE BORO,Alpine Borough,BERGEN,ALPINE BORO,Alpine Borough
+municipality,ANDOVER TWP,Andover Township,SUSSEX,ANDOVER TWP,Andover Township
+municipality,ASBURY PARK CITY,Asbury Park City,MONMOUTH,ASBURY PARK CITY,Asbury Park City
+municipality,ATLANTIC CITY,Atlantic City,ATLANTIC,ATLANTIC CITY,Atlantic City
+municipality,ATLANTIC HIGHLANDS BORO,Atlantic Highlands Borough,MONMOUTH,ATLANTIC HIGHLANDS BORO,Atlantic Highlands Borough
+municipality,AUDUBON BORO,Audubon Borough,CAMDEN,AUDUBON BORO,Audubon Borough
+municipality,AVALON BORO,Avalon Borough,CAPE MAY,AVALON BORO,Avalon Borough
+municipality,BARNEGAT TWP,Barnegat Township,OCEAN,BARNEGAT TWP,Barnegat Township
+municipality,BARRINGTON BORO,Barrington Borough,CAMDEN,BARRINGTON BORO,Barrington Borough
+municipality,BAY HEAD BORO,Bay Head Borough,OCEAN,BAY HEAD BORO,Bay Head Borough
+municipality,BAYONNE CITY,Bayonne City,HUDSON,BAYONNE CITY,Bayonne City
+municipality,BEACH HAVEN BORO,Beach Haven Borough,OCEAN,BEACH HAVEN BORO,Beach Haven Borough
+municipality,BEACHWOOD BORO,Beachwood Borough,OCEAN,BEACHWOOD BORO,Beachwood Borough
+municipality,BEDMINSTER TWP,Bedminster Township,SOMERSET,BEDMINSTER TWP,Bedminster Township
+municipality,BELLEVILLE TWP,Belleville Township,ESSEX,BELLEVILLE TWP,Belleville Township
+municipality,BELLMAWR BORO,Bellmawr Borough,CAMDEN,BELLMAWR BORO,Bellmawr Borough
+municipality,BELMAR BORO,Belmar Borough,MONMOUTH,BELMAR BORO,Belmar Borough
+municipality,BERGENFIELD BORO,Bergenfield Borough,BERGEN,BERGENFIELD BORO,Bergenfield Borough
+municipality,BERKELEY HEIGHTS TWP,Berkeley Heights Township,UNION,BERKELEY HEIGHTS TWP,Berkeley Heights Township
+municipality,BERKELEY TWP,Berkeley Township,OCEAN,BERKELEY TWP,Berkeley Township
+municipality,BERLIN BORO,Berlin Borough,CAMDEN,BERLIN BORO,Berlin Borough
+municipality,BERLIN TWP,Berlin Township,CAMDEN,BERLIN TWP,Berlin Township
+municipality,BERNARDS TWP,Bernards Township,SOMERSET,BERNARDS TWP,Bernards Township
+municipality,BERNARDSVILLE BORO,Bernardsville Borough,SOMERSET,BERNARDSVILLE BORO,Bernardsville Borough
+municipality,BETHLEHEM TWP,Bethlehem Township,HUNTERDON,BETHLEHEM TWP,Bethlehem Township
+municipality,BEVERLY CITY,Beverly City,BURLINGTON,BEVERLY CITY,Beverly City
+municipality,BLAIRSTOWN TWP,Blairstown Township,WARREN,BLAIRSTOWN TWP,Blairstown Township
+municipality,BLOOMFIELD TWP,Bloomfield Township,ESSEX,BLOOMFIELD TWP,Bloomfield Township
+municipality,BLOOMINGDALE BORO,Bloomingdale Borough,PASSAIC,BLOOMINGDALE BORO,Bloomingdale Borough
+municipality,BOGOTA BORO,Bogota Borough,BERGEN,BOGOTA BORO,Bogota Borough
+municipality,BOONTON TWP,Boonton Township,MORRIS,BOONTON TWP,Boonton Township
+municipality,BORDENTOWN CITY,Bordentown City,BURLINGTON,BORDENTOWN CITY,Bordentown City
+municipality,BORDENTOWN TWP,Bordentown Township,BURLINGTON,BORDENTOWN TWP,Bordentown Township
+municipality,BOUND BROOK BORO,Bound Brook Borough,SOMERSET,BOUND BROOK BORO,Bound Brook Borough
+municipality,BRADLEY BEACH BORO,Bradley Beach Borough,MONMOUTH,BRADLEY BEACH BORO,Bradley Beach Borough
+municipality,BRANCHBURG TWP,Branchburg Township,SOMERSET,BRANCHBURG TWP,Branchburg Township
+municipality,BRICK TWP,Brick Township,OCEAN,BRICK TWP,Brick Township
+municipality,BRIDGETON CITY,Bridgeton City,CUMBERLAND,BRIDGETON CITY,Bridgeton City
+municipality,BRIGANTINE CITY,Brigantine City,ATLANTIC,BRIGANTINE CITY,Brigantine City
+municipality,BROOKLAWN BORO,Brooklawn Borough,CAMDEN,BROOKLAWN BORO,Brooklawn Borough
+municipality,BUENA BORO,Buena Borough,ATLANTIC,BUENA BORO,Buena Borough
+municipality,BUENA VISTA TWP,Buena Vista Township,ATLANTIC,BUENA VISTA TWP,Buena Vista Township
+municipality,BURLINGTON CITY,Burlington City,BURLINGTON,BURLINGTON CITY,Burlington City
+municipality,BURLINGTON TWP,Burlington Township,BURLINGTON,BURLINGTON TWP,Burlington Township
+municipality,BUTLER BORO,Butler Borough,MORRIS,BUTLER BORO,Butler Borough
+municipality,BYRAM TWP,Byram Township,SUSSEX,BYRAM TWP,Byram Township
+municipality,CALDWELL BORO,Caldwell Borough,ESSEX,CALDWELL BORO,Caldwell Borough
+municipality,CALIFON BORO,Califon Borough,HUNTERDON,CALIFON BORO,Califon Borough
+municipality,CAMDEN CITY,Camden City,CAMDEN,CAMDEN CITY,Camden City
+municipality,CAPE MAY CITY,Cape May City,CAPE MAY,CAPE MAY CITY,Cape May City
+municipality,CARLSTADT BORO,Carlstadt Borough,BERGEN,CARLSTADT BORO,Carlstadt Borough
+municipality,CARTERET BORO,Carteret Borough,MIDDLESEX,CARTERET BORO,Carteret Borough
+municipality,CEDAR GROVE TWP,Cedar Grove Township,ESSEX,CEDAR GROVE TWP,Cedar Grove Township
+municipality,CHATHAM BORO,Chatham Borough,MORRIS,CHATHAM BORO,Chatham Borough
+municipality,CHATHAM TWP,Chatham Township,MORRIS,CHATHAM TWP,Chatham Township
+municipality,CHERRY HILL TWP,Cherry Hill Township,CAMDEN,CHERRY HILL TWP,Cherry Hill Township
+municipality,CHESTER BORO,Chester Borough,MORRIS,CHESTER BORO,Chester Borough
+municipality,CHESTER TWP,Chester Township,MORRIS,CHESTER TWP,Chester Township
+municipality,CHESTERFIELD TWP,Chesterfield Township,BURLINGTON,CHESTERFIELD TWP,Chesterfield Township
+municipality,CINNAMINSON TWP,Cinnaminson Township,BURLINGTON,CINNAMINSON TWP,Cinnaminson Township
+municipality,CLARK TWP,Clark Township,UNION,CLARK TWP,Clark Township
+municipality,CLAYTON BORO,Clayton Borough,GLOUCESTER,CLAYTON BORO,Clayton Borough
+municipality,CLEMENTON BORO,Clementon Borough,CAMDEN,CLEMENTON BORO,Clementon Borough
+municipality,CLIFFSIDE PARK BORO,Cliffside Park Borough,BERGEN,CLIFFSIDE PARK BORO,Cliffside Park Borough
+municipality,CLIFTON CITY,Clifton City,PASSAIC,CLIFTON CITY,Clifton City
+municipality,CLINTON TWP,Clinton Township,HUNTERDON,CLINTON TWP,Clinton Township
+municipality,CLOSTER BORO,Closter Borough,BERGEN,CLOSTER BORO,Closter Borough
+municipality,COLLINGSWOOD BORO,Collingswood Borough,CAMDEN,COLLINGSWOOD BORO,Collingswood Borough
+municipality,COLTS NECK TWP,Colts Neck Township,MONMOUTH,COLTS NECK TWP,Colts Neck Township
+municipality,COMMERCIAL TWP,Commercial Township,CUMBERLAND,COMMERCIAL TWP,Commercial Township
+municipality,CRANBURY TWP,Cranbury Township,MIDDLESEX,CRANBURY TWP,Cranbury Township
+municipality,CRANFORD TWP,Cranford Township,UNION,CRANFORD TWP,Cranford Township
+municipality,CRESSKILL BORO,Cresskill Borough,BERGEN,CRESSKILL BORO,Cresskill Borough
+municipality,DELANCO TWP,Delanco Township,BURLINGTON,DELANCO TWP,Delanco Township
+municipality,DELRAN TWP,Delran Township,BURLINGTON,DELRAN TWP,Delran Township
+municipality,DEMAREST BORO,Demarest Borough,BERGEN,DEMAREST BORO,Demarest Borough
+municipality,DENNIS TWP,Dennis Township,CAPE MAY,DENNIS TWP,Dennis Township
+municipality,DENVILLE TWP,Denville Township,MORRIS,DENVILLE TWP,Denville Township
+municipality,DEPTFORD TWP,Deptford Township,GLOUCESTER,DEPTFORD TWP,Deptford Township
+municipality,DOVER TOWN,Dover Town,MORRIS,DOVER TOWN,Dover Town
+municipality,DOWNE TWP,Downe Township,CUMBERLAND,DOWNE TWP,Downe Township
+municipality,DUMONT BORO,Dumont Borough,BERGEN,DUMONT BORO,Dumont Borough
+municipality,DUNELLEN BORO,Dunellen Borough,MIDDLESEX,DUNELLEN BORO,Dunellen Borough
+municipality,EAGLESWOOD TWP,Eagleswood Township,OCEAN,EAGLESWOOD TWP,Eagleswood Township
+municipality,EAST AMWELL TWP,East Amwell Township,HUNTERDON,EAST AMWELL TWP,East Amwell Township
+municipality,EAST BRUNSWICK TWP,East Brunswick Township,MIDDLESEX,EAST BRUNSWICK TWP,East Brunswick Township
+municipality,EAST GREENWICH TWP,East Greenwich Township,GLOUCESTER,EAST GREENWICH TWP,East Greenwich Township
+municipality,EAST HANOVER TWP,East Hanover Township,MORRIS,EAST HANOVER TWP,East Hanover Township
+municipality,EAST NEWARK BORO,East Newark Borough,HUDSON,EAST NEWARK BORO,East Newark Borough
+municipality,EAST ORANGE CITY,East Orange City,ESSEX,EAST ORANGE CITY,East Orange City
+municipality,EAST RUTHERFORD BORO,East Rutherford Borough,BERGEN,EAST RUTHERFORD BORO,East Rutherford Borough
+municipality,EAST WINDSOR TWP,East Windsor Township,MERCER,EAST WINDSOR TWP,East Windsor Township
+municipality,EASTAMPTON TWP,Eastampton Township,BURLINGTON,EASTAMPTON TWP,Eastampton Township
+municipality,EATONTOWN BORO,Eatontown Borough,MONMOUTH,EATONTOWN BORO,Eatontown Borough
+municipality,EDISON TWP,Edison Township,MIDDLESEX,EDISON TWP,Edison Township
+municipality,EGG HARBOR TWP,Egg Harbor Township,ATLANTIC,EGG HARBOR TWP,Egg Harbor Township
+municipality,ELIZABETH CITY,Elizabeth City,UNION,ELIZABETH CITY,Elizabeth City
+municipality,ELK TWP,Elk Township,GLOUCESTER,ELK TWP,Elk Township
+municipality,ELMWOOD PARK BORO,Elmwood Park Borough,BERGEN,ELMWOOD PARK BORO,Elmwood Park Borough
+municipality,EMERSON BORO,Emerson Borough,BERGEN,EMERSON BORO,Emerson Borough
+municipality,ENGLEWOOD CITY,Englewood City,BERGEN,ENGLEWOOD CITY,Englewood City
+municipality,ENGLEWOOD CLIFFS BORO,Englewood Cliffs Borough,BERGEN,ENGLEWOOD CLIFFS BORO,Englewood Cliffs Borough
+municipality,ENGLISHTOWN BORO,Englishtown Borough,MONMOUTH,ENGLISHTOWN BORO,Englishtown Borough
+municipality,ESSEX FELLS BORO,Essex Fells Borough,ESSEX,ESSEX FELLS BORO,Essex Fells Borough
+municipality,ESTELL MANOR CITY,Estell Manor City,ATLANTIC,ESTELL MANOR CITY,Estell Manor City
+municipality,EVESHAM TWP,Evesham Township,BURLINGTON,EVESHAM TWP,Evesham Township
+municipality,EWING TWP,Ewing Township,MERCER,EWING TWP,Ewing Township
+municipality,FAIR HAVEN BORO,Fair Haven Borough,MONMOUTH,FAIR HAVEN BORO,Fair Haven Borough
+municipality,FAIR LAWN BORO,Fair Lawn Borough,BERGEN,FAIR LAWN BORO,Fair Lawn Borough
+municipality,FAIRFIELD TWP,Fairfield Township,CUMBERLAND,FAIRFIELD TWP,Fairfield Township
+municipality,FAIRVIEW BORO,Fairview Borough,BERGEN,FAIRVIEW BORO,Fairview Borough
+municipality,FANWOOD BORO,Fanwood Borough,UNION,FANWOOD BORO,Fanwood Borough
+municipality,FARMINGDALE BORO,Farmingdale Borough,MONMOUTH,FARMINGDALE BORO,Farmingdale Borough
+municipality,FLEMINGTON BORO,Flemington Borough,HUNTERDON,FLEMINGTON BORO,Flemington Borough
+municipality,FLORENCE TWP,Florence Township,BURLINGTON,FLORENCE TWP,Florence Township
+municipality,FLORHAM PARK BORO,Florham Park Borough,MORRIS,FLORHAM PARK BORO,Florham Park Borough
+municipality,FOLSOM BORO,Folsom Borough,ATLANTIC,FOLSOM BORO,Folsom Borough
+municipality,FORT LEE BORO,Fort Lee Borough,BERGEN,FORT LEE BORO,Fort Lee Borough
+municipality,FRANKFORD TWP,Frankford Township,SUSSEX,FRANKFORD TWP,Frankford Township
+municipality,FRANKLIN BORO,Franklin Borough,SUSSEX,FRANKLIN BORO,Franklin Borough
+municipality,FRANKLIN LAKES BORO,Franklin Lakes Borough,BERGEN,FRANKLIN LAKES BORO,Franklin Lakes Borough
+municipality,FREDON TWP,Fredon Township,SUSSEX,FREDON TWP,Fredon Township
+municipality,FREEHOLD BORO,Freehold Borough,MONMOUTH,FREEHOLD BORO,Freehold Borough
+municipality,FREEHOLD TWP,Freehold Township,MONMOUTH,FREEHOLD TWP,Freehold Township
+municipality,FRELINGHUYSEN TWP,Frelinghuysen Township,WARREN,FRELINGHUYSEN TWP,Frelinghuysen Township
+municipality,FRENCHTOWN BORO,Frenchtown Borough,HUNTERDON,FRENCHTOWN BORO,Frenchtown Borough
+municipality,GALLOWAY TWP,Galloway Township,ATLANTIC,GALLOWAY TWP,Galloway Township
+municipality,GARFIELD CITY,Garfield City,BERGEN,GARFIELD CITY,Garfield City
+municipality,GARWOOD BORO,Garwood Borough,UNION,GARWOOD BORO,Garwood Borough
+municipality,GIBBSBORO BORO,Gibbsboro Borough,CAMDEN,GIBBSBORO BORO,Gibbsboro Borough
+municipality,GLASSBORO BORO,Glassboro Borough,GLOUCESTER,GLASSBORO BORO,Glassboro Borough
+municipality,GLEN GARDNER BORO,Glen Gardner Borough,HUNTERDON,GLEN GARDNER BORO,Glen Gardner Borough
+municipality,GLEN RIDGE BORO,Glen Ridge Borough,ESSEX,GLEN RIDGE BORO,Glen Ridge Borough
+municipality,GLEN ROCK BORO,Glen Rock Borough,BERGEN,GLEN ROCK BORO,Glen Rock Borough
+municipality,GLOUCESTER CITY,Gloucester City,CAMDEN,GLOUCESTER CITY,Gloucester City
+municipality,GLOUCESTER TWP,Gloucester Township,CAMDEN,GLOUCESTER TWP,Gloucester Township
+municipality,GREEN TWP,Green Township,SUSSEX,GREEN TWP,Green Township
+municipality,GREENWICH TWP,Greenwich Township,CUMBERLAND,GREENWICH TWP,Greenwich Township
+municipality,GUTTENBERG TOWN,Guttenberg Town,HUDSON,GUTTENBERG TOWN,Guttenberg Town
+municipality,HACKENSACK CITY,Hackensack City,BERGEN,HACKENSACK CITY,Hackensack City
+municipality,HACKETTSTOWN TOWN,Hackettstown Town,WARREN,HACKETTSTOWN TOWN,Hackettstown Town
+municipality,HADDON HEIGHTS BORO,Haddon Heights Borough,CAMDEN,HADDON HEIGHTS BORO,Haddon Heights Borough
+municipality,HADDON TWP,Haddon Township,CAMDEN,HADDON TWP,Haddon Township
+municipality,HADDONFIELD BORO,Haddonfield Borough,CAMDEN,HADDONFIELD BORO,Haddonfield Borough
+municipality,HAINESPORT TWP,Hainesport Township,BURLINGTON,HAINESPORT TWP,Hainesport Township
+municipality,HALEDON BORO,Haledon Borough,PASSAIC,HALEDON BORO,Haledon Borough
+municipality,HAMBURG BORO,Hamburg Borough,SUSSEX,HAMBURG BORO,Hamburg Borough
+municipality,HAMMONTON TOWN,Hammonton Town,ATLANTIC,HAMMONTON TOWN,Hammonton Town
+municipality,HANOVER TWP,Hanover Township,MORRIS,HANOVER TWP,Hanover Township
+municipality,HARDING TWP,Harding Township,MORRIS,HARDING TWP,Harding Township
+municipality,HARDYSTON TWP,Hardyston Township,SUSSEX,HARDYSTON TWP,Hardyston Township
+municipality,HARMONY TWP,Harmony Township,WARREN,HARMONY TWP,Harmony Township
+municipality,HARRINGTON PARK BORO,Harrington Park Borough,BERGEN,HARRINGTON PARK BORO,Harrington Park Borough
+municipality,HARRISON TWP,Harrison Township,GLOUCESTER,HARRISON TWP,Harrison Township
+municipality,HARVEY CEDARS BORO,Harvey Cedars Borough,OCEAN,HARVEY CEDARS BORO,Harvey Cedars Borough
+municipality,HASBROUCK HEIGHTS BORO,Hasbrouck Heights Borough,BERGEN,HASBROUCK HEIGHTS BORO,Hasbrouck Heights Borough
+municipality,HAWORTH BORO,Haworth Borough,BERGEN,HAWORTH BORO,Haworth Borough
+municipality,HAWTHORNE BORO,Hawthorne Borough,PASSAIC,HAWTHORNE BORO,Hawthorne Borough
+municipality,HAZLET TWP,Hazlet Township,MONMOUTH,HAZLET TWP,Hazlet Township
+municipality,HIGH BRIDGE BORO,High Bridge Borough,HUNTERDON,HIGH BRIDGE BORO,High Bridge Borough
+municipality,HIGHLAND PARK BORO,Highland Park Borough,MIDDLESEX,HIGHLAND PARK BORO,Highland Park Borough
+municipality,HIGHLANDS BORO,Highlands Borough,MONMOUTH,HIGHLANDS BORO,Highlands Borough
+municipality,HIGHTSTOWN BORO,Hightstown Borough,MERCER,HIGHTSTOWN BORO,Hightstown Borough
+municipality,HILLSBOROUGH TWP,Hillsborough Township,SOMERSET,HILLSBOROUGH TWP,Hillsborough Township
+municipality,HILLSDALE BORO,Hillsdale Borough,BERGEN,HILLSDALE BORO,Hillsdale Borough
+municipality,HILLSIDE TWP,Hillside Township,UNION,HILLSIDE TWP,Hillside Township
+municipality,HO-HO-KUS BORO,Ho-Ho-Kus Borough,BERGEN,HO-HO-KUS BORO,Ho-Ho-Kus Borough
+municipality,HOBOKEN CITY,Hoboken City,HUDSON,HOBOKEN CITY,Hoboken City
+municipality,HOLMDEL TWP,Holmdel Township,MONMOUTH,HOLMDEL TWP,Holmdel Township
+municipality,HOPATCONG BORO,Hopatcong Borough,SUSSEX,HOPATCONG BORO,Hopatcong Borough
+municipality,HOPEWELL BORO,Hopewell Borough,MERCER,HOPEWELL BORO,Hopewell Borough
+municipality,HOPEWELL TWP,Hopewell Township,CUMBERLAND,HOPEWELL TWP,Hopewell Township
+municipality,HOWELL TWP,Howell Township,MONMOUTH,HOWELL TWP,Howell Township
+municipality,INTERLAKEN BORO,Interlaken Borough,MONMOUTH,INTERLAKEN BORO,Interlaken Borough
+municipality,IRVINGTON TWP,Irvington Township,ESSEX,IRVINGTON TWP,Irvington Township
+municipality,ISLAND HEIGHTS BORO,Island Heights Borough,OCEAN,ISLAND HEIGHTS BORO,Island Heights Borough
+municipality,JACKSON TWP,Jackson Township,OCEAN,JACKSON TWP,Jackson Township
+municipality,JEFFERSON TWP,Jefferson Township,MORRIS,JEFFERSON TWP,Jefferson Township
+municipality,JERSEY CITY,Jersey City,HUDSON,JERSEY CITY,Jersey City
+municipality,KEARNY TOWN,Kearny Town,HUDSON,KEARNY TOWN,Kearny Town
+municipality,KENILWORTH BORO,Kenilworth Borough,UNION,KENILWORTH BORO,Kenilworth Borough
+municipality,KEYPORT BORO,Keyport Borough,MONMOUTH,KEYPORT BORO,Keyport Borough
+municipality,KINNELON BORO,Kinnelon Borough,MORRIS,KINNELON BORO,Kinnelon Borough
+municipality,LACEY TWP,Lacey Township,OCEAN,LACEY TWP,Lacey Township
+municipality,LAKE COMO BORO,Lake Como Borough,MONMOUTH,LAKE COMO BORO,Lake Como Borough
+municipality,LAKEHURST BORO,Lakehurst Borough,OCEAN,LAKEHURST BORO,Lakehurst Borough
+municipality,LAKEWOOD TWP,Lakewood Township,OCEAN,LAKEWOOD TWP,Lakewood Township
+municipality,LAMBERTVILLE CITY,Lambertville City,HUNTERDON,LAMBERTVILLE CITY,Lambertville City
+municipality,LAUREL SPRINGS BORO,Laurel Springs Borough,CAMDEN,LAUREL SPRINGS BORO,Laurel Springs Borough
+municipality,LAVALLETTE BORO,Lavallette Borough,OCEAN,LAVALLETTE BORO,Lavallette Borough
+municipality,LAWNSIDE BORO,Lawnside Borough,CAMDEN,LAWNSIDE BORO,Lawnside Borough
+municipality,LAWRENCE TWP,Lawrence Township,CUMBERLAND,LAWRENCE TWP,Lawrence Township
+municipality,LEONIA BORO,Leonia Borough,BERGEN,LEONIA BORO,Leonia Borough
+municipality,LINCOLN PARK BORO,Lincoln Park Borough,MORRIS,LINCOLN PARK BORO,Lincoln Park Borough
+municipality,LINDEN CITY,Linden City,UNION,LINDEN CITY,Linden City
+municipality,LINDENWOLD BORO,Lindenwold Borough,CAMDEN,LINDENWOLD BORO,Lindenwold Borough
+municipality,LINWOOD CITY,Linwood City,ATLANTIC,LINWOOD CITY,Linwood City
+municipality,LITTLE FALLS TWP,Little Falls Township,PASSAIC,LITTLE FALLS TWP,Little Falls Township
+municipality,LITTLE FERRY BORO,Little Ferry Borough,BERGEN,LITTLE FERRY BORO,Little Ferry Borough
+municipality,LIVINGSTON TWP,Livingston Township,ESSEX,LIVINGSTON TWP,Livingston Township
+municipality,LODI BORO,Lodi Borough,BERGEN,LODI BORO,Lodi Borough
+municipality,LOGAN TWP,Logan Township,GLOUCESTER,LOGAN TWP,Logan Township
+municipality,LONG BEACH TWP,Long Beach Township,OCEAN,LONG BEACH TWP,Long Beach Township
+municipality,LONG BRANCH CITY,Long Branch City,MONMOUTH,LONG BRANCH CITY,Long Branch City
+municipality,LONG HILL TWP,Long Hill Township,MORRIS,LONG HILL TWP,Long Hill Township
+municipality,LONGPORT BORO,Longport Borough,ATLANTIC,LONGPORT BORO,Longport Borough
+municipality,LOPATCONG TWP,Lopatcong Township,WARREN,LOPATCONG TWP,Lopatcong Township
+municipality,LOWER TWP,Lower Township,CAPE MAY,LOWER TWP,Lower Township
+municipality,LUMBERTON TWP,Lumberton Township,BURLINGTON,LUMBERTON TWP,Lumberton Township
+municipality,LYNDHURST TWP,Lyndhurst Township,BERGEN,LYNDHURST TWP,Lyndhurst Township
+municipality,MAGNOLIA BORO,Magnolia Borough,CAMDEN,MAGNOLIA BORO,Magnolia Borough
+municipality,MAHWAH TWP,Mahwah Township,BERGEN,MAHWAH TWP,Mahwah Township
+municipality,MANASQUAN BORO,Manasquan Borough,MONMOUTH,MANASQUAN BORO,Manasquan Borough
+municipality,MANCHESTER TWP,Manchester Township,OCEAN,MANCHESTER TWP,Manchester Township
+municipality,MANSFIELD TWP,Mansfield Township,BURLINGTON,MANSFIELD TWP,Mansfield Township
+municipality,MANTOLOKING BORO,Mantoloking Borough,OCEAN,MANTOLOKING BORO,Mantoloking Borough
+municipality,MANTUA TWP,Mantua Township,GLOUCESTER,MANTUA TWP,Mantua Township
+municipality,MANVILLE BORO,Manville Borough,SOMERSET,MANVILLE BORO,Manville Borough
+municipality,MAPLE SHADE TWP,Maple Shade Township,BURLINGTON,MAPLE SHADE TWP,Maple Shade Township
+municipality,MAPLEWOOD TWP,Maplewood Township,ESSEX,MAPLEWOOD TWP,Maplewood Township
+municipality,MARGATE CITY,Margate City,ATLANTIC,MARGATE CITY,Margate City
+municipality,MARLBORO TWP,Marlboro Township,MONMOUTH,MARLBORO TWP,Marlboro Township
+municipality,MATAWAN BORO,Matawan Borough,MONMOUTH,MATAWAN BORO,Matawan Borough
+municipality,MAYWOOD BORO,Maywood Borough,BERGEN,MAYWOOD BORO,Maywood Borough
+municipality,MEDFORD LAKES BORO,Medford Lakes Borough,BURLINGTON,MEDFORD LAKES BORO,Medford Lakes Borough
+municipality,MEDFORD TWP,Medford Township,BURLINGTON,MEDFORD TWP,Medford Township
+municipality,MENDHAM BORO,Mendham Borough,MORRIS,MENDHAM BORO,Mendham Borough
+municipality,MENDHAM TWP,Mendham Township,MORRIS,MENDHAM TWP,Mendham Township
+municipality,MERCHANTVILLE BORO,Merchantville Borough,CAMDEN,MERCHANTVILLE BORO,Merchantville Borough
+municipality,METUCHEN BORO,Metuchen Borough,MIDDLESEX,METUCHEN BORO,Metuchen Borough
+municipality,MIDDLE TWP,Middle Township,CAPE MAY,MIDDLE TWP,Middle Township
+municipality,MIDDLESEX BORO,Middlesex Borough,MIDDLESEX,MIDDLESEX BORO,Middlesex Borough
+municipality,MIDDLETOWN TWP,Middletown Township,MONMOUTH,MIDDLETOWN TWP,Middletown Township
+municipality,MIDLAND PARK BORO,Midland Park Borough,BERGEN,MIDLAND PARK BORO,Midland Park Borough
+municipality,MILFORD BORO,Milford Borough,HUNTERDON,MILFORD BORO,Milford Borough
+municipality,MILLBURN TWP,Millburn Township,ESSEX,MILLBURN TWP,Millburn Township
+municipality,MILLSTONE TWP,Millstone Township,MONMOUTH,MILLSTONE TWP,Millstone Township
+municipality,MILLTOWN BORO,Milltown Borough,MIDDLESEX,MILLTOWN BORO,Milltown Borough
+municipality,MILLVILLE CITY,Millville City,CUMBERLAND,MILLVILLE CITY,Millville City
+municipality,MINE HILL TWP,Mine Hill Township,MORRIS,MINE HILL TWP,Mine Hill Township
+municipality,MONMOUTH BEACH BORO,Monmouth Beach Borough,MONMOUTH,MONMOUTH BEACH BORO,Monmouth Beach Borough
+municipality,MONROE TWP,Monroe Township,GLOUCESTER,MONROE TWP,Monroe Township
+municipality,MONTAGUE TWP,Montague Township,SUSSEX,MONTAGUE TWP,Montague Township
+municipality,MONTCLAIR TWP,Montclair Township,ESSEX,MONTCLAIR TWP,Montclair Township
+municipality,MONTGOMERY TWP,Montgomery Township,SOMERSET,MONTGOMERY TWP,Montgomery Township
+municipality,MONTVALE BORO,Montvale Borough,BERGEN,MONTVALE BORO,Montvale Borough
+municipality,MONTVILLE TWP,Montville Township,MORRIS,MONTVILLE TWP,Montville Township
+municipality,MOONACHIE BORO,Moonachie Borough,BERGEN,MOONACHIE BORO,Moonachie Borough
+municipality,MOORESTOWN TWP,Moorestown Township,BURLINGTON,MOORESTOWN TWP,Moorestown Township
+municipality,MORRIS PLAINS BORO,Morris Plains Borough,MORRIS,MORRIS PLAINS BORO,Morris Plains Borough
+municipality,MORRIS TWP,Morris Township,MORRIS,MORRIS TWP,Morris Township
+municipality,MORRISTOWN TOWN,Morristown Town,MORRIS,MORRISTOWN TOWN,Morristown Town
+municipality,MOUNT ARLINGTON BORO,Mount Arlington Borough,MORRIS,MOUNT ARLINGTON BORO,Mount Arlington Borough
+municipality,MOUNT EPHRAIM BORO,Mount Ephraim Borough,CAMDEN,MOUNT EPHRAIM BORO,Mount Ephraim Borough
+municipality,MOUNT HOLLY TWP,Mount Holly Township,BURLINGTON,MOUNT HOLLY TWP,Mount Holly Township
+municipality,MOUNT LAUREL TWP,Mount Laurel Township,BURLINGTON,MOUNT LAUREL TWP,Mount Laurel Township
+municipality,MOUNT OLIVE TWP,Mount Olive Township,MORRIS,MOUNT OLIVE TWP,Mount Olive Township
+municipality,MOUNTAIN LAKES BORO,Mountain Lakes Borough,MORRIS,MOUNTAIN LAKES BORO,Mountain Lakes Borough
+municipality,MOUNTAINSIDE BORO,Mountainside Borough,UNION,MOUNTAINSIDE BORO,Mountainside Borough
+municipality,MULLICA TWP,Mullica Township,ATLANTIC,MULLICA TWP,Mullica Township
+municipality,NEPTUNE CITY BORO,Neptune City Borough,MONMOUTH,NEPTUNE CITY BORO,Neptune City Borough
+municipality,NETCONG BORO,Netcong Borough,MORRIS,NETCONG BORO,Netcong Borough
+municipality,NEW BRUNSWICK CITY,New Brunswick City,MIDDLESEX,NEW BRUNSWICK CITY,New Brunswick City
+municipality,NEW MILFORD BORO,New Milford Borough,BERGEN,NEW MILFORD BORO,New Milford Borough
+municipality,NEW PROVIDENCE BORO,New Providence Borough,UNION,NEW PROVIDENCE BORO,New Providence Borough
+municipality,NEWARK CITY,Newark City,ESSEX,NEWARK CITY,Newark City
+municipality,NEWTON TOWN,Newton Town,SUSSEX,NEWTON TOWN,Newton Town
+municipality,NORTH ARLINGTON BORO,North Arlington Borough,BERGEN,NORTH ARLINGTON BORO,North Arlington Borough
+municipality,NORTH BERGEN TWP,North Bergen Township,HUDSON,NORTH BERGEN TWP,North Bergen Township
+municipality,NORTH BRUNSWICK TWP,North Brunswick Township,MIDDLESEX,NORTH BRUNSWICK TWP,North Brunswick Township
+municipality,NORTH CALDWELL BORO,North Caldwell Borough,ESSEX,NORTH CALDWELL BORO,North Caldwell Borough
+municipality,NORTH HALEDON BORO,North Haledon Borough,PASSAIC,NORTH HALEDON BORO,North Haledon Borough
+municipality,NORTH PLAINFIELD BORO,North Plainfield Borough,SOMERSET,NORTH PLAINFIELD BORO,North Plainfield Borough
+municipality,NORTH WILDWOOD CITY,North Wildwood City,CAPE MAY,NORTH WILDWOOD CITY,North Wildwood City
+municipality,NORTHFIELD CITY,Northfield City,ATLANTIC,NORTHFIELD CITY,Northfield City
+municipality,NORTHVALE BORO,Northvale Borough,BERGEN,NORTHVALE BORO,Northvale Borough
+municipality,NORWOOD BORO,Norwood Borough,BERGEN,NORWOOD BORO,Norwood Borough
+municipality,NUTLEY TWP,Nutley Township,ESSEX,NUTLEY TWP,Nutley Township
+municipality,OAKLAND BORO,Oakland Borough,BERGEN,OAKLAND BORO,Oakland Borough
+municipality,OAKLYN BORO,Oaklyn Borough,CAMDEN,OAKLYN BORO,Oaklyn Borough
+municipality,OCEAN CITY,Ocean City,CAPE MAY,OCEAN CITY,Ocean City
+municipality,OCEAN GATE BORO,Ocean Gate Borough,OCEAN,OCEAN GATE BORO,Ocean Gate Borough
+municipality,OCEANPORT BORO,Oceanport Borough,MONMOUTH,OCEANPORT BORO,Oceanport Borough
+municipality,OGDENSBURG BORO,Ogdensburg Borough,SUSSEX,OGDENSBURG BORO,Ogdensburg Borough
+municipality,OLD BRIDGE TWP,Old Bridge Township,MIDDLESEX,OLD BRIDGE TWP,Old Bridge Township
+municipality,OLD TAPPAN BORO,Old Tappan Borough,BERGEN,OLD TAPPAN BORO,Old Tappan Borough
+municipality,OLDMANS TWP,Oldmans Township,SALEM,OLDMANS TWP,Oldmans Township
+municipality,ORADELL BORO,Oradell Borough,BERGEN,ORADELL BORO,Oradell Borough
+municipality,OXFORD TWP,Oxford Township,WARREN,OXFORD TWP,Oxford Township
+municipality,PALISADES PARK BORO,Palisades Park Borough,BERGEN,PALISADES PARK BORO,Palisades Park Borough
+municipality,PALMYRA BORO,Palmyra Borough,BURLINGTON,PALMYRA BORO,Palmyra Borough
+municipality,PARAMUS BORO,Paramus Borough,BERGEN,PARAMUS BORO,Paramus Borough
+municipality,PARK RIDGE BORO,Park Ridge Borough,BERGEN,PARK RIDGE BORO,Park Ridge Borough
+municipality,PARSIPPANY-TROY HILLS TWP,Parsippany-Troy Hills Township,MORRIS,PARSIPPANY-TROY HILLS TWP,Parsippany-Troy Hills Township
+municipality,PASSAIC CITY,Passaic City,PASSAIC,PASSAIC CITY,Passaic City
+municipality,PAULSBORO BORO,Paulsboro Borough,GLOUCESTER,PAULSBORO BORO,Paulsboro Borough
+municipality,PEMBERTON TWP,Pemberton Township,BURLINGTON,PEMBERTON TWP,Pemberton Township
+municipality,PENNINGTON BORO,Pennington Borough,MERCER,PENNINGTON BORO,Pennington Borough
+municipality,PENNS GROVE BORO,Penns Grove Borough,SALEM,PENNS GROVE BORO,Penns Grove Borough
+municipality,PENNSAUKEN TWP,Pennsauken Township,CAMDEN,PENNSAUKEN TWP,Pennsauken Township
+municipality,PENNSVILLE TWP,Pennsville Township,SALEM,PENNSVILLE TWP,Pennsville Township
+municipality,PEQUANNOCK TWP,Pequannock Township,MORRIS,PEQUANNOCK TWP,Pequannock Township
+municipality,PERTH AMBOY CITY,Perth Amboy City,MIDDLESEX,PERTH AMBOY CITY,Perth Amboy City
+municipality,PHILLIPSBURG TOWN,Phillipsburg Town,WARREN,PHILLIPSBURG TOWN,Phillipsburg Town
+municipality,PILESGROVE TWP,Pilesgrove Township,SALEM,PILESGROVE TWP,Pilesgrove Township
+municipality,PINE BEACH BORO,Pine Beach Borough,OCEAN,PINE BEACH BORO,Pine Beach Borough
+municipality,PINE HILL BORO,Pine Hill Borough,CAMDEN,PINE HILL BORO,Pine Hill Borough
+municipality,PISCATAWAY TWP,Piscataway Township,MIDDLESEX,PISCATAWAY TWP,Piscataway Township
+municipality,PITMAN BORO,Pitman Borough,GLOUCESTER,PITMAN BORO,Pitman Borough
+municipality,PITTSGROVE TWP,Pittsgrove Township,SALEM,PITTSGROVE TWP,Pittsgrove Township
+municipality,PLAINFIELD CITY,Plainfield City,UNION,PLAINFIELD CITY,Plainfield City
+municipality,PLAINSBORO TWP,Plainsboro Township,MIDDLESEX,PLAINSBORO TWP,Plainsboro Township
+municipality,PLEASANTVILLE CITY,Pleasantville City,ATLANTIC,PLEASANTVILLE CITY,Pleasantville City
+municipality,PLUMSTED TWP,Plumsted Township,OCEAN,PLUMSTED TWP,Plumsted Township
+municipality,POHATCONG TWP,Pohatcong Township,WARREN,POHATCONG TWP,Pohatcong Township
+municipality,POINT PLEASANT BEACH BORO,Point Pleasant Beach Borough,OCEAN,POINT PLEASANT BEACH BORO,Point Pleasant Beach Borough
+municipality,POINT PLEASANT BORO,Point Pleasant Borough,OCEAN,POINT PLEASANT BORO,Point Pleasant Borough
+municipality,POMPTON LAKES BORO,Pompton Lakes Borough,PASSAIC,POMPTON LAKES BORO,Pompton Lakes Borough
+municipality,PRINCETON,Princeton,MERCER,PRINCETON,Princeton
+municipality,RAHWAY CITY,Rahway City,UNION,RAHWAY CITY,Rahway City
+municipality,RAMSEY BORO,Ramsey Borough,BERGEN,RAMSEY BORO,Ramsey Borough
+municipality,RANDOLPH TWP,Randolph Township,MORRIS,RANDOLPH TWP,Randolph Township
+municipality,RARITAN TWP,Raritan Township,HUNTERDON,RARITAN TWP,Raritan Township
+municipality,READINGTON TWP,Readington Township,HUNTERDON,READINGTON TWP,Readington Township
+municipality,RED BANK BORO,Red Bank Borough,MONMOUTH,RED BANK BORO,Red Bank Borough
+municipality,RIDGEFIELD BORO,Ridgefield Borough,BERGEN,RIDGEFIELD BORO,Ridgefield Borough
+municipality,RINGWOOD BORO,Ringwood Borough,PASSAIC,RINGWOOD BORO,Ringwood Borough
+municipality,RIVER EDGE BORO,River Edge Borough,BERGEN,RIVER EDGE BORO,River Edge Borough
+municipality,RIVER VALE TWP,River Vale Township,BERGEN,RIVER VALE TWP,River Vale Township
+municipality,RIVERDALE BORO,Riverdale Borough,MORRIS,RIVERDALE BORO,Riverdale Borough
+municipality,RIVERSIDE TWP,Riverside Township,BURLINGTON,RIVERSIDE TWP,Riverside Township
+municipality,RIVERTON BORO,Riverton Borough,BURLINGTON,RIVERTON BORO,Riverton Borough
+municipality,ROCHELLE PARK TWP,Rochelle Park Township,BERGEN,ROCHELLE PARK TWP,Rochelle Park Township
+municipality,ROCKAWAY BORO,Rockaway Borough,MORRIS,ROCKAWAY BORO,Rockaway Borough
+municipality,ROCKAWAY TWP,Rockaway Township,MORRIS,ROCKAWAY TWP,Rockaway Township
+municipality,ROSELAND BORO,Roseland Borough,ESSEX,ROSELAND BORO,Roseland Borough
+municipality,ROSELLE BORO,Roselle Borough,UNION,ROSELLE BORO,Roselle Borough
+municipality,ROSELLE PARK BORO,Roselle Park Borough,UNION,ROSELLE PARK BORO,Roselle Park Borough
+municipality,ROXBURY TWP,Roxbury Township,MORRIS,ROXBURY TWP,Roxbury Township
+municipality,RUMSON BORO,Rumson Borough,MONMOUTH,RUMSON BORO,Rumson Borough
+municipality,RUNNEMEDE BORO,Runnemede Borough,CAMDEN,RUNNEMEDE BORO,Runnemede Borough
+municipality,RUTHERFORD BORO,Rutherford Borough,BERGEN,RUTHERFORD BORO,Rutherford Borough
+municipality,SADDLE BROOK TWP,Saddle Brook Township,BERGEN,SADDLE BROOK TWP,Saddle Brook Township
+municipality,SADDLE RIVER BORO,Saddle River Borough,BERGEN,SADDLE RIVER BORO,Saddle River Borough
+municipality,SALEM CITY,Salem City,SALEM,SALEM CITY,Salem City
+municipality,SCOTCH PLAINS TWP,Scotch Plains Township,UNION,SCOTCH PLAINS TWP,Scotch Plains Township
+municipality,SEA GIRT BORO,Sea Girt Borough,MONMOUTH,SEA GIRT BORO,Sea Girt Borough
+municipality,SEA ISLE CITY,Sea Isle City,CAPE MAY,SEA ISLE CITY,Sea Isle City
+municipality,SEASIDE HEIGHTS BORO,Seaside Heights Borough,OCEAN,SEASIDE HEIGHTS BORO,Seaside Heights Borough
+municipality,SEASIDE PARK BORO,Seaside Park Borough,OCEAN,SEASIDE PARK BORO,Seaside Park Borough
+municipality,SECAUCUS TOWN,Secaucus Town,HUDSON,SECAUCUS TOWN,Secaucus Town
+municipality,SHAMONG TWP,Shamong Township,BURLINGTON,SHAMONG TWP,Shamong Township
+municipality,SHIP BOTTOM BORO,Ship Bottom Borough,OCEAN,SHIP BOTTOM BORO,Ship Bottom Borough
+municipality,SOMERDALE BORO,Somerdale Borough,CAMDEN,SOMERDALE BORO,Somerdale Borough
+municipality,SOMERS POINT CITY,Somers Point City,ATLANTIC,SOMERS POINT CITY,Somers Point City
+municipality,SOMERVILLE BORO,Somerville Borough,SOMERSET,SOMERVILLE BORO,Somerville Borough
+municipality,SOUTH AMBOY CITY,South Amboy City,MIDDLESEX,SOUTH AMBOY CITY,South Amboy City
+municipality,SOUTH BOUND BROOK BORO,South Bound Brook Borough,SOMERSET,SOUTH BOUND BROOK BORO,South Bound Brook Borough
+municipality,SOUTH BRUNSWICK TWP,South Brunswick Township,MIDDLESEX,SOUTH BRUNSWICK TWP,South Brunswick Township
+municipality,SOUTH HACKENSACK TWP,South Hackensack Township,BERGEN,SOUTH HACKENSACK TWP,South Hackensack Township
+municipality,SOUTH HARRISON TWP,South Harrison Township,GLOUCESTER,SOUTH HARRISON TWP,South Harrison Township
+municipality,SOUTH PLAINFIELD BORO,South Plainfield Borough,MIDDLESEX,SOUTH PLAINFIELD BORO,South Plainfield Borough
+municipality,SOUTH RIVER BORO,South River Borough,MIDDLESEX,SOUTH RIVER BORO,South River Borough
+municipality,SOUTHAMPTON TWP,Southampton Township,BURLINGTON,SOUTHAMPTON TWP,Southampton Township
+municipality,SPARTA TWP,Sparta Township,SUSSEX,SPARTA TWP,Sparta Township
+municipality,SPOTSWOOD BORO,Spotswood Borough,MIDDLESEX,SPOTSWOOD BORO,Spotswood Borough
+municipality,SPRING LAKE HEIGHTS BORO,Spring Lake Heights Borough,MONMOUTH,SPRING LAKE HEIGHTS BORO,Spring Lake Heights Borough
+municipality,STAFFORD TWP,Stafford Township,OCEAN,STAFFORD TWP,Stafford Township
+municipality,STANHOPE BORO,Stanhope Borough,SUSSEX,STANHOPE BORO,Stanhope Borough
+municipality,STOCKTON BORO,Stockton Borough,HUNTERDON,STOCKTON BORO,Stockton Borough
+municipality,STRATFORD BORO,Stratford Borough,CAMDEN,STRATFORD BORO,Stratford Borough
+municipality,SUMMIT CITY,Summit City,UNION,SUMMIT CITY,Summit City
+municipality,SUSSEX BORO,Sussex Borough,SUSSEX,SUSSEX BORO,Sussex Borough
+municipality,SWEDESBORO BORO,Swedesboro Borough,GLOUCESTER,SWEDESBORO BORO,Swedesboro Borough
+municipality,TABERNACLE TWP,Tabernacle Township,BURLINGTON,TABERNACLE TWP,Tabernacle Township
+municipality,TEANECK TWP,Teaneck Township,BERGEN,TEANECK TWP,Teaneck Township
+municipality,TENAFLY BORO,Tenafly Borough,BERGEN,TENAFLY BORO,Tenafly Borough
+municipality,TEWKSBURY TWP,Tewksbury Township,HUNTERDON,TEWKSBURY TWP,Tewksbury Township
+municipality,TINTON FALLS BORO,Tinton Falls Borough,MONMOUTH,TINTON FALLS BORO,Tinton Falls Borough
+municipality,TOMS RIVER TWP,Toms River Township,OCEAN,TOMS RIVER TWP,Toms River Township
+municipality,TRENTON CITY,Trenton City,MERCER,TRENTON CITY,Trenton City
+municipality,TUCKERTON BORO,Tuckerton Borough,OCEAN,TUCKERTON BORO,Tuckerton Borough
+municipality,UNION BEACH BORO,Union Beach Borough,MONMOUTH,UNION BEACH BORO,Union Beach Borough
+municipality,UNION CITY,Union City,HUDSON,UNION CITY,Union City
+municipality,UNION TWP,Union Township,HUNTERDON,UNION TWP,Union Township
+municipality,UPPER DEERFIELD TWP,Upper Deerfield Township,CUMBERLAND,UPPER DEERFIELD TWP,Upper Deerfield Township
+municipality,UPPER FREEHOLD TWP,Upper Freehold Township,MONMOUTH,UPPER FREEHOLD TWP,Upper Freehold Township
+municipality,UPPER PITTSGROVE TWP,Upper Pittsgrove Township,SALEM,UPPER PITTSGROVE TWP,Upper Pittsgrove Township
+municipality,UPPER SADDLE RIVER BORO,Upper Saddle River Borough,BERGEN,UPPER SADDLE RIVER BORO,Upper Saddle River Borough
+municipality,UPPER TWP,Upper Township,CAPE MAY,UPPER TWP,Upper Township
+municipality,VENTNOR CITY,Ventnor City,ATLANTIC,VENTNOR CITY,Ventnor City
+municipality,VERNON TWP,Vernon Township,SUSSEX,VERNON TWP,Vernon Township
+municipality,VERONA TWP,Verona Township,ESSEX,VERONA TWP,Verona Township
+municipality,VINELAND CITY,Vineland City,CUMBERLAND,VINELAND CITY,Vineland City
+municipality,VOORHEES TWP,Voorhees Township,CAMDEN,VOORHEES TWP,Voorhees Township
+municipality,WALDWICK BORO,Waldwick Borough,BERGEN,WALDWICK BORO,Waldwick Borough
+municipality,WALL TWP,Wall Township,MONMOUTH,WALL TWP,Wall Township
+municipality,WALLINGTON BORO,Wallington Borough,BERGEN,WALLINGTON BORO,Wallington Borough
+municipality,WANAQUE BORO,Wanaque Borough,PASSAIC,WANAQUE BORO,Wanaque Borough
+municipality,WANTAGE TWP,Wantage Township,SUSSEX,WANTAGE TWP,Wantage Township
+municipality,WARREN TWP,Warren Township,SOMERSET,WARREN TWP,Warren Township
+municipality,WATCHUNG BORO,Watchung Borough,SOMERSET,WATCHUNG BORO,Watchung Borough
+municipality,WAYNE TWP,Wayne Township,PASSAIC,WAYNE TWP,Wayne Township
+municipality,WEEHAWKEN TWP,Weehawken Township,HUDSON,WEEHAWKEN TWP,Weehawken Township
+municipality,WENONAH BORO,Wenonah Borough,GLOUCESTER,WENONAH BORO,Wenonah Borough
+municipality,WEST AMWELL TWP,West Amwell Township,HUNTERDON,WEST AMWELL TWP,West Amwell Township
+municipality,WEST CALDWELL TWP,West Caldwell Township,ESSEX,WEST CALDWELL TWP,West Caldwell Township
+municipality,WEST CAPE MAY BORO,West Cape May Borough,CAPE MAY,WEST CAPE MAY BORO,West Cape May Borough
+municipality,WEST DEPTFORD TWP,West Deptford Township,GLOUCESTER,WEST DEPTFORD TWP,West Deptford Township
+municipality,WEST LONG BRANCH BORO,West Long Branch Borough,MONMOUTH,WEST LONG BRANCH BORO,West Long Branch Borough
+municipality,WEST MILFORD TWP,West Milford Township,PASSAIC,WEST MILFORD TWP,West Milford Township
+municipality,WEST NEW YORK TOWN,West New York Town,HUDSON,WEST NEW YORK TOWN,West New York Town
+municipality,WEST ORANGE TWP,West Orange Township,ESSEX,WEST ORANGE TWP,West Orange Township
+municipality,WEST WILDWOOD BORO,West Wildwood Borough,CAPE MAY,WEST WILDWOOD BORO,West Wildwood Borough
+municipality,WEST WINDSOR TWP,West Windsor Township,MERCER,WEST WINDSOR TWP,West Windsor Township
+municipality,WESTAMPTON TWP,Westampton Township,BURLINGTON,WESTAMPTON TWP,Westampton Township
+municipality,WESTFIELD TOWN,Westfield Town,UNION,WESTFIELD TOWN,Westfield Town
+municipality,WESTVILLE BORO,Westville Borough,GLOUCESTER,WESTVILLE BORO,Westville Borough
+municipality,WESTWOOD BORO,Westwood Borough,BERGEN,WESTWOOD BORO,Westwood Borough
+municipality,WHITE TWP,White Township,WARREN,WHITE TWP,White Township
+municipality,WILDWOOD CITY,Wildwood City,CAPE MAY,WILDWOOD CITY,Wildwood City
+municipality,WILDWOOD CREST BORO,Wildwood Crest Borough,CAPE MAY,WILDWOOD CREST BORO,Wildwood Crest Borough
+municipality,WILLINGBORO TWP,Willingboro Township,BURLINGTON,WILLINGBORO TWP,Willingboro Township
+municipality,WINSLOW TWP,Winslow Township,CAMDEN,WINSLOW TWP,Winslow Township
+municipality,WOOD-RIDGE BORO,Wood-Ridge Borough,BERGEN,WOOD-RIDGE BORO,Wood-Ridge Borough
+municipality,WOODBRIDGE TWP,Woodbridge Township,MIDDLESEX,WOODBRIDGE TWP,Woodbridge Township
+municipality,WOODBURY CITY,Woodbury City,GLOUCESTER,WOODBURY CITY,Woodbury City
+municipality,WOODBURY HEIGHTS BORO,Woodbury Heights Borough,GLOUCESTER,WOODBURY HEIGHTS BORO,Woodbury Heights Borough
+municipality,WOODCLIFF LAKE BORO,Woodcliff Lake Borough,BERGEN,WOODCLIFF LAKE BORO,Woodcliff Lake Borough
+municipality,WOODLAND TWP,Woodland Township,BURLINGTON,WOODLAND TWP,Woodland Township
+municipality,WOODSTOWN BORO,Woodstown Borough,SALEM,WOODSTOWN BORO,Woodstown Borough
+municipality,WOOLWICH TWP,Woolwich Township,GLOUCESTER,WOOLWICH TWP,Woolwich Township
+municipality,WYCKOFF TWP,Wyckoff Township,BERGEN,WYCKOFF TWP,Wyckoff Township
