@@ -207,6 +207,7 @@ marimo/_lsp/
 __marimo__/
 
 # NJDEP Project Data (Massive datasets)
+data/
 *.csv.gz
 *.dta
 *.xlsx
@@ -214,3 +215,4 @@ __marimo__/
 !data/README.md
 
 *.gdb
+ 

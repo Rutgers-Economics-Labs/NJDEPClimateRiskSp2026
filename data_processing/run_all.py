@@ -16,8 +16,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from process_boundaries import process_boundaries
 from process_census import process_census
 from process_finance import process_finance
+from process_ufb import process_ufb_debt
 from process_climate import process_climate
-from process_fema_crs import process_fema_crs
+from process_ms4 import process_ms4
 
 
 def get_file_size_mb(filepath):
@@ -66,13 +67,14 @@ def main():
     # 3. Financial data
     try:
         all_outputs.extend(process_finance())
+        process_ufb_debt()
     except Exception as e:
         print(f"\n❌ Finance processing failed: {e}")
 
     try:
-        all_outputs.extend(process_fema_crs())
+        all_outputs.extend(process_ms4())
     except Exception as e:
-        print(f"\n❌ FEMA CRS processing failed: {e}")
+        print(f"\n❌ MS4 processing failed: {e}")
 
     print()
 
