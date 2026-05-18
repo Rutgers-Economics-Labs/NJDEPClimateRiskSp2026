@@ -41,7 +41,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def run_regression():
     print("=" * 60)
-    print("REGRESSION: CLIMATE RISK AND MS4 RESILIENCE PREMIUM")
+    print("REGRESSION: CLIMATE RISK AND CHAMP RESILIENCE PREMIUM")
     print("=" * 60)
 
     # ── Load panel ─────────────────────────────────────────────────────────
@@ -54,7 +54,7 @@ def run_regression():
     df['median_income_10k'] = df['median_income'] / 10_000
 
     print(f"\n  Panel: {len(df):,} obs | {df['muni_name'].nunique()} towns | {df['year'].min()}–{df['year'].max()}")
-    print(f"  MS4 density: mean={df['ms4_outfall_density'].mean():.2f}, max={df['ms4_outfall_density'].max():.2f}")
+    print(f"  CHAMP Resilient: mean={df['is_resilient'].mean():.2f}")
     print(f"  SLR exposure: mean={df['slr_exposure_pct'].mean():.2f}%, max={df['slr_exposure_pct'].max():.2f}%")
     print(f"  Avg spread: all={df['spread_bps'].mean():.2f} bps | pre={df.loc[df['is_post_2022']==0, 'spread_bps'].mean():.2f} | post={df.loc[df['is_post_2022']==1, 'spread_bps'].mean():.2f}")
 
@@ -72,59 +72,61 @@ def run_regression():
     # ── PRE-REGRESSION SANITY CHECK: pre-treatment trends table ───────────
     print("\n" + "-" * 60)
     print("PRE-TREATMENT TREND CHECK")
-    print("Avg spread by MS4 density tercile × pre-treatment year")
+    print("Avg spread by CHAMP resilience × pre-treatment year")
     print("-" * 60)
-    df['ms4_density_group'] = pd.qcut(
-        df['ms4_outfall_density'].rank(method='first'),
-        q=3,
-        labels=['Low MS4', 'Mid MS4', 'High MS4'],
-    )
+    df['resilience_group'] = df['is_resilient'].map({0: 'Not Resilient', 1: 'CHAMP Resilient'})
     pre = df[df['is_post_2022'] == 0].copy()
-    pre_trends = (pre.groupby(['year', 'ms4_density_group'], observed=True)['spread_bps']
+    pre_trends = (pre.groupby(['year', 'resilience_group'], observed=True)['spread_bps']
                     .agg(['mean', 'count'])
                     .rename(columns={'mean': 'Avg Spread (bps)', 'count': 'N Trades'}))
     print(pre_trends.to_string())
 
     pre['pre_year_index'] = pre['year'] - pre['year'].min()
     trend_formula = (
-        "spread_bps ~ ms4_outfall_density:pre_year_index"
-        " + debt_to_gdp + median_income_10k"
-        " + C(muni_name) + C(year)"
+        "spread_bps ~ is_resilient + slr_exposure_pct + is_resilient:pre_year_index"
+        " + debt_to_gdp + time_to_maturity"
+        " + C(year)"
     )
     pre_trend_model = smf.ols(trend_formula, data=pre).fit(
         cov_type='cluster', cov_kwds={'groups': pre['muni_name']}
     )
-    trend_term = 'ms4_outfall_density:pre_year_index'
+    trend_term = 'is_resilient:pre_year_index'
     if trend_term in pre_trend_model.params:
         coef = pre_trend_model.params[trend_term]
         p = pre_trend_model.pvalues[trend_term]
-        print(f"\n  Linear MS4 differential pre-trend: β={coef:+.3f} bps/year  p={p:.4f}")
+        print(f"\n  Linear CHAMP differential pre-trend: β={coef:+.3f} bps/year  p={p:.4f}")
 
     # ── Model 1: Pooled OLS (The Baseline Premium) ─────────────────────────
-    # To answer: "Does the market care about MS4 density and SLR exposure?"
-    # We drop Municipal Fixed Effects to see the cross-sectional signals.
+    # To answer: "Does the market care about CHAMP participation and SLR exposure?"
     formula_pooled = (
-        "spread_bps ~ ms4_outfall_density + slr_exposure_pct"
-        " + debt_to_gdp + median_income_10k"
-        " + C(year)"
+        "spread_bps ~ is_resilient + slr_exposure_pct"
+        " + debt_to_gdp + median_income_10k + time_to_maturity"
+        " + is_post_2022"
     )
 
     # ── Model 2: TWFE DiD (The 2022 Pivot) ──────────────────────────────────
-    # To answer: "Did the post-2022 period change the MS4/spread relationship?"
-    # We keep Municipal Fixed Effects but DROP static variables (MS4, SLR)
-    # which are time-invariant and would be absorbed/distorted by the FE.
+    # To answer: "Did the post-2022 period change the CHAMP/spread relationship?"
     formula_did = (
-        "spread_bps ~ ms4_outfall_density:is_post_2022"
-        " + debt_to_gdp + median_income_10k"
+        "spread_bps ~ is_resilient:is_post_2022"
+        " + debt_to_gdp + time_to_maturity"
         " + C(muni_name) + C(year)"
     )
 
-    # ── Model 3: TWFE + SLR Interaction ────────────────────────────────────
-    # Tests if post-2022 spreads vary with tax-base exposure near the sea.
+    # ── Model 3: TWFE Triple-DiD (Coastal Resilience) ──────────────────────
+    # Tests if CHAMP resilience specifically reduced spreads for coastal towns post-2022
     formula_slr_int = (
-        "spread_bps ~ ms4_outfall_density:is_post_2022"
+        "spread_bps ~ is_resilient:is_post_2022"
         " + is_post_2022:slr_exposure_pct"
-        " + debt_to_gdp + median_income_10k"
+        " + is_resilient:is_post_2022:slr_exposure_pct"
+        " + debt_to_gdp + time_to_maturity"
+        " + C(muni_name) + C(year)"
+    )
+
+    # ── Model 4: Event Study ───────────────────────────────────────────────
+    # Interacts is_resilient with every year to check for pre-trends.
+    formula_event = (
+        "spread_bps ~ is_resilient:C(year)"
+        " + debt_to_gdp + time_to_maturity"
         " + C(muni_name) + C(year)"
     )
 
@@ -142,18 +144,25 @@ def run_regression():
     models['(A) Pooled OLS'] = m1
 
     # Model 2 – TWFE DiD
-    print("  [2/3] Model B: TWFE MS4 × Post-2022…")
+    print("  [2/4] Model B: TWFE DiD CHAMP × Post-2022…")
     m2 = smf.ols(formula_did, data=df).fit(
         cov_type='cluster', cov_kwds={'groups': df['muni_name']}
     )
     models['(B) TWFE DiD'] = m2
 
-    # Model 3 – TWFE SLR
-    print("  [3/3] Model C: TWFE MS4 + SLR Interactions…")
+    # Model 3 – TWFE Triple-DiD SLR
+    print("  [3/4] Model C: TWFE Triple-DiD (CHAMP × Post × SLR)…")
     m3 = smf.ols(formula_slr_int, data=df).fit(
         cov_type='cluster', cov_kwds={'groups': df['muni_name']}
     )
-    models['(C) TWFE + SLR Int'] = m3
+    models['(C) TWFE Coastal DDD'] = m3
+
+    # Model 4 – Event Study
+    print("  [4/4] Model D: Event Study (CHAMP × Year)…")
+    m4 = smf.ols(formula_event, data=df).fit(
+        cov_type='cluster', cov_kwds={'groups': df['muni_name']}
+    )
+    models['(D) Event Study'] = m4
 
     # ── Key Coefficient Extraction ─────────────────────────────────────────
     print("\n" + "=" * 60)
@@ -162,30 +171,34 @@ def run_regression():
     
     # Model A checks
     print("  Model A (Baseline):")
-    for var in ['ms4_outfall_density', 'slr_exposure_pct', 'median_income_10k']:
+    for var in ['is_resilient', 'slr_exposure_pct', 'median_income_10k']:
         if var in m1.params:
             print(f"    {var:20s} β = {m1.params[var]:+.3f}  p={m1.pvalues[var]:.4f}")
 
     # Model B/C checks
     print("\n  Model B/C (DiD):")
     for name, m in {'B': m2, 'C': m3}.items():
-        coef = m.params.get('ms4_outfall_density:is_post_2022', 0)
-        p = m.pvalues.get('ms4_outfall_density:is_post_2022', 1)
-        print(f"    Model {name} MS4 × post   = {coef:+.3f}  p={p:.4f}")
+        coef = m.params.get('is_resilient:is_post_2022', 0)
+        p = m.pvalues.get('is_resilient:is_post_2022', 1)
+        print(f"    Model {name} CHAMP × post   = {coef:+.3f}  p={p:.4f}")
         if 'is_post_2022:slr_exposure_pct' in m.params:
             slr_coef = m.params['is_post_2022:slr_exposure_pct']
             slr_p = m.pvalues['is_post_2022:slr_exposure_pct']
-            print(f"    Model {name} SLR × post   = {slr_coef:+.3f}  p={slr_p:.4f}")
+            print(f"    Model {name} SLR × post     = {slr_coef:+.3f}  p={slr_p:.4f}")
+        if 'is_resilient:is_post_2022:slr_exposure_pct' in m.params:
+            ddd_coef = m.params['is_resilient:is_post_2022:slr_exposure_pct']
+            ddd_p = m.pvalues['is_resilient:is_post_2022:slr_exposure_pct']
+            print(f"    Model {name} Triple-DiD     = {ddd_coef:+.3f}  p={ddd_p:.4f}")
 
     # ── Full Summary Table ─────────────────────────────────────────────────
     # Only report the key non-FE coefficients for readability
     info_dict = {'N': lambda m: f"{int(m.nobs):,}", 'R²': lambda m: f"{m.rsquared:.3f}"}
     regressor_order = [
-        'Intercept',
-        'ms4_outfall_density', 'is_post_2022', 'ms4_outfall_density:is_post_2022',
-        'debt_to_gdp', 'median_income_10k', 'slr_exposure_pct',
-        'is_post_2022:slr_exposure_pct',
-    ]
+        'Intercept', 'is_post_2022', 'is_resilient', 'slr_exposure_pct',
+        'is_resilient:is_post_2022', 'is_post_2022:slr_exposure_pct',
+        'is_resilient:is_post_2022:slr_exposure_pct',
+        'debt_to_gdp', 'time_to_maturity', 'median_income_10k',
+    ] + [f"is_resilient:C(year)[T.{y}]" for y in sorted(df['year'].unique())]
 
     # Filter to only variables that actually exist across models
     existing = [r for r in regressor_order
@@ -210,8 +223,10 @@ def run_regression():
         f.write("Regression: NJ Climate Risk and MS4 Resilience Bond Spread Premium\n")
         f.write("=" * 60 + "\n\n")
         f.write(str(table))
-        f.write("\n\n[FULL TWFE MODEL]\n")
+        f.write("\n\n[FULL TWFE DiD MODEL (B)]\n")
         f.write(m2.summary().as_text())
+        f.write("\n\n[FULL EVENT STUDY MODEL (D)]\n")
+        f.write(m4.summary().as_text())
 
     print(f"\nFull results saved → {results_path}")
 

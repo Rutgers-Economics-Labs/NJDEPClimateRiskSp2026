@@ -216,6 +216,7 @@ def build_panel():
         'TRADE_DATE_DT': 'issue_date',
         'SPREAD_BPS':    'spread_bps',
         'YIELD':         'yield',
+        'YEARS_TO_MATURITY': 'time_to_maturity',
     })
     df['issue_date']   = pd.to_datetime(df['issue_date'])
     df['year']         = df['issue_date'].dt.year
@@ -334,7 +335,7 @@ def build_panel():
     print("\n[6/6] Selecting columns and dropping incomplete rows...")
     final_cols = [
         'bond_id', 'mun', 'county', 'issue_date',
-        'spread_bps',
+        'spread_bps', 'time_to_maturity',
         'slr_exposure_pct',      # % of total market value at risk under 4-ft SLR
         'is_resilient',          # CHAMP binary flag
         'ms4_outfall_density',   # MS4 outfalls per sq mile (stormwater infrastructure intensity)
