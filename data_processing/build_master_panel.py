@@ -282,13 +282,17 @@ def build_panel():
     print("\n[3/6] Merging MS4 outfall resilience metrics...")
     ms4 = pd.read_csv(MS4_FILE)
     ms4['mun'] = ms4['mun'].apply(normalize_mun_key)
-    ms4 = attach_mun_from_crosswalk(ms4, xwalk, 'mun')
-    ms4_slim = ms4[['mun', 'ms4_outfall_density', 'ms4_outfall_count']].dropna(subset=['mun'])
+    ms4_county_col = 'county' if 'county' in ms4.columns else None
+    ms4 = attach_mun_from_crosswalk(ms4, xwalk, 'mun', ms4_county_col)
+    if 'ms4_tier_a' not in ms4.columns:
+        ms4['ms4_tier_a'] = 0
+    ms4_slim = ms4[['mun', 'ms4_outfall_density', 'ms4_outfall_count', 'ms4_tier_a']].dropna(subset=['mun'])
     ms4_slim = ms4_slim[ms4_slim['mun'].isin(unique_muns)].copy()
     assert_unique(ms4_slim, ['mun'], 'MS4 merge input')
     df = pd.merge(df, ms4_slim, on='mun', how='left', validate='m:1')
     df['ms4_outfall_density'] = df['ms4_outfall_density'].fillna(0.0)
     df['ms4_outfall_count']   = df['ms4_outfall_count'].fillna(0).astype(int)
+    df['ms4_tier_a']          = df['ms4_tier_a'].fillna(0).astype(int)
     print(f"   Matched {(df['ms4_outfall_density'] > 0).sum():,} rows with MS4 outfall data.")
 
     # ── 4. UFB Fiscal Controls ─────────────────────────────────────────────
@@ -340,6 +344,7 @@ def build_panel():
         'is_resilient',          # CHAMP binary flag
         'ms4_outfall_density',   # MS4 outfalls per sq mile (stormwater infrastructure intensity)
         'ms4_outfall_count',     # raw outfall count (secondary)
+        'ms4_tier_a',            # 1 if municipality is listed as Tier A in NJPDES MS4 tier PDF
         'is_post_2022',          # 1 if trade date > 2022-07-01
         'debt_to_gdp',           # UFB debt-to-assessed-value ratio
         'median_income',         # ACS median household income (2023-25 fwd-filled)

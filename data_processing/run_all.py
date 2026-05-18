@@ -19,6 +19,7 @@ from process_finance import process_finance
 from process_ufb import process_ufb_debt
 from process_climate import process_climate
 from process_ms4 import process_ms4
+from process_ms4_tiers import process_ms4_tiers
 
 
 def get_file_size_mb(filepath):
@@ -73,6 +74,7 @@ def main():
 
     try:
         all_outputs.extend(process_ms4())
+        all_outputs.extend(process_ms4_tiers())
     except Exception as e:
         print(f"\n❌ MS4 processing failed: {e}")
 
