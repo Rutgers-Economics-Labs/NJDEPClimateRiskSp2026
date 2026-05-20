@@ -10,8 +10,38 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from process_census import standardize_muni_name
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-INPUT_DIR = os.path.join(PROJECT_ROOT, "new_champ_data")
+INPUT_DIR = os.path.join(PROJECT_ROOT, "data", "data_raw", "champ")
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "data", "data_cleaned", "finance")
+
+MUNI_TYPE_SUFFIXES = {
+    "CITY": "CITY",
+    "BOROUGH": "BORO",
+    "BORO": "BORO",
+    "TOWNSHIP": "TWP",
+    "TWP": "TWP",
+    "TOWN": "TOWN",
+    "VILLAGE": "VILLAGE",
+}
+
+
+def normalize_applicant_name(raw_name):
+    """Normalize applicant names without stripping words that are part of names."""
+    if not isinstance(raw_name, str):
+        return ""
+    name = re.sub(r"\s+", " ", raw_name.upper().strip())
+    name = re.sub(r"\bTOWNSHIP$", "TWP", name)
+    name = re.sub(r"\bBOROUGH$", "BORO", name)
+    name = re.sub(r"\bCITY OF\s+(.+)$", r"\1 CITY", name)
+    name = re.sub(r"\bBOROUGH OF\s+(.+)$", r"\1 BORO", name)
+    name = re.sub(r"\bTOWNSHIP OF\s+(.+)$", r"\1 TWP", name)
+    return name
+
+
+def extract_sfy(source_file):
+    match = re.search(r"SFY\s*(?:20)?(\d{2})", source_file, flags=re.IGNORECASE)
+    if match:
+        return int(f"20{match.group(1)}")
+    return pd.NA
 
 def extract_champ_data():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -81,8 +111,11 @@ def extract_champ_data():
         print("No CHAMP projects extracted. Please review PDF table structures.")
         return
         
-    # Standardize applicant names
+    # Keep both fields: the old stripped value is useful for inspection, but
+    # applicant_key preserves names like ATLANTIC CITY and JERSEY CITY.
     df["municipality"] = df["applicant_raw"].apply(standardize_muni_name)
+    df["applicant_key"] = df["applicant_raw"].apply(normalize_applicant_name)
+    df["sfy"] = df["source_file"].apply(extract_sfy)
     
     # Save raw scores/projects
     raw_out = os.path.join(OUTPUT_DIR, "nj_champ_raw_scores.csv")
@@ -92,15 +125,17 @@ def extract_champ_data():
     # Create the binary flag: is_resilient = 1 if they appear in this list
     # We drop NA municipalities (e.g. state authorities that don't match our list)
     # or keep them just in case.
-    resilient_munis = df[["municipality"]].drop_duplicates().copy()
-    resilient_munis = resilient_munis[resilient_munis["municipality"] != ""]
+    resilient_munis = df[["applicant_key"]].drop_duplicates().copy()
+    resilient_munis = resilient_munis[resilient_munis["applicant_key"] != ""]
     resilient_munis["is_resilient"] = 1
     
     # Also attach their minimum rank just for context
     # Rank might be "N/A" or missing, so we safely convert
     df["rank_num"] = pd.to_numeric(df["rank"], errors='coerce')
-    min_ranks = df.groupby("municipality")["rank_num"].min().reset_index()
-    resilient_munis = resilient_munis.merge(min_ranks, on="municipality", how="left")
+    min_ranks = df.groupby("applicant_key")["rank_num"].min().reset_index()
+    first_sfy = df.groupby("applicant_key")["sfy"].min().reset_index()
+    resilient_munis = resilient_munis.merge(min_ranks, on="applicant_key", how="left")
+    resilient_munis = resilient_munis.merge(first_sfy, on="applicant_key", how="left")
     resilient_munis.rename(columns={"rank_num": "best_champ_rank"}, inplace=True)
     
     flag_out = os.path.join(OUTPUT_DIR, "nj_champ_resilience_flags.csv")

@@ -18,16 +18,18 @@ help:
 	@echo "make clean             - Remove temporary files and pycache"
 
 install:
-	pip install pandas geopandas thefuzz rapidfuzz fastapi uvicorn requests
+	pip install pandas geopandas statsmodels pdfplumber thefuzz rapidfuzz fastapi uvicorn requests
 	cd dashboard/frontend && $(NPM) install
 
 process-all:
 	@echo "Step 1: Running core processing pipeline (Boundaries, Census, Finance)..."
 	python3 data_processing/run_all.py
-	@echo "Step 2: Building Master Municipality Characteristics Panel..."
-	python3 data_processing/build_master_panel.py
+	@echo "Step 2: Extracting CHAMP resilience applicants from available PDFs..."
+	python3 data_processing/process_champ_scores.py
 	@echo "Step 3: Extracting NJ Bond Data from WRDS (This may take a few minutes)..."
 	python3 data_processing/process_wrds_data.py
+	@echo "Step 4: Building regression-ready bond panel..."
+	python3 data_processing/build_master_panel.py
 	@echo "Pipeline Complete."
 
 dashboard-backend:

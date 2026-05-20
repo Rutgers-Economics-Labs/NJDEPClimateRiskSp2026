@@ -41,8 +41,9 @@ WRDS_TXT_FILE = os.path.join(DATA_CLEANED, "finance", "nj_muni_spreads_full_trad
 CHARS_FILE  = os.path.join(DATA_CLEANED, "nj_municipality_characteristics.csv")
 UFB_FILE    = os.path.join(DATA_CLEANED, "finance", "nj_ufb_debt_panel.csv")
 CENSUS_FILE = os.path.join(DATA_CLEANED, "census", "nj_census_dp03_combined.csv")
-SLR_FINAL_FILE = os.path.join(PROJECT_ROOT, "nj_statewide_frm_scores_FINAL.csv")
+SLR_FINAL_FILE = os.path.join(DATA_CLEANED, "climate", "nj_statewide_frm_scores_FINAL.csv")
 MS4_FILE    = os.path.join(DATA_CLEANED, "finance", "nj_ms4_resilience.csv")
+CHAMP_FILE  = os.path.join(DATA_CLEANED, "finance", "nj_champ_raw_scores.csv")
 OUTPUT_FILE = os.path.join(DATA_CLEANED, "final_panel_master.csv")
 
 PIVOT_DATE = "2022-07-01"   # NJ CHAMP/STORM Act treatment cutoff
@@ -201,6 +202,44 @@ def assert_unique(df, keys, name):
         sample = dup[keys].drop_duplicates().head(10).to_dict("records")
         raise ValueError(f"{name} is not unique on {keys}. Sample duplicate keys: {sample}")
 
+
+def extract_sfy(source_file):
+    m = re.search(r"SFY\s*(?:20)?(\d{2})", str(source_file), flags=re.IGNORECASE)
+    return int(f"20{m.group(1)}") if m else pd.NA
+
+
+def build_champ_flags(xwalk):
+    """Map available CHAMP applicant rows to canonical municipalities."""
+    if not os.path.exists(CHAMP_FILE):
+        return pd.DataFrame(columns=["mun", "ever_champ", "first_champ_sfy", "best_champ_rank"])
+
+    champ = pd.read_csv(CHAMP_FILE)
+    name_col = "applicant_key" if "applicant_key" in champ.columns else "applicant_raw"
+    champ[name_col] = champ[name_col].apply(normalize_mun_key)
+    champ["source_file"] = champ.get("source_file", "")
+    champ["sfy"] = champ["source_file"].apply(extract_sfy)
+    champ["rank_num"] = pd.to_numeric(champ.get("rank"), errors="coerce")
+
+    non_muni = champ[name_col].str.contains(
+        r"\b(?:AUTHORITY|COUNTY|STATE OF|PORT AUTHORITY|WATER SUPPLY)\b", na=False
+    )
+    champ = champ[~non_muni & champ[name_col].ne("")].copy()
+    if champ.empty:
+        return pd.DataFrame(columns=["mun", "ever_champ", "first_champ_sfy", "best_champ_rank"])
+
+    mapped = attach_mun_from_crosswalk(champ, xwalk, name_col)
+    mapped = mapped.dropna(subset=["mun"]).copy()
+    if mapped.empty:
+        return pd.DataFrame(columns=["mun", "ever_champ", "first_champ_sfy", "best_champ_rank"])
+
+    flags = (
+        mapped.groupby("mun")
+        .agg(first_champ_sfy=("sfy", "min"), best_champ_rank=("rank_num", "min"))
+        .reset_index()
+    )
+    flags["ever_champ"] = 1
+    return flags[["mun", "ever_champ", "first_champ_sfy", "best_champ_rank"]]
+
 def build_panel():
     print("=" * 60)
     print("MASTER PANEL CONSTRUCTION (FINAL 4FT SLR)")
@@ -240,7 +279,7 @@ def build_panel():
     chars = pd.read_csv(CHARS_FILE)
     chars['mun']       = chars['MUN'].apply(normalize_mun_key)
     chars['county']    = chars['COUNTY'].apply(clean_upper)
-    chars['is_resilient'] = chars['is_resilient'].map(
+    chars['crs_resilient'] = chars['is_resilient'].map(
         {True: 1, False: 0, 'True': 1, 'False': 0}
     ).fillna(0).astype(int)
     xwalk = build_municipality_crosswalk(chars)
@@ -255,7 +294,7 @@ def build_panel():
         df = df[~df["mun"].isin(ambiguous_muns)].copy()
     control_base_rows = len(df)
 
-    chars_slim = chars[['mun', 'county', 'is_resilient']]
+    chars_slim = chars[['mun', 'county', 'crs_resilient']]
     chars_slim = chars_slim[chars_slim['mun'].isin(unique_muns)].copy()
     assert_unique(chars_slim, ['mun'], 'Characteristics merge input')
 
@@ -272,10 +311,28 @@ def build_panel():
     df = pd.merge(df, chars_slim, on='mun', how='left', validate='m:1')
     df = pd.merge(df, slr_slim, on='mun', how='left', validate='m:1')
 
+    champ_flags = build_champ_flags(xwalk)
+    if not champ_flags.empty:
+        champ_flags = champ_flags[champ_flags["mun"].isin(unique_muns)].copy()
+        assert_unique(champ_flags, ["mun"], "CHAMP merge input")
+    df = pd.merge(df, champ_flags, on="mun", how="left", validate="m:1")
+    df["ever_champ"] = df["ever_champ"].fillna(0).astype(int)
+    df["first_champ_sfy"] = pd.to_numeric(df["first_champ_sfy"], errors="coerce")
+    df["best_champ_rank"] = pd.to_numeric(df["best_champ_rank"], errors="coerce")
+    df["first_champ_date"] = pd.to_datetime(
+        (df["first_champ_sfy"] - 1).astype("Int64").astype(str) + "-07-01",
+        errors="coerce",
+    )
+    df["is_resilient"] = (
+        df["ever_champ"].eq(1)
+        & df["first_champ_date"].notna()
+        & (df["issue_date"] >= df["first_champ_date"])
+    ).astype(int)
+
     # Fill NaN SLR exposure for inland towns with 0
     df['slr_exposure_pct'] = df['slr_exposure_pct'].fillna(0)
 
-    print(f"   Matched {df['is_resilient'].notna().sum():,} rows with CHAMP resilience.")
+    print(f"   Matched {df['ever_champ'].sum():,} rows from ever-CHAMP municipalities.")
     print(f"   Matched {df['slr_exposure_pct'].notna().sum():,} rows with Final SLR (4ft).")
 
     # ── 3. MS4 Stormwater Infrastructure Resilience ────────────────────────
@@ -341,7 +398,11 @@ def build_panel():
         'bond_id', 'mun', 'county', 'issue_date',
         'spread_bps', 'time_to_maturity',
         'slr_exposure_pct',      # % of total market value at risk under 4-ft SLR
-        'is_resilient',          # CHAMP binary flag
+        'is_resilient',          # time-varying CHAMP applicant flag
+        'ever_champ',            # 1 if municipality appears in available CHAMP PDFs
+        'first_champ_sfy',       # first SFY observed in available CHAMP PDFs
+        'best_champ_rank',       # best parsed CHAMP rank observed
+        'crs_resilient',         # preliminary CRS-derived flag from municipality characteristics
         'ms4_outfall_density',   # MS4 outfalls per sq mile (stormwater infrastructure intensity)
         'ms4_outfall_count',     # raw outfall count (secondary)
         'ms4_tier_a',            # 1 if municipality is listed as Tier A in NJPDES MS4 tier PDF

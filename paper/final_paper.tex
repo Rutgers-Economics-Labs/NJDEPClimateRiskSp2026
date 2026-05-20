@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{amsmath}
+
+\onehalfspacing
+
+\title{Climate Risk, Resilience Investment, and Municipal Bond Pricing in New Jersey}
+\author{Rutgers Economic Advisory Laboratory}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Briefly summarize the research question, data sources, empirical approach, headline results, and policy relevance.
+This paragraph should be written last.
+It should clearly state that the current evidence is based on an exploratory secondary-market bond panel and a synthetic AAA benchmark unless final validated benchmark and issuance data are added before submission.
+\end{abstract}
+
+\section{Introduction}
+Explain why climate physical risk and adaptation investment may matter for municipal borrowing costs.
+Introduce the New Jersey policy context, including coastal flood exposure, municipal infrastructure finance, and NJDEP/NJ I-Bank resilience programs.
+State the core research question: whether exposed municipalities face higher bond spreads and whether resilience participation is associated with lower or higher spreads.
+End with a concise preview of the paper's contribution and corrected empirical takeaway.
+
+\section{Policy and Institutional Background}
+Describe the relevant New Jersey climate adaptation and financing institutions.
+Include NJDEP, NJ I-Bank, Water Bank/PPL processes, CHAMP, FEMA CRS, MS4 stormwater context, and the 2022 policy pivot if it remains central to the analysis.
+Clarify what the 150-point resilience criterion means, which fiscal years it applies to, and how it should affect municipal incentives in theory.
+
+\section{Conceptual Framework}
+Lay out the mechanisms through which climate risk and resilience may affect borrowing costs.
+Discuss expected signs for:
+\begin{itemize}[leftmargin=*]
+    \item physical-risk penalties from sea-level-rise exposure;
+    \item resilience premiums if adaptation reduces expected losses;
+    \item disclosure or signaling penalties if program participation reveals risk;
+    \item capital-expenditure or liquidity concerns if adaptation requires near-term borrowing.
+\end{itemize}
+This section should avoid claiming any mechanism is proven unless supported by the final empirical results.
+
+\section{Data}
+Describe each dataset, its source, time coverage, unit of observation, and cleaning steps.
+Subsections should include the following.
+
+\subsection{Municipal Boundary and Climate Exposure Data}
+Explain how municipal boundaries are joined to flood or sea-level-rise exposure measures.
+Define \texttt{slr\_exposure\_pct} as the percent of total municipal market value exposed under the 4-foot SLR scenario from \texttt{data/data\_cleaned/climate/nj\_statewide\_frm\_scores\_FINAL.csv}.
+Discuss why tax-base-weighted exposure is preferable to raw land-area exposure, while noting uncertainty in the flood and parcel valuation layers.
+
+\subsection{Bond Market Data}
+Describe the WRDS secondary-market municipal trade data, the GO-like trade filter, municipality matching, and the 2015--2025 coverage.
+State clearly whether the dependent variable uses secondary trades or issuance/offering yields.
+If the synthetic AAA benchmark remains in use, explain how it is constructed and label it as a proxy rather than Bloomberg/MMD AAA.
+If true MMD data are later added, describe the same-date, same-maturity spread construction here.
+
+\subsection{Resilience and Adaptation Data}
+Explain the available resilience indicators: CHAMP applicant PDFs, FEMA CRS participation/class, MS4 fields, and any Water Bank/PPL information used.
+Define \texttt{ever\_champ}, \texttt{first\_champ\_sfy}, \texttt{best\_champ\_rank}, \texttt{crs\_resilient}, and the time-varying \texttt{is\_resilient} flag.
+Be explicit that the CHAMP flag is based on locally parsed applicant PDFs unless a fully validated I-Bank treatment history is added.
+
+\subsection{Fiscal and Demographic Controls}
+Describe UFB debt-to-assessed-value controls and ACS median household income controls.
+Note any forward filling, missing data rules, or years with incomplete coverage.
+
+\section{Sample Construction and Entity Resolution}
+Document the full pipeline from raw files to \texttt{final\_panel\_master.csv}.
+Report the number of trade rows, municipalities, years, treated/cohort municipalities, and dropped observations.
+Describe how municipality names are normalized and how ambiguous municipality names are handled.
+Include a table showing sample counts by year and treatment/cohort status.
+
+\section{Empirical Strategy}
+Present the main regression models in equations.
+Define the pooled OLS, two-way fixed effects DiD, triple-difference specification, and event-study/pre-trend check.
+For example:
+\[
+Spread_{i t} = \alpha_i + \lambda_t + \beta_1(Champ_i \times Post_t)
+ + \beta_2(Post_t \times SLR_i)
+ + \beta_3(Champ_i \times Post_t \times SLR_i)
+ + X_{it}\gamma + \epsilon_{it}.
+\]
+Explain what each coefficient measures and what assumptions are required for causal interpretation.
+State that standard errors are clustered by municipality.
+Discuss why the current specification is exploratory if secondary trades, synthetic benchmarks, and missing bond-level controls remain.
+
+\section{Data Quality and Validation}
+Summarize validation checks that should be shown before final submission.
+Include checks for missing municipalities, unmatched trade descriptions, outlier spreads, duplicate CUSIP-date observations, treatment timing, and pre/post support by municipality.
+Discuss winsorization of spreads at the 1st and 99th percentiles and justify whether it is retained in final specifications.
+
+\section{Results}
+Report the main coefficient table and interpret magnitudes in basis points.
+Include subsections for:
+\begin{itemize}[leftmargin=*]
+    \item baseline climate exposure and CHAMP cohort associations;
+    \item two-way fixed effects DiD results;
+    \item coastal triple-difference results;
+    \item pre-trend or event-study evidence.
+\end{itemize}
+Based on the current corrected results, state that the triple interaction is not statistically distinguishable from zero and that the pre-trend check weakens causal interpretation.
+Update this section if additional validated data change the estimates.
+
+\section{Robustness Checks}
+List robustness checks to include in the final paper.
+Recommended checks include raw versus winsorized spreads, excluding Atlantic City or other distressed outliers, restricting to towns with balanced pre/post observations, alternative SLR thresholds, CRS-based resilience definitions, CHAMP-only definitions, and alternative clustering or weighting choices.
+If true MMD benchmarks are added, compare synthetic-proxy results with MMD-based results.
+
+\section{Discussion}
+Interpret what the evidence does and does not imply for municipal bond markets.
+Discuss possible explanations for null, positive, or negative estimates without overclaiming.
+Relate findings back to the conceptual framework and policy context.
+Clearly distinguish market-pricing evidence from broader social benefits of resilience investments.
+
+\section{Policy Implications}
+Translate the findings for NJDEP, NJ I-Bank, municipal finance officers, and local planners.
+If results remain null or exploratory, emphasize data infrastructure, disclosure quality, treatment tracking, and the need for better bond-level controls rather than recommending subsidies based on an unproven penalty.
+If final validated results show a robust penalty or premium, explain the policy implications and fiscal magnitude carefully.
+
+\section{Limitations}
+Be direct about remaining constraints.
+Current limitations include the synthetic AAA benchmark, secondary-market rather than issuance data, missing rating/insurance/tax/call/issue-size controls, incomplete treatment validation, missing 2020 bond data, and partial municipality coverage.
+Explain how each limitation could bias results or limit interpretation.
+
+\section{Conclusion}
+Restate the research question, summarize the most defensible empirical finding, and identify the next data improvements needed for a final policy-grade estimate.
+Avoid introducing new evidence in this section.
+
+\section*{References}
+Add citations for NJDEP climate reports, NJ PACT/SLR documentation, FEMA CRS documentation, MSRB/EMMA or WRDS data documentation, MMD/Bloomberg benchmark documentation if used, and relevant academic municipal bond climate-risk literature.
+
+\appendix
+
+\section{Variable Definitions}
+Create a table defining every variable used in the analysis, including source, unit, expected sign, and construction notes.
+
+\section{Data Pipeline Reproducibility}
+List the commands needed to reproduce the cleaned panel and results:
+\begin{verbatim}
+make install
+make process-all
+python3 data_processing/run_did_regression.py
+python3 data_processing/export_did_coefficients.py
+\end{verbatim}
+Note any dependencies or proprietary data files required outside the repository.
+
+\section{Additional Tables and Figures}
+Reserve space for descriptive statistics, sample coverage maps, coefficient tables, event-study plots, and robustness tables.
+
+\end{document}

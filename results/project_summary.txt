@@ -1,43 +1,74 @@
 ================================================================================
-PROJECT SUMMARY: PRICING CLIMATE RISK AND PROACTIVE RESILIENCE IN NJ MUNICIPAL BONDS
+PROJECT SUMMARY: NJ CLIMATE RISK, CHAMP COHORTS, AND MUNICIPAL BOND TRADES
 ================================================================================
 
-1. RESEARCH OBJECTIVE
+1. CURRENT STATUS
 --------------------------------------------------------------------------------
-The primary objective of this project was to determine whether the municipal bond secondary market actively rewards or penalizes highly exposed coastal towns for engaging in proactive, state-certified climate resilience programs. Specifically, we aimed to isolate the causal impact of the 2022 policy pivot regarding the New Jersey CHAMP (Community Hazard Assistance Mitigation Program) "150-point" resilience funding criteria on municipal bond spreads.
+This repository now supports an exploratory screening analysis, not a final causal
+estimate of NJDEP/CHAMP effects on municipal borrowing costs. The available bond
+data are secondary-market WRDS trades, and spreads are calculated against a
+deterministic synthetic AAA benchmark rather than a validated Bloomberg/MMD AAA
+curve. The results should therefore be framed as diagnostic associations.
 
-2. METHODOLOGY & DATA PIPELINE
+2. DATA PIPELINE
 --------------------------------------------------------------------------------
-To robustly test this hypothesis, we integrated three primary data tracks into a unified econometric panel:
-- Track A (Climate Exposure): Intersected NOAA 4-foot Sea Level Rise (SLR) GeoJSON models with municipal tax parcel data to calculate the exact percentage of each town's tax base physically at risk of inundation (`slr_exposure_pct`).
-- Track B (Financial Markets): Processed over 175,000 secondary market municipal bond trades (2015-2025) from EMMA/WRDS, calculating the yield spread against a synthetic AAA benchmark (`spread_bps`), and extracting trade-level duration risk (`time_to_maturity`).
-- Track C (Resilience & Controls): Parsed NJDEP/I-Bank Project Priority Lists (PPLs) to build a binary indicator (`is_resilient`) for towns actively participating in CHAMP. We also controlled for annual municipal fiscal health using DCA debt-to-GDP ratios.
+The current regression panel combines:
+- WRDS secondary-market New Jersey municipal GO-like trades.
+- A synthetic AAA benchmark used to calculate spread_bps.
+- Municipality-level 4-ft SLR tax-base exposure from
+  data/data_cleaned/climate/nj_statewide_frm_scores_FINAL.csv.
+- Available CHAMP applicant rows parsed from local CHAMP PDFs and mapped to
+  canonical municipalities using raw applicant names.
+- UFB debt-to-assessed-value controls and ACS income controls.
 
-Model Selection:
-We deployed a Coastal Triple-Difference (DDD) econometric model utilizing strict Two-Way Fixed Effects (TWFE). 
-- Municipal Fixed Effects (`C(muni_name)`) mathematically absorbed all static, unobserved town traits (including historical credit ratings, political competence, and baseline wealth).
-- Year Fixed Effects (`C(year)`) absorbed macroeconomic shocks such as national interest rate hikes and inflation.
-- The Triple-DiD term (`is_resilient : is_post_2022 : slr_exposure_pct`) isolated the specific pricing behavior for CHAMP-participating coastal towns after the 2022 policy pivot.
+The panel now preserves time_to_maturity, ever_champ, first_champ_sfy,
+best_champ_rank, crs_resilient, and a time-varying is_resilient flag that turns
+on at the start of the first observed CHAMP state fiscal year.
 
-3. KEY FINDINGS & STATISTICAL RESULTS
+3. UPDATED ECONOMETRIC RESULT
 --------------------------------------------------------------------------------
-Our models proved highly robust (R-squared = 0.261), successfully controlling for the yield curve "Term Premium" (+4.44 bps penalty per year of duration maturity, p<0.01). Furthermore, the Event Study confirmed perfectly flat pre-trends (p=0.70), validating the DiD design.
+The primary diagnostic specification uses:
+- towns with both pre- and post-2022 trade observations;
+- 1st/99th percentile winsorized spreads to reduce the influence of extreme
+  secondary-trade outliers;
+- municipality and year fixed effects;
+- clustered standard errors by municipality.
 
-The core findings expose a stark paradox in the municipal bond market:
-- Finding 1: Post-2022, coastal towns in general saw a slight tightening (improvement) in their bond spreads (-0.51 bps per 1% SLR exposure, p=0.006).
-- Finding 2: However, if a highly exposed coastal town was actively participating in the CHAMP resilience program, they suffered a statistically significant PENALTY of +0.66 bps (p=0.07) relative to non-participating coastal towns.
+The updated triple-difference coefficient for:
+    ever_champ x post_2022 x slr_exposure_pct
+is +0.169 bps per 1 percentage point of SLR exposure, with p=0.533.
 
-Conclusion: Proactive resilience is actively penalized by the secondary bond market. 
+This is not statistically distinguishable from zero. The prior headline claim
+that proactive resilience is actively penalized by the bond market is not
+supported by the corrected panel and model.
 
-4. ECONOMIC INTERPRETATION
+4. PRE-TREND AND IDENTIFICATION LIMITS
 --------------------------------------------------------------------------------
-Why does the market penalize resilience? We propose three likely mechanisms driving this market failure:
-1. The Mandatory Disclosure Hypothesis: Joining CHAMP forces municipalities to formally quantify and disclose their physical climate risks to secure state funding. Non-participating towns remain silent, allowing investors to remain blissfully ignorant of their true risk profile.
-2. The CapEx Liquidity Shock: Securing resilience funding signals to the market that the town is about to undertake massive Capital Expenditures (e.g., building seawalls). Investors view this as a short-to-medium-term drain on municipal liquidity, increasing near-term default risk despite the long-term survival benefits.
-3. The Signaling Effect: Applying for state hazard mitigation aid is an explicit admission by local leadership of severe physical vulnerability. 
+The pre-treatment trend check is not clean. The CHAMP cohort has a statistically
+different pre-2022 trend in winsorized spreads:
+    beta = -3.190 bps/year, p=0.0229.
 
-5. POLICY IMPLICATIONS
+That weakens a causal DiD interpretation. A policy-facing report should not claim
+that the 2022 CHAMP policy pivot caused spread changes without a stronger design,
+validated treatment timing, and better bond-level controls.
+
+5. REMAINING LIMITATIONS
 --------------------------------------------------------------------------------
-This research identifies a critical market failure: the municipal bond market is currently disincentivizing climate adaptation. If mayors know that engaging in proactive state resilience programs will actually increase their borrowing costs for basic civic needs (like schools or fire trucks), they are financially incentivized to ignore climate change. 
+- Synthetic AAA is not a substitute for same-date, same-maturity Bloomberg/MMD AAA.
+- Secondary-market trades are not equivalent to issuance/offering yields.
+- Rating, insurance, tax status, callability, issue size, trade size, and CUSIP
+  liquidity controls are still missing from the available regression panel.
+- CHAMP treatment is based only on locally parsed applicant PDFs. Additional IUP,
+  Water Bank, and CHAMP files may change treatment timing and cohort membership.
+- The panel covers 195 municipalities after matching and control requirements,
+  not all New Jersey municipalities.
+- 2020 is absent from the bond panel.
 
-If the NJDEP and the state wish to encourage proactive municipal adaptation, they must account for this "Resilience Penalty." The state should consider providing explicit credit enhancements or borrowing subsidies to CHAMP participants to offset the unfair market penalty they incur simply by acknowledging and preparing for their physical climate reality.
+6. POLICY INTERPRETATION
+--------------------------------------------------------------------------------
+The defensible current conclusion is:
+
+In the available exploratory secondary-trade panel, there is no robust statistical
+evidence that high-SLR-exposure CHAMP-cohort municipalities were penalized after
+2022. Further work is needed before drawing conclusions about market pricing of
+NJDEP resilience programs or municipal borrowing cost impacts.

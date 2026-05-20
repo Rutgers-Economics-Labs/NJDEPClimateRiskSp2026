@@ -1,511 +1,413 @@
-Regression: NJ Climate Risk and MS4 Resilience Bond Spread Premium
+Regression: NJ Climate Risk and CHAMP Cohort Secondary-Trade Spread Diagnostics
 ============================================================
 
+IMPORTANT: Uses secondary-market WRDS trades and a synthetic AAA benchmark. Primary specifications use 1st/99th percentile winsorized spreads and towns with both pre/post observations. Treat coefficients as exploratory associations, not final causal estimates.
 
-===========================================================================================================
-                                           (A) Pooled OLS (B) TWFE DiD (C) TWFE Coastal DDD (D) Event Study
------------------------------------------------------------------------------------------------------------
-Intercept                                  27.8118**      -353.3597*** -353.3057***         -353.1619***   
-                                           (12.3220)      (3.0884)     (3.0774)             (3.1312)       
-is_post_2022                               -30.3656***                                                     
-                                           (6.8409)                                                        
-is_resilient                               -3.5490                                                         
-                                           (7.8598)                                                        
-slr_exposure_pct                           0.1894                                                          
-                                           (0.2041)                                                        
-is_resilient:is_post_2022                                 1.1380       -6.2958                             
-                                                          (12.7188)    (17.2710)                           
-is_post_2022:slr_exposure_pct                                          -0.5137***                          
-                                                                       (0.1880)                            
-is_resilient:is_post_2022:slr_exposure_pct                             0.6633*                             
-                                                                       (0.3662)                            
-debt_to_gdp                                -0.5725        1.6284       2.4180               1.6842         
-                                           (0.7675)       (1.8598)     (1.7978)             (1.8960)       
-time_to_maturity                           4.3620***      4.4448***    4.4382***            4.4473***      
-                                           (0.5619)       (0.5086)     (0.5072)             (0.5086)       
-median_income_10k                          -2.3769***                                                      
-                                           (0.8433)                                                        
-R-squared                                  0.0956         0.2610       0.2620               0.2612         
-R-squared Adj.                             0.0955         0.2601       0.2611               0.2603         
-N                                          175,226        175,226      175,226              175,226        
-R²                                         0.096          0.261        0.262                0.261          
-===========================================================================================================
+
+=========================================================================================================
+                                         (A) Pooled OLS (B) TWFE DiD (C) TWFE Coastal DDD (D) Event Study
+---------------------------------------------------------------------------------------------------------
+Intercept                                22.0488***     -11.6255*    -11.3378             -14.6347       
+                                         (8.0100)       (7.0530)     (7.0617)             (14838.3199)   
+is_post_2022                             -29.7211***                                                     
+                                         (6.0611)                                                        
+ever_champ                               -6.2555                                                         
+                                         (3.9601)                                                        
+slr_exposure_pct                         0.0434                                                          
+                                         (0.0704)                                                        
+ever_champ:is_post_2022                                 -32.4125***  -34.5139***                         
+                                                        (7.2304)     (10.8254)                           
+is_post_2022:slr_exposure_pct                                        -0.0926                             
+                                                                     (0.1268)                            
+ever_champ:is_post_2022:slr_exposure_pct                             0.1690                              
+                                                                     (0.2709)                            
+debt_to_gdp                              -1.3223*       0.9394       0.8843               0.7704         
+                                         (0.6877)       (1.0467)     (0.9715)             (2.1610)       
+time_to_maturity                         4.4235***      4.3958***    4.3908***            4.4207*        
+                                         (0.4703)       (0.4841)     (0.4847)             (2.4792)       
+median_income_10k                        -1.5564***                                                      
+                                         (0.5766)                                                        
+R-squared                                0.2580         0.3838       0.3839               0.3844         
+R-squared Adj.                           0.2580         0.3832       0.3833               0.3838         
+N                                        170,872        170,872      170,872              170,872        
+R²                                       0.258          0.384        0.384                0.384          
+=========================================================================================================
 Standard errors in parentheses.
 * p<.1, ** p<.05, ***p<.01
 
 [FULL TWFE DiD MODEL (B)]
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:             spread_bps   R-squared:                       0.261
-Model:                            OLS   Adj. R-squared:                  0.260
-Method:                 Least Squares   F-statistic:                     2253.
-Date:                Mon, 18 May 2026   Prob (F-statistic):          4.18e-201
-Time:                        13:27:24   Log-Likelihood:            -1.0549e+06
-No. Observations:              175226   AIC:                         2.110e+06
-Df Residuals:                  175019   BIC:                         2.112e+06
-Df Model:                         206                                         
+Dep. Variable:      spread_bps_winsor   R-squared:                       0.384
+Model:                            OLS   Adj. R-squared:                  0.383
+Method:                 Least Squares   F-statistic:                     281.5
+Date:                Tue, 19 May 2026   Prob (F-statistic):           1.75e-93
+Time:                        22:14:36   Log-Likelihood:            -9.2091e+05
+No. Observations:              170872   AIC:                         1.842e+06
+Df Residuals:                  170715   BIC:                         1.844e+06
+Df Model:                         156                                         
 Covariance Type:              cluster                                         
 =============================================================================================================
                                                 coef    std err          z      P>|z|      [0.025      0.975]
 -------------------------------------------------------------------------------------------------------------
-Intercept                                  -353.3597      3.088   -114.414      0.000    -359.413    -347.307
-C(muni_name)[T.ABSECON CITY]                359.2663     12.907     27.836      0.000     333.970     384.563
-C(muni_name)[T.ALLAMUCHY TWP]               403.9461      5.569     72.533      0.000     393.031     414.861
-C(muni_name)[T.ALLENDALE BORO]              379.8984      1.014    374.679      0.000     377.911     381.886
-C(muni_name)[T.ASBURY PARK CITY]            364.2446      3.708     98.219      0.000     356.976     371.513
-C(muni_name)[T.ATLANTIC CITY]              1006.3813      3.322    302.910      0.000     999.870    1012.893
-C(muni_name)[T.AVALON BORO]                 395.7712      3.511    112.718      0.000     388.889     402.653
-C(muni_name)[T.BARNEGAT TWP]                393.6653      5.224     75.360      0.000     383.427     403.904
-C(muni_name)[T.BAYONNE CITY]                393.9453      6.977     56.460      0.000     380.270     407.621
-C(muni_name)[T.BEDMINSTER TWP]            -1882.8906      5.404   -348.433      0.000   -1893.482   -1872.299
-C(muni_name)[T.BERGENFIELD BORO]            390.5144      8.808     44.337      0.000     373.251     407.778
-C(muni_name)[T.BERKELEY HEIGHTS TWP]        367.6452      8.733     42.097      0.000     350.528     384.762
-C(muni_name)[T.BERNARDS TWP]                391.2047      3.187    122.753      0.000     384.958     397.451
-C(muni_name)[T.BLOOMFIELD TWP]              438.5847      7.228     60.682      0.000     424.419     452.751
-C(muni_name)[T.BLOOMINGDALE BORO]           441.0223      1.226    359.662      0.000     438.619     443.426
-C(muni_name)[T.BOGOTA BORO]                 411.4953      8.195     50.215      0.000     395.434     427.556
-C(muni_name)[T.BOUND BROOK BORO]            413.7979      6.320     65.473      0.000     401.411     426.185
-C(muni_name)[T.BRANCHBURG TWP]              304.0446      8.505     35.751      0.000     287.376     320.713
-C(muni_name)[T.BRICK TWP]                   391.3448      6.911     56.622      0.000     377.798     404.891
-C(muni_name)[T.BUENA BORO]                  383.4604      8.425     45.516      0.000     366.948     399.972
-C(muni_name)[T.CAMDEN CITY]                 352.9814     12.660     27.882      0.000     328.168     377.794
-C(muni_name)[T.CARLSTADT BORO]              450.4083      7.718     58.356      0.000     435.281     465.536
-C(muni_name)[T.CARTERET BORO]               410.0025      6.571     62.395      0.000     397.123     422.882
-C(muni_name)[T.CHERRY HILL TWP]             389.9104      6.830     57.091      0.000     376.525     403.296
-C(muni_name)[T.CLARK TWP]                   446.6740      8.525     52.397      0.000     429.966     463.382
-C(muni_name)[T.CLIFFSIDE PARK BORO]         387.5612      6.899     56.173      0.000     374.039     401.084
-C(muni_name)[T.CLIFTON CITY]                342.9785     10.276     33.376      0.000     322.838     363.119
-C(muni_name)[T.CRANBURY TWP]                374.5863      8.579     43.662      0.000     357.771     391.401
-C(muni_name)[T.CRANFORD TWP]                401.8050      7.369     54.524      0.000     387.361     416.249
-C(muni_name)[T.CRESSKILL BORO]              371.2943      8.230     45.117      0.000     355.165     387.424
-C(muni_name)[T.DEMAREST BORO]               374.5196      7.907     47.368      0.000     359.023     390.016
-C(muni_name)[T.DENVILLE TWP]                394.8444      8.138     48.518      0.000     378.894     410.795
-C(muni_name)[T.DOVER TOWN]                  430.1054      3.307    130.069      0.000     423.624     436.587
-C(muni_name)[T.DUMONT BORO]                 378.2059      7.094     53.317      0.000     364.303     392.109
-C(muni_name)[T.EAST AMWELL TWP]              35.3466      1.388     25.467      0.000      32.626      38.067
-C(muni_name)[T.EAST BRUNSWICK TWP]          374.2820      8.809     42.489      0.000     357.017     391.547
-C(muni_name)[T.EAST HANOVER TWP]            368.8898      1.472    250.676      0.000     366.006     371.774
-C(muni_name)[T.EAST ORANGE CITY]            411.4563      4.684     87.847      0.000     402.276     420.636
-C(muni_name)[T.EAST RUTHERFORD BORO]        460.3024      2.216    207.672      0.000     455.958     464.647
-C(muni_name)[T.EAST WINDSOR TWP]            403.7981      8.118     49.738      0.000     387.886     419.710
-C(muni_name)[T.EASTAMPTON TWP]              358.3288      9.935     36.067      0.000     338.856     377.801
-C(muni_name)[T.ELIZABETH CITY]              399.6490      6.704     59.615      0.000     386.510     412.788
-C(muni_name)[T.ELMWOOD PARK BORO]           395.8091      8.074     49.021      0.000     379.984     411.634
-C(muni_name)[T.EMERSON BORO]                420.3582      8.348     50.355      0.000     403.997     436.720
-C(muni_name)[T.ENGLEWOOD CITY]              423.1969      7.831     54.043      0.000     407.849     438.545
-C(muni_name)[T.EWING TWP]                   388.2644      7.121     54.526      0.000     374.308     402.221
-C(muni_name)[T.FAIRVIEW BORO]               397.7485      6.182     64.339      0.000     385.632     409.865
-C(muni_name)[T.FANWOOD BORO]                493.7881      6.351     77.744      0.000     481.339     506.237
-C(muni_name)[T.FLEMINGTON BORO]             388.2779      5.430     71.508      0.000     377.636     398.920
-C(muni_name)[T.FLORENCE TWP]                412.1120      8.191     50.311      0.000     396.057     428.167
-C(muni_name)[T.FORT LEE BORO]               397.4923      8.511     46.706      0.000     380.812     414.173
-C(muni_name)[T.FRANKLIN LAKES BORO]         358.2945      3.770     95.041      0.000     350.906     365.683
-C(muni_name)[T.GARFIELD CITY]               403.9400      8.592     47.012      0.000     387.099     420.781
-C(muni_name)[T.GARWOOD BORO]                397.8913      3.266    121.815      0.000     391.489     404.293
-C(muni_name)[T.GIBBSBORO BORO]              363.2190      3.925     92.544      0.000     355.527     370.912
-C(muni_name)[T.GLEN RIDGE BORO]             369.5805      7.536     49.041      0.000     354.810     384.351
-C(muni_name)[T.GLEN ROCK BORO]              367.5311      7.546     48.707      0.000     352.742     382.321
-C(muni_name)[T.HACKENSACK CITY]             428.3573      8.154     52.531      0.000     412.375     444.340
-C(muni_name)[T.HADDONFIELD BORO]            404.7508      9.122     44.369      0.000     386.871     422.630
-C(muni_name)[T.HARDING TWP]                 377.7649      7.828     48.257      0.000     362.422     393.108
-C(muni_name)[T.HARDYSTON TWP]               349.8713      3.731     93.770      0.000     342.558     357.184
-C(muni_name)[T.HARRINGTON PARK BORO]        336.6735      9.722     34.629      0.000     317.618     355.729
-C(muni_name)[T.HASBROUCK HEIGHTS BORO]      445.1114      7.907     56.294      0.000     429.614     460.609
-C(muni_name)[T.HAWORTH BORO]                432.0576      7.140     60.510      0.000     418.063     446.052
-C(muni_name)[T.HAWTHORNE BORO]              352.7113      3.007    117.310      0.000     346.818     358.604
-C(muni_name)[T.HIGHLAND PARK BORO]          492.1224      7.574     64.973      0.000     477.277     506.968
-C(muni_name)[T.HILLSBOROUGH TWP]            334.2097     10.246     32.620      0.000     314.129     354.291
-C(muni_name)[T.HILLSIDE TWP]                406.5926      8.590     47.332      0.000     389.756     423.429
-C(muni_name)[T.HO-HO-KUS BORO]              371.9671      9.789     37.998      0.000     352.781     391.154
-C(muni_name)[T.HOLMDEL TWP]                 422.1672      8.832     47.798      0.000     404.856     439.478
-C(muni_name)[T.HOWELL TWP]                  390.1383      4.351     89.671      0.000     381.611     398.666
-C(muni_name)[T.IRVINGTON TWP]               386.3176     10.089     38.290      0.000     366.543     406.092
-C(muni_name)[T.JACKSON TWP]                 386.5603      6.445     59.975      0.000     373.928     399.193
-C(muni_name)[T.JERSEY CITY]                 400.9057      6.719     59.668      0.000     387.737     414.075
-C(muni_name)[T.KEARNY TOWN]                 454.0507      2.872    158.083      0.000     448.421     459.680
-C(muni_name)[T.KENILWORTH BORO]             403.1563      7.987     50.477      0.000     387.502     418.810
-C(muni_name)[T.KINGWOOD TWP]                294.2849      4.971     59.205      0.000     284.543     304.027
-C(muni_name)[T.LAKEWOOD TWP]                378.5213      5.067     74.700      0.000     368.590     388.453
-C(muni_name)[T.LAMBERTVILLE CITY]            -9.2519      4.799     -1.928      0.054     -18.657       0.153
-C(muni_name)[T.LAVALLETTE BORO]             451.9406      6.987     64.681      0.000     438.246     465.635
-C(muni_name)[T.LEONIA BORO]                 397.8666      8.399     47.373      0.000     381.406     414.327
-C(muni_name)[T.LITTLE FALLS TWP]            421.5017      7.411     56.873      0.000     406.976     436.028
-C(muni_name)[T.LITTLE FERRY BORO]           386.1524     10.272     37.594      0.000     366.020     406.284
-C(muni_name)[T.LIVINGSTON TWP]              408.4488      4.407     92.689      0.000     399.812     417.086
-C(muni_name)[T.LODI BORO]                   400.3119      5.567     71.906      0.000     389.400     411.223
-C(muni_name)[T.LOGAN TWP]                   384.5570      3.492    110.132      0.000     377.713     391.401
-C(muni_name)[T.LONG BRANCH CITY]            389.4873      9.408     41.399      0.000     371.048     407.927
-C(muni_name)[T.LOWER TWP]                   445.9993      3.128    142.564      0.000     439.868     452.131
-C(muni_name)[T.LYNDHURST TWP]               418.6887      7.658     54.671      0.000     403.678     433.699
-C(muni_name)[T.MADISON BORO]                349.3074      4.864     71.808      0.000     339.773     358.842
-C(muni_name)[T.MAHWAH TWP]                  327.7557      5.573     58.809      0.000     316.832     338.679
-C(muni_name)[T.MANASQUAN BORO]              426.7560      9.271     46.032      0.000     408.585     444.927
-C(muni_name)[T.MANCHESTER TWP]              403.8327      7.041     57.357      0.000     390.033     417.632
-C(muni_name)[T.MANTOLOKING BORO]            401.8246      6.882     58.384      0.000     388.335     415.314
-C(muni_name)[T.MANVILLE BORO]               393.2428      8.200     47.958      0.000     377.171     409.314
-C(muni_name)[T.MAPLEWOOD TWP]               394.1256      6.400     61.578      0.000     381.581     406.670
-C(muni_name)[T.MARGATE CITY]                376.4118      4.533     83.039      0.000     367.527     385.296
-C(muni_name)[T.MAYWOOD BORO]                452.2160      8.316     54.381      0.000     435.918     468.514
-C(muni_name)[T.MIDDLESEX BORO]              380.8914      2.263    168.284      0.000     376.455     385.328
-C(muni_name)[T.MIDLAND PARK BORO]           427.4438      8.623     49.573      0.000     410.544     444.344
-C(muni_name)[T.MONTCLAIR TWP]               390.4032      8.227     47.456      0.000     374.279     406.527
-C(muni_name)[T.MONTGOMERY TWP]              398.1618      7.324     54.364      0.000     383.807     412.516
-C(muni_name)[T.MONTVALE BORO]               374.4910      8.428     44.432      0.000     357.972     391.011
-C(muni_name)[T.MOONACHIE BORO]              411.8312      7.464     55.175      0.000     397.202     426.461
-C(muni_name)[T.MOORESTOWN TWP]              427.0084      6.523     65.463      0.000     414.224     439.793
-C(muni_name)[T.MORRISTOWN TOWN]             399.2140      7.388     54.039      0.000     384.735     413.693
-C(muni_name)[T.MOUNT ARLINGTON BORO]        306.7497      1.483    206.800      0.000     303.842     309.657
-C(muni_name)[T.MOUNT LAUREL TWP]            371.9482      2.635    141.139      0.000     366.783     377.113
-C(muni_name)[T.MOUNT OLIVE TWP]             387.8593      4.750     81.661      0.000     378.550     397.168
-C(muni_name)[T.MOUNTAIN LAKES BORO]         347.3882     10.404     33.390      0.000     326.997     367.779
-C(muni_name)[T.MOUNTAINSIDE BORO]           419.4899      1.674    250.621      0.000     416.209     422.770
-C(muni_name)[T.NEW BRUNSWICK CITY]          577.8570      6.521     88.609      0.000     565.075     590.639
-C(muni_name)[T.NEW MILFORD BORO]            423.6706      7.042     60.165      0.000     409.869     437.472
-C(muni_name)[T.NEW PROVIDENCE BORO]         385.4472      7.297     52.823      0.000     371.145     399.749
-C(muni_name)[T.NEWARK CITY]                 409.0400      8.891     46.004      0.000     391.613     426.467
-C(muni_name)[T.NEWTON TOWN]                 385.7553      5.078     75.973      0.000     375.803     395.707
-C(muni_name)[T.NORTH ARLINGTON BORO]        391.4831      7.985     49.028      0.000     375.833     407.133
-C(muni_name)[T.NORTH BERGEN TWP]            393.3819      7.343     53.572      0.000     378.990     407.774
-C(muni_name)[T.NORTH BRUNSWICK TWP]         404.0805      8.187     49.357      0.000     388.034     420.127
-C(muni_name)[T.NORTH HALEDON BORO]          415.0560      7.805     53.176      0.000     399.758     430.354
-C(muni_name)[T.NORTH WILDWOOD CITY]         399.4699      6.994     57.113      0.000     385.761     413.179
-C(muni_name)[T.NORTHFIELD CITY]             408.6019      8.947     45.671      0.000     391.067     426.137
-C(muni_name)[T.NORTHVALE BORO]              400.9542      5.388     74.410      0.000     390.393     411.515
-C(muni_name)[T.NORWOOD BORO]                392.0172      8.016     48.905      0.000     376.306     407.728
-C(muni_name)[T.NUTLEY TWP]                  417.9197      5.959     70.134      0.000     406.241     429.599
-C(muni_name)[T.OAKLAND BORO]                457.8476     11.546     39.654      0.000     435.218     480.477
-C(muni_name)[T.OCEAN CITY]                  398.8293      6.505     61.308      0.000     386.079     411.580
-C(muni_name)[T.OCEAN GATE BORO]             -61.8956      5.453    -11.351      0.000     -72.583     -51.208
-C(muni_name)[T.OLD TAPPAN BORO]             371.1441      2.249    165.039      0.000     366.736     375.552
-C(muni_name)[T.PALISADES PARK BORO]         385.6965      7.104     54.289      0.000     371.772     399.621
-C(muni_name)[T.PARSIPPANY-TROY HILLS TWP]   335.9943     10.309     32.591      0.000     315.788     356.200
-C(muni_name)[T.PASSAIC CITY]                404.0755      6.239     64.770      0.000     391.848     416.303
-C(muni_name)[T.PATERSON CITY]               425.3936      5.652     75.259      0.000     414.315     436.472
-C(muni_name)[T.PENNINGTON BORO]             437.1709      8.172     53.499      0.000     421.155     453.187
-C(muni_name)[T.PERTH AMBOY CITY]            401.7129      6.749     59.519      0.000     388.485     414.941
-C(muni_name)[T.PISCATAWAY TWP]              403.2319      7.972     50.580      0.000     387.607     418.857
-C(muni_name)[T.PLAINFIELD CITY]             416.8267      8.661     48.126      0.000     399.851     433.802
-C(muni_name)[T.PLAINSBORO TWP]              382.7880      6.550     58.437      0.000     369.949     395.627
-C(muni_name)[T.POINT PLEASANT BEACH BORO]   386.4311      7.407     52.169      0.000     371.913     400.949
-C(muni_name)[T.PRINCETON]                   403.3483      6.998     57.635      0.000     389.632     417.065
-C(muni_name)[T.RAHWAY CITY]                 391.7568      7.976     49.118      0.000     376.125     407.389
-C(muni_name)[T.RANDOLPH TWP]                480.0894      2.923    164.227      0.000     474.360     485.819
-C(muni_name)[T.RARITAN TWP]                 390.4499      6.321     61.774      0.000     378.062     402.838
-C(muni_name)[T.READINGTON TWP]              383.4385      6.858     55.908      0.000     369.996     396.881
-C(muni_name)[T.RIDGEFIELD BORO]            -326.9554      3.234   -101.086      0.000    -333.295    -320.616
-C(muni_name)[T.RIVER EDGE BORO]             389.0948      7.285     53.409      0.000     374.816     403.373
-C(muni_name)[T.RIVER VALE TWP]              337.3061     10.130     33.298      0.000     317.452     357.160
-C(muni_name)[T.ROBBINSVILLE TWP]            464.2730      5.969     77.776      0.000     452.573     475.973
-C(muni_name)[T.ROCHELLE PARK TWP]           395.6484      7.661     51.644      0.000     380.633     410.664
-C(muni_name)[T.ROSELLE PARK BORO]           379.9536      6.711     56.613      0.000     366.800     393.108
-C(muni_name)[T.ROXBURY TWP]                 402.0322      6.576     61.140      0.000     389.144     414.920
-C(muni_name)[T.RUMSON BORO]                 282.0058      5.923     47.609      0.000     270.396     293.615
-C(muni_name)[T.RUNNEMEDE BORO]             -157.0977      2.894    -54.289      0.000    -162.769    -151.426
-C(muni_name)[T.RUTHERFORD BORO]            -233.2220      1.955   -119.291      0.000    -237.054    -229.390
-C(muni_name)[T.SADDLE RIVER BORO]           378.6436      6.933     54.614      0.000     365.055     392.232
-C(muni_name)[T.SCOTCH PLAINS TWP]           391.6241      6.458     60.645      0.000     378.967     404.281
-C(muni_name)[T.SEA ISLE CITY]               424.7432      8.638     49.171      0.000     407.813     441.673
-C(muni_name)[T.SEASIDE HEIGHTS BORO]        395.1196      7.898     50.027      0.000     379.639     410.600
-C(muni_name)[T.SECAUCUS TOWN]               401.1200      6.916     57.998      0.000     387.565     414.675
-C(muni_name)[T.SOUTH AMBOY CITY]            391.6718      7.039     55.647      0.000     377.877     405.467
-C(muni_name)[T.SOUTH BOUND BROOK BORO]      409.7198      5.104     80.280      0.000     399.717     419.723
-C(muni_name)[T.SOUTH HACKENSACK TWP]        412.0801      5.896     69.891      0.000     400.524     423.636
-C(muni_name)[T.SOUTH PLAINFIELD BORO]       416.4759      8.270     50.359      0.000     400.267     432.685
-C(muni_name)[T.STAFFORD TWP]                405.4572      7.571     53.556      0.000     390.619     420.296
-C(muni_name)[T.TEANECK TWP]                 418.9992      7.868     53.254      0.000     403.578     434.420
-C(muni_name)[T.TENAFLY BORO]                363.1921      3.177    114.315      0.000     356.965     369.419
-C(muni_name)[T.TOMS RIVER TWP]              408.6654      9.481     43.102      0.000     390.082     427.249
-C(muni_name)[T.UNION CITY]                  332.2655      6.612     50.252      0.000     319.306     345.225
-C(muni_name)[T.UPPER DEERFIELD TWP]         359.3762     10.793     33.298      0.000     338.223     380.530
-C(muni_name)[T.UPPER FREEHOLD TWP]          362.7443      4.528     80.105      0.000     353.869     371.620
-C(muni_name)[T.UPPER SADDLE RIVER BORO]     403.6210      9.254     43.614      0.000     385.483     421.759
-C(muni_name)[T.UPPER TWP]                   431.6073      8.639     49.959      0.000     414.675     448.540
-C(muni_name)[T.VERNON TWP]                  364.0021     10.633     34.235      0.000     343.163     384.842
-C(muni_name)[T.VERONA TWP]                  353.6324     12.071     29.295      0.000     329.973     377.292
-C(muni_name)[T.VINELAND CITY]               385.0034      7.210     53.396      0.000     370.871     399.135
-C(muni_name)[T.WALLINGTON BORO]             386.0480      6.795     56.816      0.000     372.731     399.365
-C(muni_name)[T.WANTAGE TWP]                 413.8855     10.029     41.268      0.000     394.229     433.542
-C(muni_name)[T.WARREN TWP]                  193.7065      6.365     30.431      0.000     181.231     206.182
-C(muni_name)[T.WATCHUNG BORO]               381.6882      6.004     63.569      0.000     369.920     393.456
-C(muni_name)[T.WAYNE TWP]                   388.7551      5.621     69.159      0.000     377.738     399.773
-C(muni_name)[T.WEST AMWELL TWP]             298.1377      1.405    212.140      0.000     295.383     300.892
-C(muni_name)[T.WEST CAPE MAY BORO]          399.2080      9.525     41.911      0.000     380.539     417.877
-C(muni_name)[T.WEST MILFORD TWP]            409.7531      3.979    102.973      0.000     401.954     417.552
-C(muni_name)[T.WEST NEW YORK TOWN]          436.5665      4.213    103.612      0.000     428.308     444.825
-C(muni_name)[T.WEST ORANGE TWP]             423.6533      8.162     51.904      0.000     407.656     439.651
-C(muni_name)[T.WEST WILDWOOD BORO]          385.7633      4.032     95.675      0.000     377.861     393.666
-C(muni_name)[T.WEST WINDSOR TWP]            391.8149      6.524     60.057      0.000     379.028     404.602
-C(muni_name)[T.WESTFIELD TOWN]              374.6892      7.874     47.587      0.000     359.257     390.122
-C(muni_name)[T.WESTWOOD BORO]               370.7703      7.611     48.715      0.000     355.853     385.688
-C(muni_name)[T.WILDWOOD CITY]               508.7330      4.414    115.252      0.000     500.082     517.384
-C(muni_name)[T.WILLINGBORO TWP]             390.7167      7.711     50.670      0.000     375.603     405.830
-C(muni_name)[T.WOOD-RIDGE BORO]             414.8028      8.102     51.201      0.000     398.924     430.681
-C(muni_name)[T.WOODCLIFF LAKE BORO]         414.4450      8.280     50.057      0.000     398.217     430.673
-C(muni_name)[T.WOODLAND TWP]                378.8082      6.309     60.042      0.000     366.443     391.174
-C(muni_name)[T.WYCKOFF TWP]                 354.1549     10.259     34.520      0.000     334.047     374.263
-C(year)[T.2016]                             -20.6543      7.322     -2.821      0.005     -35.005      -6.304
-C(year)[T.2017]                             -37.7292      7.694     -4.903      0.000     -52.810     -22.648
-C(year)[T.2018]                             -54.1620      8.678     -6.241      0.000     -71.171     -37.153
-C(year)[T.2019]                             -54.9817     11.315     -4.859      0.000     -77.159     -32.805
-C(year)[T.2021]                             -74.6347      8.561     -8.718      0.000     -91.414     -57.855
-C(year)[T.2022]                             -44.8435      9.748     -4.600      0.000     -63.949     -25.737
-C(year)[T.2023]                             -81.1690     10.747     -7.553      0.000    -102.233     -60.105
-C(year)[T.2024]                             -90.1143     13.502     -6.674      0.000    -116.578     -63.651
-C(year)[T.2025]                             -75.5515     11.140     -6.782      0.000     -97.385     -53.718
-is_resilient:is_post_2022                     1.1380     12.719      0.089      0.929     -23.790      26.066
-debt_to_gdp                                   1.6284      1.860      0.876      0.381      -2.017       5.274
-time_to_maturity                              4.4448      0.509      8.739      0.000       3.448       5.442
+Intercept                                   -11.6255      7.053     -1.648      0.099     -25.449       2.198
+C(muni_name)[T.ALLAMUCHY TWP]                51.6529      4.611     11.203      0.000      42.616      60.690
+C(muni_name)[T.BAYONNE CITY]                 39.5156      5.737      6.888      0.000      28.272      50.759
+C(muni_name)[T.BERGENFIELD BORO]             44.4039      3.915     11.341      0.000      36.730      52.078
+C(muni_name)[T.BERKELEY HEIGHTS TWP]         10.1392      4.843      2.093      0.036       0.647      19.632
+C(muni_name)[T.BLOOMFIELD TWP]               81.1662      3.313     24.503      0.000      74.674      87.659
+C(muni_name)[T.BOGOTA BORO]                  53.8701      3.288     16.386      0.000      47.426      60.314
+C(muni_name)[T.BOUND BROOK BORO]             59.6749      4.553     13.107      0.000      50.751      68.598
+C(muni_name)[T.BRANCHBURG TWP]               44.8530      4.270     10.505      0.000      36.484      53.222
+C(muni_name)[T.BRICK TWP]                    48.1023      4.669     10.302      0.000      38.951      57.254
+C(muni_name)[T.BUENA BORO]                   24.9851      2.770      9.018      0.000      19.555      30.415
+C(muni_name)[T.CARLSTADT BORO]               89.5012      1.998     44.806      0.000      85.586      93.416
+C(muni_name)[T.CARTERET BORO]                67.0160      6.124     10.944      0.000      55.014      79.018
+C(muni_name)[T.CHERRY HILL TWP]              36.7468      3.892      9.441      0.000      29.118      44.376
+C(muni_name)[T.CLARK TWP]                    86.1131      4.077     21.120      0.000      78.122      94.105
+C(muni_name)[T.CLIFFSIDE PARK BORO]          34.0232      3.111     10.936      0.000      27.925      40.121
+C(muni_name)[T.CRANBURY TWP]                 16.2197      2.436      6.660      0.000      11.446      20.993
+C(muni_name)[T.CRANFORD TWP]                 51.0125      2.637     19.344      0.000      45.844      56.181
+C(muni_name)[T.CRESSKILL BORO]               14.0730      1.460      9.639      0.000      11.211      16.935
+C(muni_name)[T.DEMAREST BORO]                17.2631      1.963      8.795      0.000      13.416      21.110
+C(muni_name)[T.DENVILLE TWP]                 36.7139      1.850     19.846      0.000      33.088      40.340
+C(muni_name)[T.DUMONT BORO]                  24.4231      2.585      9.447      0.000      19.356      29.490
+C(muni_name)[T.EAST BRUNSWICK TWP]           15.5046      2.114      7.335      0.000      11.362      19.648
+C(muni_name)[T.EAST ORANGE CITY]             81.3915      3.772     21.577      0.000      73.998      88.785
+C(muni_name)[T.EAST RUTHERFORD BORO]        112.1274      5.437     20.624      0.000     101.471     122.784
+C(muni_name)[T.EAST WINDSOR TWP]             45.6810      1.305     35.009      0.000      43.124      48.238
+C(muni_name)[T.ELIZABETH CITY]               44.1075      2.837     15.548      0.000      38.547      49.668
+C(muni_name)[T.ELMWOOD PARK BORO]            37.7999      2.275     16.612      0.000      33.340      42.260
+C(muni_name)[T.EMERSON BORO]                 60.8358      1.122     54.203      0.000      58.636      63.036
+C(muni_name)[T.ENGLEWOOD CITY]               69.8688      2.851     24.504      0.000      64.280      75.457
+C(muni_name)[T.EWING TWP]                    32.5602      2.435     13.374      0.000      27.789      37.332
+C(muni_name)[T.FAIRVIEW BORO]                44.3420      3.201     13.853      0.000      38.068      50.616
+C(muni_name)[T.FANWOOD BORO]                 49.0202      4.004     12.243      0.000      41.173      56.868
+C(muni_name)[T.FLEMINGTON BORO]              35.9797      3.882      9.267      0.000      28.370      43.589
+C(muni_name)[T.FLORENCE TWP]                 52.3890      3.870     13.537      0.000      44.804      59.974
+C(muni_name)[T.FORT LEE BORO]                37.6294      1.249     30.117      0.000      35.181      40.078
+C(muni_name)[T.GARFIELD CITY]                43.2085      3.610     11.968      0.000      36.132      50.285
+C(muni_name)[T.GARWOOD BORO]                 46.3118      4.686      9.884      0.000      37.128      55.496
+C(muni_name)[T.GIBBSBORO BORO]               39.4418      5.160      7.643      0.000      29.328      49.556
+C(muni_name)[T.GLEN RIDGE BORO]              13.7153      2.030      6.755      0.000       9.736      17.695
+C(muni_name)[T.GLEN ROCK BORO]               11.0461      2.158      5.118      0.000       6.816      15.277
+C(muni_name)[T.HACKENSACK CITY]              68.3104      3.463     19.726      0.000      61.523      75.098
+C(muni_name)[T.HADDONFIELD BORO]             45.2242      2.346     19.279      0.000      40.627      49.822
+C(muni_name)[T.HARDING TWP]                  22.7214      2.017     11.263      0.000      18.768      26.675
+C(muni_name)[T.HASBROUCK HEIGHTS BORO]       84.6526      1.691     50.061      0.000      81.338      87.967
+C(muni_name)[T.HAWORTH BORO]                 62.7294      2.206     28.435      0.000      58.406      67.053
+C(muni_name)[T.HIGHLAND PARK BORO]          130.4592      4.620     28.236      0.000     121.403     139.515
+C(muni_name)[T.HILLSIDE TWP]                 47.3416      2.733     17.321      0.000      41.985      52.699
+C(muni_name)[T.HO-HO-KUS BORO]               15.5908      4.792      3.253      0.001       6.198      24.983
+C(muni_name)[T.HOLMDEL TWP]                  62.3050      1.053     59.188      0.000      60.242      64.368
+C(muni_name)[T.IRVINGTON TWP]                26.7573      3.042      8.796      0.000      20.795      32.720
+C(muni_name)[T.JACKSON TWP]                  34.7187      3.792      9.156      0.000      27.287      42.151
+C(muni_name)[T.JERSEY CITY]                  60.5550      6.848      8.842      0.000      47.132      73.978
+C(muni_name)[T.KENILWORTH BORO]              53.1001      1.927     27.562      0.000      49.324      56.876
+C(muni_name)[T.KINGWOOD TWP]                 54.6961      3.776     14.484      0.000      47.295      62.097
+C(muni_name)[T.LAKEWOOD TWP]                 27.6861      3.900      7.099      0.000      20.043      35.330
+C(muni_name)[T.LAMBERTVILLE CITY]            41.7910      4.544      9.197      0.000      32.885      50.697
+C(muni_name)[T.LAVALLETTE BORO]              95.7810      5.396     17.752      0.000      85.206     106.356
+C(muni_name)[T.LEONIA BORO]                  40.0286      2.851     14.043      0.000      34.442      45.616
+C(muni_name)[T.LITTLE FALLS TWP]             66.7549      3.696     18.061      0.000      59.510      73.999
+C(muni_name)[T.LITTLE FERRY BORO]            29.7911      2.264     13.159      0.000      25.354      34.228
+C(muni_name)[T.LIVINGSTON TWP]               51.9743      4.025     12.912      0.000      44.085      59.864
+C(muni_name)[T.LODI BORO]                    48.2018      3.653     13.195      0.000      41.042      55.361
+C(muni_name)[T.LONG BRANCH CITY]             31.5100      4.145      7.601      0.000      23.385      39.635
+C(muni_name)[T.LYNDHURST TWP]                58.2350      4.193     13.888      0.000      50.016      66.454
+C(muni_name)[T.MADISON BORO]                  6.6622      3.870      1.721      0.085      -0.923      14.247
+C(muni_name)[T.MAHWAH TWP]                   31.4540      3.505      8.974      0.000      24.584      38.324
+C(muni_name)[T.MANASQUAN BORO]               66.0967      4.985     13.258      0.000      56.325      75.868
+C(muni_name)[T.MANCHESTER TWP]               50.2068      3.789     13.251      0.000      42.781      57.633
+C(muni_name)[T.MANTOLOKING BORO]             50.4542      5.776      8.735      0.000      39.134      61.775
+C(muni_name)[T.MANVILLE BORO]                45.1157      3.917     11.518      0.000      37.439      52.793
+C(muni_name)[T.MAPLEWOOD TWP]                40.8220      2.873     14.207      0.000      35.190      46.454
+C(muni_name)[T.MAYWOOD BORO]                 92.0232      1.477     62.315      0.000      89.129      94.918
+C(muni_name)[T.MIDDLESEX BORO]               33.4077      5.563      6.005      0.000      22.504      44.312
+C(muni_name)[T.MIDLAND PARK BORO]            66.5071      1.478     44.988      0.000      63.610      69.405
+C(muni_name)[T.MONTCLAIR TWP]                32.0722      1.255     25.558      0.000      29.613      34.532
+C(muni_name)[T.MONTGOMERY TWP]               42.5073      3.097     13.726      0.000      36.438      48.577
+C(muni_name)[T.MONTVALE BORO]                14.6655      1.234     11.888      0.000      12.248      17.083
+C(muni_name)[T.MOONACHIE BORO]               55.1030      3.631     15.174      0.000      47.986      62.220
+C(muni_name)[T.MOORESTOWN TWP]               75.2933      3.404     22.117      0.000      68.621      81.966
+C(muni_name)[T.MORRISTOWN TOWN]              43.1719      2.794     15.454      0.000      37.697      48.647
+C(muni_name)[T.NEW BRUNSWICK CITY]          207.1362      3.523     58.802      0.000     200.232     214.040
+C(muni_name)[T.NEW MILFORD BORO]             84.6409      5.707     14.832      0.000      73.456      95.826
+C(muni_name)[T.NEW PROVIDENCE BORO]          29.7007      2.185     13.593      0.000      25.418      33.983
+C(muni_name)[T.NEWARK CITY]                  70.0043      6.607     10.595      0.000      57.054      82.954
+C(muni_name)[T.NEWTON TOWN]                  37.9114      6.144      6.171      0.000      25.870      49.953
+C(muni_name)[T.NORTH ARLINGTON BORO]         33.6938      2.588     13.021      0.000      28.622      38.765
+C(muni_name)[T.NORTH BERGEN TWP]             37.9857      4.144      9.166      0.000      29.863      46.108
+C(muni_name)[T.NORTH BRUNSWICK TWP]          46.7870      3.095     15.116      0.000      40.720      52.854
+C(muni_name)[T.NORTH HALEDON BORO]           54.7548      1.942     28.195      0.000      50.949      58.561
+C(muni_name)[T.NORTH WILDWOOD CITY]          58.8150      4.139     14.210      0.000      50.703      66.927
+C(muni_name)[T.NORWOOD BORO]                 33.8624      2.405     14.081      0.000      29.149      38.576
+C(muni_name)[T.OAKLAND BORO]                 99.0995      1.646     60.200      0.000      95.873     102.326
+C(muni_name)[T.OCEAN CITY]                   57.2510      5.045     11.347      0.000      47.362      67.140
+C(muni_name)[T.OLD TAPPAN BORO]              24.6391      5.638      4.370      0.000      13.588      35.690
+C(muni_name)[T.PALISADES PARK BORO]          43.4937      3.485     12.481      0.000      36.664      50.324
+C(muni_name)[T.PATERSON CITY]                86.8135      3.844     22.586      0.000      79.280      94.347
+C(muni_name)[T.PENNINGTON BORO]              76.1102      1.783     42.681      0.000      72.615      79.605
+C(muni_name)[T.PERTH AMBOY CITY]             42.9718      3.900     11.017      0.000      35.327      50.616
+C(muni_name)[T.PISCATAWAY TWP]               44.7338      2.332     19.185      0.000      40.164      49.304
+C(muni_name)[T.PLAINFIELD CITY]              57.7068      1.774     32.528      0.000      54.230      61.184
+C(muni_name)[T.PLAINSBORO TWP]               29.8124      2.960     10.072      0.000      24.011      35.614
+C(muni_name)[T.POINT PLEASANT BEACH BORO]    40.4008      2.655     15.219      0.000      35.198      45.604
+C(muni_name)[T.PRINCETON]                    48.9500      2.629     18.622      0.000      43.798      54.102
+C(muni_name)[T.RAHWAY CITY]                  36.3845      2.715     13.401      0.000      31.063      41.706
+C(muni_name)[T.RARITAN TWP]                  39.0741      3.124     12.508      0.000      32.951      45.197
+C(muni_name)[T.READINGTON TWP]               26.5487      3.891      6.823      0.000      18.922      34.175
+C(muni_name)[T.RIVER EDGE BORO]              48.7997      2.382     20.483      0.000      44.130      53.469
+C(muni_name)[T.RIVER VALE TWP]              -20.7772      7.147     -2.907      0.004     -34.784      -6.770
+C(muni_name)[T.ROCHELLE PARK TWP]            49.5095      3.727     13.282      0.000      42.204      56.815
+C(muni_name)[T.ROSELLE PARK BORO]            25.4903      2.477     10.292      0.000      20.636      30.344
+C(muni_name)[T.ROXBURY TWP]                  50.7747      4.501     11.280      0.000      41.952      59.597
+C(muni_name)[T.SADDLE RIVER BORO]            25.9329      3.768      6.883      0.000      18.549      33.317
+C(muni_name)[T.SCOTCH PLAINS TWP]            47.8437      3.351     14.279      0.000      41.277      54.411
+C(muni_name)[T.SEA ISLE CITY]                65.3611      1.680     38.909      0.000      62.069      68.654
+C(muni_name)[T.SEASIDE HEIGHTS BORO]         48.8437      7.544      6.474      0.000      34.057      63.630
+C(muni_name)[T.SECAUCUS TOWN]                44.1039      2.414     18.273      0.000      39.373      48.834
+C(muni_name)[T.SOUTH AMBOY CITY]             35.0429      2.526     13.872      0.000      30.092      39.994
+C(muni_name)[T.SOUTH BOUND BROOK BORO]       56.8604      3.517     16.165      0.000      49.966      63.754
+C(muni_name)[T.SOUTH HACKENSACK TWP]         56.1151      3.377     16.615      0.000      49.495      62.735
+C(muni_name)[T.SOUTH PLAINFIELD BORO]        55.0111      1.912     28.773      0.000      51.264      58.758
+C(muni_name)[T.STAFFORD TWP]                 58.4666      4.088     14.301      0.000      50.453      66.480
+C(muni_name)[T.TEANECK TWP]                  61.0996      2.034     30.040      0.000      57.113      65.086
+C(muni_name)[T.TENAFLY BORO]                 16.1040      4.965      3.243      0.001       6.373      25.835
+C(muni_name)[T.TOMS RIVER TWP]               52.0666      2.602     20.007      0.000      46.966      57.167
+C(muni_name)[T.UPPER FREEHOLD TWP]           17.1979      4.175      4.120      0.000       9.016      25.380
+C(muni_name)[T.UPPER SADDLE RIVER BORO]      41.7924      1.890     22.112      0.000      38.088      45.497
+C(muni_name)[T.UPPER TWP]                    71.0770      1.538     46.211      0.000      68.062      74.092
+C(muni_name)[T.VINELAND CITY]                29.0330      2.361     12.296      0.000      24.405      33.661
+C(muni_name)[T.WALLINGTON BORO]              31.8155      2.839     11.206      0.000      26.251      37.380
+C(muni_name)[T.WANTAGE TWP]                  51.6888      0.806     64.161      0.000      50.110      53.268
+C(muni_name)[T.WARREN TWP]                   35.1969      2.655     13.255      0.000      29.992      40.401
+C(muni_name)[T.WATCHUNG BORO]                33.5598      3.548      9.458      0.000      26.605      40.514
+C(muni_name)[T.WAYNE TWP]                    30.4419      3.565      8.540      0.000      23.456      37.428
+C(muni_name)[T.WEST CAPE MAY BORO]           42.4149      4.360      9.729      0.000      33.870      50.959
+C(muni_name)[T.WEST NEW YORK TOWN]           77.1590      4.516     17.088      0.000      68.309      86.009
+C(muni_name)[T.WEST ORANGE TWP]              63.9318      1.747     36.587      0.000      60.507      67.357
+C(muni_name)[T.WEST WILDWOOD BORO]           39.3809      4.783      8.234      0.000      30.007      48.755
+C(muni_name)[T.WEST WINDSOR TWP]             44.4614      3.086     14.407      0.000      38.413      50.510
+C(muni_name)[T.WESTFIELD TOWN]               17.8750      2.140      8.352      0.000      13.680      22.070
+C(muni_name)[T.WESTWOOD BORO]                28.2775      4.301      6.575      0.000      19.848      36.707
+C(muni_name)[T.WILLINGBORO TWP]              37.5961      2.950     12.743      0.000      31.814      43.379
+C(muni_name)[T.WOOD-RIDGE BORO]              72.9411      1.468     49.688      0.000      70.064      75.818
+C(muni_name)[T.WOODCLIFF LAKE BORO]          56.9021      2.262     25.160      0.000      52.469      61.335
+C(muni_name)[T.WOODLAND TWP]                 25.5835      3.304      7.743      0.000      19.108      32.059
+C(year)[T.2016]                             -16.5850      5.070     -3.271      0.001     -26.523      -6.647
+C(year)[T.2017]                             -30.0878      7.347     -4.095      0.000     -44.488     -15.687
+C(year)[T.2018]                             -42.6627      6.841     -6.236      0.000     -56.071     -29.254
+C(year)[T.2019]                             -40.8427      8.299     -4.922      0.000     -57.108     -24.577
+C(year)[T.2021]                             -52.8201      5.831     -9.059      0.000     -64.248     -41.392
+C(year)[T.2022]                             -27.2493      7.451     -3.657      0.000     -41.852     -12.646
+C(year)[T.2023]                             -61.1703      7.400     -8.266      0.000     -75.675     -46.666
+C(year)[T.2024]                             -69.5602      8.365     -8.316      0.000     -85.955     -53.166
+C(year)[T.2025]                             -57.0556      7.992     -7.139      0.000     -72.720     -41.391
+ever_champ:is_post_2022                     -32.4125      7.230     -4.483      0.000     -46.584     -18.241
+debt_to_gdp                                   0.9394      1.047      0.897      0.369      -1.112       2.991
+time_to_maturity                              4.3958      0.484      9.081      0.000       3.447       5.345
 ==============================================================================
-Omnibus:                   208499.035   Durbin-Watson:                   0.646
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):       4428856128.281
-Skew:                          -4.747   Prob(JB):                         0.00
-Kurtosis:                     781.789   Cond. No.                     1.52e+04
+Omnibus:                    11852.386   Durbin-Watson:                   0.535
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            33565.582
+Skew:                           0.378   Prob(JB):                         0.00
+Kurtosis:                       5.036   Cond. No.                     5.60e+03
 ==============================================================================
 
 Notes:
 [1] Standard Errors are robust to cluster correlation (cluster)
-[2] The condition number is large, 1.52e+04. This might indicate that there are
+[2] The condition number is large, 5.6e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.
 
 [FULL EVENT STUDY MODEL (D)]
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:             spread_bps   R-squared:                       0.261
-Model:                            OLS   Adj. R-squared:                  0.260
-Method:                 Least Squares   F-statistic:                -6.029e+13
-Date:                Mon, 18 May 2026   Prob (F-statistic):               1.00
-Time:                        13:27:25   Log-Likelihood:            -1.0549e+06
-No. Observations:              175226   AIC:                         2.110e+06
-Df Residuals:                  175011   BIC:                         2.112e+06
-Df Model:                         214                                         
+Dep. Variable:      spread_bps_winsor   R-squared:                       0.384
+Model:                            OLS   Adj. R-squared:                  0.384
+Method:                 Least Squares   F-statistic:                 1.720e-10
+Date:                Tue, 19 May 2026   Prob (F-statistic):               1.00
+Time:                        22:14:36   Log-Likelihood:            -9.2083e+05
+No. Observations:              170872   AIC:                         1.842e+06
+Df Residuals:                  170707   BIC:                         1.844e+06
+Df Model:                         164                                         
 Covariance Type:              cluster                                         
 =============================================================================================================
                                                 coef    std err          z      P>|z|      [0.025      0.975]
 -------------------------------------------------------------------------------------------------------------
-Intercept                                  -353.1619      3.131   -112.789      0.000    -359.299    -347.025
-C(muni_name)[T.ABSECON CITY]                163.0484      6.963     23.415      0.000     149.400     176.696
-C(muni_name)[T.ALLAMUCHY TWP]               403.9980      6.155     65.641      0.000     391.935     416.061
-C(muni_name)[T.ALLENDALE BORO]              379.9765      1.009    376.674      0.000     377.999     381.954
-C(muni_name)[T.ASBURY PARK CITY]            364.4049      4.169     87.400      0.000     356.233     372.577
-C(muni_name)[T.ATLANTIC CITY]              1006.2383      3.647    275.936      0.000     999.091    1013.386
-C(muni_name)[T.AVALON BORO]                 200.9190      9.277     21.659      0.000     182.737     219.101
-C(muni_name)[T.BARNEGAT TWP]                394.8756      5.928     66.607      0.000     383.256     406.495
-C(muni_name)[T.BAYONNE CITY]                394.0960      7.523     52.386      0.000     379.351     408.841
-C(muni_name)[T.BEDMINSTER TWP]            -2091.7542     14.700   -142.295      0.000   -2120.566   -2062.942
-C(muni_name)[T.BERGENFIELD BORO]            389.9858      9.887     39.444      0.000     370.608     409.364
-C(muni_name)[T.BERKELEY HEIGHTS TWP]        367.5291      9.317     39.446      0.000     349.268     385.790
-C(muni_name)[T.BERNARDS TWP]                391.7025      3.668    106.792      0.000     384.513     398.891
-C(muni_name)[T.BLOOMFIELD TWP]              438.4820      8.002     54.796      0.000     422.798     454.166
-C(muni_name)[T.BLOOMINGDALE BORO]           243.6262     12.706     19.174      0.000     218.723     268.530
-C(muni_name)[T.BOGOTA BORO]                 411.2151      9.208     44.658      0.000     393.168     429.263
-C(muni_name)[T.BOUND BROOK BORO]            414.2022      7.037     58.861      0.000     400.410     427.994
-C(muni_name)[T.BRANCHBURG TWP]              303.7417      9.477     32.050      0.000     285.167     322.317
-C(muni_name)[T.BRICK TWP]                   391.2759      7.762     50.407      0.000     376.062     406.490
-C(muni_name)[T.BUENA BORO]                  383.1426      9.339     41.025      0.000     364.838     401.447
-C(muni_name)[T.CAMDEN CITY]                 352.5049     13.398     26.309      0.000     326.244     378.765
-C(muni_name)[T.CARLSTADT BORO]              450.2614      8.642     52.099      0.000     433.322     467.200
-C(muni_name)[T.CARTERET BORO]               409.7120      7.181     57.054      0.000     395.637     423.787
-C(muni_name)[T.CHERRY HILL TWP]             389.8750      7.781     50.106      0.000     374.625     405.125
-C(muni_name)[T.CLARK TWP]                   446.1913      9.454     47.196      0.000     427.662     464.721
-C(muni_name)[T.CLIFFSIDE PARK BORO]         387.5786      7.637     50.749      0.000     372.610     402.547
-C(muni_name)[T.CLIFTON CITY]                343.4582     11.128     30.865      0.000     321.648     365.268
-C(muni_name)[T.CRANBURY TWP]                374.4335      9.495     39.436      0.000     355.824     393.043
-C(muni_name)[T.CRANFORD TWP]                401.9089      8.192     49.061      0.000     385.853     417.965
-C(muni_name)[T.CRESSKILL BORO]              371.4474      9.156     40.570      0.000     353.503     389.392
-C(muni_name)[T.DEMAREST BORO]               374.1541      8.717     42.924      0.000     357.070     391.239
-C(muni_name)[T.DENVILLE TWP]                394.5930      9.041     43.647      0.000     376.874     412.312
-C(muni_name)[T.DOVER TOWN]                  430.8978      3.746    115.029      0.000     423.556     438.240
-C(muni_name)[T.DUMONT BORO]                 182.4347      3.165     57.643      0.000     176.232     188.638
-C(muni_name)[T.EAST AMWELL TWP]              35.1362      1.585     22.164      0.000      32.029      38.243
-C(muni_name)[T.EAST BRUNSWICK TWP]          374.0753      9.793     38.198      0.000     354.881     393.269
-C(muni_name)[T.EAST HANOVER TWP]            368.8259      1.650    223.559      0.000     365.592     372.059
-C(muni_name)[T.EAST ORANGE CITY]            411.4783      5.329     77.215      0.000     401.034     421.923
-C(muni_name)[T.EAST RUTHERFORD BORO]        460.3292      2.530    181.958      0.000     455.371     465.288
-C(muni_name)[T.EAST WINDSOR TWP]            403.5761      8.956     45.061      0.000     386.022     421.130
-C(muni_name)[T.EASTAMPTON TWP]              358.5368     10.775     33.274      0.000     337.418     379.656
-C(muni_name)[T.ELIZABETH CITY]              399.7873      7.597     52.623      0.000     384.897     414.678
-C(muni_name)[T.ELMWOOD PARK BORO]           395.7450      9.011     43.917      0.000     378.083     413.407
-C(muni_name)[T.EMERSON BORO]                420.4414      9.202     45.688      0.000     402.405     438.478
-C(muni_name)[T.ENGLEWOOD CITY]              422.8670      8.626     49.022      0.000     405.960     439.774
-C(muni_name)[T.EWING TWP]                   388.4234      7.938     48.931      0.000     372.865     403.982
-C(muni_name)[T.FAIRVIEW BORO]               397.5267      7.012     56.691      0.000     383.783     411.270
-C(muni_name)[T.FANWOOD BORO]                493.9431      7.223     68.387      0.000     479.787     508.100
-C(muni_name)[T.FLEMINGTON BORO]             388.2199      6.013     64.565      0.000     376.435     400.005
-C(muni_name)[T.FLORENCE TWP]                411.8084      8.896     46.291      0.000     394.373     429.244
-C(muni_name)[T.FORT LEE BORO]               397.3277      9.366     42.423      0.000     378.971     415.685
-C(muni_name)[T.FRANKLIN LAKES BORO]         358.4491      4.322     82.939      0.000     349.978     366.920
-C(muni_name)[T.GARFIELD CITY]               403.8783      9.285     43.498      0.000     385.680     422.076
-C(muni_name)[T.GARWOOD BORO]                397.8841      3.605    110.369      0.000     390.818     404.950
-C(muni_name)[T.GIBBSBORO BORO]              363.6092      4.482     81.124      0.000     354.824     372.394
-C(muni_name)[T.GLEN RIDGE BORO]             369.7324      8.396     44.038      0.000     353.277     386.188
-C(muni_name)[T.GLEN ROCK BORO]              367.5080      8.325     44.146      0.000     351.192     383.824
-C(muni_name)[T.HACKENSACK CITY]             428.2215      8.877     48.241      0.000     410.823     445.620
-C(muni_name)[T.HADDONFIELD BORO]            404.5614      9.866     41.006      0.000     385.225     423.898
-C(muni_name)[T.HARDING TWP]                 377.7868      8.702     43.412      0.000     360.730     394.843
-C(muni_name)[T.HARDYSTON TWP]               350.5708      4.002     87.609      0.000     342.728     358.414
-C(muni_name)[T.HARRINGTON PARK BORO]        336.7586     10.504     32.059      0.000     316.170     357.347
-C(muni_name)[T.HASBROUCK HEIGHTS BORO]      444.9867      8.808     50.519      0.000     427.723     462.251
-C(muni_name)[T.HAWORTH BORO]                432.3712      7.897     54.754      0.000     416.894     447.848
-C(muni_name)[T.HAWTHORNE BORO]              352.9510      3.447    102.403      0.000     346.196     359.706
-C(muni_name)[T.HIGHLAND PARK BORO]          492.0443      8.352     58.910      0.000     475.674     508.415
-C(muni_name)[T.HILLSBOROUGH TWP]            334.6858     11.062     30.255      0.000     313.004     356.367
-C(muni_name)[T.HILLSIDE TWP]                406.0975      9.358     43.397      0.000     387.756     424.438
-C(muni_name)[T.HO-HO-KUS BORO]              371.2224     11.009     33.721      0.000     349.646     392.799
-C(muni_name)[T.HOLMDEL TWP]                 421.8429      9.760     43.220      0.000     402.713     440.973
-C(muni_name)[T.HOWELL TWP]                  390.3677      4.995     78.151      0.000     380.578     400.158
-C(muni_name)[T.IRVINGTON TWP]               386.8046     10.884     35.538      0.000     365.472     408.138
-C(muni_name)[T.JACKSON TWP]                 386.5676      7.368     52.465      0.000     372.126     401.009
-C(muni_name)[T.JERSEY CITY]                 401.0422      7.320     54.784      0.000     386.695     415.390
-C(muni_name)[T.KEARNY TOWN]                 453.8506      2.924    155.207      0.000     448.119     459.582
-C(muni_name)[T.KENILWORTH BORO]             403.2733      8.953     45.043      0.000     385.725     420.821
-C(muni_name)[T.KINGWOOD TWP]                294.1291      5.595     52.567      0.000     283.163     305.096
-C(muni_name)[T.LAKEWOOD TWP]                378.6611      5.798     65.309      0.000     367.297     390.025
-C(muni_name)[T.LAMBERTVILLE CITY]          -209.8966      7.499    -27.992      0.000    -224.593    -195.200
-C(muni_name)[T.LAVALLETTE BORO]             256.1988      3.935     65.103      0.000     248.486     263.912
-C(muni_name)[T.LEONIA BORO]                 397.5492      9.308     42.710      0.000     379.306     415.793
-C(muni_name)[T.LITTLE FALLS TWP]            226.4875      2.685     84.345      0.000     221.224     231.750
-C(muni_name)[T.LITTLE FERRY BORO]           192.2021      5.280     36.400      0.000     181.853     202.551
-C(muni_name)[T.LIVINGSTON TWP]              408.4721      4.873     83.831      0.000     398.922     418.022
-C(muni_name)[T.LODI BORO]                   400.3274      6.339     63.156      0.000     387.904     412.751
-C(muni_name)[T.LOGAN TWP]                   385.1381      3.973     96.945      0.000     377.352     392.925
-C(muni_name)[T.LONG BRANCH CITY]            197.6698      6.634     29.796      0.000     184.667     210.672
-C(muni_name)[T.LOWER TWP]                   446.7586      3.553    125.727      0.000     439.794     453.723
-C(muni_name)[T.LYNDHURST TWP]               418.5168      8.386     49.905      0.000     402.080     434.954
-C(muni_name)[T.MADISON BORO]                349.3574      5.515     63.345      0.000     338.548     360.167
-C(muni_name)[T.MAHWAH TWP]                  327.8293      6.360     51.542      0.000     315.363     340.296
-C(muni_name)[T.MANASQUAN BORO]              232.0374      6.131     37.846      0.000     220.021     244.054
-C(muni_name)[T.MANCHESTER TWP]              403.7134      7.935     50.880      0.000     388.162     419.265
-C(muni_name)[T.MANTOLOKING BORO]            208.7271      3.963     52.666      0.000     200.959     216.495
-C(muni_name)[T.MANVILLE BORO]               195.8602      3.785     51.749      0.000     188.442     203.278
-C(muni_name)[T.MAPLEWOOD TWP]               394.2817      7.268     54.246      0.000     380.036     408.528
-C(muni_name)[T.MARGATE CITY]                376.5771      5.217     72.189      0.000     366.353     386.801
-C(muni_name)[T.MAYWOOD BORO]                452.0844      9.200     49.139      0.000     434.053     470.116
-C(muni_name)[T.MIDDLESEX BORO]              380.9058      2.589    147.107      0.000     375.831     385.981
-C(muni_name)[T.MIDLAND PARK BORO]           427.2483      9.517     44.895      0.000     408.596     445.900
-C(muni_name)[T.MONTCLAIR TWP]               390.2533      9.089     42.938      0.000     372.440     408.067
-C(muni_name)[T.MONTGOMERY TWP]              398.1570      8.170     48.735      0.000     382.145     414.169
-C(muni_name)[T.MONTVALE BORO]               374.5996      9.349     40.068      0.000     356.276     392.924
-C(muni_name)[T.MOONACHIE BORO]              411.9715      8.303     49.617      0.000     395.698     428.245
-C(muni_name)[T.MOORESTOWN TWP]              426.6784      7.313     58.342      0.000     412.344     441.012
-C(muni_name)[T.MORRISTOWN TOWN]             399.2398      8.230     48.509      0.000     383.109     415.371
-C(muni_name)[T.MOUNT ARLINGTON BORO]        306.5409      1.656    185.056      0.000     303.294     309.788
-C(muni_name)[T.MOUNT LAUREL TWP]            371.7474      2.698    137.798      0.000     366.460     377.035
-C(muni_name)[T.MOUNT OLIVE TWP]             388.4896      5.523     70.339      0.000     377.665     399.315
-C(muni_name)[T.MOUNTAIN LAKES BORO]         346.6843     11.650     29.758      0.000     323.850     369.518
-C(muni_name)[T.MOUNTAINSIDE BORO]           419.9145      1.886    222.673      0.000     416.218     423.611
-C(muni_name)[T.NEW BRUNSWICK CITY]          577.9567      7.422     77.869      0.000     563.409     592.504
-C(muni_name)[T.NEW MILFORD BORO]            423.5673      7.786     54.398      0.000     408.306     438.828
-C(muni_name)[T.NEW PROVIDENCE BORO]         385.3801      8.134     47.377      0.000     369.437     401.323
-C(muni_name)[T.NEWARK CITY]                 408.7500      9.683     42.214      0.000     389.772     427.728
-C(muni_name)[T.NEWTON TOWN]                 386.5222      5.681     68.042      0.000     375.388     397.656
-C(muni_name)[T.NORTH ARLINGTON BORO]        391.6233      9.027     43.385      0.000     373.931     409.315
-C(muni_name)[T.NORTH BERGEN TWP]            393.3487      8.070     48.742      0.000     377.532     409.166
-C(muni_name)[T.NORTH BRUNSWICK TWP]         404.3325      8.996     44.947      0.000     386.701     421.964
-C(muni_name)[T.NORTH HALEDON BORO]          414.9286      8.692     47.735      0.000     397.892     431.965
-C(muni_name)[T.NORTH WILDWOOD CITY]         203.3307      2.467     82.419      0.000     198.495     208.166
-C(muni_name)[T.NORTHFIELD CITY]             409.1414     10.055     40.689      0.000     389.434     428.849
-C(muni_name)[T.NORTHVALE BORO]              400.9750      6.019     66.620      0.000     389.178     412.772
-C(muni_name)[T.NORWOOD BORO]                392.2673      9.067     43.264      0.000     374.497     410.038
-C(muni_name)[T.NUTLEY TWP]                  418.7559      6.886     60.809      0.000     405.259     432.253
-C(muni_name)[T.OAKLAND BORO]                263.2680      7.574     34.762      0.000     248.424     278.112
-C(muni_name)[T.OCEAN CITY]                  398.8997      7.329     54.428      0.000     384.535     413.264
-C(muni_name)[T.OCEAN GATE BORO]             -62.1775      6.121    -10.157      0.000     -74.175     -50.180
-C(muni_name)[T.OLD TAPPAN BORO]             371.1361      2.590    143.286      0.000     366.059     376.213
-C(muni_name)[T.PALISADES PARK BORO]         385.4980      8.068     47.783      0.000     369.686     401.310
-C(muni_name)[T.PARSIPPANY-TROY HILLS TWP]   336.4754     11.176     30.107      0.000     314.571     358.380
-C(muni_name)[T.PASSAIC CITY]                404.2793      7.140     56.620      0.000     390.285     418.274
-C(muni_name)[T.PATERSON CITY]               425.9573      6.525     65.281      0.000     413.169     438.746
-C(muni_name)[T.PENNINGTON BORO]             437.0372      9.061     48.231      0.000     419.277     454.797
-C(muni_name)[T.PERTH AMBOY CITY]            206.2289      2.449     84.213      0.000     201.429     211.029
-C(muni_name)[T.PISCATAWAY TWP]              403.0124      8.815     45.721      0.000     385.736     420.289
-C(muni_name)[T.PLAINFIELD CITY]             416.4853      9.611     43.333      0.000     397.648     435.323
-C(muni_name)[T.PLAINSBORO TWP]              382.7943      7.433     51.498      0.000     368.226     397.363
-C(muni_name)[T.POINT PLEASANT BEACH BORO]   189.8382      3.127     60.705      0.000     183.709     195.967
-C(muni_name)[T.PRINCETON]                   403.3068      7.821     51.566      0.000     387.978     418.636
-C(muni_name)[T.RAHWAY CITY]                 197.7294      3.656     54.090      0.000     190.565     204.894
-C(muni_name)[T.RANDOLPH TWP]                479.8904      2.973    161.442      0.000     474.064     485.716
-C(muni_name)[T.RARITAN TWP]                 390.6168      7.216     54.133      0.000     376.474     404.760
-C(muni_name)[T.READINGTON TWP]              383.3530      7.561     50.703      0.000     368.534     398.172
-C(muni_name)[T.RIDGEFIELD BORO]            -326.6111      3.735    -87.441      0.000    -333.932    -319.290
-C(muni_name)[T.RIVER EDGE BORO]             389.0171      8.162     47.662      0.000     373.020     405.014
-C(muni_name)[T.RIVER VALE TWP]              336.9159     10.516     32.037      0.000     316.304     357.528
-C(muni_name)[T.ROBBINSVILLE TWP]            464.3748      5.932     78.289      0.000     452.749     476.000
-C(muni_name)[T.ROCHELLE PARK TWP]           200.2740      2.947     67.952      0.000     194.497     206.051
-C(muni_name)[T.ROSELLE PARK BORO]           379.9941      7.515     50.564      0.000     365.265     394.723
-C(muni_name)[T.ROXBURY TWP]                 401.9900      7.427     54.128      0.000     387.434     416.546
-C(muni_name)[T.RUMSON BORO]                 282.8553      6.473     43.700      0.000     270.169     295.542
-C(muni_name)[T.RUNNEMEDE BORO]             -157.2973      2.944    -53.421      0.000    -163.068    -151.526
-C(muni_name)[T.RUTHERFORD BORO]            -232.7211      2.215   -105.052      0.000    -237.063    -228.379
-C(muni_name)[T.SADDLE RIVER BORO]           378.4555      7.840     48.274      0.000     363.090     393.821
-C(muni_name)[T.SCOTCH PLAINS TWP]           391.5265      7.317     53.512      0.000     377.186     405.867
-C(muni_name)[T.SEA ISLE CITY]               424.4720      9.564     44.380      0.000     405.726     443.218
-C(muni_name)[T.SEASIDE HEIGHTS BORO]        395.0948      8.610     45.888      0.000     378.219     411.970
-C(muni_name)[T.SECAUCUS TOWN]               401.2508      7.782     51.559      0.000     385.998     416.504
-C(muni_name)[T.SOUTH AMBOY CITY]            391.4036      7.813     50.099      0.000     376.091     406.716
-C(muni_name)[T.SOUTH BOUND BROOK BORO]      409.5377      5.724     71.548      0.000     398.319     420.756
-C(muni_name)[T.SOUTH HACKENSACK TWP]        412.4514      6.763     60.986      0.000     399.196     425.707
-C(muni_name)[T.SOUTH PLAINFIELD BORO]       416.1038      9.255     44.960      0.000     397.965     434.243
-C(muni_name)[T.STAFFORD TWP]                405.5267      8.557     47.394      0.000     388.756     422.297
-C(muni_name)[T.TEANECK TWP]                 419.0014      8.633     48.534      0.000     402.081     435.922
-C(muni_name)[T.TENAFLY BORO]                363.3216      3.659     99.293      0.000     356.150     370.493
-C(muni_name)[T.TOMS RIVER TWP]              213.9823      4.716     45.373      0.000     204.739     223.226
-C(muni_name)[T.UNION CITY]                  333.4582      7.105     46.933      0.000     319.533     347.384
-C(muni_name)[T.UPPER DEERFIELD TWP]         359.8360     11.409     31.539      0.000     337.474     382.198
-C(muni_name)[T.UPPER FREEHOLD TWP]          362.8817      5.183     70.016      0.000     352.724     373.040
-C(muni_name)[T.UPPER SADDLE RIVER BORO]     403.9357     10.079     40.079      0.000     384.182     423.689
-C(muni_name)[T.UPPER TWP]                   431.3480      9.559     45.125      0.000     412.613     450.083
-C(muni_name)[T.VERNON TWP]                  364.4641     11.284     32.300      0.000     342.349     386.580
-C(muni_name)[T.VERONA TWP]                  353.9083     12.318     28.731      0.000     329.765     378.051
-C(muni_name)[T.VINELAND CITY]               384.9680      7.959     48.367      0.000     369.368     400.568
-C(muni_name)[T.WALLINGTON BORO]             386.0861      7.617     50.687      0.000     371.157     401.015
-C(muni_name)[T.WANTAGE TWP]                 413.8175     10.806     38.294      0.000     392.637     434.998
-C(muni_name)[T.WARREN TWP]                  194.0437      7.151     27.134      0.000     180.027     208.060
-C(muni_name)[T.WATCHUNG BORO]               381.9186      6.819     56.011      0.000     368.554     395.283
-C(muni_name)[T.WAYNE TWP]                   389.1574      6.403     60.773      0.000     376.607     401.708
-C(muni_name)[T.WEST AMWELL TWP]             297.9275      1.597    186.513      0.000     294.797     301.058
-C(muni_name)[T.WEST CAPE MAY BORO]          398.4912     10.717     37.182      0.000     377.486     419.497
-C(muni_name)[T.WEST MILFORD TWP]            409.8840      4.553     90.027      0.000     400.960     418.808
-C(muni_name)[T.WEST NEW YORK TOWN]          436.9261      4.850     90.083      0.000     427.420     446.432
-C(muni_name)[T.WEST ORANGE TWP]             423.3443      8.979     47.149      0.000     405.746     440.943
-C(muni_name)[T.WEST WILDWOOD BORO]          386.0328      4.652     82.985      0.000     376.915     395.150
-C(muni_name)[T.WEST WINDSOR TWP]            392.0485      7.386     53.078      0.000     377.572     406.525
-C(muni_name)[T.WESTFIELD TOWN]              374.5094      8.754     42.779      0.000     357.351     391.668
-C(muni_name)[T.WESTWOOD BORO]               177.0333      4.813     36.781      0.000     167.600     186.467
-C(muni_name)[T.WILDWOOD CITY]               310.7895      7.499     41.444      0.000     296.092     325.487
-C(muni_name)[T.WILLINGBORO TWP]             390.6782      8.515     45.881      0.000     373.989     407.367
-C(muni_name)[T.WOOD-RIDGE BORO]             414.6646      8.959     46.287      0.000     397.106     432.223
-C(muni_name)[T.WOODCLIFF LAKE BORO]         414.1144      9.245     44.795      0.000     395.995     432.234
-C(muni_name)[T.WOODLAND TWP]                379.0079      7.139     53.093      0.000     365.017     392.999
-C(muni_name)[T.WYCKOFF TWP]                 354.6334     11.098     31.954      0.000     332.881     376.386
-C(year)[T.2016]                             -22.0634      8.071     -2.734      0.006     -37.882      -6.245
-C(year)[T.2017]                             -37.8501      8.790     -4.306      0.000     -55.078     -20.622
-C(year)[T.2018]                             -54.9019      9.965     -5.509      0.000     -74.433     -35.371
-C(year)[T.2019]                             -54.3621     12.797     -4.248      0.000     -79.443     -29.281
-C(year)[T.2021]                             -74.7137      9.923     -7.529      0.000     -94.163     -55.265
-C(year)[T.2022]                             -44.3139     10.794     -4.105      0.000     -65.470     -23.158
-C(year)[T.2023]                             -81.7305     11.698     -6.987      0.000    -104.658     -58.803
-C(year)[T.2024]                             -89.8114     14.381     -6.245      0.000    -117.998     -61.625
-C(year)[T.2025]                             -76.2438     12.206     -6.246      0.000    -100.168     -52.320
-is_resilient:C(year)[2015]                  193.9159     14.138     13.716      0.000     166.207     221.625
-is_resilient:C(year)[2016]                  210.0704     15.659     13.416      0.000     179.380     240.761
-is_resilient:C(year)[2017]                  193.4529      7.120     27.171      0.000     179.498     207.407
-is_resilient:C(year)[2018]                  200.3787      8.518     23.523      0.000     183.683     217.074
-is_resilient:C(year)[2019]                  186.6035     12.776     14.606      0.000     161.563     211.644
-is_resilient:C(year)[2021]                  194.5365      9.368     20.765      0.000     176.175     212.898
-is_resilient:C(year)[2022]                  189.7205     14.444     13.135      0.000     161.411     218.030
-is_resilient:C(year)[2023]                  200.6586     12.949     15.496      0.000     175.279     226.038
-is_resilient:C(year)[2024]                  189.0537     13.197     14.325      0.000     163.187     214.920
-is_resilient:C(year)[2025]                  201.6441      9.790     20.596      0.000     182.456     220.833
-debt_to_gdp                                   1.6842      1.896      0.888      0.374      -2.032       5.400
-time_to_maturity                              4.4473      0.509      8.744      0.000       3.450       5.444
+Intercept                                   -14.6347   1.48e+04     -0.001      0.999   -2.91e+04    2.91e+04
+C(muni_name)[T.ALLAMUCHY TWP]                51.5740   7066.160      0.007      0.994   -1.38e+04    1.39e+04
+C(muni_name)[T.BAYONNE CITY]                 38.9745   4989.916      0.008      0.994   -9741.082    9819.031
+C(muni_name)[T.BERGENFIELD BORO]          -2.682e+11        nan        nan        nan         nan         nan
+C(muni_name)[T.BERKELEY HEIGHTS TWP]          9.2144   1.23e+04      0.001      0.999   -2.41e+04    2.41e+04
+C(muni_name)[T.BLOOMFIELD TWP]               80.6974   7890.019      0.010      0.992   -1.54e+04    1.55e+04
+C(muni_name)[T.BOGOTA BORO]                  55.3159   8105.273      0.007      0.995   -1.58e+04    1.59e+04
+C(muni_name)[T.BOUND BROOK BORO]             59.9676   5318.520      0.011      0.991   -1.04e+04    1.05e+04
+C(muni_name)[T.BRANCHBURG TWP]            -2.682e+11   6.39e+16   -4.2e-06      1.000   -1.25e+17    1.25e+17
+C(muni_name)[T.BRICK TWP]                 -2.682e+11   6.48e+16  -4.14e-06      1.000   -1.27e+17    1.27e+17
+C(muni_name)[T.BUENA BORO]                   25.2066   7448.209      0.003      0.997   -1.46e+04    1.46e+04
+C(muni_name)[T.CARLSTADT BORO]               88.6976   1725.757      0.051      0.959   -3293.724    3471.119
+C(muni_name)[T.CARTERET BORO]             -2.682e+11   7.44e+16   -3.6e-06      1.000   -1.46e+17    1.46e+17
+C(muni_name)[T.CHERRY HILL TWP]              34.6728   1535.949      0.023      0.982   -2975.731    3045.077
+C(muni_name)[T.CLARK TWP]                    86.9277   1.17e+04      0.007      0.994   -2.29e+04     2.3e+04
+C(muni_name)[T.CLIFFSIDE PARK BORO]          34.1180   1706.900      0.020      0.984   -3311.344    3379.580
+C(muni_name)[T.CRANBURY TWP]                 16.4780   8476.503      0.002      0.998   -1.66e+04    1.66e+04
+C(muni_name)[T.CRANFORD TWP]                 50.0624   9628.833      0.005      0.996   -1.88e+04    1.89e+04
+C(muni_name)[T.CRESSKILL BORO]               13.6813        nan        nan        nan         nan         nan
+C(muni_name)[T.DEMAREST BORO]                16.1764    266.504      0.061      0.952    -506.162     538.515
+C(muni_name)[T.DENVILLE TWP]                 35.6076   1.09e+04      0.003      0.997   -2.14e+04    2.14e+04
+C(muni_name)[T.DUMONT BORO]                  24.3582    815.893      0.030      0.976   -1574.763    1623.479
+C(muni_name)[T.EAST BRUNSWICK TWP]           15.8972   5246.551      0.003      0.998   -1.03e+04    1.03e+04
+C(muni_name)[T.EAST ORANGE CITY]             81.9488   4971.591      0.016      0.987   -9662.190    9826.088
+C(muni_name)[T.EAST RUTHERFORD BORO]        113.3358   7539.247      0.015      0.988   -1.47e+04    1.49e+04
+C(muni_name)[T.EAST WINDSOR TWP]             45.2042   7687.487      0.006      0.995    -1.5e+04    1.51e+04
+C(muni_name)[T.ELIZABETH CITY]               43.9210   2302.153      0.019      0.985   -4468.217    4556.059
+C(muni_name)[T.ELMWOOD PARK BORO]            38.0079   6113.681      0.006      0.995   -1.19e+04     1.2e+04
+C(muni_name)[T.EMERSON BORO]                 60.3232   1.13e+04      0.005      0.996    -2.2e+04    2.21e+04
+C(muni_name)[T.ENGLEWOOD CITY]               69.5397   5296.314      0.013      0.990   -1.03e+04    1.05e+04
+C(muni_name)[T.EWING TWP]                    32.7522   2005.045      0.016      0.987   -3897.064    3962.568
+C(muni_name)[T.FAIRVIEW BORO]                44.6824   3301.823      0.014      0.989   -6426.773    6516.137
+C(muni_name)[T.FANWOOD BORO]                 49.0965   2.47e+04      0.002      0.998   -4.84e+04    4.85e+04
+C(muni_name)[T.FLEMINGTON BORO]              36.3051        nan        nan        nan         nan         nan
+C(muni_name)[T.FLORENCE TWP]                 51.0686   3.01e+04      0.002      0.999    -5.9e+04    5.91e+04
+C(muni_name)[T.FORT LEE BORO]                36.7890     52.117      0.706      0.480     -65.359     138.937
+C(muni_name)[T.GARFIELD CITY]                42.7157    5.1e+04      0.001      0.999   -9.99e+04       1e+05
+C(muni_name)[T.GARWOOD BORO]                 47.1284   1.59e+04      0.003      0.998   -3.12e+04    3.13e+04
+C(muni_name)[T.GIBBSBORO BORO]               40.2398   1253.422      0.032      0.974   -2416.421    2496.901
+C(muni_name)[T.GLEN RIDGE BORO]              12.7775   1.46e+04      0.001      0.999   -2.86e+04    2.86e+04
+C(muni_name)[T.GLEN ROCK BORO]               10.1051   5277.352      0.002      0.998   -1.03e+04    1.04e+04
+C(muni_name)[T.HACKENSACK CITY]              67.5085   8047.011      0.008      0.993   -1.57e+04    1.58e+04
+C(muni_name)[T.HADDONFIELD BORO]             44.5031   1088.835      0.041      0.967   -2089.574    2178.580
+C(muni_name)[T.HARDING TWP]                  21.5810   6079.830      0.004      0.997   -1.19e+04    1.19e+04
+C(muni_name)[T.HASBROUCK HEIGHTS BORO]       83.7002   1.41e+04      0.006      0.995   -2.76e+04    2.78e+04
+C(muni_name)[T.HAWORTH BORO]                 62.8430   2.22e+04      0.003      0.998   -4.34e+04    4.36e+04
+C(muni_name)[T.HIGHLAND PARK BORO]          129.3715      1e+04      0.013      0.990   -1.95e+04    1.97e+04
+C(muni_name)[T.HILLSIDE TWP]                 46.5411   1521.194      0.031      0.976   -2934.945    3028.027
+C(muni_name)[T.HO-HO-KUS BORO]               17.3983   2.38e+04      0.001      0.999   -4.66e+04    4.67e+04
+C(muni_name)[T.HOLMDEL TWP]                  62.0412   2.15e+04      0.003      0.998   -4.21e+04    4.22e+04
+C(muni_name)[T.IRVINGTON TWP]                26.3159   7513.863      0.004      0.997   -1.47e+04    1.48e+04
+C(muni_name)[T.JACKSON TWP]                  35.2197   5033.873      0.007      0.994   -9830.990    9901.430
+C(muni_name)[T.JERSEY CITY]               -2.682e+11   7.81e+16  -3.43e-06      1.000   -1.53e+17    1.53e+17
+C(muni_name)[T.KENILWORTH BORO]              51.6826    1.5e+04      0.003      0.997   -2.93e+04    2.94e+04
+C(muni_name)[T.KINGWOOD TWP]                 55.2257   1.86e+04      0.003      0.998   -3.64e+04    3.65e+04
+C(muni_name)[T.LAKEWOOD TWP]                 27.8692   1.28e+04      0.002      0.998   -2.51e+04    2.52e+04
+C(muni_name)[T.LAMBERTVILLE CITY]            42.4348   5078.523      0.008      0.993   -9911.287    9996.157
+C(muni_name)[T.LAVALLETTE BORO]              95.2343   5741.588      0.017      0.987   -1.12e+04    1.13e+04
+C(muni_name)[T.LEONIA BORO]                  40.2388   2.07e+04      0.002      0.998   -4.06e+04    4.07e+04
+C(muni_name)[T.LITTLE FALLS TWP]             66.8558   1.77e+04      0.004      0.997   -3.45e+04    3.47e+04
+C(muni_name)[T.LITTLE FERRY BORO]            29.0892   1.42e+04      0.002      0.998   -2.79e+04    2.79e+04
+C(muni_name)[T.LIVINGSTON TWP]               52.5962   4203.978      0.013      0.990   -8187.049    8292.241
+C(muni_name)[T.LODI BORO]                    47.8637   4478.866      0.011      0.991   -8730.552    8826.280
+C(muni_name)[T.LONG BRANCH CITY]             31.7414   1.15e+04      0.003      0.998   -2.25e+04    2.26e+04
+C(muni_name)[T.LYNDHURST TWP]                57.3504   1.14e+04      0.005      0.996   -2.24e+04    2.25e+04
+C(muni_name)[T.MADISON BORO]                  6.9087        nan        nan        nan         nan         nan
+C(muni_name)[T.MAHWAH TWP]                   31.4513   1.62e+04      0.002      0.998   -3.18e+04    3.18e+04
+C(muni_name)[T.MANASQUAN BORO]               64.9898   3695.779      0.018      0.986   -7178.605    7308.584
+C(muni_name)[T.MANCHESTER TWP]               48.6281   8965.200      0.005      0.996   -1.75e+04    1.76e+04
+C(muni_name)[T.MANTOLOKING BORO]             48.7131   1.09e+04      0.004      0.996   -2.13e+04    2.14e+04
+C(muni_name)[T.MANVILLE BORO]             -2.682e+11   8.33e+16  -3.22e-06      1.000   -1.63e+17    1.63e+17
+C(muni_name)[T.MAPLEWOOD TWP]                39.5147        nan        nan        nan         nan         nan
+C(muni_name)[T.MAYWOOD BORO]                 91.1410   1.01e+04      0.009      0.993   -1.97e+04    1.99e+04
+C(muni_name)[T.MIDDLESEX BORO]               35.0245        nan        nan        nan         nan         nan
+C(muni_name)[T.MIDLAND PARK BORO]            65.4933   1.16e+04      0.006      0.995   -2.27e+04    2.28e+04
+C(muni_name)[T.MONTCLAIR TWP]                31.4231   9813.327      0.003      0.997   -1.92e+04    1.93e+04
+C(muni_name)[T.MONTGOMERY TWP]               41.6084   5302.073      0.008      0.994   -1.04e+04    1.04e+04
+C(muni_name)[T.MONTVALE BORO]                13.8325   1.35e+04      0.001      0.999   -2.65e+04    2.65e+04
+C(muni_name)[T.MOONACHIE BORO]               53.1213    1.5e+04      0.004      0.997   -2.93e+04    2.94e+04
+C(muni_name)[T.MOORESTOWN TWP]               74.0916    1.2e+04      0.006      0.995   -2.34e+04    2.35e+04
+C(muni_name)[T.MORRISTOWN TOWN]              43.3002   1.59e+04      0.003      0.998   -3.11e+04    3.12e+04
+C(muni_name)[T.NEW BRUNSWICK CITY]          206.5788        nan        nan        nan         nan         nan
+C(muni_name)[T.NEW MILFORD BORO]          -2.682e+11   5.03e+16  -5.33e-06      1.000   -9.86e+16    9.86e+16
+C(muni_name)[T.NEW PROVIDENCE BORO]          30.1842   1.18e+04      0.003      0.998   -2.32e+04    2.32e+04
+C(muni_name)[T.NEWARK CITY]               -2.682e+11        nan        nan        nan         nan         nan
+C(muni_name)[T.NEWTON TOWN]                  38.8503   1.62e+04      0.002      0.998   -3.17e+04    3.18e+04
+C(muni_name)[T.NORTH ARLINGTON BORO]         31.8921   1.52e+04      0.002      0.998   -2.97e+04    2.98e+04
+C(muni_name)[T.NORTH BERGEN TWP]             37.3056   1.23e+04      0.003      0.998    -2.4e+04    2.41e+04
+C(muni_name)[T.NORTH BRUNSWICK TWP]          45.2695   1.64e+04      0.003      0.998   -3.21e+04    3.22e+04
+C(muni_name)[T.NORTH HALEDON BORO]           53.7740   1.87e+04      0.003      0.998   -3.66e+04    3.67e+04
+C(muni_name)[T.NORTH WILDWOOD CITY]       -2.682e+11   7.18e+16  -3.74e-06      1.000   -1.41e+17    1.41e+17
+C(muni_name)[T.NORWOOD BORO]                 32.5830   1.26e+04      0.003      0.998   -2.47e+04    2.47e+04
+C(muni_name)[T.OAKLAND BORO]                 98.4749   1.66e+04      0.006      0.995   -3.24e+04    3.26e+04
+C(muni_name)[T.OCEAN CITY]                -2.682e+11   5.68e+16  -4.72e-06      1.000   -1.11e+17    1.11e+17
+C(muni_name)[T.OLD TAPPAN BORO]              26.4851   1.37e+04      0.002      0.998   -2.69e+04     2.7e+04
+C(muni_name)[T.PALISADES PARK BORO]          42.2428   1.37e+04      0.003      0.998   -2.68e+04    2.68e+04
+C(muni_name)[T.PATERSON CITY]                86.4214   1450.377      0.060      0.952   -2756.265    2929.108
+C(muni_name)[T.PENNINGTON BORO]              75.2745   1.69e+04      0.004      0.996    -3.3e+04    3.31e+04
+C(muni_name)[T.PERTH AMBOY CITY]             42.9621   7571.913      0.006      0.995   -1.48e+04    1.49e+04
+C(muni_name)[T.PISCATAWAY TWP]               44.5195   9876.637      0.005      0.996   -1.93e+04    1.94e+04
+C(muni_name)[T.PLAINFIELD CITY]              57.7093   1.65e+04      0.004      0.997   -3.22e+04    3.23e+04
+C(muni_name)[T.PLAINSBORO TWP]               29.8610   3748.979      0.008      0.994   -7318.003    7377.725
+C(muni_name)[T.POINT PLEASANT BEACH BORO]    40.0803    2.4e+04      0.002      0.999   -4.71e+04    4.72e+04
+C(muni_name)[T.PRINCETON]                    48.3877   7040.760      0.007      0.995   -1.38e+04    1.38e+04
+C(muni_name)[T.RAHWAY CITY]                  35.7416   1.32e+04      0.003      0.998   -2.58e+04    2.59e+04
+C(muni_name)[T.RARITAN TWP]                  39.2133   1.28e+04      0.003      0.998    -2.5e+04    2.51e+04
+C(muni_name)[T.READINGTON TWP]               25.8152   1.75e+04      0.001      0.999   -3.44e+04    3.44e+04
+C(muni_name)[T.RIVER EDGE BORO]              47.9474   2.04e+04      0.002      0.998   -3.99e+04       4e+04
+C(muni_name)[T.RIVER VALE TWP]              -21.5485    1.8e+04     -0.001      0.999   -3.54e+04    3.54e+04
+C(muni_name)[T.ROCHELLE PARK TWP]         -2.682e+11   6.72e+16  -3.99e-06      1.000   -1.32e+17    1.32e+17
+C(muni_name)[T.ROSELLE PARK BORO]            25.1647   1.02e+04      0.002      0.998      -2e+04       2e+04
+C(muni_name)[T.ROXBURY TWP]                  49.5893   1.71e+04      0.003      0.998   -3.34e+04    3.35e+04
+C(muni_name)[T.SADDLE RIVER BORO]            24.3065   1.92e+04      0.001      0.999   -3.75e+04    3.76e+04
+C(muni_name)[T.SCOTCH PLAINS TWP]            46.8231   6926.744      0.007      0.995   -1.35e+04    1.36e+04
+C(muni_name)[T.SEA ISLE CITY]                65.3149   1.92e+04      0.003      0.997   -3.76e+04    3.77e+04
+C(muni_name)[T.SEASIDE HEIGHTS BORO]      -2.682e+11      6e+16  -4.47e-06      1.000   -1.18e+17    1.18e+17
+C(muni_name)[T.SECAUCUS TOWN]                43.1012   1.74e+04      0.002      0.998    -3.4e+04    3.41e+04
+C(muni_name)[T.SOUTH AMBOY CITY]             35.2404   1.24e+04      0.003      0.998   -2.43e+04    2.43e+04
+C(muni_name)[T.SOUTH BOUND BROOK BORO]       57.3172   1.79e+04      0.003      0.997    -3.5e+04    3.51e+04
+C(muni_name)[T.SOUTH HACKENSACK TWP]         55.9639        nan        nan        nan         nan         nan
+C(muni_name)[T.SOUTH PLAINFIELD BORO]        53.8674        nan        nan        nan         nan         nan
+C(muni_name)[T.STAFFORD TWP]              -2.682e+11   6.89e+16  -3.89e-06      1.000   -1.35e+17    1.35e+17
+C(muni_name)[T.TEANECK TWP]                  60.6470   1.67e+04      0.004      0.997   -3.26e+04    3.27e+04
+C(muni_name)[T.TENAFLY BORO]                 17.3198   1.97e+04      0.001      0.999   -3.85e+04    3.86e+04
+C(muni_name)[T.TOMS RIVER TWP]               51.3992        nan        nan        nan         nan         nan
+C(muni_name)[T.UPPER FREEHOLD TWP]           17.7802   1.54e+04      0.001      0.999   -3.02e+04    3.03e+04
+C(muni_name)[T.UPPER SADDLE RIVER BORO]      41.4215    1.4e+04      0.003      0.998   -2.75e+04    2.76e+04
+C(muni_name)[T.UPPER TWP]                    71.0315   1.19e+04      0.006      0.995   -2.32e+04    2.34e+04
+C(muni_name)[T.VINELAND CITY]                29.1916   2.38e+04      0.001      0.999   -4.66e+04    4.67e+04
+C(muni_name)[T.WALLINGTON BORO]              30.5113    1.4e+04      0.002      0.998   -2.74e+04    2.74e+04
+C(muni_name)[T.WANTAGE TWP]                  51.4905   1.67e+04      0.003      0.998   -3.26e+04    3.27e+04
+C(muni_name)[T.WARREN TWP]                   35.3820   1.89e+04      0.002      0.999    -3.7e+04     3.7e+04
+C(muni_name)[T.WATCHUNG BORO]                33.3787        nan        nan        nan         nan         nan
+C(muni_name)[T.WAYNE TWP]                    30.2986   1.27e+04      0.002      0.998   -2.48e+04    2.49e+04
+C(muni_name)[T.WEST CAPE MAY BORO]           44.0820   7445.682      0.006      0.995   -1.45e+04    1.46e+04
+C(muni_name)[T.WEST NEW YORK TOWN]           77.4268   1.45e+04      0.005      0.996   -2.84e+04    2.85e+04
+C(muni_name)[T.WEST ORANGE TWP]              63.5738   1.36e+04      0.005      0.996   -2.66e+04    2.68e+04
+C(muni_name)[T.WEST WILDWOOD BORO]        -2.682e+11   4.32e+16  -6.21e-06      1.000   -8.47e+16    8.47e+16
+C(muni_name)[T.WEST WINDSOR TWP]             44.2242   1.45e+04      0.003      0.998   -2.84e+04    2.84e+04
+C(muni_name)[T.WESTFIELD TOWN]               16.9297   1.33e+04      0.001      0.999    -2.6e+04    2.61e+04
+C(muni_name)[T.WESTWOOD BORO]             -2.682e+11   7.01e+16  -3.83e-06      1.000   -1.37e+17    1.37e+17
+C(muni_name)[T.WILLINGBORO TWP]              36.6012   1.11e+04      0.003      0.997   -2.17e+04    2.18e+04
+C(muni_name)[T.WOOD-RIDGE BORO]              72.2776   2.09e+04      0.003      0.997   -4.09e+04    4.11e+04
+C(muni_name)[T.WOODCLIFF LAKE BORO]          57.6295   1.36e+04      0.004      0.997   -2.66e+04    2.67e+04
+C(muni_name)[T.WOODLAND TWP]                 25.3594   1.63e+04      0.002      0.999    -3.2e+04     3.2e+04
+C(year)[T.2016]                             -15.9832   1290.108     -0.012      0.990   -2544.548    2512.582
+C(year)[T.2017]                             -25.1097   2414.955     -0.010      0.992   -4758.334    4708.115
+C(year)[T.2018]                             -36.7761    260.036     -0.141      0.888    -546.437     472.885
+C(year)[T.2019]                             -40.6811   1045.911     -0.039      0.969   -2090.629    2009.267
+C(year)[T.2021]                             -48.5805        nan        nan        nan         nan         nan
+C(year)[T.2022]                             -22.4011   2548.652     -0.009      0.993   -5017.668    4972.866
+C(year)[T.2023]                             -58.9028    698.677     -0.084      0.933   -1428.284    1310.479
+C(year)[T.2024]                             -65.3216    455.446     -0.143      0.886    -957.979     827.336
+C(year)[T.2025]                             -53.7679   1946.124     -0.028      0.978   -3868.101    3760.566
+ever_champ:C(year)[2015]                   2.682e+11   5.92e+16   4.53e-06      1.000   -1.16e+17    1.16e+17
+ever_champ:C(year)[2016]                   2.682e+11   6.69e+16   4.01e-06      1.000   -1.31e+17    1.31e+17
+ever_champ:C(year)[2017]                   2.682e+11   2.46e+16   1.09e-05      1.000   -4.82e+16    4.82e+16
+ever_champ:C(year)[2018]                   2.682e+11   2.43e+16   1.11e-05      1.000   -4.76e+16    4.76e+16
+ever_champ:C(year)[2019]                   2.682e+11   7.33e+16   3.66e-06      1.000   -1.44e+17    1.44e+17
+ever_champ:C(year)[2021]                   2.682e+11   3.72e+16    7.2e-06      1.000    -7.3e+16     7.3e+16
+ever_champ:C(year)[2022]                   2.682e+11   4.88e+16    5.5e-06      1.000   -9.56e+16    9.56e+16
+ever_champ:C(year)[2023]                   2.682e+11   7.96e+16   3.37e-06      1.000   -1.56e+17    1.56e+17
+ever_champ:C(year)[2024]                   2.682e+11   4.59e+16   5.85e-06      1.000   -8.99e+16    8.99e+16
+ever_champ:C(year)[2025]                   2.682e+11   7.65e+16   3.51e-06      1.000    -1.5e+17     1.5e+17
+debt_to_gdp                                   0.7704      2.161      0.356      0.721      -3.465       5.006
+time_to_maturity                              4.4207      2.479      1.783      0.075      -0.438       9.280
 ==============================================================================
-Omnibus:                   208346.892   Durbin-Watson:                   0.646
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):       4409286042.872
-Skew:                          -4.740   Prob(JB):                         0.00
-Kurtosis:                     780.066   Cond. No.                     3.48e+16
+Omnibus:                    11595.176   Durbin-Watson:                   0.536
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            33014.464
+Skew:                           0.366   Prob(JB):                         0.00
+Kurtosis:                       5.025   Cond. No.                     1.76e+14
 ==============================================================================
 
 Notes:
 [1] Standard Errors are robust to cluster correlation (cluster)
-[2] The smallest eigenvalue is 1.37e-26. This might indicate that there are
+[2] The smallest eigenvalue is 5.14e-22. This might indicate that there are
 strong multicollinearity problems or that the design matrix is singular.
