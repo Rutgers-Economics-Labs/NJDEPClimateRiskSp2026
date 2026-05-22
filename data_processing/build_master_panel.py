@@ -22,7 +22,7 @@ NOTE on slr_exposure_pct:
   This is the gold-standard metric for the DiD model as it captures 
   the economic severity of climate risk, not just geographic area.
 
-Policy pivot date: 2022-07-01 (start of NJ SFY2023, first full CHAMP/STORM Act year)
+CHAMP period date: 2023-01-01 (first calendar year with CHAMP available)
 
 Usage:
   python3 data_processing/build_master_panel.py
@@ -46,7 +46,7 @@ MS4_FILE    = os.path.join(DATA_CLEANED, "finance", "nj_ms4_resilience.csv")
 CHAMP_FILE  = os.path.join(DATA_CLEANED, "finance", "nj_champ_raw_scores.csv")
 OUTPUT_FILE = os.path.join(DATA_CLEANED, "final_panel_master.csv")
 
-PIVOT_DATE = "2022-07-01"   # NJ CHAMP/STORM Act treatment cutoff
+CHAMP_PERIOD_START_DATE = "2023-01-01"
 
 # ── Name normalisers / crosswalks ──────────────────────────────────────────
 MUNI_TYPE_SUFFIXES = {
@@ -259,7 +259,7 @@ def build_panel():
     })
     df['issue_date']   = pd.to_datetime(df['issue_date'])
     df['year']         = df['issue_date'].dt.year
-    df['is_post_2022'] = (df['issue_date'] > PIVOT_DATE).astype(int)
+    df['is_post_2023'] = (df['issue_date'] >= CHAMP_PERIOD_START_DATE).astype(int)
     df['yield']        = pd.to_numeric(df.get('yield'), errors='coerce')
     df['mun']          = df['mun'].apply(normalize_mun_key)
 
@@ -406,7 +406,7 @@ def build_panel():
         'ms4_outfall_density',   # MS4 outfalls per sq mile (stormwater infrastructure intensity)
         'ms4_outfall_count',     # raw outfall count (secondary)
         'ms4_tier_a',            # 1 if municipality is listed as Tier A in NJPDES MS4 tier PDF
-        'is_post_2022',          # 1 if trade date > 2022-07-01
+        'is_post_2023',          # 1 if trade date >= 2023-01-01
         'debt_to_av',            # UFB debt-to-assessed-value ratio
         'median_income',         # ACS median household income (2023-25 fwd-filled)
     ]
@@ -433,10 +433,10 @@ def build_panel():
     print(f"  Year range:          {df_final['issue_date'].min().year} – {df_final['issue_date'].max().year}")
     print(f"  CHAMP resilient towns: {df_final[df_final['is_resilient']==1]['muni_name'].nunique()}")
     print(f"  MS4 density (mean):  {df_final['ms4_outfall_density'].mean():.2f} outfalls/sq mi")
-    print(f"  Post-2022 trades:    {df_final['is_post_2022'].sum():,}")
+    print(f"  Post-2023 trades:    {df_final['is_post_2023'].sum():,}")
     print(f"  Avg spread (all):    {df_final['spread_bps'].mean():.2f} bps")
-    print(f"  Avg spread (pre):    {df_final[df_final['is_post_2022']==0]['spread_bps'].mean():.2f} bps")
-    print(f"  Avg spread (post):   {df_final[df_final['is_post_2022']==1]['spread_bps'].mean():.2f} bps")
+    print(f"  Avg spread (pre):    {df_final[df_final['is_post_2023']==0]['spread_bps'].mean():.2f} bps")
+    print(f"  Avg spread (post):   {df_final[df_final['is_post_2023']==1]['spread_bps'].mean():.2f} bps")
     print(f"\n  ✅  slr_exposure_pct = % of Total Market Value @ 4-ft SLR (FINAL)")
     print(f"     Mean={df_final['slr_exposure_pct'].mean():.2f}%  Max={df_final['slr_exposure_pct'].max():.2f}%\n")
 
