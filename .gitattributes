@@ -1,0 +1,7 @@
+*.geojson filter=lfs diff=lfs merge=lfs -text
+data/data_cleaned/nj_muni_spreads_full_trades.csv filter=lfs diff=lfs merge=lfs -text
+data/data_cleaned/nj_trades_by_town.csv filter=lfs diff=lfs merge=lfs -text
+data/data_cleaned/extracted_nj_trades.csv filter=lfs diff=lfs merge=lfs -text
+data/data_cleaned/nj_muni_spreads_full_trades_v2.csv filter=lfs diff=lfs merge=lfs -text
+data/data_cleaned/nj_muni_analysis_final.csv filter=lfs diff=lfs merge=lfs -text
+data/** filter=lfs diff=lfs merge=lfs -text

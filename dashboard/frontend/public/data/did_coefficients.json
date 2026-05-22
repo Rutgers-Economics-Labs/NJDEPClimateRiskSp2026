@@ -1,0 +1,10 @@
+{
+  "ever_champ_is_post_2023": -28.835526496636053,
+  "is_post_2023_slr_exposure_pct": -0.049097054132985124,
+  "ever_champ_is_post_2023_slr_exposure_pct": 0.10490056047629788,
+  "term_premium": 4.410437056814506,
+  "spread_winsor_p1": -113.90562628336758,
+  "spread_winsor_p99": 223.88293018480482,
+  "n_obs": 169586,
+  "note": "Exploratory secondary-trade association using synthetic AAA benchmark, winsorized spread, and towns with both pre/post observations. Model C excludes debt-to-AV."
+}

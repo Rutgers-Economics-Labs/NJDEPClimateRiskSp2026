@@ -1,0 +1,77 @@
+================================================================================
+PROJECT SUMMARY: NJ CLIMATE RISK, CHAMP COHORTS, AND MUNICIPAL BOND TRADES
+================================================================================
+
+1. CURRENT STATUS
+--------------------------------------------------------------------------------
+This repository now supports an exploratory screening analysis, not a final causal
+estimate of NJDEP/CHAMP effects on municipal borrowing costs. The available bond
+data are secondary-market WRDS trades, and spreads are calculated against a
+deterministic synthetic AAA benchmark rather than a validated Bloomberg/MMD AAA
+curve. The results should therefore be framed as diagnostic associations.
+
+2. DATA PIPELINE
+--------------------------------------------------------------------------------
+The current regression panel combines:
+- WRDS secondary-market New Jersey municipal GO-like trades.
+- A synthetic AAA benchmark used to calculate spread_bps.
+- Municipality-level 4-ft SLR tax-base exposure from
+  data/data_cleaned/climate/nj_statewide_frm_scores_FINAL.csv.
+- Available CHAMP applicant rows parsed from local CHAMP PDFs and mapped to
+  canonical municipalities using raw applicant names.
+- UFB debt-to-assessed-value controls and ACS income controls.
+
+The panel now preserves time_to_maturity, ever_champ, first_champ_sfy,
+best_champ_rank, crs_resilient, and a time-varying is_resilient flag that turns
+on at the start of the first observed CHAMP state fiscal year.
+
+3. UPDATED ECONOMETRIC RESULT
+--------------------------------------------------------------------------------
+The primary diagnostic specification uses:
+- towns with both pre- and post-2023 CHAMP-period trade observations;
+- 1st/99th percentile winsorized spreads to reduce the influence of extreme
+  secondary-trade outliers;
+- municipality and year fixed effects;
+- time-to-maturity controls in the fixed-effect DiD and triple-difference
+  models; debt-to-AV is excluded from those two specifications;
+- clustered standard errors by municipality.
+
+The updated triple-difference coefficient for:
+    ever_champ x post_2023 x slr_exposure_pct
+is +0.105 bps per 1 percentage point of SLR exposure, with p=0.652.
+
+This is not statistically distinguishable from zero. The prior headline claim
+that proactive resilience is actively penalized by the bond market is not
+supported by the corrected panel and model.
+
+4. PRE-TREND AND IDENTIFICATION LIMITS
+--------------------------------------------------------------------------------
+The pre-treatment trend check is not clean. The CHAMP cohort has a statistically
+different pre-2023 trend in winsorized spreads:
+    beta = -4.036 bps/year, p=0.0033.
+
+That weakens a causal DiD interpretation. A policy-facing report should not claim
+that the 2023 CHAMP-period cutoff caused spread changes without a stronger
+design, validated treatment timing, and better bond-level controls.
+
+5. REMAINING LIMITATIONS
+--------------------------------------------------------------------------------
+- Synthetic AAA is not a substitute for same-date, same-maturity Bloomberg/MMD AAA.
+- Secondary-market trades are not equivalent to issuance/offering yields.
+- Rating, insurance, tax status, callability, issue size, trade size, and CUSIP
+  liquidity controls are still missing from the available regression panel.
+- CHAMP treatment is based only on locally parsed applicant PDFs. Additional IUP,
+  Water Bank, and CHAMP files may change treatment timing and cohort membership.
+- The panel covers 195 municipalities after matching and control requirements,
+  not all New Jersey municipalities.
+- 2020 is absent from the bond panel.
+
+6. POLICY INTERPRETATION
+--------------------------------------------------------------------------------
+The defensible current conclusion is:
+
+In the available exploratory secondary-trade panel, there is no robust statistical
+evidence that high-SLR-exposure CHAMP-cohort municipalities were penalized after
+the 2023 CHAMP-period cutoff. Further work is needed before drawing conclusions
+about market pricing of NJDEP resilience programs or municipal borrowing cost
+impacts.

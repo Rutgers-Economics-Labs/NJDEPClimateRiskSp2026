@@ -1,0 +1,49 @@
+AIPW-DiD: Doubly-Robust ATE of CHAMP on Municipal Bond Spreads
+======================================================================
+
+Framework: Sant'Anna & Zhao (2020) style AIPW-DiD
+Treatment: ever_champ (binary, municipality-level)
+Outcome: ΔSpread = mean(spread_post) - mean(spread_pre)
+Covariates: ['slr_exposure_pct', 'debt_to_av', 'median_income_10k', 'spread_pre']
+Panel: 138 municipalities (14 CHAMP, 124 non-CHAMP)
+Bootstrap replications: 2000
+
+----------------------------------------------------------------------------------
+Estimator                    ATE (bps)         SE                    95% CI    p-value
+----------------------------------------------------------------------------------
+Naive DiM                        -7.62       8.10           [-23.51, +8.26]     0.3468
+IPW (bootstrap)                  -2.57       9.57          [-20.78, +16.62]
+Regression (bootstrap)           -9.62      32.62          [-57.82, +32.98]
+AIPW (analytic)                  -6.92       6.92           [-20.50, +6.65]     0.3174
+AIPW (bootstrap)                 -6.92      32.70          [-57.00, +34.22]     0.5580
+TWFE DiD (Model B)              -27.39       7.03          [-41.18, -13.61]     0.0001
+----------------------------------------------------------------------------------
+
+
+COVARIATE BALANCE
+         Variable  Mean (CHAMP)  Mean (Non-CHAMP)  Raw Std Diff  IPW Std Diff
+ slr_exposure_pct       21.6763            5.3005        0.7281        0.1467
+       debt_to_av        0.0150            0.0111        0.5266        0.1512
+median_income_10k        6.9377            9.4503       -0.8221       -0.3967
+       spread_pre       30.2372           34.6406       -0.1536       -0.2421
+
+PROPENSITY SCORE DIAGNOSTICS
+  CHAMP:     [0.0560, 0.6831]
+  Non-CHAMP: [0.0100, 0.4953]
+  Overlap:   [0.0560, 0.4953]
+  ESS treated: 10.2, ESS control: 122.3
+
+
+DOUBLY-ROBUST PROPERTY
+The AIPW estimator is consistent if EITHER:
+  (a) The propensity score model is correctly specified, OR
+  (b) The outcome regression model is correctly specified.
+This provides insurance against misspecification of either model.
+
+
+CAUSAL INTERPRETATION
+  Overlap:           PASS
+  Covariate balance: CONCERN
+  Significance:      FAIL
+  Sign consistency:  PASS
+  Small sample:      CONCERN (14 treated units)
