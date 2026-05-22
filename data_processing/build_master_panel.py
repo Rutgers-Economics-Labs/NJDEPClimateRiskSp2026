@@ -7,7 +7,7 @@ Constructs the final regression-ready panel by merging:
   Track B: SLR flood exposure     → slr_exposure_pct (flooded_pct_5ft from chars, 5-ft scenario)
   Track C: CHAMP resilience       → is_resilient        (binary)
            MS4 stormwater infra   → ms4_outfall_density  (outfalls per sq mile)
-           UFB debt panel         → debt_to_gdp          (debt-to-assessed-value)
+           UFB debt panel         → debt_to_av           (debt-to-assessed-value)
            ACS census             → median_income
 
 Key crosswalk:
@@ -355,17 +355,17 @@ def build_panel():
     # ── 4. UFB Fiscal Controls ─────────────────────────────────────────────
     print("\n[4/6] Merging UFB fiscal controls...")
     ufb = pd.read_csv(UFB_FILE)
-    ufb = ufb.rename(columns={'ufb_year': 'year', 'debt_to_assessed_value': 'debt_to_gdp'})
+    ufb = ufb.rename(columns={'ufb_year': 'year', 'debt_to_assessed_value': 'debt_to_av'})
     if 'county' not in ufb.columns:
         raise ValueError("UFB debt panel is missing county. Re-run data_processing/process_ufb.py.")
     ufb_name_col = 'municipality_raw' if 'municipality_raw' in ufb.columns else 'municipality'
     ufb = attach_mun_from_crosswalk(ufb, xwalk, ufb_name_col, 'county')
-    ufb_slim = ufb[['mun', 'year', 'debt_to_gdp']].dropna(subset=['mun'])
+    ufb_slim = ufb[['mun', 'year', 'debt_to_av']].dropna(subset=['mun'])
     ufb_slim = ufb_slim[ufb_slim['mun'].isin(unique_muns)].copy()
     assert_unique(ufb_slim, ['mun', 'year'], 'UFB merge input')
 
     df = pd.merge(df, ufb_slim, on=['mun', 'year'], how='left', validate='m:1')
-    matched_ufb = df['debt_to_gdp'].notna().sum()
+    matched_ufb = df['debt_to_av'].notna().sum()
     print(f"   UFB matched:       {matched_ufb:,} rows ({matched_ufb/len(df)*100:.1f}%).")
 
     # ── 5. Census Demographics ─────────────────────────────────────────────
@@ -407,14 +407,14 @@ def build_panel():
         'ms4_outfall_count',     # raw outfall count (secondary)
         'ms4_tier_a',            # 1 if municipality is listed as Tier A in NJPDES MS4 tier PDF
         'is_post_2022',          # 1 if trade date > 2022-07-01
-        'debt_to_gdp',           # UFB debt-to-assessed-value ratio
+        'debt_to_av',            # UFB debt-to-assessed-value ratio
         'median_income',         # ACS median household income (2023-25 fwd-filled)
     ]
     df_final = df[final_cols].copy()
     df_final = df_final.rename(columns={'mun': 'muni_name'})
 
     initial_n = len(df_final)
-    df_final  = df_final.dropna(subset=['debt_to_gdp', 'median_income', 'spread_bps'])
+    df_final  = df_final.dropna(subset=['debt_to_av', 'median_income', 'spread_bps'])
     dropped   = initial_n - len(df_final)
 
     if initial_n > control_base_rows:

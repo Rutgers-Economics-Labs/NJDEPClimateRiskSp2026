@@ -32,11 +32,13 @@ The primary diagnostic specification uses:
 - 1st/99th percentile winsorized spreads to reduce the influence of extreme
   secondary-trade outliers;
 - municipality and year fixed effects;
+- time-to-maturity controls in the fixed-effect DiD and triple-difference
+  models; debt-to-AV is excluded from those two specifications;
 - clustered standard errors by municipality.
 
 The updated triple-difference coefficient for:
     ever_champ x post_2022 x slr_exposure_pct
-is +0.169 bps per 1 percentage point of SLR exposure, with p=0.533.
+is +0.187 bps per 1 percentage point of SLR exposure, with p=0.497.
 
 This is not statistically distinguishable from zero. The prior headline claim
 that proactive resilience is actively penalized by the bond market is not

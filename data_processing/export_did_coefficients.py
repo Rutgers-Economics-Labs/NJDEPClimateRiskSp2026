@@ -12,6 +12,8 @@ print("Loading data...")
 df = pd.read_csv(INPUT_FILE)
 df['issue_date'] = pd.to_datetime(df['issue_date'])
 df['year'] = df['issue_date'].dt.year
+if "debt_to_gdp" in df.columns and "debt_to_av" not in df.columns:
+    df = df.rename(columns={"debt_to_gdp": "debt_to_av"})
 required = ["ever_champ", "time_to_maturity", "spread_bps", "is_post_2022", "slr_exposure_pct"]
 missing = [c for c in required if c not in df.columns]
 if missing:
@@ -30,7 +32,7 @@ formula_slr_int = (
     "spread_bps_winsor ~ ever_champ:is_post_2022"
     " + is_post_2022:slr_exposure_pct"
     " + ever_champ:is_post_2022:slr_exposure_pct"
-    " + debt_to_gdp + time_to_maturity"
+    " + time_to_maturity"
     " + C(muni_name) + C(year)"
 )
 
@@ -47,7 +49,7 @@ coefs = {
     "spread_winsor_p1": float(low),
     "spread_winsor_p99": float(high),
     "n_obs": int(m3.nobs),
-    "note": "Exploratory secondary-trade association using synthetic AAA benchmark, winsorized spread, and towns with both pre/post observations."
+    "note": "Exploratory secondary-trade association using synthetic AAA benchmark, winsorized spread, and towns with both pre/post observations. Model C excludes debt-to-AV."
 }
 
 out_path = os.path.join(OUTPUT_DIR, "did_coefficients.json")

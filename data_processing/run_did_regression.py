@@ -24,6 +24,71 @@ PANEL_FILE    = os.path.join(DATA_CLEANED, "final_panel_master.csv")
 OUTPUT_DIR    = os.path.join(PROJECT_ROOT, "results")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+
+def fmt_result(model, term):
+    if term not in model.params:
+        return "not included in this specification"
+    coef = model.params[term]
+    p = model.pvalues[term]
+    return f"{coef:+.3f} bps (p={p:.4f})"
+
+
+def write_model_interpretations(handle, models, pretrend_coef, pretrend_p):
+    m1 = models['(A) Pooled OLS']
+    m2 = models['(B) TWFE DiD']
+    m3 = models['(C) TWFE Coastal DDD']
+    m4 = models['(D) Event Study']
+
+    handle.write("\n\n[MODEL INTERPRETATION]\n")
+    handle.write("Model A: Pooled OLS\n")
+    handle.write(
+        "This model compares all observations after controlling for post-2022 timing, "
+        "time to maturity, median income, and debt-to-AV. It does not include municipality "
+        "fixed effects, so cross-town differences may still reflect unobserved credit quality, "
+        "wealth, geography, or bond-market composition. "
+    )
+    handle.write(f"The CHAMP cohort coefficient is {fmt_result(m1, 'ever_champ')}; ")
+    handle.write(f"the SLR exposure coefficient is {fmt_result(m1, 'slr_exposure_pct')}; ")
+    handle.write(f"the debt-to-AV coefficient is {fmt_result(m1, 'debt_to_av')}.\n\n")
+
+    handle.write("Model B: Two-way fixed effects DiD\n")
+    handle.write(
+        "This model asks whether CHAMP-cohort municipalities changed differently after 2022, "
+        "using municipality and year fixed effects and controlling for time to maturity. "
+        "Debt-to-AV is intentionally excluded from this specification. "
+    )
+    handle.write(
+        f"The CHAMP cohort x post-2022 coefficient is {fmt_result(m2, 'ever_champ:is_post_2022')}. "
+        "Interpret it as the average post-2022 spread change for CHAMP-cohort municipalities "
+        "relative to non-cohort municipalities within the exploratory secondary-trade panel.\n\n"
+    )
+
+    handle.write("Model C: Coastal triple-difference\n")
+    handle.write(
+        "This model extends Model B by asking whether the post-2022 CHAMP-cohort change varies "
+        "with 4-foot SLR tax-base exposure. It includes municipality and year fixed effects and "
+        "time to maturity; debt-to-AV is intentionally excluded. "
+    )
+    handle.write(f"The post-2022 x SLR coefficient is {fmt_result(m3, 'is_post_2022:slr_exposure_pct')}; ")
+    handle.write(
+        f"the CHAMP cohort x post-2022 x SLR coefficient is "
+        f"{fmt_result(m3, 'ever_champ:is_post_2022:slr_exposure_pct')}. "
+        "The triple interaction is the main coastal-resilience diagnostic: it is measured in "
+        "basis points per one percentage point of SLR-exposed municipal market value.\n\n"
+    )
+
+    handle.write("Model D: Event-study style CHAMP-by-year model\n")
+    handle.write(
+        "This model interacts CHAMP-cohort status with each year to inspect whether the cohort "
+        "already had different spread patterns before the post-2022 period. It is primarily a "
+        "diagnostic for pre-trends rather than the main treatment estimate. "
+    )
+    handle.write(
+        f"The separate linear pre-trend check gives {pretrend_coef:+.3f} bps/year "
+        f"(p={pretrend_p:.4f}). A statistically meaningful pre-trend weakens a causal DiD "
+        "interpretation of Models B and C.\n"
+    )
+
 def run_regression():
     print("=" * 60)
     print("REGRESSION: CLIMATE RISK AND CHAMP RESILIENCE PREMIUM")
@@ -33,9 +98,11 @@ def run_regression():
     df = pd.read_csv(PANEL_FILE, low_memory=False)
     df['issue_date'] = pd.to_datetime(df['issue_date'])
     df['year']       = df['issue_date'].dt.year
+    if "debt_to_gdp" in df.columns and "debt_to_av" not in df.columns:
+        df = df.rename(columns={"debt_to_gdp": "debt_to_av"})
 
     required = [
-        "spread_bps", "time_to_maturity", "debt_to_gdp", "median_income",
+        "spread_bps", "time_to_maturity", "debt_to_av", "median_income",
         "slr_exposure_pct", "ever_champ", "is_post_2022", "muni_name",
     ]
     missing = [c for c in required if c not in df.columns]
@@ -90,23 +157,25 @@ def run_regression():
     pre['pre_year_index'] = pre['year'] - pre['year'].min()
     trend_formula = (
         "spread_bps_winsor ~ ever_champ + slr_exposure_pct + ever_champ:pre_year_index"
-        " + debt_to_gdp + time_to_maturity"
+        " + debt_to_av + time_to_maturity"
         " + C(year)"
     )
     pre_trend_model = smf.ols(trend_formula, data=pre).fit(
         cov_type='cluster', cov_kwds={'groups': pre['muni_name']}
     )
     trend_term = 'ever_champ:pre_year_index'
+    pretrend_coef = np.nan
+    pretrend_p = np.nan
     if trend_term in pre_trend_model.params:
-        coef = pre_trend_model.params[trend_term]
-        p = pre_trend_model.pvalues[trend_term]
-        print(f"\n  Linear CHAMP differential pre-trend: β={coef:+.3f} bps/year  p={p:.4f}")
+        pretrend_coef = pre_trend_model.params[trend_term]
+        pretrend_p = pre_trend_model.pvalues[trend_term]
+        print(f"\n  Linear CHAMP differential pre-trend: β={pretrend_coef:+.3f} bps/year  p={pretrend_p:.4f}")
 
     # ── Model 1: Pooled OLS (The Baseline Premium) ─────────────────────────
     # To answer: "Does the market care about CHAMP participation and SLR exposure?"
     formula_pooled = (
         "spread_bps_winsor ~ ever_champ + slr_exposure_pct"
-        " + debt_to_gdp + median_income_10k + time_to_maturity"
+        " + debt_to_av + median_income_10k + time_to_maturity"
         " + is_post_2022"
     )
 
@@ -114,7 +183,7 @@ def run_regression():
     # To answer: "Did the post-2022 period change the CHAMP/spread relationship?"
     formula_did = (
         "spread_bps_winsor ~ ever_champ:is_post_2022"
-        " + debt_to_gdp + time_to_maturity"
+        " + time_to_maturity"
         " + C(muni_name) + C(year)"
     )
 
@@ -124,7 +193,7 @@ def run_regression():
         "spread_bps_winsor ~ ever_champ:is_post_2022"
         " + is_post_2022:slr_exposure_pct"
         " + ever_champ:is_post_2022:slr_exposure_pct"
-        " + debt_to_gdp + time_to_maturity"
+        " + time_to_maturity"
         " + C(muni_name) + C(year)"
     )
 
@@ -132,7 +201,7 @@ def run_regression():
     # Interacts is_resilient with every year to check for pre-trends.
     formula_event = (
         "spread_bps_winsor ~ ever_champ:C(year)"
-        " + debt_to_gdp + time_to_maturity"
+        " + debt_to_av + time_to_maturity"
         " + C(muni_name) + C(year)"
     )
 
@@ -203,7 +272,7 @@ def run_regression():
         'Intercept', 'is_post_2022', 'ever_champ', 'slr_exposure_pct',
         'ever_champ:is_post_2022', 'is_post_2022:slr_exposure_pct',
         'ever_champ:is_post_2022:slr_exposure_pct',
-        'debt_to_gdp', 'time_to_maturity', 'median_income_10k',
+        'debt_to_av', 'time_to_maturity', 'median_income_10k',
     ] + [f"ever_champ:C(year)[T.{y}]" for y in sorted(df['year'].unique())]
 
     # Filter to only variables that actually exist across models
@@ -232,6 +301,7 @@ def run_regression():
         f.write("Primary specifications use 1st/99th percentile winsorized spreads and towns with both pre/post observations. ")
         f.write("Treat coefficients as exploratory associations, not final causal estimates.\n\n")
         f.write(str(table))
+        write_model_interpretations(f, models, pretrend_coef, pretrend_p)
         f.write("\n\n[FULL TWFE DiD MODEL (B)]\n")
         f.write(m2.summary().as_text())
         f.write("\n\n[FULL EVENT STUDY MODEL (D)]\n")

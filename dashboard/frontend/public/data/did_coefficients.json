@@ -1,10 +1,10 @@
 {
-  "ever_champ_is_post_2022": -34.513877115912486,
-  "is_post_2022_slr_exposure_pct": -0.09255689750209396,
-  "ever_champ_is_post_2022_slr_exposure_pct": 0.1689927025697692,
-  "term_premium": 4.390816083810225,
+  "ever_champ_is_post_2022": -35.153232081625774,
+  "is_post_2022_slr_exposure_pct": -0.08736164756852154,
+  "ever_champ_is_post_2022_slr_exposure_pct": 0.18678153447075516,
+  "term_premium": 4.390402485904771,
   "spread_winsor_p1": -113.90562628336758,
   "spread_winsor_p99": 224.41634599589372,
   "n_obs": 170872,
-  "note": "Exploratory secondary-trade association using synthetic AAA benchmark, winsorized spread, and towns with both pre/post observations."
+  "note": "Exploratory secondary-trade association using synthetic AAA benchmark, winsorized spread, and towns with both pre/post observations. Model C excludes debt-to-AV."
 }
