@@ -59,6 +59,8 @@ function buildStaticUrl(relativePath) {
   return `${BASE_URL}${relativePath.replace(/^\/+/, '')}`
 }
 
+const NJDEP_LOGO_URL = buildStaticUrl('njdep_logo.png')
+
 function getDashboardOptions() {
   return fetchJson(
     STATIC_DATA_MODE ? buildStaticUrl('data/options.json') : `${API_BASE}/api/options`,
@@ -615,7 +617,7 @@ function App() {
       <header className="hero-panel">
         <div>
           <div className="hero-brand">
-            <img src="/njdep_logo.png" alt="New Jersey Department of Environmental Protection logo" className="hero-logo" />
+            <img src={NJDEP_LOGO_URL} alt="New Jersey Department of Environmental Protection logo" className="hero-logo" />
             <div>
               <p className="eyebrow">Rutgers Economics Labs x NJDEP</p>
               <p className="brand-caption">Climate Change & Resilience Premiums</p>
