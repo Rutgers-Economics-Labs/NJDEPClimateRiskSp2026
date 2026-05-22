@@ -28,7 +28,7 @@ on at the start of the first observed CHAMP state fiscal year.
 3. UPDATED ECONOMETRIC RESULT
 --------------------------------------------------------------------------------
 The primary diagnostic specification uses:
-- towns with both pre- and post-2022 trade observations;
+- towns with both pre- and post-2023 CHAMP-period trade observations;
 - 1st/99th percentile winsorized spreads to reduce the influence of extreme
   secondary-trade outliers;
 - municipality and year fixed effects;
@@ -37,8 +37,8 @@ The primary diagnostic specification uses:
 - clustered standard errors by municipality.
 
 The updated triple-difference coefficient for:
-    ever_champ x post_2022 x slr_exposure_pct
-is +0.187 bps per 1 percentage point of SLR exposure, with p=0.497.
+    ever_champ x post_2023 x slr_exposure_pct
+is +0.105 bps per 1 percentage point of SLR exposure, with p=0.652.
 
 This is not statistically distinguishable from zero. The prior headline claim
 that proactive resilience is actively penalized by the bond market is not
@@ -47,12 +47,12 @@ supported by the corrected panel and model.
 4. PRE-TREND AND IDENTIFICATION LIMITS
 --------------------------------------------------------------------------------
 The pre-treatment trend check is not clean. The CHAMP cohort has a statistically
-different pre-2022 trend in winsorized spreads:
-    beta = -3.190 bps/year, p=0.0229.
+different pre-2023 trend in winsorized spreads:
+    beta = -4.036 bps/year, p=0.0033.
 
 That weakens a causal DiD interpretation. A policy-facing report should not claim
-that the 2022 CHAMP policy pivot caused spread changes without a stronger design,
-validated treatment timing, and better bond-level controls.
+that the 2023 CHAMP-period cutoff caused spread changes without a stronger
+design, validated treatment timing, and better bond-level controls.
 
 5. REMAINING LIMITATIONS
 --------------------------------------------------------------------------------
@@ -72,5 +72,6 @@ The defensible current conclusion is:
 
 In the available exploratory secondary-trade panel, there is no robust statistical
 evidence that high-SLR-exposure CHAMP-cohort municipalities were penalized after
-2022. Further work is needed before drawing conclusions about market pricing of
-NJDEP resilience programs or municipal borrowing cost impacts.
+the 2023 CHAMP-period cutoff. Further work is needed before drawing conclusions
+about market pricing of NJDEP resilience programs or municipal borrowing cost
+impacts.

@@ -42,7 +42,7 @@ def write_model_interpretations(handle, models, pretrend_coef, pretrend_p):
     handle.write("\n\n[MODEL INTERPRETATION]\n")
     handle.write("Model A: Pooled OLS\n")
     handle.write(
-        "This model compares all observations after controlling for post-2022 timing, "
+        "This model compares all observations after controlling for the post-2023 CHAMP period, "
         "time to maturity, median income, and debt-to-AV. It does not include municipality "
         "fixed effects, so cross-town differences may still reflect unobserved credit quality, "
         "wealth, geography, or bond-market composition. "
@@ -53,38 +53,35 @@ def write_model_interpretations(handle, models, pretrend_coef, pretrend_p):
 
     handle.write("Model B: Two-way fixed effects DiD\n")
     handle.write(
-        "This model asks whether CHAMP-cohort municipalities changed differently after 2022, "
+        "This model asks whether CHAMP-cohort municipalities changed differently in the post-2023 CHAMP period, "
         "using municipality and year fixed effects and controlling for time to maturity. "
         "Debt-to-AV is intentionally excluded from this specification. "
     )
     handle.write(
-        f"The CHAMP cohort x post-2022 coefficient is {fmt_result(m2, 'ever_champ:is_post_2022')}. "
-        "Interpret it as the average post-2022 spread change for CHAMP-cohort municipalities "
+        f"The CHAMP cohort x post-2023 coefficient is {fmt_result(m2, 'ever_champ:is_post_2023')}. "
+        "Interpret it as the average post-2023 spread change for CHAMP-cohort municipalities "
         "relative to non-cohort municipalities within the exploratory secondary-trade panel.\n\n"
     )
 
     handle.write("Model C: Coastal triple-difference\n")
     handle.write(
-        "This model extends Model B by asking whether the post-2022 CHAMP-cohort change varies "
+        "This model extends Model B by asking whether the post-2023 CHAMP-cohort change varies "
         "with 4-foot SLR tax-base exposure. It includes municipality and year fixed effects and "
         "time to maturity; debt-to-AV is intentionally excluded. "
     )
-    handle.write(f"The post-2022 x SLR coefficient is {fmt_result(m3, 'is_post_2022:slr_exposure_pct')}; ")
+    handle.write(f"The post-2023 x SLR coefficient is {fmt_result(m3, 'is_post_2023:slr_exposure_pct')}; ")
     handle.write(
-        f"the CHAMP cohort x post-2022 x SLR coefficient is "
-        f"{fmt_result(m3, 'ever_champ:is_post_2022:slr_exposure_pct')}. "
+        f"the CHAMP cohort x post-2023 x SLR coefficient is "
+        f"{fmt_result(m3, 'ever_champ:is_post_2023:slr_exposure_pct')}. "
         "The triple interaction is the main coastal-resilience diagnostic: it is measured in "
         "basis points per one percentage point of SLR-exposed municipal market value.\n\n"
     )
 
     handle.write("Model D: Event-study style CHAMP-by-year model (within-demeaned)\n")
     handle.write(
-        "This model uses within-municipality demeaning to remove municipality fixed effects "
-        "without introducing perfect collinearity with the time-invariant CHAMP indicator. "
-        "It interacts CHAMP-cohort status with each year (reference = 2021, last pre-treatment "
-        "year) to inspect whether the cohort already had different spread patterns before the "
-        "post-2022 period. Municipalities with <3 observed years are excluded. "
-        "It is primarily a diagnostic for pre-trends rather than the main treatment estimate. "
+        "This model interacts CHAMP-cohort status with each year to inspect whether the cohort "
+        "already had different spread patterns before the post-2023 CHAMP period. It is primarily a "
+        "diagnostic for pre-trends rather than the main treatment estimate. "
     )
     handle.write(
         f"The separate linear pre-trend check (with muni FEs) gives {pretrend_coef:+.3f} bps/year "
@@ -112,7 +109,7 @@ def run_regression():
 
     required = [
         "spread_bps", "time_to_maturity", "debt_to_av", "median_income",
-        "slr_exposure_pct", "ever_champ", "is_post_2022", "muni_name",
+        "slr_exposure_pct", "ever_champ", "is_post_2023", "muni_name",
     ]
     missing = [c for c in required if c not in df.columns]
     if missing:
@@ -127,7 +124,7 @@ def run_regression():
     df["ever_champ"] = df["ever_champ"].fillna(0).astype(int)
     df["is_resilient"] = df.get("is_resilient", 0)
 
-    support = df.groupby('muni_name')['is_post_2022'].agg(
+    support = df.groupby('muni_name')['is_post_2023'].agg(
         pre=lambda s: int((s == 0).sum()),
         post=lambda s: int((s == 1).sum()),
     )
@@ -141,7 +138,7 @@ def run_regression():
     print(f"  Ever-CHAMP cohort: mean={df['ever_champ'].mean():.2f}")
     print(f"  Time-varying CHAMP active: mean={df['is_resilient'].mean():.2f}")
     print(f"  SLR exposure: mean={df['slr_exposure_pct'].mean():.2f}%, max={df['slr_exposure_pct'].max():.2f}%")
-    print(f"  Avg raw spread: all={df['spread_bps'].mean():.2f} bps | pre={df.loc[df['is_post_2022']==0, 'spread_bps'].mean():.2f} | post={df.loc[df['is_post_2022']==1, 'spread_bps'].mean():.2f}")
+    print(f"  Avg raw spread: all={df['spread_bps'].mean():.2f} bps | pre={df.loc[df['is_post_2023']==0, 'spread_bps'].mean():.2f} | post={df.loc[df['is_post_2023']==1, 'spread_bps'].mean():.2f}")
     print(f"  Winsorized spread bounds: p1={low:.2f} bps | p99={high:.2f} bps")
 
     both_periods = ((support['pre'] > 0) & (support['post'] > 0)).sum()
@@ -157,7 +154,7 @@ def run_regression():
     print("Avg spread by CHAMP resilience × pre-treatment year")
     print("-" * 60)
     df['resilience_group'] = df['ever_champ'].map({0: 'Not CHAMP Cohort', 1: 'Ever CHAMP Cohort'})
-    pre = df[df['is_post_2022'] == 0].copy()
+    pre = df[df['is_post_2023'] == 0].copy()
     pre_trends = (pre.groupby(['year', 'resilience_group'], observed=True)['spread_bps']
                     .agg(['mean', 'count'])
                     .rename(columns={'mean': 'Avg Spread (bps)', 'count': 'N Trades'}))
@@ -186,23 +183,23 @@ def run_regression():
     formula_pooled = (
         "spread_bps_winsor ~ ever_champ + slr_exposure_pct"
         " + debt_to_av + median_income_10k + time_to_maturity"
-        " + is_post_2022"
+        " + is_post_2023"
     )
 
-    # ── Model 2: TWFE DiD (The 2022 Pivot) ──────────────────────────────────
-    # To answer: "Did the post-2022 period change the CHAMP/spread relationship?"
+    # ── Model 2: TWFE DiD (The post-2023 CHAMP period) ─────────────────────
+    # To answer: "Did the post-2023 period change the CHAMP/spread relationship?"
     formula_did = (
-        "spread_bps_winsor ~ ever_champ:is_post_2022"
+        "spread_bps_winsor ~ ever_champ:is_post_2023"
         " + time_to_maturity"
         " + C(muni_name) + C(year)"
     )
 
     # ── Model 3: TWFE Triple-DiD (Coastal Resilience) ──────────────────────
-    # Tests if CHAMP resilience specifically reduced spreads for coastal towns post-2022
+    # Tests if CHAMP resilience specifically reduced spreads for coastal towns post-2023
     formula_slr_int = (
-        "spread_bps_winsor ~ ever_champ:is_post_2022"
-        " + is_post_2022:slr_exposure_pct"
-        " + ever_champ:is_post_2022:slr_exposure_pct"
+        "spread_bps_winsor ~ ever_champ:is_post_2023"
+        " + is_post_2023:slr_exposure_pct"
+        " + ever_champ:is_post_2023:slr_exposure_pct"
         " + time_to_maturity"
         " + C(muni_name) + C(year)"
     )
@@ -254,7 +251,7 @@ def run_regression():
     models['(A) Pooled OLS'] = m1
 
     # Model 2 – TWFE DiD
-    print("  [2/4] Model B: TWFE DiD CHAMP × Post-2022…")
+    print("  [2/4] Model B: TWFE DiD CHAMP × Post-2023…")
     m2 = smf.ols(formula_did, data=df).fit(
         cov_type='cluster', cov_kwds={'groups': df['muni_name']}
     )
@@ -288,16 +285,16 @@ def run_regression():
     # Model B/C checks
     print("\n  Model B/C (DiD):")
     for name, m in {'B': m2, 'C': m3}.items():
-        coef = m.params.get('ever_champ:is_post_2022', 0)
-        p = m.pvalues.get('ever_champ:is_post_2022', 1)
+        coef = m.params.get('ever_champ:is_post_2023', 0)
+        p = m.pvalues.get('ever_champ:is_post_2023', 1)
         print(f"    Model {name} CHAMP cohort × post = {coef:+.3f}  p={p:.4f}")
-        if 'is_post_2022:slr_exposure_pct' in m.params:
-            slr_coef = m.params['is_post_2022:slr_exposure_pct']
-            slr_p = m.pvalues['is_post_2022:slr_exposure_pct']
+        if 'is_post_2023:slr_exposure_pct' in m.params:
+            slr_coef = m.params['is_post_2023:slr_exposure_pct']
+            slr_p = m.pvalues['is_post_2023:slr_exposure_pct']
             print(f"    Model {name} SLR × post     = {slr_coef:+.3f}  p={slr_p:.4f}")
-        if 'ever_champ:is_post_2022:slr_exposure_pct' in m.params:
-            ddd_coef = m.params['ever_champ:is_post_2022:slr_exposure_pct']
-            ddd_p = m.pvalues['ever_champ:is_post_2022:slr_exposure_pct']
+        if 'ever_champ:is_post_2023:slr_exposure_pct' in m.params:
+            ddd_coef = m.params['ever_champ:is_post_2023:slr_exposure_pct']
+            ddd_p = m.pvalues['ever_champ:is_post_2023:slr_exposure_pct']
             print(f"    Model {name} Triple-DiD     = {ddd_coef:+.3f}  p={ddd_p:.4f}")
 
     # ── Event Study Coefficients ────────────────────────────────────────────
@@ -311,11 +308,11 @@ def run_regression():
     # Only report the key non-FE coefficients for readability
     info_dict = {'N': lambda m: f"{int(m.nobs):,}", 'R²': lambda m: f"{m.rsquared:.3f}"}
     regressor_order = [
-        'Intercept', 'is_post_2022', 'ever_champ', 'slr_exposure_pct',
-        'ever_champ:is_post_2022', 'is_post_2022:slr_exposure_pct',
-        'ever_champ:is_post_2022:slr_exposure_pct',
-        'debt_to_av', 'time_to_maturity', 'ttm_dm', 'median_income_10k',
-    ] + [f'champ_x_{y}' for y in event_years]
+        'Intercept', 'is_post_2023', 'ever_champ', 'slr_exposure_pct',
+        'ever_champ:is_post_2023', 'is_post_2023:slr_exposure_pct',
+        'ever_champ:is_post_2023:slr_exposure_pct',
+        'debt_to_av', 'time_to_maturity', 'median_income_10k',
+    ] + [f"ever_champ:C(year)[T.{y}]" for y in sorted(df['year'].unique())]
 
     # Filter to only variables that actually exist across models
     existing = [r for r in regressor_order
