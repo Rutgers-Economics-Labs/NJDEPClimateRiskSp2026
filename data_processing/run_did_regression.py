@@ -77,17 +77,26 @@ def write_model_interpretations(handle, models, pretrend_coef, pretrend_p):
         "basis points per one percentage point of SLR-exposed municipal market value.\n\n"
     )
 
-    handle.write("Model D: Event-study style CHAMP-by-year model\n")
+    handle.write("Model D: Event-study style CHAMP-by-year model (within-demeaned)\n")
     handle.write(
-        "This model interacts CHAMP-cohort status with each year to inspect whether the cohort "
-        "already had different spread patterns before the post-2022 period. It is primarily a "
-        "diagnostic for pre-trends rather than the main treatment estimate. "
+        "This model uses within-municipality demeaning to remove municipality fixed effects "
+        "without introducing perfect collinearity with the time-invariant CHAMP indicator. "
+        "It interacts CHAMP-cohort status with each year (reference = 2021, last pre-treatment "
+        "year) to inspect whether the cohort already had different spread patterns before the "
+        "post-2022 period. Municipalities with <3 observed years are excluded. "
+        "It is primarily a diagnostic for pre-trends rather than the main treatment estimate. "
     )
     handle.write(
-        f"The separate linear pre-trend check gives {pretrend_coef:+.3f} bps/year "
-        f"(p={pretrend_p:.4f}). A statistically meaningful pre-trend weakens a causal DiD "
-        "interpretation of Models B and C.\n"
+        f"The separate linear pre-trend check (with muni FEs) gives {pretrend_coef:+.3f} bps/year "
+        f"(p={pretrend_p:.4f}). "
     )
+    if pretrend_p < 0.10:
+        handle.write("A statistically meaningful pre-trend weakens a causal DiD "
+                     "interpretation of Models B and C.\n")
+    else:
+        handle.write("The absence of a statistically significant pre-trend supports "
+                     "the parallel trends assumption underlying Models B and C.\n")
+
 
 def run_regression():
     print("=" * 60)
@@ -154,11 +163,12 @@ def run_regression():
                     .rename(columns={'mean': 'Avg Spread (bps)', 'count': 'N Trades'}))
     print(pre_trends.to_string())
 
+    # Linear pre-trend with municipality FEs for consistency with TWFE models
     pre['pre_year_index'] = pre['year'] - pre['year'].min()
     trend_formula = (
-        "spread_bps_winsor ~ ever_champ + slr_exposure_pct + ever_champ:pre_year_index"
-        " + debt_to_av + time_to_maturity"
-        " + C(year)"
+        "spread_bps_winsor ~ ever_champ:pre_year_index"
+        " + time_to_maturity"
+        " + C(muni_name) + C(year)"
     )
     pre_trend_model = smf.ols(trend_formula, data=pre).fit(
         cov_type='cluster', cov_kwds={'groups': pre['muni_name']}
@@ -169,7 +179,7 @@ def run_regression():
     if trend_term in pre_trend_model.params:
         pretrend_coef = pre_trend_model.params[trend_term]
         pretrend_p = pre_trend_model.pvalues[trend_term]
-        print(f"\n  Linear CHAMP differential pre-trend: β={pretrend_coef:+.3f} bps/year  p={pretrend_p:.4f}")
+        print(f"\n  Linear CHAMP differential pre-trend (with muni FE): β={pretrend_coef:+.3f} bps/year  p={pretrend_p:.4f}")
 
     # ── Model 1: Pooled OLS (The Baseline Premium) ─────────────────────────
     # To answer: "Does the market care about CHAMP participation and SLR exposure?"
@@ -198,11 +208,36 @@ def run_regression():
     )
 
     # ── Model 4: Event Study ───────────────────────────────────────────────
-    # Interacts is_resilient with every year to check for pre-trends.
+    # Uses within-municipality demeaning to avoid perfect collinearity between
+    # time-invariant ever_champ and C(muni_name) in the unbalanced panel.
+    # Reference year = 2021 (last pre-treatment year).
+    #
+    # For the event study we also require municipalities to have observations
+    # in at least 3 distinct years, so that the within-demeaning is well-
+    # identified and muni-year gaps don't create near-singular columns.
+    es_yr_coverage = df.groupby('muni_name')['year'].nunique()
+    es_munis = es_yr_coverage[es_yr_coverage >= 3].index
+    df_es = df[df['muni_name'].isin(es_munis)].copy()
+    print(f"  Event study panel: {len(df_es):,} obs | {df_es['muni_name'].nunique()} towns "
+          f"(dropped {df['muni_name'].nunique() - df_es['muni_name'].nunique()} with <3 years)")
+
+    # Within-municipality demeaning: subtract muni-level means from both
+    # the dependent variable and the time-varying controls.
+    muni_means = df_es.groupby('muni_name')[['spread_bps_winsor', 'time_to_maturity']].transform('mean')
+    df_es['spread_dm'] = df_es['spread_bps_winsor'] - muni_means['spread_bps_winsor']
+    df_es['ttm_dm'] = df_es['time_to_maturity'] - muni_means['time_to_maturity']
+
+    # Build explicit CHAMP × year dummies, omitting the reference year (2021)
+    ref_year = 2021
+    all_years = sorted(df_es['year'].unique())
+    event_years = [y for y in all_years if y != ref_year]
+    for y in event_years:
+        df_es[f'champ_x_{y}'] = (df_es['ever_champ'] * (df_es['year'] == y)).astype(int)
+
+    champ_year_terms = ' + '.join(f'champ_x_{y}' for y in event_years)
+    year_dummies = ' + '.join(f'I(year == {y})' for y in event_years)  # ref year omitted
     formula_event = (
-        "spread_bps_winsor ~ ever_champ:C(year)"
-        " + debt_to_av + time_to_maturity"
-        " + C(muni_name) + C(year)"
+        f"spread_dm ~ {champ_year_terms} + ttm_dm + {year_dummies}"
     )
 
     print("\n" + "-" * 60)
@@ -232,10 +267,10 @@ def run_regression():
     )
     models['(C) TWFE Coastal DDD'] = m3
 
-    # Model 4 – Event Study
-    print("  [4/4] Model D: Event Study (CHAMP × Year)…")
-    m4 = smf.ols(formula_event, data=df).fit(
-        cov_type='cluster', cov_kwds={'groups': df['muni_name']}
+    # Model 4 – Event Study (demeaned)
+    print("  [4/4] Model D: Event Study (within-demeaned, CHAMP × Year, ref=2021)…")
+    m4 = smf.ols(formula_event, data=df_es).fit(
+        cov_type='cluster', cov_kwds={'groups': df_es['muni_name']}
     )
     models['(D) Event Study'] = m4
 
@@ -265,6 +300,13 @@ def run_regression():
             ddd_p = m.pvalues['ever_champ:is_post_2022:slr_exposure_pct']
             print(f"    Model {name} Triple-DiD     = {ddd_coef:+.3f}  p={ddd_p:.4f}")
 
+    # ── Event Study Coefficients ────────────────────────────────────────────
+    print("\n  Model D (Event Study, ref=2021):")
+    for y in event_years:
+        term = f'champ_x_{y}'
+        if term in m4.params:
+            print(f"    CHAMP × {y}: β = {m4.params[term]:+.3f}  p={m4.pvalues[term]:.4f}")
+
     # ── Full Summary Table ─────────────────────────────────────────────────
     # Only report the key non-FE coefficients for readability
     info_dict = {'N': lambda m: f"{int(m.nobs):,}", 'R²': lambda m: f"{m.rsquared:.3f}"}
@@ -272,8 +314,8 @@ def run_regression():
         'Intercept', 'is_post_2022', 'ever_champ', 'slr_exposure_pct',
         'ever_champ:is_post_2022', 'is_post_2022:slr_exposure_pct',
         'ever_champ:is_post_2022:slr_exposure_pct',
-        'debt_to_av', 'time_to_maturity', 'median_income_10k',
-    ] + [f"ever_champ:C(year)[T.{y}]" for y in sorted(df['year'].unique())]
+        'debt_to_av', 'time_to_maturity', 'ttm_dm', 'median_income_10k',
+    ] + [f'champ_x_{y}' for y in event_years]
 
     # Filter to only variables that actually exist across models
     existing = [r for r in regressor_order

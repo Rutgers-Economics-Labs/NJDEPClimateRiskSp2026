@@ -1,0 +1,13 @@
+Model,Term,Coefficient,Std. Error,p-value,Sig.
+Model A,ever_champ,-6.256,3.96,0.1142,
+Model A,is_post_2022,-29.721,6.061,0.0,***
+Model A,slr_exposure_pct,0.043,0.07,0.537,
+Model A,debt_to_av,-1.322,0.688,0.0545,*
+Model A,median_income_10k,-1.556,0.577,0.007,***
+Model A,time_to_maturity,4.423,0.47,0.0,***
+Model B,ever_champ x post_2022,-32.625,7.399,0.0,***
+Model B,time_to_maturity,4.396,0.484,0.0,***
+Model C,ever_champ x post_2022,-35.153,11.008,0.0014,***
+Model C,post_2022 x slr_exposure_pct,-0.087,0.126,0.4897,
+Model C,ever_champ x post_2022 x slr_exposure_pct,0.187,0.275,0.4974,
+Pre-trend,ever_champ x pre_year_index,-3.73,1.647,0.0235,**

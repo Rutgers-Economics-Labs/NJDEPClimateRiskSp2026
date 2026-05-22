@@ -1,0 +1,8 @@
+Level,Variable,Mean,Std. Dev.,Median
+Trade-level,Winsorized spread (bps),25.366,67.532,21.698
+Trade-level,Time to maturity (years),7.679,5.794,6.382
+Municipality-level,SLR exposure (%),7.804,20.343,0.0
+Municipality-level,Debt to AV,0.011,0.007,0.01
+Municipality-level,Median income ($),92398.648,36188.734,86061.0
+Municipality-level,Pre-period spread (bps),34.422,30.983,31.033
+Municipality-level,Post-period spread (bps),-1.354,40.589,-8.271

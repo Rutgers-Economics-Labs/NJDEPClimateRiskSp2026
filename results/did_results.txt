@@ -7,8 +7,8 @@ IMPORTANT: Uses secondary-market WRDS trades and a synthetic AAA benchmark. Prim
 =========================================================================================================
                                          (A) Pooled OLS (B) TWFE DiD (C) TWFE Coastal DDD (D) Event Study
 ---------------------------------------------------------------------------------------------------------
-Intercept                                22.0488***     -11.6618*    -11.3860             -14.6347       
-                                         (8.0100)       (7.0733)     (7.0829)             (14838.3199)   
+Intercept                                22.0488***     -11.6618*    -11.3860             -3.9200        
+                                         (8.0100)       (7.0733)     (7.0829)             (2.4274)       
 is_post_2022                             -29.7211***                                                     
                                          (6.0611)                                                        
 ever_champ                               -6.2555                                                         
@@ -21,26 +21,43 @@ is_post_2022:slr_exposure_pct                                        -0.0874
                                                                      (0.1265)                            
 ever_champ:is_post_2022:slr_exposure_pct                             0.1868                              
                                                                      (0.2753)                            
-debt_to_av                               -1.3223*                                         0.7704         
-                                         (0.6877)                                         (2.1610)       
-time_to_maturity                         4.4235***      4.3960***    4.3904***            4.4207*        
-                                         (0.4703)       (0.4839)     (0.4846)             (2.4792)       
+debt_to_av                               -1.3223*                                                        
+                                         (0.6877)                                                        
+time_to_maturity                         4.4235***      4.3960***    4.3904***                           
+                                         (0.4703)       (0.4839)     (0.4846)                            
+ttm_dm                                                                                    4.5334***      
+                                                                                          (0.4817)       
 median_income_10k                        -1.5564***                                                      
                                          (0.5766)                                                        
-R-squared                                0.2580         0.3837       0.3838               0.3844         
-R-squared Adj.                           0.2580         0.3831       0.3832               0.3838         
-N                                        170,872        170,872      170,872              170,872        
-R²                                       0.258          0.384        0.384                0.384          
+champ_x_2015                                                                              25.5231**      
+                                                                                          (10.9731)      
+champ_x_2016                                                                              24.6206***     
+                                                                                          (8.7513)       
+champ_x_2017                                                                              9.4630*        
+                                                                                          (5.1451)       
+champ_x_2018                                                                              3.7545         
+                                                                                          (4.7576)       
+champ_x_2019                                                                              28.5032        
+                                                                                          (24.7144)      
+champ_x_2022                                                                              -8.2717**      
+                                                                                          (4.1270)       
+champ_x_2023                                                                              -12.2892*      
+                                                                                          (6.5186)       
+champ_x_2024                                                                              -19.5098***    
+                                                                                          (3.9725)       
+champ_x_2025                                                                              -22.7653***    
+                                                                                          (5.5238)       
+R-squared                                0.2580         0.3837       0.3838               0.2944         
+R-squared Adj.                           0.2580         0.3831       0.3832               0.2944         
+N                                        170,872        170,872      170,872              170,708        
+R²                                       0.258          0.384        0.384                0.294          
 =========================================================================================================
 Standard errors in parentheses.
 * p<.1, ** p<.05, ***p<.01
 
 [MODEL INTERPRETATION]
 Model A: Pooled OLS
-This model compares all observations after controlling for post-2022 timing, time to maturity, median income, and debt-to-AV. 
-It does not include municipality fixed effects, so cross-town differences may still reflect unobserved credit quality, wealth, geography, 
-or bond-market composition. The CHAMP cohort coefficient is -6.256 bps (p=0.1142); the SLR exposure coefficient is +0.043 bps (p=0.5370); 
-the debt-to-AV coefficient is -1.322 bps (p=0.0545).
+This model compares all observations after controlling for post-2022 timing, time to maturity, median income, and debt-to-AV. It does not include municipality fixed effects, so cross-town differences may still reflect unobserved credit quality, wealth, geography, or bond-market composition. The CHAMP cohort coefficient is -6.256 bps (p=0.1142); the SLR exposure coefficient is +0.043 bps (p=0.5370); the debt-to-AV coefficient is -1.322 bps (p=0.0545).
 
 Model B: Two-way fixed effects DiD
 This model asks whether CHAMP-cohort municipalities changed differently after 2022, using municipality and year fixed effects and controlling for time to maturity. Debt-to-AV is intentionally excluded from this specification. The CHAMP cohort x post-2022 coefficient is -32.625 bps (p=0.0000). Interpret it as the average post-2022 spread change for CHAMP-cohort municipalities relative to non-cohort municipalities within the exploratory secondary-trade panel.
@@ -48,8 +65,8 @@ This model asks whether CHAMP-cohort municipalities changed differently after 20
 Model C: Coastal triple-difference
 This model extends Model B by asking whether the post-2022 CHAMP-cohort change varies with 4-foot SLR tax-base exposure. It includes municipality and year fixed effects and time to maturity; debt-to-AV is intentionally excluded. The post-2022 x SLR coefficient is -0.087 bps (p=0.4897); the CHAMP cohort x post-2022 x SLR coefficient is +0.187 bps (p=0.4974). The triple interaction is the main coastal-resilience diagnostic: it is measured in basis points per one percentage point of SLR-exposed municipal market value.
 
-Model D: Event-study style CHAMP-by-year model
-This model interacts CHAMP-cohort status with each year to inspect whether the cohort already had different spread patterns before the post-2022 period. It is primarily a diagnostic for pre-trends rather than the main treatment estimate. The separate linear pre-trend check gives -3.190 bps/year (p=0.0229). A statistically meaningful pre-trend weakens a causal DiD interpretation of Models B and C.
+Model D: Event-study style CHAMP-by-year model (within-demeaned)
+This model uses within-municipality demeaning to remove municipality fixed effects without introducing perfect collinearity with the time-invariant CHAMP indicator. It interacts CHAMP-cohort status with each year (reference = 2021, last pre-treatment year) to inspect whether the cohort already had different spread patterns before the post-2022 period. Municipalities with <3 observed years are excluded. It is primarily a diagnostic for pre-trends rather than the main treatment estimate. The separate linear pre-trend check (with muni FEs) gives -3.730 bps/year (p=0.0235). A statistically meaningful pre-trend weakens a causal DiD interpretation of Models B and C.
 
 
 [FULL TWFE DiD MODEL (B)]
@@ -59,7 +76,7 @@ Dep. Variable:      spread_bps_winsor   R-squared:                       0.384
 Model:                            OLS   Adj. R-squared:                  0.383
 Method:                 Least Squares   F-statistic:                     291.6
 Date:                Thu, 21 May 2026   Prob (F-statistic):           1.63e-92
-Time:                        21:30:38   Log-Likelihood:            -9.2092e+05
+Time:                        21:47:34   Log-Likelihood:            -9.2092e+05
 No. Observations:              170872   AIC:                         1.842e+06
 Df Residuals:                  170716   BIC:                         1.844e+06
 Df Model:                         155                                         
@@ -238,192 +255,44 @@ strong multicollinearity or other numerical problems.
 [FULL EVENT STUDY MODEL (D)]
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:      spread_bps_winsor   R-squared:                       0.384
-Model:                            OLS   Adj. R-squared:                  0.384
-Method:                 Least Squares   F-statistic:                 1.720e-10
-Date:                Thu, 21 May 2026   Prob (F-statistic):               1.00
-Time:                        21:30:38   Log-Likelihood:            -9.2083e+05
-No. Observations:              170872   AIC:                         1.842e+06
-Df Residuals:                  170707   BIC:                         1.844e+06
-Df Model:                         164                                         
+Dep. Variable:              spread_dm   R-squared:                       0.294
+Model:                            OLS   Adj. R-squared:                  0.294
+Method:                 Least Squares   F-statistic:                     452.3
+Date:                Thu, 21 May 2026   Prob (F-statistic):          1.45e-117
+Time:                        21:47:34   Log-Likelihood:            -9.2122e+05
+No. Observations:              170708   AIC:                         1.842e+06
+Df Residuals:                  170688   BIC:                         1.843e+06
+Df Model:                          19                                         
 Covariance Type:              cluster                                         
-=============================================================================================================
-                                                coef    std err          z      P>|z|      [0.025      0.975]
--------------------------------------------------------------------------------------------------------------
-Intercept                                   -14.6347   1.48e+04     -0.001      0.999   -2.91e+04    2.91e+04
-C(muni_name)[T.ALLAMUCHY TWP]                51.5740   7066.160      0.007      0.994   -1.38e+04    1.39e+04
-C(muni_name)[T.BAYONNE CITY]                 38.9745   4989.916      0.008      0.994   -9741.082    9819.031
-C(muni_name)[T.BERGENFIELD BORO]          -2.682e+11        nan        nan        nan         nan         nan
-C(muni_name)[T.BERKELEY HEIGHTS TWP]          9.2144   1.23e+04      0.001      0.999   -2.41e+04    2.41e+04
-C(muni_name)[T.BLOOMFIELD TWP]               80.6974   7890.019      0.010      0.992   -1.54e+04    1.55e+04
-C(muni_name)[T.BOGOTA BORO]                  55.3159   8105.273      0.007      0.995   -1.58e+04    1.59e+04
-C(muni_name)[T.BOUND BROOK BORO]             59.9676   5318.520      0.011      0.991   -1.04e+04    1.05e+04
-C(muni_name)[T.BRANCHBURG TWP]            -2.682e+11   6.39e+16   -4.2e-06      1.000   -1.25e+17    1.25e+17
-C(muni_name)[T.BRICK TWP]                 -2.682e+11   6.48e+16  -4.14e-06      1.000   -1.27e+17    1.27e+17
-C(muni_name)[T.BUENA BORO]                   25.2066   7448.209      0.003      0.997   -1.46e+04    1.46e+04
-C(muni_name)[T.CARLSTADT BORO]               88.6976   1725.757      0.051      0.959   -3293.724    3471.119
-C(muni_name)[T.CARTERET BORO]             -2.682e+11   7.44e+16   -3.6e-06      1.000   -1.46e+17    1.46e+17
-C(muni_name)[T.CHERRY HILL TWP]              34.6728   1535.949      0.023      0.982   -2975.731    3045.077
-C(muni_name)[T.CLARK TWP]                    86.9277   1.17e+04      0.007      0.994   -2.29e+04     2.3e+04
-C(muni_name)[T.CLIFFSIDE PARK BORO]          34.1180   1706.900      0.020      0.984   -3311.344    3379.580
-C(muni_name)[T.CRANBURY TWP]                 16.4780   8476.503      0.002      0.998   -1.66e+04    1.66e+04
-C(muni_name)[T.CRANFORD TWP]                 50.0624   9628.833      0.005      0.996   -1.88e+04    1.89e+04
-C(muni_name)[T.CRESSKILL BORO]               13.6813        nan        nan        nan         nan         nan
-C(muni_name)[T.DEMAREST BORO]                16.1764    266.504      0.061      0.952    -506.162     538.515
-C(muni_name)[T.DENVILLE TWP]                 35.6076   1.09e+04      0.003      0.997   -2.14e+04    2.14e+04
-C(muni_name)[T.DUMONT BORO]                  24.3582    815.893      0.030      0.976   -1574.763    1623.479
-C(muni_name)[T.EAST BRUNSWICK TWP]           15.8972   5246.551      0.003      0.998   -1.03e+04    1.03e+04
-C(muni_name)[T.EAST ORANGE CITY]             81.9488   4971.591      0.016      0.987   -9662.190    9826.088
-C(muni_name)[T.EAST RUTHERFORD BORO]        113.3358   7539.247      0.015      0.988   -1.47e+04    1.49e+04
-C(muni_name)[T.EAST WINDSOR TWP]             45.2042   7687.487      0.006      0.995    -1.5e+04    1.51e+04
-C(muni_name)[T.ELIZABETH CITY]               43.9210   2302.153      0.019      0.985   -4468.217    4556.059
-C(muni_name)[T.ELMWOOD PARK BORO]            38.0079   6113.681      0.006      0.995   -1.19e+04     1.2e+04
-C(muni_name)[T.EMERSON BORO]                 60.3232   1.13e+04      0.005      0.996    -2.2e+04    2.21e+04
-C(muni_name)[T.ENGLEWOOD CITY]               69.5397   5296.314      0.013      0.990   -1.03e+04    1.05e+04
-C(muni_name)[T.EWING TWP]                    32.7522   2005.045      0.016      0.987   -3897.064    3962.568
-C(muni_name)[T.FAIRVIEW BORO]                44.6824   3301.823      0.014      0.989   -6426.773    6516.137
-C(muni_name)[T.FANWOOD BORO]                 49.0965   2.47e+04      0.002      0.998   -4.84e+04    4.85e+04
-C(muni_name)[T.FLEMINGTON BORO]              36.3051        nan        nan        nan         nan         nan
-C(muni_name)[T.FLORENCE TWP]                 51.0686   3.01e+04      0.002      0.999    -5.9e+04    5.91e+04
-C(muni_name)[T.FORT LEE BORO]                36.7890     52.117      0.706      0.480     -65.359     138.937
-C(muni_name)[T.GARFIELD CITY]                42.7157    5.1e+04      0.001      0.999   -9.99e+04       1e+05
-C(muni_name)[T.GARWOOD BORO]                 47.1284   1.59e+04      0.003      0.998   -3.12e+04    3.13e+04
-C(muni_name)[T.GIBBSBORO BORO]               40.2398   1253.422      0.032      0.974   -2416.421    2496.901
-C(muni_name)[T.GLEN RIDGE BORO]              12.7775   1.46e+04      0.001      0.999   -2.86e+04    2.86e+04
-C(muni_name)[T.GLEN ROCK BORO]               10.1051   5277.352      0.002      0.998   -1.03e+04    1.04e+04
-C(muni_name)[T.HACKENSACK CITY]              67.5085   8047.011      0.008      0.993   -1.57e+04    1.58e+04
-C(muni_name)[T.HADDONFIELD BORO]             44.5031   1088.835      0.041      0.967   -2089.574    2178.580
-C(muni_name)[T.HARDING TWP]                  21.5810   6079.830      0.004      0.997   -1.19e+04    1.19e+04
-C(muni_name)[T.HASBROUCK HEIGHTS BORO]       83.7002   1.41e+04      0.006      0.995   -2.76e+04    2.78e+04
-C(muni_name)[T.HAWORTH BORO]                 62.8430   2.22e+04      0.003      0.998   -4.34e+04    4.36e+04
-C(muni_name)[T.HIGHLAND PARK BORO]          129.3715      1e+04      0.013      0.990   -1.95e+04    1.97e+04
-C(muni_name)[T.HILLSIDE TWP]                 46.5411   1521.194      0.031      0.976   -2934.945    3028.027
-C(muni_name)[T.HO-HO-KUS BORO]               17.3983   2.38e+04      0.001      0.999   -4.66e+04    4.67e+04
-C(muni_name)[T.HOLMDEL TWP]                  62.0412   2.15e+04      0.003      0.998   -4.21e+04    4.22e+04
-C(muni_name)[T.IRVINGTON TWP]                26.3159   7513.863      0.004      0.997   -1.47e+04    1.48e+04
-C(muni_name)[T.JACKSON TWP]                  35.2197   5033.873      0.007      0.994   -9830.990    9901.430
-C(muni_name)[T.JERSEY CITY]               -2.682e+11   7.81e+16  -3.43e-06      1.000   -1.53e+17    1.53e+17
-C(muni_name)[T.KENILWORTH BORO]              51.6826    1.5e+04      0.003      0.997   -2.93e+04    2.94e+04
-C(muni_name)[T.KINGWOOD TWP]                 55.2257   1.86e+04      0.003      0.998   -3.64e+04    3.65e+04
-C(muni_name)[T.LAKEWOOD TWP]                 27.8692   1.28e+04      0.002      0.998   -2.51e+04    2.52e+04
-C(muni_name)[T.LAMBERTVILLE CITY]            42.4348   5078.523      0.008      0.993   -9911.287    9996.157
-C(muni_name)[T.LAVALLETTE BORO]              95.2343   5741.588      0.017      0.987   -1.12e+04    1.13e+04
-C(muni_name)[T.LEONIA BORO]                  40.2388   2.07e+04      0.002      0.998   -4.06e+04    4.07e+04
-C(muni_name)[T.LITTLE FALLS TWP]             66.8558   1.77e+04      0.004      0.997   -3.45e+04    3.47e+04
-C(muni_name)[T.LITTLE FERRY BORO]            29.0892   1.42e+04      0.002      0.998   -2.79e+04    2.79e+04
-C(muni_name)[T.LIVINGSTON TWP]               52.5962   4203.978      0.013      0.990   -8187.049    8292.241
-C(muni_name)[T.LODI BORO]                    47.8637   4478.866      0.011      0.991   -8730.552    8826.280
-C(muni_name)[T.LONG BRANCH CITY]             31.7414   1.15e+04      0.003      0.998   -2.25e+04    2.26e+04
-C(muni_name)[T.LYNDHURST TWP]                57.3504   1.14e+04      0.005      0.996   -2.24e+04    2.25e+04
-C(muni_name)[T.MADISON BORO]                  6.9087        nan        nan        nan         nan         nan
-C(muni_name)[T.MAHWAH TWP]                   31.4513   1.62e+04      0.002      0.998   -3.18e+04    3.18e+04
-C(muni_name)[T.MANASQUAN BORO]               64.9898   3695.779      0.018      0.986   -7178.605    7308.584
-C(muni_name)[T.MANCHESTER TWP]               48.6281   8965.200      0.005      0.996   -1.75e+04    1.76e+04
-C(muni_name)[T.MANTOLOKING BORO]             48.7131   1.09e+04      0.004      0.996   -2.13e+04    2.14e+04
-C(muni_name)[T.MANVILLE BORO]             -2.682e+11   8.33e+16  -3.22e-06      1.000   -1.63e+17    1.63e+17
-C(muni_name)[T.MAPLEWOOD TWP]                39.5147        nan        nan        nan         nan         nan
-C(muni_name)[T.MAYWOOD BORO]                 91.1410   1.01e+04      0.009      0.993   -1.97e+04    1.99e+04
-C(muni_name)[T.MIDDLESEX BORO]               35.0245        nan        nan        nan         nan         nan
-C(muni_name)[T.MIDLAND PARK BORO]            65.4933   1.16e+04      0.006      0.995   -2.27e+04    2.28e+04
-C(muni_name)[T.MONTCLAIR TWP]                31.4231   9813.327      0.003      0.997   -1.92e+04    1.93e+04
-C(muni_name)[T.MONTGOMERY TWP]               41.6084   5302.073      0.008      0.994   -1.04e+04    1.04e+04
-C(muni_name)[T.MONTVALE BORO]                13.8325   1.35e+04      0.001      0.999   -2.65e+04    2.65e+04
-C(muni_name)[T.MOONACHIE BORO]               53.1213    1.5e+04      0.004      0.997   -2.93e+04    2.94e+04
-C(muni_name)[T.MOORESTOWN TWP]               74.0916    1.2e+04      0.006      0.995   -2.34e+04    2.35e+04
-C(muni_name)[T.MORRISTOWN TOWN]              43.3002   1.59e+04      0.003      0.998   -3.11e+04    3.12e+04
-C(muni_name)[T.NEW BRUNSWICK CITY]          206.5788        nan        nan        nan         nan         nan
-C(muni_name)[T.NEW MILFORD BORO]          -2.682e+11   5.03e+16  -5.33e-06      1.000   -9.86e+16    9.86e+16
-C(muni_name)[T.NEW PROVIDENCE BORO]          30.1842   1.18e+04      0.003      0.998   -2.32e+04    2.32e+04
-C(muni_name)[T.NEWARK CITY]               -2.682e+11        nan        nan        nan         nan         nan
-C(muni_name)[T.NEWTON TOWN]                  38.8503   1.62e+04      0.002      0.998   -3.17e+04    3.18e+04
-C(muni_name)[T.NORTH ARLINGTON BORO]         31.8921   1.52e+04      0.002      0.998   -2.97e+04    2.98e+04
-C(muni_name)[T.NORTH BERGEN TWP]             37.3056   1.23e+04      0.003      0.998    -2.4e+04    2.41e+04
-C(muni_name)[T.NORTH BRUNSWICK TWP]          45.2695   1.64e+04      0.003      0.998   -3.21e+04    3.22e+04
-C(muni_name)[T.NORTH HALEDON BORO]           53.7740   1.87e+04      0.003      0.998   -3.66e+04    3.67e+04
-C(muni_name)[T.NORTH WILDWOOD CITY]       -2.682e+11   7.18e+16  -3.74e-06      1.000   -1.41e+17    1.41e+17
-C(muni_name)[T.NORWOOD BORO]                 32.5830   1.26e+04      0.003      0.998   -2.47e+04    2.47e+04
-C(muni_name)[T.OAKLAND BORO]                 98.4749   1.66e+04      0.006      0.995   -3.24e+04    3.26e+04
-C(muni_name)[T.OCEAN CITY]                -2.682e+11   5.68e+16  -4.72e-06      1.000   -1.11e+17    1.11e+17
-C(muni_name)[T.OLD TAPPAN BORO]              26.4851   1.37e+04      0.002      0.998   -2.69e+04     2.7e+04
-C(muni_name)[T.PALISADES PARK BORO]          42.2428   1.37e+04      0.003      0.998   -2.68e+04    2.68e+04
-C(muni_name)[T.PATERSON CITY]                86.4214   1450.377      0.060      0.952   -2756.265    2929.108
-C(muni_name)[T.PENNINGTON BORO]              75.2745   1.69e+04      0.004      0.996    -3.3e+04    3.31e+04
-C(muni_name)[T.PERTH AMBOY CITY]             42.9621   7571.913      0.006      0.995   -1.48e+04    1.49e+04
-C(muni_name)[T.PISCATAWAY TWP]               44.5195   9876.637      0.005      0.996   -1.93e+04    1.94e+04
-C(muni_name)[T.PLAINFIELD CITY]              57.7093   1.65e+04      0.004      0.997   -3.22e+04    3.23e+04
-C(muni_name)[T.PLAINSBORO TWP]               29.8610   3748.979      0.008      0.994   -7318.003    7377.725
-C(muni_name)[T.POINT PLEASANT BEACH BORO]    40.0803    2.4e+04      0.002      0.999   -4.71e+04    4.72e+04
-C(muni_name)[T.PRINCETON]                    48.3877   7040.760      0.007      0.995   -1.38e+04    1.38e+04
-C(muni_name)[T.RAHWAY CITY]                  35.7416   1.32e+04      0.003      0.998   -2.58e+04    2.59e+04
-C(muni_name)[T.RARITAN TWP]                  39.2133   1.28e+04      0.003      0.998    -2.5e+04    2.51e+04
-C(muni_name)[T.READINGTON TWP]               25.8152   1.75e+04      0.001      0.999   -3.44e+04    3.44e+04
-C(muni_name)[T.RIVER EDGE BORO]              47.9474   2.04e+04      0.002      0.998   -3.99e+04       4e+04
-C(muni_name)[T.RIVER VALE TWP]              -21.5485    1.8e+04     -0.001      0.999   -3.54e+04    3.54e+04
-C(muni_name)[T.ROCHELLE PARK TWP]         -2.682e+11   6.72e+16  -3.99e-06      1.000   -1.32e+17    1.32e+17
-C(muni_name)[T.ROSELLE PARK BORO]            25.1647   1.02e+04      0.002      0.998      -2e+04       2e+04
-C(muni_name)[T.ROXBURY TWP]                  49.5893   1.71e+04      0.003      0.998   -3.34e+04    3.35e+04
-C(muni_name)[T.SADDLE RIVER BORO]            24.3065   1.92e+04      0.001      0.999   -3.75e+04    3.76e+04
-C(muni_name)[T.SCOTCH PLAINS TWP]            46.8231   6926.744      0.007      0.995   -1.35e+04    1.36e+04
-C(muni_name)[T.SEA ISLE CITY]                65.3149   1.92e+04      0.003      0.997   -3.76e+04    3.77e+04
-C(muni_name)[T.SEASIDE HEIGHTS BORO]      -2.682e+11      6e+16  -4.47e-06      1.000   -1.18e+17    1.18e+17
-C(muni_name)[T.SECAUCUS TOWN]                43.1012   1.74e+04      0.002      0.998    -3.4e+04    3.41e+04
-C(muni_name)[T.SOUTH AMBOY CITY]             35.2404   1.24e+04      0.003      0.998   -2.43e+04    2.43e+04
-C(muni_name)[T.SOUTH BOUND BROOK BORO]       57.3172   1.79e+04      0.003      0.997    -3.5e+04    3.51e+04
-C(muni_name)[T.SOUTH HACKENSACK TWP]         55.9639        nan        nan        nan         nan         nan
-C(muni_name)[T.SOUTH PLAINFIELD BORO]        53.8674        nan        nan        nan         nan         nan
-C(muni_name)[T.STAFFORD TWP]              -2.682e+11   6.89e+16  -3.89e-06      1.000   -1.35e+17    1.35e+17
-C(muni_name)[T.TEANECK TWP]                  60.6470   1.67e+04      0.004      0.997   -3.26e+04    3.27e+04
-C(muni_name)[T.TENAFLY BORO]                 17.3198   1.97e+04      0.001      0.999   -3.85e+04    3.86e+04
-C(muni_name)[T.TOMS RIVER TWP]               51.3992        nan        nan        nan         nan         nan
-C(muni_name)[T.UPPER FREEHOLD TWP]           17.7802   1.54e+04      0.001      0.999   -3.02e+04    3.03e+04
-C(muni_name)[T.UPPER SADDLE RIVER BORO]      41.4215    1.4e+04      0.003      0.998   -2.75e+04    2.76e+04
-C(muni_name)[T.UPPER TWP]                    71.0315   1.19e+04      0.006      0.995   -2.32e+04    2.34e+04
-C(muni_name)[T.VINELAND CITY]                29.1916   2.38e+04      0.001      0.999   -4.66e+04    4.67e+04
-C(muni_name)[T.WALLINGTON BORO]              30.5113    1.4e+04      0.002      0.998   -2.74e+04    2.74e+04
-C(muni_name)[T.WANTAGE TWP]                  51.4905   1.67e+04      0.003      0.998   -3.26e+04    3.27e+04
-C(muni_name)[T.WARREN TWP]                   35.3820   1.89e+04      0.002      0.999    -3.7e+04     3.7e+04
-C(muni_name)[T.WATCHUNG BORO]                33.3787        nan        nan        nan         nan         nan
-C(muni_name)[T.WAYNE TWP]                    30.2986   1.27e+04      0.002      0.998   -2.48e+04    2.49e+04
-C(muni_name)[T.WEST CAPE MAY BORO]           44.0820   7445.682      0.006      0.995   -1.45e+04    1.46e+04
-C(muni_name)[T.WEST NEW YORK TOWN]           77.4268   1.45e+04      0.005      0.996   -2.84e+04    2.85e+04
-C(muni_name)[T.WEST ORANGE TWP]              63.5738   1.36e+04      0.005      0.996   -2.66e+04    2.68e+04
-C(muni_name)[T.WEST WILDWOOD BORO]        -2.682e+11   4.32e+16  -6.21e-06      1.000   -8.47e+16    8.47e+16
-C(muni_name)[T.WEST WINDSOR TWP]             44.2242   1.45e+04      0.003      0.998   -2.84e+04    2.84e+04
-C(muni_name)[T.WESTFIELD TOWN]               16.9297   1.33e+04      0.001      0.999    -2.6e+04    2.61e+04
-C(muni_name)[T.WESTWOOD BORO]             -2.682e+11   7.01e+16  -3.83e-06      1.000   -1.37e+17    1.37e+17
-C(muni_name)[T.WILLINGBORO TWP]              36.6012   1.11e+04      0.003      0.997   -2.17e+04    2.18e+04
-C(muni_name)[T.WOOD-RIDGE BORO]              72.2776   2.09e+04      0.003      0.997   -4.09e+04    4.11e+04
-C(muni_name)[T.WOODCLIFF LAKE BORO]          57.6295   1.36e+04      0.004      0.997   -2.66e+04    2.67e+04
-C(muni_name)[T.WOODLAND TWP]                 25.3594   1.63e+04      0.002      0.999    -3.2e+04     3.2e+04
-C(year)[T.2016]                             -15.9832   1290.108     -0.012      0.990   -2544.548    2512.582
-C(year)[T.2017]                             -25.1097   2414.955     -0.010      0.992   -4758.334    4708.115
-C(year)[T.2018]                             -36.7761    260.036     -0.141      0.888    -546.437     472.885
-C(year)[T.2019]                             -40.6811   1045.911     -0.039      0.969   -2090.629    2009.267
-C(year)[T.2021]                             -48.5805        nan        nan        nan         nan         nan
-C(year)[T.2022]                             -22.4011   2548.652     -0.009      0.993   -5017.668    4972.866
-C(year)[T.2023]                             -58.9028    698.677     -0.084      0.933   -1428.284    1310.479
-C(year)[T.2024]                             -65.3216    455.446     -0.143      0.886    -957.979     827.336
-C(year)[T.2025]                             -53.7679   1946.124     -0.028      0.978   -3868.101    3760.566
-ever_champ:C(year)[2015]                   2.682e+11   5.92e+16   4.53e-06      1.000   -1.16e+17    1.16e+17
-ever_champ:C(year)[2016]                   2.682e+11   6.69e+16   4.01e-06      1.000   -1.31e+17    1.31e+17
-ever_champ:C(year)[2017]                   2.682e+11   2.46e+16   1.09e-05      1.000   -4.82e+16    4.82e+16
-ever_champ:C(year)[2018]                   2.682e+11   2.43e+16   1.11e-05      1.000   -4.76e+16    4.76e+16
-ever_champ:C(year)[2019]                   2.682e+11   7.33e+16   3.66e-06      1.000   -1.44e+17    1.44e+17
-ever_champ:C(year)[2021]                   2.682e+11   3.72e+16    7.2e-06      1.000    -7.3e+16     7.3e+16
-ever_champ:C(year)[2022]                   2.682e+11   4.88e+16    5.5e-06      1.000   -9.56e+16    9.56e+16
-ever_champ:C(year)[2023]                   2.682e+11   7.96e+16   3.37e-06      1.000   -1.56e+17    1.56e+17
-ever_champ:C(year)[2024]                   2.682e+11   4.59e+16   5.85e-06      1.000   -8.99e+16    8.99e+16
-ever_champ:C(year)[2025]                   2.682e+11   7.65e+16   3.51e-06      1.000    -1.5e+17     1.5e+17
-debt_to_av                                    0.7704      2.161      0.356      0.721      -3.465       5.006
-time_to_maturity                              4.4207      2.479      1.783      0.075      -0.438       9.280
+===========================================================================================
+                              coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------
+Intercept                  -3.9200      2.427     -1.615      0.106      -8.678       0.838
+I(year == 2015)[T.True]    37.9614      6.776      5.602      0.000      24.681      51.242
+I(year == 2016)[T.True]    23.3573      6.430      3.632      0.000      10.754      35.960
+I(year == 2017)[T.True]    15.2527      4.436      3.438      0.001       6.558      23.948
+I(year == 2018)[T.True]     5.1628      4.260      1.212      0.226      -3.187      13.513
+I(year == 2019)[T.True]     3.5043      3.224      1.087      0.277      -2.816       9.824
+I(year == 2022)[T.True]    23.1145      4.050      5.707      0.000      15.177      31.052
+I(year == 2023)[T.True]   -12.4556      3.548     -3.511      0.000     -19.409      -5.502
+I(year == 2024)[T.True]   -15.6117      3.779     -4.132      0.000     -23.017      -8.206
+I(year == 2025)[T.True]    -7.4473      3.883     -1.918      0.055     -15.057       0.162
+champ_x_2015               25.5231     10.973      2.326      0.020       4.016      47.030
+champ_x_2016               24.6206      8.751      2.813      0.005       7.468      41.773
+champ_x_2017                9.4630      5.145      1.839      0.066      -0.621      19.547
+champ_x_2018                3.7545      4.758      0.789      0.430      -5.570      13.079
+champ_x_2019               28.5032     24.714      1.153      0.249     -19.936      76.942
+champ_x_2022               -8.2717      4.127     -2.004      0.045     -16.360      -0.183
+champ_x_2023              -12.2892      6.519     -1.885      0.059     -25.065       0.487
+champ_x_2024              -19.5098      3.972     -4.911      0.000     -27.296     -11.724
+champ_x_2025              -22.7653      5.524     -4.121      0.000     -33.592     -11.939
+ttm_dm                      4.5334      0.482      9.410      0.000       3.589       5.478
 ==============================================================================
-Omnibus:                    11595.176   Durbin-Watson:                   0.536
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):            33014.464
-Skew:                           0.366   Prob(JB):                         0.00
-Kurtosis:                       5.025   Cond. No.                     1.76e+14
+Omnibus:                    11015.780   Durbin-Watson:                   0.528
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            31908.233
+Skew:                           0.339   Prob(JB):                         0.00
+Kurtosis:                       5.006   Cond. No.                         61.4
 ==============================================================================
 
 Notes:
 [1] Standard Errors are robust to cluster correlation (cluster)
-[2] The smallest eigenvalue is 5.14e-22. This might indicate that there are
-strong multicollinearity problems or that the design matrix is singular.
