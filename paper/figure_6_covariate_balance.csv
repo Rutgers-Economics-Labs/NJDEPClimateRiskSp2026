@@ -1,5 +1,0 @@
-Variable,Mean (CHAMP),Mean (Non-CHAMP),Raw Std Diff,IPW Std Diff
-slr_exposure_pct,26.8835,5.6027,0.7923,0.1072
-debt_to_av,0.0148,0.0111,0.5095,0.0963
-median_income_10k,6.8138,9.5198,-0.8832,-0.3561
-spread_pre,32.6347,34.6282,-0.0695,-0.2584
